@@ -7,7 +7,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="zshrc zprofile"
+files="zshrc zshenv zprofile"
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
@@ -26,5 +26,3 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
-
-

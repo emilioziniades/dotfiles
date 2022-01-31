@@ -3,7 +3,6 @@ vars = require('variables')
 --vim plug
 
 -- auto install vim plug if not already installed
-data_dir = vim.fn.stdpath('data')
 config_dir = vim.fn.stdpath('config')
 if vim.fn.empty(vim.fn.glob(config_dir .. '/autoload/plug.vim')) == 1
 	then
