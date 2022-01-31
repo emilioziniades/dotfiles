@@ -14,6 +14,7 @@ alias gs="git status"
 alias gl="git log --pretty=oneline"
 alias glf="git log"
 alias gd="git diff"
+alias gca="git add .; git commit -m"
 alias gp="git push -u origin main"
 
 alias p="python"
@@ -42,10 +43,6 @@ fi
 
 mkcd() {
     mkdir -p "$1" && cd "$1"
-}
-
-gca() {
-    git add .; git commit -m "$1"
 }
 
 tmx() {
