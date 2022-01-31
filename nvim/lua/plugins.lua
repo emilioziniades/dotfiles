@@ -2,9 +2,19 @@ vars = require('variables')
 
 --vim plug
 
+-- auto install vim plug if not already installed
+data_dir = vim.fn.stdpath('data')
+config_dir = vim.fn.stdpath('config')
+if vim.fn.empty(vim.fn.glob(config_dir .. '/autoload/plug.vim')) == 1
+	then
+		os.execute('curl -fLo ' .. config_dir .. '/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+		vim.cmd('autocmd VimEnter * PlugInstall --sync ')
+end
+
+--
 local Plug = vim.fn['plug#']
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+vim.call('plug#begin', config_dir .. '/plugged')
 
 -- themes
 Plug('tanvirtin/monokai.nvim')
