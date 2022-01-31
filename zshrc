@@ -55,4 +55,9 @@ tmx() {
     tmux attach-session -t $SES
 }
 
+# Neofetch on load
 
+if command -v neofetch &> /dev/null
+then
+    neofetch
+fi
