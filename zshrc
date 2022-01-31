@@ -7,10 +7,21 @@ setopt share_history
 #ALIASES
 
 alias ls='ls --color'
+alias lsal='ls -al --color'
+
+alias gi="git init"
+alias gs="git status"
+alias gl="git log --pretty=oneline"
+alias glf="git log"
+alias gd="git diff"
+alias gp="git push -u origin main"
+
 alias p="python"
+
 alias gr="go run"
 alias gt="go test"
 alias go118="go1.18beta1"
+
 alias v="nvim -p"
 alias ve="nvim -Rp"
 alias jn="jupyter notebook"
@@ -31,6 +42,10 @@ fi
 
 mkcd() {
     mkdir -p "$1" && cd "$1"
+}
+
+gca() {
+    git add .; git commit -m "$1"
 }
 
 tmx() {
