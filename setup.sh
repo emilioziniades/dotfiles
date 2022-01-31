@@ -28,5 +28,8 @@ for file in $files; do
 done
 
 # symlink nvim file into ~/.config
+<<<<<<< HEAD
 echo "Creating symlink to ~/.config/nvim"
+=======
+>>>>>>> f751c2e19fd5633791f0474724e1f247bae595e2
 ln -s $dir/nvim ~/.config/nvim
