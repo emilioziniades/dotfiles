@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 ###############
 # Creates symlinks in home directory to the dotfiles in this folder
 ###############
