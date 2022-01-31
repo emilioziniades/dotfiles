@@ -15,13 +15,6 @@ alias v="nvim -p"
 alias ve="nvim -Rp"
 alias jn="jupyter notebook"
 
-# PATH 
-
-export PATH="$PATH:/usr/local/sbin"
-export GOPATH=$PATH/go
-export PATH="$PATH:$GOPATH/bin"
-export XDG_CONFIG_HOME=$HOME/dotfiles
-
 # PROMPT
 
 PROMPT='%F{046}%n%f:%F{033}%~%f %F{033}%#%f '
