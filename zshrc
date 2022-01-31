@@ -4,30 +4,35 @@
 setopt inc_append_history
 setopt share_history
 
-
 #ALIASES
 
+alias ls='ls --color'
+alias p="python"
 alias gr="go run"
 alias gt="go test"
 alias go118="go1.18beta1"
-alias jn="jupyter notebook"
-alias p="python"
-alias ls='ls --color'
 alias v="nvim -p"
 alias ve="nvim -Rp"
+alias jn="jupyter notebook"
 
-# Path 
+# PATH 
+
 export PATH="$PATH:/usr/local/sbin"
-export GOPATH="/Users/emilioziniades/go"
+export GOPATH=$PATH/go
 export PATH="$PATH:$GOPATH/bin"
-export XDG_CONFIG_HOME="~/dotfiles" #for neovim
-# Prompt
+export XDG_CONFIG_HOME=$HOME/dotfiles
+
+# PROMPT
+
 PROMPT='%F{046}%n%f:%F{033}%~%f %F{033}%#%f '
 
-# SHIMS
-#Pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+# PYENV SHIMS
+
+if command -v pyenv &> /dev/null
+then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+fi
 
 #FUNCTIONS
 
