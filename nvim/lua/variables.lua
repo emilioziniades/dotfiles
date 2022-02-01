@@ -6,8 +6,8 @@ if (5 < t.hour and t.hour < 17)
         variables.theme = 'PaperColor'
         variables.lualinetheme = 'solarized'
     else 
-        variables.theme = 'monokai'
         variables.background = 'dark'
+        variables.theme = 'monokai'
         variables.lualinetheme = 'onedark'
 end
 return variables
