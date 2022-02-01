@@ -21,7 +21,7 @@ alias p="python"
 
 alias gr="go run"
 alias gt="go test"
-alias go118="go1.18beta1"
+alias go="go1.18beta2"
 
 alias v="nvim -p"
 alias ve="nvim -Rp"
