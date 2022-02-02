@@ -20,14 +20,15 @@ alias gca="git add .; git commit -m"
 alias gp="git push -u origin main"
 
 alias p="python"
+alias jn="jupyter notebook"
 
+alias go="go1.18beta2"
 alias gr="go run"
 alias gt="go test"
-alias go="go1.18beta2"
+alias gtv="go test -v ."
 
 alias v="nvim -p"
 alias ve="nvim -Rp"
-alias jn="jupyter notebook"
 
 # PROMPT
 
