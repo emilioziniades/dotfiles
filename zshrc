@@ -14,6 +14,8 @@ alias gs="git status"
 alias gl="git log --pretty=oneline"
 alias glf="git log"
 alias gd="git diff"
+alias ga="git add"
+alias gc="git commit"
 alias gca="git add .; git commit -m"
 alias gp="git push -u origin main"
 
