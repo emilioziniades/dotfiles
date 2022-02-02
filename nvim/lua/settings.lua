@@ -1,5 +1,13 @@
 vars = require('variables')
 
+-- theme (time dependent)
+
+vim.o.background = vars.background
+vim.cmd('colorscheme ' .. vars.theme )
+
+-- other settings
+--
+
 vim.g.mapleader = ' '
 
 vim.o.number = true
@@ -9,10 +17,5 @@ vim.o.softtabstop = 4
 vim.o.expandtab = true
 vim.o.foldmethod = 'syntax'
 vim.o.showmode = false
-
--- theme (time dependent)
-
-vim.o.background = vars.background
-vim.cmd('colorscheme ' .. vars.theme )
-
+vim.cmd('highlight link goBuiltins Keyword')
 
