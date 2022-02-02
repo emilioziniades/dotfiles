@@ -30,7 +30,7 @@ nmap('<leader>w', ':wqa!<CR>')
 
 -- comment and uncomment line
 nmap('<leader>/', ':s:^://<CR> :nohlsearch<CR>')
-nmap('<leader>.', ':s:^.*//::e<CR> :nohlsearch<CR>')
+nmap('<leader>.', ':s:^\\s*//::e<CR> :nohlsearch<CR>')
 
 -- remove highlights
 nmap('<leader>,', ':nohlsearch<CR>')
