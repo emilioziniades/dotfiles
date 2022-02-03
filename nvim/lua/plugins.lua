@@ -24,6 +24,7 @@ Plug('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 Plug('kyazdani42/nvim-tree.lua')
 Plug('kyazdani42/nvim-web-devicons')
 Plug('nvim-lualine/lualine.nvim')
+Plug('numToStr/Comment.nvim')
 
 vim.call('plug#end')
 
@@ -41,3 +42,11 @@ require'nvim-tree'.setup()
 require('lualine').setup{
     options = { theme = vars.lualinetheme }
 }
+
+-- Comment.nvim configuration
+--require('Comment').setup{
+--    toggler = {
+--        line = '<leader>/',
+--    }, 
+--}
+require('Comment').setup()
