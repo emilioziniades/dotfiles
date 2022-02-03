@@ -55,7 +55,20 @@ tmx() {
     tmux attach-session -t $SES
 }
 
-# Neofetch on load
+# ITERM2 
+
+it2zsh=~/.iterm2_shell_integration.zsh
+if [ "$TERM_PROGRAM" = "iTerm.app" ]
+then
+    if ! [ -f $it2zsh ]
+    then
+        echo "iterm script not exist"
+        curl -L https://iterm2.com/shell_integration/zsh -o $it2zsh &> /dev/null
+    fi
+    source $it2zsh
+fi
+
+# NEOFETCH
 
 if command -v neofetch &> /dev/null
 then
