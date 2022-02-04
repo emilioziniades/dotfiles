@@ -30,6 +30,13 @@ alias gtv="go test -v ."
 alias v="nvim -p"
 alias ve="nvim -Rp"
 
+# PATH 
+
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export GOPATH=$HOME/go
+export PATH="$PATH:$GOPATH/bin"
+
 # PROMPT
 
 PROMPT='%F{046}%n%f:%F{033}%~%f %F{033}%#%f '
