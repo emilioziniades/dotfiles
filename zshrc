@@ -1,8 +1,10 @@
 
 #CONFIG
 
-setopt inc_append_history
-setopt share_history
+setopt inc_append_history histignorealldups share_history
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
 
 #ALIASES
 
@@ -29,10 +31,12 @@ alias gtv="go test -v ."
 
 alias v="nvim -p"
 alias ve="nvim -Rp"
+alias vgolf="vim -u vimgolf.vimrc"
 
 # PATH 
 
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="$(gem environment gemdir)/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
