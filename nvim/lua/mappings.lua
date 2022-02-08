@@ -4,6 +4,10 @@ function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
+function remap(mode, shortcut, command)
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = false, silent = true })
+end
+
 function nmap(shortcut, command)
   map('n', shortcut, command)
 end
@@ -37,13 +41,15 @@ nmap('<leader>,', '<CMD>nohlsearch<CR>')
 -- terminal shortcut
 nmap('<leader>t', '<CMD>bo vs term://zsh<CR> :vert res -20<CR>')
 
--- easier escape keys
+-- easier escape key for macbook with touchpad
 local esc = "§"
---local esc = "<Esc>"
-imap(esc, '<Esc>')
-map('t', esc, '<C-\\><C-n>')
-map('v', esc, '<Esc>')
-map('c', esc, '<C-C><Esc>')
+remap('i', esc, '<Esc>')
+remap('t', esc, '<Esc>')
+remap('v', esc, '<Esc>')
+remap('c', esc, '<Esc>')
+map('t', '<Esc>', '<C-\\><C-n>')
+map('v', '<Esc>', '<Esc>')
+map('c', '<Esc>', '<C-C><Esc>')
 
 -- plugin-relevant mappings
 nmap('<C-n>', '<CMD>NvimTreeToggle<CR>')

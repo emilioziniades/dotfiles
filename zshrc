@@ -9,7 +9,7 @@ HISTFILE=~/.zsh_history
 #ALIASES
 
 alias ls='ls --color'
-alias lsal='ls -al --color'
+alias lsal='ls -alh --color'
 
 alias gi="git init"
 alias gs="git status"
@@ -18,7 +18,7 @@ alias glf="git log"
 alias gd="git diff"
 alias ga="git add"
 alias gc="git commit"
-alias gca="git add .; git commit -m"
+alias gca="git add . && git commit -m"
 alias gp="git push -u origin main"
 
 alias p="python"
@@ -30,8 +30,10 @@ alias gt="go test"
 alias gtv="go test -v ."
 
 alias v="nvim -p"
+alias=vi="nvim -p"
+alias vim="nvim -p"
 alias ve="nvim -Rp"
-alias vgolf="vim -u vimgolf.vimrc"
+alias view="nvim -Rp"
 
 # PATH 
 
