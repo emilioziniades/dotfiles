@@ -25,6 +25,7 @@ Plug('kyazdani42/nvim-tree.lua')
 Plug('kyazdani42/nvim-web-devicons')
 Plug('nvim-lualine/lualine.nvim')
 Plug('numToStr/Comment.nvim')
+Plug('junegunn/goyo.vim')
 
 vim.call('plug#end')
 
@@ -44,9 +45,4 @@ require('lualine').setup{
 }
 
 -- Comment.nvim configuration
---require('Comment').setup{
---    toggler = {
---        line = '<leader>/',
---    }, 
---}
 require('Comment').setup()

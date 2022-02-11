@@ -53,3 +53,9 @@ map('c', '<Esc>', '<C-C><Esc>')
 
 -- plugin-relevant mappings
 nmap('<C-n>', '<CMD>NvimTreeToggle<CR>')
+
+-- Goyo editing (Zen mode)
+nmap('<leader>g', '<CMD>Goyo<CR>')
+
+-- Word count shortcut
+nmap('<leader>c', '<CMD>w<CR><CMD>!wc -w %<CR>')
