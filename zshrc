@@ -35,17 +35,26 @@ alias vim="nvim -p"
 alias ve="nvim -Rp"
 alias view="nvim -Rp"
 
+# VARIABLES
+
+export LC_ALL=C
+
 # PATH 
 
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="$(gem environment gemdir)/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 
+if command -v gem &> /dev/null
+then
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    export PATH="$(gem environment gemdir)/bin:$PATH"
+fi
+
+
 # PROMPT
 
-PROMPT='%F{046}%n%f:%F{033}%~%f %F{033}%#%f '
+PROMPT='%F{046}%n@%m%f:%F{033}%~%f %F{033}%#%f '
 
 # PYENV SHIMS
 
