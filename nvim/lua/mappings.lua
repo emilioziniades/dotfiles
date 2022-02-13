@@ -17,16 +17,16 @@ function imap(shortcut, command)
 end
 
 -- tab, buffer and window navigation
-nmap('<leader>p', '<CMD>tabn<CR>')
-nmap('<leader>o', '<CMD>tabp<CR>')
+nmap('<TAB>', '<CMD>tabn<CR>')
+nmap('<S-TAB>', '<CMD>tabp<CR>')
 
 nmap('<leader>i', '<CMD>bn<CR>')
 nmap('<leader>u', '<CMD>bp<CR>')
 
-nmap('<leader>h', '<C-w>h')
-nmap('<leader>j', '<C-w>j')
-nmap('<leader>k', '<C-w>k')
-nmap('<leader>l', '<C-w>l')
+nmap('<C-h>', '<C-w>h')
+nmap('<C-j>', '<C-w>j')
+nmap('<C-k>', '<C-w>k')
+nmap('<C-l>', '<C-w>l')
 
 -- quit shortcuts
 nmap('<leader>q', '<CMD>qa!<CR>')
@@ -59,3 +59,6 @@ nmap('<leader>g', '<CMD>Goyo<CR>')
 
 -- Word count shortcut
 nmap('<leader>c', '<CMD>w<CR><CMD>!wc -w %<CR>')
+
+-- Toggle spellcheck
+nmap('<leader>s', '<CMD>set spell!<CR>')
