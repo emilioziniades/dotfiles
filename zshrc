@@ -90,9 +90,11 @@ then
     source $it2zsh
 fi
 
-# NEOFETCH
+# random quote on login
 
-if command -v neofetch &> /dev/null
+if command -v fortune && command -v cowsay &> /dev/null
 then
-    neofetch
+    fortune | cowsay
+else 
+    echo "maybe you should install fortune and cowsay?"
 fi
