@@ -27,7 +27,7 @@ require("packer").startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use("numToStr/Comment.nvim")
 	use("junegunn/goyo.vim")
-	use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
+	-- use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
 	--themes
 	use("tanvirtin/monokai.nvim")
 	use("Mofiqul/dracula.nvim")
