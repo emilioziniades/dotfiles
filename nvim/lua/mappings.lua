@@ -1,4 +1,3 @@
-
 -- helpers
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
@@ -20,8 +19,8 @@ end
 nmap('<TAB>', '<CMD>tabn<CR>')
 nmap('<S-TAB>', '<CMD>tabp<CR>')
 
-nmap('<leader>i', '<CMD>bn<CR>')
-nmap('<leader>u', '<CMD>bp<CR>')
+nmap('<leader>[', '<CMD>bn<CR>')
+nmap('<leader>]', '<CMD>bp<CR>')
 
 nmap('<C-h>', '<C-w>h')
 nmap('<C-j>', '<C-w>j')
@@ -51,7 +50,12 @@ map('t', '<Esc>', '<C-\\><C-n>')
 map('v', '<Esc>', '<Esc>')
 map('c', '<Esc>', '<C-C><Esc>')
 
+-- lsp mappings
+nmap('<leader>d', '<CMD> lua vim.diagnostic.open_float()<CR>')
+
 -- plugin-relevant mappings
+
+-- NvimTree
 nmap('<C-n>', '<CMD>NvimTreeToggle<CR>')
 
 -- Goyo editing (Zen mode)
@@ -62,3 +66,7 @@ nmap('<leader>c', '<CMD>w<CR><CMD>!wc -w %<CR>')
 
 -- Toggle spellcheck
 nmap('<leader>s', '<CMD>set spell!<CR>')
+
+
+-- nvim-treesitter
+nmap('<leader>r', '<CMD>write | edit | TSBufEnable highlight<CR>')
