@@ -13,7 +13,8 @@ alias lsal='ls -alh --color'
 
 alias gi="git init"
 alias gs="git status"
-alias gl="git log --pretty=oneline"
+alias gl="git log --oneline --all"
+alias gg="git log --oneline --graph --decorate --all"
 alias glf="git log"
 alias gd="git diff"
 alias ga="git add"
@@ -54,7 +55,7 @@ fi
 
 # PROMPT
 
-PROMPT='%F{046}%n@%m%f:%F{033}%~%f %F{033}%#%f '
+PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{blue}%#%f '
 
 # PYENV SHIMS
 
@@ -92,7 +93,7 @@ fi
 
 # random quote on login
 
-if command -v fortune && command -v cowsay &> /dev/null
+if command -v fortune &> /dev/null && command -v cowsay &> /dev/null
 then
     fortune | cowsay
 else 
