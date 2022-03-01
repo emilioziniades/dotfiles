@@ -11,6 +11,8 @@ HISTFILE=~/.zsh_history
 alias ls='ls --color'
 alias lsal='ls -alh --color'
 
+alias diff='diff --color=always -y' 
+
 alias gi="git init"
 alias gs="git status"
 alias gl="git log --oneline --all"

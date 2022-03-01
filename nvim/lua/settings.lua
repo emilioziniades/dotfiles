@@ -1,4 +1,4 @@
-vars = require("variables")
+local vars = require("variables")
 
 -- theme (time dependent)
 
@@ -8,6 +8,16 @@ vim.o.background = vars.background
 -- other settings
 
 vim.g.mapleader = " "
+
+vim.g.AutoPairs = {
+	["("] = ")",
+	["["] = "]",
+	["{"] = "}",
+	["'"] = "'",
+	['"'] = '"',
+	["`"] = "`",
+	["<"] = ">",
+}
 
 vim.o.wrap = true
 vim.o.linebreak = true
