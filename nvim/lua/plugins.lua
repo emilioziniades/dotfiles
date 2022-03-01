@@ -1,4 +1,4 @@
-vars = require("variables")
+local vars = require("variables")
 
 -- Packer - plugins
 
@@ -9,10 +9,10 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 vim.cmd([[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
+augroup Packer
+autocmd!
+autocmd BufWritePost init.lua PackerCompile
+augroup end
 ]])
 
 require("packer").startup(function(use)
@@ -26,8 +26,10 @@ require("packer").startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
 	use("numToStr/Comment.nvim")
+	use("numToStr/FTerm.nvim")
 	use("junegunn/goyo.vim")
-	-- use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
+	use({ "tami5/lspsaga.nvim", requires = { "neovim/nvim-lspconfig" } })
+	use("vim-scripts/auto-pairs-gentle")
 	--themes
 	use("tanvirtin/monokai.nvim")
 	use("Mofiqul/dracula.nvim")
@@ -87,3 +89,7 @@ null_ls.setup({
 		end
 	end,
 })
+
+-- lspsaga
+
+require("lspsaga").init_lsp_saga()

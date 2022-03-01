@@ -5,7 +5,7 @@ if (5 < t.hour and t.hour < 17)
         variables.background = 'dark'
         variables.theme = 'dracula'
         variables.lualinetheme = 'auto'
-    else 
+    else
         variables.background = 'dark'
         variables.theme = 'dracula'
         variables.lualinetheme = 'auto'

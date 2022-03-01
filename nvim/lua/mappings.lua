@@ -1,18 +1,14 @@
 -- helpers
-function map(mode, shortcut, command)
+local function map(mode, shortcut, command)
 	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
-function remap(mode, shortcut, command)
+local function remap(mode, shortcut, command)
 	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = false, silent = true })
 end
 
-function nmap(shortcut, command)
+local function nmap(shortcut, command)
 	map("n", shortcut, command)
-end
-
-function imap(shortcut, command)
-	map("i", shortcut, command)
 end
 
 -- tab, buffer and window navigation
@@ -29,7 +25,7 @@ nmap("<C-l>", "<C-w>l")
 
 -- quit shortcuts
 nmap("<leader>q", "<CMD>qa!<CR>")
-nmap("<leader>w", "<CMD>wqa!<CR>")
+nmap("<leader>w", "<CMD>wa!<CR><CMD>qa!<CR>")
 
 -- comment and uncomment line
 nmap("<leader>/", "<CMD>lua require('Comment.api').call('toggle_current_linewise_op')<CR>g@$")
@@ -37,8 +33,6 @@ map("n", "<leader>c", '<CMD>lua require("Comment.api").call("toggle_linewise_op"
 
 -- remove highlights
 nmap("<leader>,", "<CMD>nohlsearch<CR>")
--- terminal shortcut
-nmap("<leader>t", "<CMD>bo vs term://zsh<CR> :vert res -20<CR>")
 
 -- easier escape key for macbook with touchpad
 local esc = "§"
@@ -69,3 +63,12 @@ nmap("<leader>s", "<CMD>set spell!<CR>")
 
 -- nvim-treesitter
 nmap("<leader>r", "<CMD>write | edit | TSBufEnable highlight<CR>")
+
+--lsp-saga
+
+nmap("<leader>f", "<CMD>Lspsaga lsp_finder<CR>")
+
+-- FTerm
+
+nmap("<leader>t", '<CMD>lua require("FTerm").toggle()<CR>')
+map("t", "<leader>t", '<Esc><CMD>lua require("FTerm").toggle()<CR>')
