@@ -24,8 +24,7 @@ nmap("<C-k>", "<C-w>k")
 nmap("<C-l>", "<C-w>l")
 
 -- quit shortcuts
-nmap("<leader>q", "<CMD>qa!<CR>")
-nmap("<leader>w", "<CMD>wa!<CR><CMD>qa!<CR>")
+nmap("<leader>q", "<CMD>qa<CR>")
 
 -- comment and uncomment line
 nmap("<leader>/", "<CMD>lua require('Comment.api').call('toggle_current_linewise_op')<CR>g@$")
@@ -43,6 +42,9 @@ remap("c", esc, "<Esc>")
 map("t", "<Esc>", "<C-\\><C-n>")
 map("v", "<Esc>", "<Esc>")
 map("c", "<Esc>", "<C-C><Esc>")
+
+-- Go mappings
+nmap("<leader>gr", "<CMD>!go run %<CR>")
 
 -- lsp mappings
 nmap("<leader>d", "<CMD> lua vim.diagnostic.open_float()<CR>")
@@ -64,11 +66,14 @@ nmap("<leader>s", "<CMD>set spell!<CR>")
 -- nvim-treesitter
 nmap("<leader>r", "<CMD>write | edit | TSBufEnable highlight<CR>")
 
---lsp-saga
-
-nmap("<leader>f", "<CMD>Lspsaga lsp_finder<CR>")
-
 -- FTerm
 
-nmap("<leader>t", '<CMD>lua require("FTerm").toggle()<CR>')
-map("t", "<leader>t", '<Esc><CMD>lua require("FTerm").toggle()<CR>')
+nmap("<C-t>", '<CMD>lua require("FTerm").toggle()<CR>')
+map("t", "<C-t>", '<Esc><CMD>lua require("FTerm").toggle()<CR>')
+
+-- Telescope
+
+nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nmap("<leader>fg", "<cmd>Telescope live_grep<cr>")
+nmap("<leader>fb", "<cmd>Telescope buffers<cr>")
+nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")

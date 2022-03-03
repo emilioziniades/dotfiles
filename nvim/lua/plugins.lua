@@ -28,8 +28,11 @@ require("packer").startup(function(use)
 	use("numToStr/Comment.nvim")
 	use("numToStr/FTerm.nvim")
 	use("junegunn/goyo.vim")
-	use({ "tami5/lspsaga.nvim", requires = { "neovim/nvim-lspconfig" } })
+	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use("vim-scripts/auto-pairs-gentle")
+	use("machakann/vim-sandwich")
+	use("Pocco81/AutoSave.nvim")
 	--themes
 	use("tanvirtin/monokai.nvim")
 	use("Mofiqul/dracula.nvim")
@@ -90,6 +93,25 @@ null_ls.setup({
 	end,
 })
 
--- lspsaga
+-- telescope
 
-require("lspsaga").init_lsp_saga()
+require("telescope").setup()
+require("telescope").load_extension("fzf")
+
+-- AutoSave
+
+require("autosave").setup({
+	enabled = true,
+	execution_message = "(autosaved) @ " .. vim.fn.strftime("%H:%M:%S"),
+	events = { "InsertLeave", "TextChanged" },
+	conditions = {
+		exists = true,
+		filename_is_not = {},
+		filetype_is_not = {},
+		modifiable = true,
+	},
+	write_all_buffers = false,
+	on_off_commands = true,
+	clean_command_line_interval = 0,
+	debounce_delay = 500, -- in ms
+})
