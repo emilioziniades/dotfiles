@@ -1,3 +1,39 @@
+-- Floating Window Borders
+vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
+vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white]])
+
+local border = {
+	{ "┌", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "┐", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "┘", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "└", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or border
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
+-- Peek Definition
+
+local function preview_location_callback(_, result)
+	if result == nil or vim.tbl_isempty(result) then
+		return nil
+	end
+	vim.lsp.util.preview_location(result[1])
+end
+
+function PeekDefinition()
+	local params = vim.lsp.util.make_position_params()
+	return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
+end
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
