@@ -1,4 +1,3 @@
-
 #CONFIG
 
 setopt inc_append_history histignorealldups share_history
@@ -11,7 +10,7 @@ HISTFILE=~/.zsh_history
 alias ls='ls --color'
 alias lsal='ls -alh --color'
 
-alias diff='diff --color=always -y' 
+alias diff='diff --color=always'
 
 alias gi="git init"
 alias gs="git status"
@@ -33,10 +32,7 @@ alias gt="go test"
 alias gtv="go test -v ."
 
 alias v="nvim -p"
-alias=vi="nvim -p"
-alias vim="nvim -p"
 alias ve="nvim -Rp"
-alias view="nvim -Rp"
 
 # VARIABLES
 
@@ -57,7 +53,7 @@ fi
 
 # PROMPT
 
-PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{blue}%#%f '
+PROMPT='%F{yellow}%n@%m%f:%F{red}%~%f %F{blue}%#%f '
 
 # PYENV SHIMS
 
@@ -91,13 +87,4 @@ then
         curl -L https://iterm2.com/shell_integration/zsh -o $it2zsh &> /dev/null
     fi
     source $it2zsh
-fi
-
-# random quote on login
-
-if command -v fortune &> /dev/null && command -v cowsay &> /dev/null
-then
-    fortune | cowsay
-else 
-    echo "maybe you should install fortune and cowsay?"
 fi
