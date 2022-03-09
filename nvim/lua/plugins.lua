@@ -9,10 +9,10 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 vim.cmd([[
-augroup Packer
-autocmd!
-autocmd BufWritePost init.lua PackerCompile
-augroup end
+    augroup Packer
+        autocmd!
+        autocmd BufWritePost init.lua PackerCompile
+    augroup end
 ]])
 
 require("packer").startup(function(use)
@@ -21,6 +21,8 @@ require("packer").startup(function(use)
 	--    lsp
 	use("neovim/nvim-lspconfig")
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	--    git
+	use("tpope/vim-fugitive")
 	--    keystrokes
 	use("numToStr/Comment.nvim")
 	use("machakann/vim-sandwich")
@@ -28,10 +30,14 @@ require("packer").startup(function(use)
 	use("Pocco81/AutoSave.nvim")
 	--    visual
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-lualine/lualine.nvim")
 	use("p00f/nvim-ts-rainbow")
 	use("junegunn/goyo.vim")
 	use("kyazdani42/nvim-web-devicons")
+	use("lukas-reineke/indent-blankline.nvim")
+	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
 	--    explorers & terminal
 	use("kyazdani42/nvim-tree.lua")
 	use("numToStr/FTerm.nvim")
@@ -39,10 +45,11 @@ require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	--themes
-	use("Mofiqul/dracula.nvim")
 	use("shaunsingh/nord.nvim")
+	-- use("Mofiqul/dracula.nvim")
 	-- use("tanvirtin/monokai.nvim")
-	use("sjl/badwolf")
+	-- use("mjlbach/onedark.nvim")
+	-- use("sjl/badwolf")
 	-- use("folke/tokyonight.nvim")
 	-- use("morhetz/gruvbox")
 	-- use({ "rose-pine/neovim", as = "rose-pine" })
@@ -54,9 +61,10 @@ require("nvim-tree").setup()
 --lualine configuration
 require("lualine").setup({
 	options = {
+		icons_enabled = false,
 		theme = vars.lualinetheme,
+		component_separators = "|",
 		section_separators = "",
-		component_separators = "",
 	},
 })
 
@@ -125,4 +133,21 @@ require("autosave").setup({
 	on_off_commands = true,
 	clean_command_line_interval = 0,
 	debounce_delay = 500, -- in ms
+})
+
+--Map blankline
+vim.g.indent_blankline_char = "┊"
+vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
+vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+vim.g.indent_blankline_show_trailing_blankline_indent = false
+
+-- Gitsigns
+require("gitsigns").setup({
+	signs = {
+		add = { text = "+" },
+		change = { text = "~" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+	},
 })
