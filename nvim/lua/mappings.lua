@@ -47,7 +47,7 @@ nmap("<leader>n", [[<cmd>lua require('utils').toggle_relative_line_numbers()<cr>
 nmap("<C-n>", "<cmd>NvimTreeToggle<cr>")
 
 -- Goyo editing (Zen mode)
-nmap("<leader>g", "<cmd>Goyo<cr>")
+nmap("<leader>z", "<cmd>Goyo<cr>")
 
 -- Word count shortcut
 nmap("<leader>c", "<cmd>w<cr><cmd>!wc -w %<cr>")
@@ -57,6 +57,15 @@ nmap("<leader>s", "<cmd>set spell!<cr>")
 
 -- nvim-treesitter
 nmap("<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
+
+-- git commands
+nmap("<leader>gs", "<cmd>Git status<cr>")
+nmap("<leader>gd", "<cmd>Git diff<cr>")
+nmap("<leader>gp", "<cmd>Git push -u origin main<cr>")
+nmap("<leader>gl", "<cmd>Git log --oneline --all<cr>")
+nmap("<leader>gg", "<cmd>Git log --graph --decorate --oneline --all<cr>")
+nmap("<leader>gc", "<cmd>Git commit<cr>")
+nmap("<leader>ga", "<cmd>Git add .<cr>")
 
 -- FTerm
 
