@@ -31,8 +31,8 @@ alias gr="go run"
 alias gt="go test"
 alias gtv="go test -v ."
 
-alias v="nvim -p"
-alias ve="nvim -Rp"
+alias v="nvim"
+alias ve="nvim -R"
 
 # VARIABLES
 
@@ -53,7 +53,7 @@ fi
 
 # PROMPT
 
-PROMPT='%F{yellow}%n@%m%f:%F{red}%~%f %F{blue}%#%f '
+PROMPT='%F{green}%n@%m%f:%F{yellow}%~%f %F{blue}%#%f '
 
 # PYENV SHIMS
 

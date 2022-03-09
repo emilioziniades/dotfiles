@@ -4,11 +4,11 @@ local nmap = utils.nmap
 local remap = utils.remap
 
 -- tab, buffer and window navigation
-nmap("<TAB>", "<CMD>tabn<CR>")
-nmap("<S-TAB>", "<CMD>tabp<CR>")
+nmap("<TAB>", "<cmd>tabn<cr>")
+nmap("<S-TAB>", "<cmd>tabp<cr>")
 
-nmap("<leader>[", "<CMD>bn<CR>")
-nmap("<leader>]", "<CMD>bp<CR>")
+nmap("<leader>[", "<cmd>bn<cr>")
+nmap("<leader>]", "<cmd>bp<cr>")
 
 nmap("<C-h>", "<C-w>h")
 nmap("<C-j>", "<C-w>j")
@@ -16,10 +16,10 @@ nmap("<C-k>", "<C-w>k")
 nmap("<C-l>", "<C-w>l")
 
 -- quit shortcuts
-nmap("<leader>q", "<CMD>qa<CR>")
+nmap("<leader>q", "<cmd>qa<cr>")
 
 -- remove highlights
-nmap("<leader>,", "<CMD>nohlsearch<CR>")
+nmap("<leader>,", "<cmd>nohlsearch<cr>")
 
 -- easier escape key for macbook with touchpad
 local esc = "§"
@@ -27,49 +27,55 @@ remap("i", esc, "<Esc>")
 remap("t", esc, "<Esc>")
 remap("v", esc, "<Esc>")
 remap("c", esc, "<Esc>")
+remap("n", esc, "<Esc>")
 map("t", "<Esc>", "<C-\\><C-n>")
 map("v", "<Esc>", "<Esc>")
 map("c", "<Esc>", "<C-C><Esc>")
 
--- Go mappings
-nmap("<leader>gr", "<CMD>!go run %<CR>")
-
---Python mappings
-nmap("<leader>pr", "<CMD>!python %<CR>")
-
+-- Mappings to run current file
+nmap("<leader>rg", "<cmd>!go run %<cr>")
+nmap("<leader>rp", "<cmd>!python %<cr>")
 -- lsp mappings
-nmap("<leader>d", "<CMD> lua vim.diagnostic.open_float()<CR>")
+nmap("<leader>d", "<cmd> lua vim.diagnostic.open_float()<cr>")
 
 -- toggle relative line numbers
-nmap("<leader>n", '<CMD>lua require("utils").toggle_relative_line_numbers()<CR>')
+nmap("<leader>n", [[<cmd>lua require('utils').toggle_relative_line_numbers()<cr>]])
 
 -- plugin-relevant mappings
 
 -- NvimTree
-nmap("<C-n>", "<CMD>NvimTreeToggle<CR>")
+nmap("<C-n>", "<cmd>NvimTreeToggle<cr>")
 
 -- Goyo editing (Zen mode)
-nmap("<leader>g", "<CMD>Goyo<CR>")
+nmap("<leader>g", "<cmd>Goyo<cr>")
 
 -- Word count shortcut
-nmap("<leader>c", "<CMD>w<CR><CMD>!wc -w %<CR>")
+nmap("<leader>c", "<cmd>w<cr><cmd>!wc -w %<cr>")
 
 -- Toggle spellcheck
-nmap("<leader>s", "<CMD>set spell!<CR>")
+nmap("<leader>s", "<cmd>set spell!<cr>")
 
 -- nvim-treesitter
-nmap("<leader>r", "<CMD>write | edit | TSBufEnable highlight<CR>")
+nmap("<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
 
 -- FTerm
 
-nmap("<C-t>", '<CMD>lua require("FTerm").toggle()<CR>')
-map("t", "<C-t>", '<Esc><CMD>lua require("FTerm").toggle()<CR>')
-nmap("<leader>tq", '<CMD>lua require("FTerm").exit()<CR>')
-map("t", "<leader>tq", '<Esc><CMD>lua require("FTerm").exit()<CR>')
+nmap("<leader>tt", [[<cmd>lua require('FTerm').toggle()<cr>]])
+map("t", "<leader>tt", [[<Esc><cmd>lua require('FTerm').toggle()<cr>]])
+nmap("<leader>tq", [[<cmd>lua require('FTerm').exit()<cr>]])
+map("t", "<leader>tq", [[<Esc><cmd>lua require('FTerm').exit()<cr>]])
 
 -- Telescope
 
-nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
-nmap("<leader>fg", "<cmd>Telescope live_grep<cr>")
-nmap("<leader>fb", "<cmd>Telescope buffers<cr>")
-nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")
+nmap(
+	"<leader><space>",
+	[[<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({previewer = false}))<cr>]]
+)
+nmap("<leader>ff", [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<cr>]])
+nmap("<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
+nmap("<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]])
+nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
+nmap("<leader>fb", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
+-- nmap("<leader>ft", [[<cmd>lua require('telescope.builtin').tags()<cr>]])
+-- nmap("<leader>fd", [[<cmd>lua require('telescope.builtin').grep_string()<cr>]])
+-- nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]])
