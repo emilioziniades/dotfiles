@@ -1,15 +1,7 @@
--- helpers
-local function map(mode, shortcut, command)
-	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
-end
-
-local function remap(mode, shortcut, command)
-	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = false, silent = true })
-end
-
-local function nmap(shortcut, command)
-	map("n", shortcut, command)
-end
+local utils = require("utils")
+local map = utils.map
+local nmap = utils.nmap
+local remap = utils.remap
 
 -- tab, buffer and window navigation
 nmap("<TAB>", "<CMD>tabn<CR>")
@@ -25,10 +17,6 @@ nmap("<C-l>", "<C-w>l")
 
 -- quit shortcuts
 nmap("<leader>q", "<CMD>qa<CR>")
-
--- comment and uncomment line
-nmap("<leader>/", "<CMD>lua require('Comment.api').call('toggle_current_linewise_op')<CR>g@$")
-map("n", "<leader>c", '<CMD>lua require("Comment.api").call("toggle_linewise_op")<CR>g@')
 
 -- remove highlights
 nmap("<leader>,", "<CMD>nohlsearch<CR>")
@@ -46,8 +34,14 @@ map("c", "<Esc>", "<C-C><Esc>")
 -- Go mappings
 nmap("<leader>gr", "<CMD>!go run %<CR>")
 
+--Python mappings
+nmap("<leader>pr", "<CMD>!python %<CR>")
+
 -- lsp mappings
 nmap("<leader>d", "<CMD> lua vim.diagnostic.open_float()<CR>")
+
+-- toggle relative line numbers
+nmap("<leader>n", '<CMD>lua require("utils").toggle_relative_line_numbers()<CR>')
 
 -- plugin-relevant mappings
 
@@ -70,6 +64,8 @@ nmap("<leader>r", "<CMD>write | edit | TSBufEnable highlight<CR>")
 
 nmap("<C-t>", '<CMD>lua require("FTerm").toggle()<CR>')
 map("t", "<C-t>", '<Esc><CMD>lua require("FTerm").toggle()<CR>')
+nmap("<leader>tq", '<CMD>lua require("FTerm").exit()<CR>')
+map("t", "<leader>tq", '<Esc><CMD>lua require("FTerm").exit()<CR>')
 
 -- Telescope
 

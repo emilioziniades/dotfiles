@@ -17,28 +17,35 @@ augroup end
 
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
-	use("neovim/nvim-lspconfig")
 	--functionality
+	--    lsp
+	use("neovim/nvim-lspconfig")
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("p00f/nvim-ts-rainbow")
-	use("kyazdani42/nvim-tree.lua")
-	use("kyazdani42/nvim-web-devicons")
-	use("nvim-lualine/lualine.nvim")
+	--    keystrokes
 	use("numToStr/Comment.nvim")
-	use("numToStr/FTerm.nvim")
+	use("machakann/vim-sandwich")
+	use("vim-scripts/auto-pairs-gentle")
+	use("Pocco81/AutoSave.nvim")
+	--    visual
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("nvim-lualine/lualine.nvim")
+	use("p00f/nvim-ts-rainbow")
 	use("junegunn/goyo.vim")
+	use("kyazdani42/nvim-web-devicons")
+	--    explorers & terminal
+	use("kyazdani42/nvim-tree.lua")
+	use("numToStr/FTerm.nvim")
 	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use("vim-scripts/auto-pairs-gentle")
-	use("machakann/vim-sandwich")
-	use("Pocco81/AutoSave.nvim")
+
 	--themes
-	use("tanvirtin/monokai.nvim")
 	use("Mofiqul/dracula.nvim")
+	use("shaunsingh/nord.nvim")
+	-- use("tanvirtin/monokai.nvim")
 	use("sjl/badwolf")
-	use("folke/tokyonight.nvim")
-	use({ "rose-pine/neovim", as = "rose-pine" })
+	-- use("folke/tokyonight.nvim")
+	-- use("morhetz/gruvbox")
+	-- use({ "rose-pine/neovim", as = "rose-pine" })
 end)
 
 -- nvim-tree configuration
@@ -46,7 +53,11 @@ require("nvim-tree").setup()
 
 --lualine configuration
 require("lualine").setup({
-	options = { theme = vars.lualinetheme },
+	options = {
+		theme = vars.lualinetheme,
+		section_separators = "",
+		component_separators = "",
+	},
 })
 
 --nvim-treesitter configuration
