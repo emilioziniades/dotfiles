@@ -78,9 +78,13 @@ map("t", "<leader>tq", [[<Esc><cmd>lua require('FTerm').exit()<cr>]])
 
 nmap(
 	"<leader><space>",
-	[[<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({previewer = false}))<cr>]]
+	[[<cmd>lua require('telescope.builtin').buffers(require("telescope.themes").get_dropdown({ previewer = false }))<cr>]]
 )
-nmap("<leader>ff", [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<cr>]])
+
+nmap(
+	"<leader>ff",
+	[[<cmd>lua require('telescope.builtin').find_files(require("telescope.themes").get_dropdown({ previewer = false }))<cr>]]
+)
 nmap("<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
 nmap("<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]])
 nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
