@@ -26,7 +26,7 @@ require("packer").startup(function(use)
 	--    keystrokes
 	use("numToStr/Comment.nvim")
 	use("machakann/vim-sandwich")
-	use("vim-scripts/auto-pairs-gentle")
+	use("jiangmiao/auto-pairs")
 	use("Pocco81/AutoSave.nvim")
 	--    visual
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -113,8 +113,16 @@ null_ls.setup({
 })
 
 -- telescope
-
-require("telescope").setup()
+local actions = require("telescope.actions")
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = {
+				["<esc>"] = actions.close,
+			},
+		},
+	},
+})
 require("telescope").load_extension("fzf")
 
 -- AutoSave
