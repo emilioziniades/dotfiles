@@ -1,2 +1,3 @@
 # dotfiles
-## zsh dotfiles and neovim configuration
+
+## dotfiles for zsh, neovim and tmux
