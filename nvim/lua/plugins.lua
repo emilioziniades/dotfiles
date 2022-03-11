@@ -21,6 +21,7 @@ require("packer").startup(function(use)
 	--    lsp
 	use("neovim/nvim-lspconfig")
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	use("ludovicchabant/vim-gutentags")
 	--    git
 	use("tpope/vim-fugitive")
 	--    keystrokes
@@ -81,6 +82,7 @@ require("nvim-treesitter.configs").setup({
 		"python",
 		"javascript",
 		"lua",
+		"css",
 	},
 })
 vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
