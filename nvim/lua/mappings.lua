@@ -18,6 +18,9 @@ nmap("<C-l>", "<C-w>l")
 -- quit shortcuts
 nmap("<leader>q", "<cmd>qa<cr>")
 
+-- save shortcut
+nmap("<leader>w", "<cmd>w<cr>")
+
 -- remove highlights
 nmap("<leader>,", "<cmd>nohlsearch<cr>")
 
