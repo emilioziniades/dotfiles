@@ -46,6 +46,10 @@ nmap("<leader>n", [[<cmd>lua require('utils').toggle_relative_line_numbers()<cr>
 
 -- plugin-relevant mappings
 
+-- packer
+nmap("<leader>ps", "<cmd>PackerSync<cr>")
+nmap("<leader>pc", "<cmd>PackerCompile<cr>")
+
 -- NvimTree
 nmap("<C-n>", "<cmd>NvimTreeToggle<cr>")
 
@@ -63,7 +67,8 @@ nmap("<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
 
 -- git commands
 nmap("<leader>gs", "<cmd>Git status<cr>")
-nmap("<leader>gd", "<cmd>Git diff<cr>")
+nmap("<leader>gd", "<cmd>Gvdiffsplit<cr>")
+nmap("<leader>gD", "<cmd>Git diff<cr>")
 nmap("<leader>gp", "<cmd>Git push -u origin main<cr>")
 nmap("<leader>gl", "<cmd>Git log --oneline --all<cr>")
 nmap("<leader>gg", "<cmd>Git log --graph --decorate --oneline --all<cr>")
