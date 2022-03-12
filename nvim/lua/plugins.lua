@@ -7,17 +7,48 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 vim.cmd([[
-    augroup Packer
+    augroup packer_user_config
         autocmd!
-        autocmd BufWritePost init.lua PackerCompile
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
     augroup end
 ]])
 
+-- caching
+require("impatient")
+
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
-	--functionality
-	--    lsp
+	-- FUNCTIONALITY
 	use("neovim/nvim-lspconfig")
+	use("ludovicchabant/vim-gutentags")
+	use("tpope/vim-fugitive")
+	use("machakann/vim-sandwich")
+	use("jiangmiao/auto-pairs")
+	use("p00f/nvim-ts-rainbow")
+	use("junegunn/goyo.vim")
+	use("kyazdani42/nvim-web-devicons")
+	use("numToStr/FTerm.nvim")
+	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use("lewis6991/impatient.nvim")
+	use({
+		"startup-nvim/startup.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("startup").setup()
+		end,
+	})
+	use({
+		"kyazdani42/nvim-tree.lua",
+		config = function()
+			require("nvim-tree").setup()
+		end,
+	})
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -44,18 +75,6 @@ require("packer").startup(function(use)
 			})
 		end,
 	})
-	--    git
-	use("ludovicchabant/vim-gutentags")
-	use("tpope/vim-fugitive")
-	--    keystrokes
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
-	use("machakann/vim-sandwich")
-	use("jiangmiao/auto-pairs")
 	use({
 		"Pocco81/AutoSave.nvim",
 		config = function()
@@ -76,8 +95,6 @@ require("packer").startup(function(use)
 			})
 		end,
 	})
-
-	--    visual
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -100,7 +117,6 @@ require("packer").startup(function(use)
 			vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
 		end,
 	})
-	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -115,9 +131,6 @@ require("packer").startup(function(use)
 			})
 		end,
 	})
-	use("p00f/nvim-ts-rainbow")
-	use("junegunn/goyo.vim")
-	use("kyazdani42/nvim-web-devicons")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -143,22 +156,6 @@ require("packer").startup(function(use)
 		end,
 	})
 	use({
-		"startup-nvim/startup.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
-			require("startup").setup()
-		end,
-	})
-
-	--    explorers & terminal
-	use({
-		"kyazdani42/nvim-tree.lua",
-		config = function()
-			require("nvim-tree").setup()
-		end,
-	})
-	use("numToStr/FTerm.nvim")
-	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
@@ -177,12 +174,12 @@ require("packer").startup(function(use)
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
-	--themes
+	-- THEMES
 	use("shaunsingh/nord.nvim")
 	use("Mofiqul/dracula.nvim")
-	-- use("tanvirtin/monokai.nvim")
 	use("mjlbach/onedark.nvim")
 	use("sjl/badwolf")
+	-- use("tanvirtin/monokai.nvim")
 	-- use("folke/tokyonight.nvim")
 	-- use("morhetz/gruvbox")
 	-- use({ "rose-pine/neovim", as = "rose-pine" })
