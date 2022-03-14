@@ -52,6 +52,10 @@ then
     export PATH="$(gem environment gemdir)/bin:$PATH"
 fi
 
+if [[ -f "$HOME/.cargo/env" ]]; then
+    source "$HOME/.cargo/env"
+fi
+
 
 # PROMPT
 
@@ -69,13 +73,6 @@ fi
 
 mkcd() {
     mkdir -p "$1" && cd "$1"
-}
-
-tmx() {
-    SES="devenv"
-    tmux new-session -d -s $SES
-    tmux split-window -d -t $SES: -h -p30
-    tmux attach-session -t $SES
 }
 
 # ITERM2 
