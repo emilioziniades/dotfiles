@@ -18,7 +18,9 @@ require("impatient")
 
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
+
 	-- FUNCTIONALITY
+
 	use("neovim/nvim-lspconfig")
 	use("ludovicchabant/vim-gutentags")
 	use("tpope/vim-fugitive")
@@ -30,6 +32,13 @@ require("packer").startup(function(use)
 	use("numToStr/FTerm.nvim")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("lewis6991/impatient.nvim")
+	use({
+		"TimUntersberger/neogit",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("neogit").setup()
+		end,
+	})
 	use({
 		"startup-nvim/startup.nvim",
 		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -168,6 +177,26 @@ require("packer").startup(function(use)
 						},
 					},
 				},
+				pickers = {
+					find_files = {
+						theme = "dropdown",
+					},
+					buffers = {
+						theme = "dropdown",
+					},
+					live_grep = {
+						theme = "dropdown",
+					},
+					help_tags = {
+						theme = "dropdown",
+					},
+					oldfiles = {
+						theme = "dropdown",
+					},
+					current_buffer_fuzzy_find = {
+						theme = "dropdown",
+					},
+				},
 			})
 			require("telescope").load_extension("fzf")
 		end,
@@ -175,12 +204,13 @@ require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	-- THEMES
+
 	use("shaunsingh/nord.nvim")
 	use("Mofiqul/dracula.nvim")
 	use("mjlbach/onedark.nvim")
 	use("sjl/badwolf")
-	-- use("tanvirtin/monokai.nvim")
-	-- use("folke/tokyonight.nvim")
-	-- use("morhetz/gruvbox")
-	-- use({ "rose-pine/neovim", as = "rose-pine" })
+	use("tanvirtin/monokai.nvim")
+	use("folke/tokyonight.nvim")
+	use("morhetz/gruvbox")
+	use({ "rose-pine/neovim", as = "rose-pine" })
 end)

@@ -24,6 +24,9 @@ nmap("<leader>w", "<cmd>w<cr>")
 -- remove highlights
 nmap("<leader>,", "<cmd>nohlsearch<cr>")
 
+-- go back
+nmap("<leader>b", "<C-^>")
+
 -- easier escape key for macbook with touchpad
 local esc = "§"
 remap("i", esc, "<Esc>")
@@ -66,12 +69,13 @@ nmap("<leader>s", "<cmd>set spell!<cr>")
 nmap("<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
 
 -- git commands
-nmap("<leader>gs", "<cmd>Git status<cr>")
+nmap("<leader>gg", "<cmd>Neogit<cr>")
+nmap("<leader>gs", "<cmd>Git<cr>")
 nmap("<leader>gd", "<cmd>Gvdiffsplit<cr>")
 nmap("<leader>gD", "<cmd>Git diff<cr>")
 nmap("<leader>gp", "<cmd>Git push -u origin main<cr>")
-nmap("<leader>gl", "<cmd>Git log --oneline --all<cr>")
-nmap("<leader>gg", "<cmd>Git log --graph --decorate --oneline --all<cr>")
+-- nmap("<leader>gl", "<cmd>Git log --oneline --all<cr>")
+nmap("<leader>gl", "<cmd>Git log --graph --decorate --oneline --all<cr>")
 nmap("<leader>gc", "<cmd>Git commit<cr>")
 nmap("<leader>ga", "<cmd>Git add .<cr>")
 
@@ -84,19 +88,13 @@ map("t", "<leader>tq", [[<Esc><cmd>lua require('FTerm').exit()<cr>]])
 
 -- Telescope
 
-nmap(
-	"<leader><space>",
-	[[<cmd>lua require('telescope.builtin').buffers(require("telescope.themes").get_dropdown({ previewer = false }))<cr>]]
-)
-
-nmap(
-	"<leader>ff",
-	[[<cmd>lua require('telescope.builtin').find_files(require("telescope.themes").get_dropdown({ previewer = false }))<cr>]]
-)
+nmap("<leader><space>", [[<cmd>lua require('telescope.builtin').buffers()<cr>]])
+nmap("<leader>ff", [[<cmd>lua require('telescope.builtin').find_files()<cr>]])
 nmap("<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
 nmap("<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]])
 nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
 nmap("<leader>fb", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
+nmap("<leader>fc", [[<cmd>lua require('telescope.builtin').colorscheme()<cr>]])
 -- nmap("<leader>ft", [[<cmd>lua require('telescope.builtin').tags()<cr>]])
 -- nmap("<leader>fd", [[<cmd>lua require('telescope.builtin').grep_string()<cr>]])
 -- nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]])
