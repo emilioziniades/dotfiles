@@ -1,25 +1,3 @@
--- Floating Window Borders
-vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
-vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white]])
-
-local border = {
-	{ "┌", "FloatBorder" },
-	{ "─", "FloatBorder" },
-	{ "┐", "FloatBorder" },
-	{ "│", "FloatBorder" },
-	{ "┘", "FloatBorder" },
-	{ "─", "FloatBorder" },
-	{ "└", "FloatBorder" },
-	{ "│", "FloatBorder" },
-}
-
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-	opts = opts or {}
-	opts.border = opts.border or border
-	return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
 -- Peek Definition
 
 local function preview_location_callback(_, result)
@@ -57,7 +35,7 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(
@@ -76,7 +54,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "gopls", "eslint" }
+local servers = { "pyright", "gopls", "tsserver" }
 for _, lsp in pairs(servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
@@ -117,3 +95,25 @@ require("lspconfig").sumneko_lua.setup({
 		},
 	},
 })
+
+-- Floating Window Borders
+vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
+vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white]])
+
+local border = {
+	{ "┌", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "┐", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "┘", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "└", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or border
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
