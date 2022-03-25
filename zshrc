@@ -23,7 +23,8 @@ alias gc="git commit"
 alias gca="git add . && git commit -m"
 alias gp="git push -u origin main"
 
-alias p="python"
+alias py="python"
+alias ipy="ipython"
 alias jn="jupyter notebook"
 
 alias go="go1.18beta2"
@@ -35,6 +36,7 @@ alias v="nvim"
 alias ve="nvim -R"
 
 alias tmux="tmux -u"
+alias t="tmux -u"
 
 # VARIABLES
 

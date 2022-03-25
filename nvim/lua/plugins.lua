@@ -1,4 +1,4 @@
--- Packer - plugins
+-- Packer
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
@@ -32,6 +32,12 @@ require("packer").startup(function(use)
 	use("numToStr/FTerm.nvim")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("lewis6991/impatient.nvim")
+	use({
+		"iamcco/markdown-preview.nvim",
+		config = function()
+			vim.cmd("call mkdp#util#install()")
+		end,
+	})
 	use({
 		"TimUntersberger/neogit",
 		requires = "nvim-lua/plenary.nvim",
