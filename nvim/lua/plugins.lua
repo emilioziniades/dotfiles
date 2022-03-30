@@ -32,6 +32,7 @@ require("packer").startup(function(use)
 	use("numToStr/FTerm.nvim")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("lewis6991/impatient.nvim")
+	use("L3MON4D3/LuaSnip")
 	use({
 		"iamcco/markdown-preview.nvim",
 		config = function()
@@ -71,6 +72,7 @@ require("packer").startup(function(use)
 			local null_ls = require("null-ls")
 			local sources = {
 				null_ls.builtins.formatting.black,
+				null_ls.builtins.diagnostics.mypy,
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.stylua,
@@ -140,8 +142,8 @@ require("packer").startup(function(use)
 				options = {
 					icons_enabled = false,
 					theme = require("variables").lualinetheme,
-					-- component_separators = "|",
-					-- section_separators = "",
+					component_separators = "|",
+					section_separators = "",
 				},
 			})
 		end,
