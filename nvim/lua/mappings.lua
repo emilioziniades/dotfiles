@@ -3,6 +3,9 @@ local map = utils.map
 local nmap = utils.nmap
 local remap = utils.remap
 
+-- source config file
+nmap("<leader><leader>s", "<cmd>luafile $MYVIMRC<cr>")
+
 -- tab, buffer and window navigation
 nmap("<TAB>", "<cmd>tabn<cr>")
 nmap("<S-TAB>", "<cmd>tabp<cr>")
@@ -14,6 +17,11 @@ nmap("<C-h>", "<C-w>h")
 nmap("<C-j>", "<C-w>j")
 nmap("<C-k>", "<C-w>k")
 nmap("<C-l>", "<C-w>l")
+
+nmap("+", "<cmd>resize +5<cr>")
+nmap("-", "<cmd>resize -5<cr>")
+nmap(">", "<cmd>vertical resize +5<cr>")
+nmap("<", "<cmd>vertical resize -5<cr>")
 
 -- quit shortcuts
 nmap("<leader>q", "<cmd>qa<cr>")
