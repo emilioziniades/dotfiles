@@ -1,8 +1,7 @@
 local vars = require("variables")
 
 -- theme (time dependent)
-vim.g.nord_italic = false
-vim.g.nord_borders = true
+vim.g.tokyonight_dark_float = true
 vim.cmd("colorscheme " .. vars.theme)
 vim.o.background = vars.background
 
@@ -17,7 +16,6 @@ vim.g.AutoPairs = {
 	["'"] = "'",
 	['"'] = '"',
 	["`"] = "`",
-	-- ["<"] = ">",
 	["__"] = "__",
 }
 
@@ -43,18 +41,18 @@ vim.o.termguicolors = true
 
 local line_num_colour
 if vim.o.background == "light" then
-	line_num_colour = "Black"
+	line_num_colour = "Yellow"
 else
 	line_num_colour = "White"
 end
-
 vim.o.cursorline = true
 vim.cmd("hi Cursorline guibg=none")
 vim.cmd("hi CursorLineNr term=bold ctermfg=" .. line_num_colour .. " gui=bold guifg=" .. line_num_colour)
 
 -- filetype specific settings
 
-vim.cmd("autocmd BufRead,BufNewFile *.js,*.jsx setlocal tabstop=2 shiftwidth=2 ")
+vim.cmd([[autocmd BufRead,BufNewFile *.js,*.jsx setlocal tabstop=2 shiftwidth=2 ]])
+vim.cmd([[autocmd BufRead,BufNewFile *.js,*.jsx lua vim.g.AutoPairs["<"] = ">" ]])
 
 -- Highlight on yank
 vim.cmd([[
