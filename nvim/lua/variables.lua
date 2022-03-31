@@ -8,7 +8,7 @@ if 5 < t.hour and t.hour < 17 then
 else
 	variables.background = "dark"
 	variables.theme = "tokyonight"
-	vim.g.tokyonight_style = "night"
+	vim.g.tokyonight_style = "storm"
 	variables.lualinetheme = "auto"
 end
 return variables
