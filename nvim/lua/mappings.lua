@@ -64,8 +64,8 @@ nmap("<leader>pc", "<cmd>PackerCompile<cr>")
 -- NvimTree
 nmap("<C-n>", "<cmd>NvimTreeToggle<cr>")
 
--- Goyo editing (Zen mode)
-nmap("<leader>z", "<cmd>Goyo<cr>")
+-- Zen Mode
+nmap("<leader>z", "<cmd>ZenMode<cr>")
 
 -- Word count shortcut
 nmap("<leader>c", "<cmd>w<cr><cmd>!wc -w %<cr>")
@@ -103,6 +103,3 @@ nmap("<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]])
 nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
 nmap("<leader>fb", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
 nmap("<leader>fc", [[<cmd>lua require('telescope.builtin').colorscheme()<cr>]])
--- nmap("<leader>ft", [[<cmd>lua require('telescope.builtin').tags()<cr>]])
--- nmap("<leader>fd", [[<cmd>lua require('telescope.builtin').grep_string()<cr>]])
--- nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]])

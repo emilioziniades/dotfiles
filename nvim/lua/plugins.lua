@@ -214,7 +214,6 @@ require("packer").startup(function(use)
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-cmdline")
 	use("saadparwaiz1/cmp_luasnip")
-	--
 
 	-- treesitter
 	use({
@@ -269,7 +268,25 @@ require("packer").startup(function(use)
 	use("p00f/nvim-ts-rainbow")
 
 	--zen mode
-	use("junegunn/goyo.vim")
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup()
+		end,
+	})
+	use({
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup({
+				window = {
+					options = {
+						number = false,
+						relativenumber = false,
+					},
+				},
+			})
+		end,
+	})
 
 	-- floating terminal
 	use("numToStr/FTerm.nvim")
@@ -294,7 +311,7 @@ require("packer").startup(function(use)
 				write_all_buffers = false,
 				on_off_commands = true,
 				clean_command_line_interval = 0,
-				debounce_delay = 500, -- in ms
+				debounce_delay = 1000, -- in ms
 			})
 		end,
 	})
