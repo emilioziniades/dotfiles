@@ -27,7 +27,6 @@ alias py="python"
 alias ipy="ipython"
 alias jn="jupyter notebook"
 
-alias go="go1.18beta2"
 alias gr="go run"
 alias gt="go test"
 alias gtv="go test -v ."
