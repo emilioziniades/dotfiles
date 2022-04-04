@@ -1,107 +1,101 @@
 local utils = require("utils")
-local map = utils.map
-local nmap = utils.nmap
-local remap = utils.remap
+local map = vim.keymap.set
+local esc = "§"
 
 -- source config file
-nmap("<leader><leader>s", "<cmd>luafile $MYVIMRC<cr>")
+map("n", "<leader><leader>s", "<cmd>luafile $MYVIMRC<cr>")
 
 -- tab, buffer and window navigation
-nmap("<TAB>", "<cmd>tabn<cr>")
-nmap("<S-TAB>", "<cmd>tabp<cr>")
+map("n", "<TAB>", "<cmd>tabn<cr>")
+map("n", "<S-TAB>", "<cmd>tabp<cr>")
 
-nmap("<leader>[", "<cmd>bn<cr>")
-nmap("<leader>]", "<cmd>bp<cr>")
+map("n", "<leader>[", "<cmd>bn<cr>")
+map("n", "<leader>]", "<cmd>bp<cr>")
 
-nmap("<C-h>", "<C-w>h")
-nmap("<C-j>", "<C-w>j")
-nmap("<C-k>", "<C-w>k")
-nmap("<C-l>", "<C-w>l")
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
-nmap("+", "<cmd>resize +5<cr>")
-nmap("-", "<cmd>resize -5<cr>")
-nmap(">", "<cmd>vertical resize +5<cr>")
-nmap("<", "<cmd>vertical resize -5<cr>")
+map("n", "+", "<cmd>resize +5<cr>")
+map("n", "-", "<cmd>resize -5<cr>")
+map("n", ">", "<cmd>vertical resize +5<cr>")
+map("n", "<", "<cmd>vertical resize -5<cr>")
 
 -- quit shortcuts
-nmap("<leader>q", "<cmd>qa<cr>")
+map("n", "<leader>q", "<cmd>qa<cr>")
 
 -- save shortcut
-nmap("<leader>w", "<cmd>w<cr>")
+map("n", "<leader>w", "<cmd>w<cr>")
 
 -- remove highlights
-nmap("<leader>,", "<cmd>nohlsearch<cr>")
+map("n", "<leader>,", "<cmd>nohlsearch<cr>")
 
 -- go back
-nmap("<leader>b", "<C-^>")
+map("n", "<leader>b", "<C-^>")
 
 -- easier escape key for macbook with touchpad
-local esc = "§"
-remap("i", esc, "<Esc>")
-remap("t", esc, "<Esc>")
-remap("v", esc, "<Esc>")
-remap("c", esc, "<Esc>")
-remap("n", esc, "<Esc>")
+map({ "i", "t", "v", "c", "n" }, esc, "<Esc>", { remap = true })
 map("t", "<Esc>", "<C-\\><C-n>")
 map("v", "<Esc>", "<Esc>")
 map("c", "<Esc>", "<C-C><Esc>")
 
 -- Mappings to run current file
-nmap("<leader>rg", "<cmd>!go run %<cr>")
-nmap("<leader>rp", "<cmd>!python %<cr>")
+map("n", "<leader>rg", "<cmd>!go run %<cr>")
+map("n", "<leader>rp", "<cmd>!python %<cr>")
+
 -- lsp mappings
-nmap("<leader>d", "<cmd> lua vim.diagnostic.open_float()<cr>")
+map("n", "<leader>d", vim.diagnostic.open_float)
 
 -- toggle relative line numbers
-nmap("<leader>n", [[<cmd>lua require('utils').toggle_relative_line_numbers()<cr>]])
+map("n", "<leader>n", utils.toggle_relative_line_numbers)
 
-nmap("<leader><leader>c", [[<cmd>lua require('utils').toggle_theme_background()<cr>]])
+-- toggles backgound between light and dark
+map("n", "<leader><leader>c", utils.toggle_theme_background)
 
 -- plugin-relevant mappings
 
 -- packer
-nmap("<leader>ps", "<cmd>PackerSync<cr>")
-nmap("<leader>pc", "<cmd>PackerCompile<cr>")
+map("n", "<leader>ps", "<cmd>PackerSync<cr>")
+map("n", "<leader>pc", "<cmd>PackerCompile<cr>")
 
 -- NvimTree
-nmap("<C-n>", "<cmd>NvimTreeToggle<cr>")
+map("n", "<C-n>", "<cmd>NvimTreeToggle<cr>")
 
 -- Zen Mode
-nmap("<leader>z", "<cmd>ZenMode<cr>")
+map("n", "<leader>z", "<cmd>ZenMode<cr>")
 
 -- Word count shortcut
-nmap("<leader>c", "<cmd>w<cr><cmd>!wc -w %<cr>")
+map("n", "<leader>c", "<cmd>w<cr><cmd>!wc -w %<cr>")
 
 -- Toggle spellcheck
-nmap("<leader>s", "<cmd>set spell!<cr>")
+map("n", "<leader>s", "<cmd>set spell!<cr>")
 
 -- nvim-treesitter
-nmap("<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
+map("n", "<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
 
 -- git commands
-nmap("<leader>gg", "<cmd>Neogit<cr>")
-nmap("<leader>gs", "<cmd>Git<cr>")
-nmap("<leader>gd", "<cmd>Gvdiffsplit<cr>")
-nmap("<leader>gD", "<cmd>Git diff<cr>")
-nmap("<leader>gp", "<cmd>Git push -u origin main<cr>")
--- nmap("<leader>gl", "<cmd>Git log --oneline --all<cr>")
-nmap("<leader>gl", "<cmd>Git log --graph --decorate --oneline --all<cr>")
-nmap("<leader>gc", "<cmd>Git commit<cr>")
-nmap("<leader>ga", "<cmd>Git add .<cr>")
+map("n", "<leader>gg", "<cmd>Neogit<cr>")
+map("n", "<leader>gs", "<cmd>Git<cr>")
+map("n", "<leader>gd", "<cmd>Gvdiffsplit<cr>")
+map("n", "<leader>gD", "<cmd>Git diff<cr>")
+map("n", "<leader>gp", "<cmd>Git push -u origin main<cr>")
+-- map("n", "<leader>gl", "<cmd>Git log --oneline --all<cr>")
+map("n", "<leader>gl", "<cmd>Git log --graph --decorate --oneline --all<cr>")
+map("n", "<leader>gc", "<cmd>Git commit<cr>")
+map("n", "<leader>ga", "<cmd>Git add .<cr>")
 
 -- FTerm
 
-nmap("<leader>tt", [[<cmd>lua require('FTerm').toggle()<cr>]])
-map("t", "<leader>tt", [[<Esc><cmd>lua require('FTerm').toggle()<cr>]])
-nmap("<leader>tq", [[<cmd>lua require('FTerm').exit()<cr>]])
-map("t", "<leader>tq", [[<Esc><cmd>lua require('FTerm').exit()<cr>]])
+map({ "n", "t" }, "<leader>tt", require("FTerm").toggle)
+map({ "n", "t" }, "<leader>tq", require("FTerm").exit)
 
 -- Telescope
 
-nmap("<leader><space>", [[<cmd>lua require('telescope.builtin').buffers()<cr>]])
-nmap("<leader>ff", [[<cmd>lua require('telescope.builtin').find_files()<cr>]])
-nmap("<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
-nmap("<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]])
-nmap("<leader>fo", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
-nmap("<leader>fb", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
-nmap("<leader>fc", [[<cmd>lua require('telescope.builtin').colorscheme()<cr>]])
+map("n", "<leader><space>", require("telescope.builtin").buffers)
+map("n", "<leader>ff", require("telescope.builtin").find_files)
+map("n", "<leader>fg", require("telescope.builtin").live_grep)
+map("n", "<leader>fh", require("telescope.builtin").help_tags)
+map("n", "<leader>fo", require("telescope.builtin").oldfiles)
+map("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
+map("n", "<leader>fc", require("telescope.builtin").colorscheme)

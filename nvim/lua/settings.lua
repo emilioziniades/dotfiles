@@ -46,6 +46,8 @@ utils.line_number_emphasize()
 vim.cmd([[autocmd BufRead,BufNewFile *.js,*.jsx setlocal tabstop=2 shiftwidth=2 ]])
 vim.cmd([[autocmd BufRead,BufNewFile *.js,*.jsx lua vim.g.AutoPairs["<"] = ">" ]])
 
+vim.cmd([[autocmd BufRead,BufNewFile *.mdx set filetype=markdown]])
+
 -- Highlight on yank
 vim.cmd([[
   augroup YankHighlight
