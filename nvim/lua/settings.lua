@@ -1,4 +1,5 @@
 local vars = require("variables")
+local utils = require("utils")
 
 -- theme (time dependent)
 vim.g.tokyonight_dark_float = true
@@ -38,16 +39,7 @@ vim.o.showmode = true
 vim.o.termguicolors = true
 
 -- make current line number pop
-
-local line_num_colour
-if vim.o.background == "light" then
-	line_num_colour = "Yellow"
-else
-	line_num_colour = "White"
-end
-vim.o.cursorline = true
-vim.cmd("hi Cursorline guibg=none")
-vim.cmd("hi CursorLineNr term=bold ctermfg=" .. line_num_colour .. " gui=bold guifg=" .. line_num_colour)
+utils.line_number_emphasize()
 
 -- filetype specific settings
 
