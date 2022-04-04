@@ -55,6 +55,8 @@ nmap("<leader>d", "<cmd> lua vim.diagnostic.open_float()<cr>")
 -- toggle relative line numbers
 nmap("<leader>n", [[<cmd>lua require('utils').toggle_relative_line_numbers()<cr>]])
 
+nmap("<leader><leader>c", [[<cmd>lua require('utils').toggle_theme_background()<cr>]])
+
 -- plugin-relevant mappings
 
 -- packer

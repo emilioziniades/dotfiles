@@ -1,5 +1,3 @@
--- Packer
-
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -179,9 +177,8 @@ require("packer").startup(function(use)
 	-- markdown preview
 	use({
 		"iamcco/markdown-preview.nvim",
-		config = function()
-			vim.cmd("call mkdp#util#install()")
-		end,
+		run = "cd app && yarn install",
+		cmd = "MarkdownPreview",
 	})
 
 	-- THEMES
