@@ -10,16 +10,6 @@ vim.o.background = vars.background
 
 vim.g.mapleader = " "
 
-vim.g.AutoPairs = {
-	["("] = ")",
-	["["] = "]",
-	["{"] = "}",
-	["'"] = "'",
-	['"'] = '"',
-	["`"] = "`",
-	["__"] = "__",
-}
-
 vim.o.mouse = "a"
 vim.opt.undofile = true
 vim.o.wrap = true
@@ -42,16 +32,31 @@ vim.o.termguicolors = true
 utils.line_number_emphasize()
 
 -- filetype specific settings
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.js", "*.jsx" },
+	callback = function()
+		vim.schedule(function()
+			vim.api.nvim_set_option_value("tabstop", 2, { scope = "local" })
+			vim.api.nvim_set_option_value("shiftwidth", 2, { scope = "local" })
+		end)
+	end,
+})
 
-vim.cmd([[autocmd BufRead,BufNewFile *.js,*.jsx setlocal tabstop=2 shiftwidth=2 ]])
-vim.cmd([[autocmd BufRead,BufNewFile *.js,*.jsx lua vim.g.AutoPairs["<"] = ">" ]])
-
-vim.cmd([[autocmd BufRead,BufNewFile *.mdx set filetype=markdown]])
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.mdx",
+	callback = function()
+		vim.schedule(function()
+			vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local" })
+		end)
+	end,
+})
 
 -- Highlight on yank
-vim.cmd([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]])
+vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	pattern = "*",
+	group = "YankHighlight",
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})

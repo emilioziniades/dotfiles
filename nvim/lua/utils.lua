@@ -1,5 +1,9 @@
 local utils = {}
 
+utils.I = function(item)
+	print(vim.inspect(item))
+end
+
 utils.toggle_relative_line_numbers = function()
 	if vim.o.relativenumber then
 		vim.o.relativenumber = false

@@ -11,6 +11,20 @@ vim.cmd([[
     augroup end
 ]])
 
+-- TODO : change vim.cmd above to use vim api calls
+-- vim.api.nvim_create_augroup("packer_user_config", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	pattern = "plugins.lua",
+-- 	group = "packer_user_config",
+-- 	-- command = "source <afile> | PackerCompile",
+-- 	callback = function()
+-- 		vim.schedule(function()
+-- 			-- local file = vim.fn.expand("<afile>")
+-- 			-- make call to plenary reload module function
+-- 		end)
+-- 	end,
+-- })
+
 -- caching
 require("impatient")
 
@@ -39,7 +53,7 @@ require("packer").startup(function(use)
 	use("tpope/vim-fugitive")
 	use({
 		"TimUntersberger/neogit",
-		requires = "nvim-lua/plenary.nvim",
+		requires = "nvim-lua/plenarynvim",
 		config = function()
 			require("neogit").setup()
 		end,
@@ -120,6 +134,14 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	-- debug
+	use({
+		"tpope/vim-scriptease",
+		cmd = {
+			"Messages", --view messages in quickfix list
+		},
+	})
+
 	-- startup screen
 	use({
 		"startup-nvim/startup.nvim",
@@ -141,8 +163,13 @@ require("packer").startup(function(use)
 	use("ludovicchabant/vim-gutentags")
 
 	--brackets
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("config.autopairs")
+		end,
+	})
 	use("machakann/vim-sandwich")
-	use("jiangmiao/auto-pairs")
 	use("p00f/nvim-ts-rainbow")
 
 	--zen mode
