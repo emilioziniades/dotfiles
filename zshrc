@@ -31,11 +31,9 @@ alias gr="go run"
 alias gt="go test"
 alias gtv="go test -v ."
 
-alias v="nvim"
-alias ve="nvim -R"
+alias view="nvim -R"
 
 alias tmux="tmux -u"
-alias t="tmux -u"
 
 # VARIABLES
 
