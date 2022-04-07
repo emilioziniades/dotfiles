@@ -17,10 +17,10 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
-map("n", "+", "<cmd>resize +5<cr>")
-map("n", "-", "<cmd>resize -5<cr>")
-map("n", ">", "<cmd>vertical resize +5<cr>")
-map("n", "<", "<cmd>vertical resize -5<cr>")
+map("n", "<C-Up>", "<cmd>resize +5<cr>")
+map("n", "<C-Down>", "<cmd>resize -5<cr>")
+map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
+map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 
 -- quit shortcuts
 map("n", "<leader>q", "<cmd>qa<cr>")
@@ -43,6 +43,7 @@ map("c", "<Esc>", "<C-C><Esc>")
 -- Mappings to run current file
 map("n", "<leader>rg", "<cmd>!go run %<cr>")
 map("n", "<leader>rp", "<cmd>!python %<cr>")
+map("n", "<leader>rj", "<cmd>!node %<cr>")
 
 -- lsp mappings
 map("n", "<leader>d", vim.diagnostic.open_float)
