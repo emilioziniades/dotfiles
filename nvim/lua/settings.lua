@@ -28,6 +28,7 @@ vim.o.foldmethod = "expr"
 vim.o.foldenable = false
 vim.o.showmode = false
 vim.o.termguicolors = true
+vim.o.splitright = true
 
 -- make current line number pop
 utils.line_number_emphasize()

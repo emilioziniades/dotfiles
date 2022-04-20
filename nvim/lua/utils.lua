@@ -35,4 +35,30 @@ utils.toggle_theme_background = function()
 	utils.line_number_emphasize()
 end
 
+utils.count_words = function()
+	if vim.fn.wordcount().visual_words == 1 then
+		print(vim.fn.wordcount().visual_words .. " word selected")
+	elseif not (vim.fn.wordcount().visual_words == nil) then
+		print(vim.fn.wordcount().visual_words .. " words selected")
+	else
+		print(vim.fn.wordcount().words .. " words")
+	end
+end
+
+utils.start_repl = function()
+	if vim.bo.filetype == "python" then
+		vim.cmd("vsplit | terminal ipython -i % ")
+	end
+end
+
+utils.run_file = function()
+	if vim.bo.filetype == "python" then
+		vim.cmd("!python %")
+	else
+		if vim.bo.filetype == "go" then
+			vim.cmd("!go run %")
+		end
+	end
+end
+
 return utils
