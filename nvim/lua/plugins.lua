@@ -50,10 +50,9 @@ require("packer").startup(function(use)
 	use("onsails/lspkind-nvim")
 
 	-- git
-	use("tpope/vim-fugitive")
 	use({
 		"TimUntersberger/neogit",
-		requires = "nvim-lua/plenarynvim",
+		requires = "nvim-lua/plenary.nvim",
 		config = function()
 			require("neogit").setup()
 		end,
@@ -125,6 +124,14 @@ require("packer").startup(function(use)
 		end,
 	})
 	use("nvim-treesitter/nvim-treesitter-textobjects")
+
+	--repl
+	use({
+		"hkupty/iron.nvim",
+		config = function()
+			require("config.iron")
+		end,
+	})
 
 	-- commenting
 	use({
@@ -201,7 +208,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- markdown preview
+	-- markdown
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && yarn install",
