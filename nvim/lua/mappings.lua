@@ -40,10 +40,11 @@ map("t", "<Esc>", "<C-\\><C-n>")
 map("v", "<Esc>", "<Esc>")
 map("c", "<Esc>", "<C-C><Esc>")
 
--- Mappings to run current file
-map("n", "<leader>rg", "<cmd>!go run %<cr>")
-map("n", "<leader>rp", "<cmd>!python %<cr>")
-map("n", "<leader>rj", "<cmd>!node %<cr>")
+-- run current file
+map("n", "<leader>rp", utils.run_file)
+
+-- insert current file into repl
+map("n", "<leader>rr", utils.start_repl)
 
 -- lsp mappings
 map("n", "<leader>d", vim.diagnostic.open_float)
@@ -53,6 +54,9 @@ map("n", "<leader>n", utils.toggle_relative_line_numbers)
 
 -- toggles backgound between light and dark
 map("n", "<leader><leader>c", utils.toggle_theme_background)
+
+-- Word count shortcut
+map({ "n", "v" }, "<leader>c", utils.count_words)
 
 -- plugin-relevant mappings
 
@@ -66,25 +70,17 @@ map("n", "<C-n>", "<cmd>NvimTreeToggle<cr>")
 -- Zen Mode
 map("n", "<leader>z", "<cmd>ZenMode<cr>")
 
--- Word count shortcut
-map("n", "<leader>c", "<cmd>w<cr><cmd>!wc -w %<cr>")
+-- markdown preview
+map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>")
 
 -- Toggle spellcheck
 map("n", "<leader>s", "<cmd>set spell!<cr>")
 
 -- nvim-treesitter
-map("n", "<leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
+map("n", "<leader><leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
 
 -- git commands
 map("n", "<leader>gg", "<cmd>Neogit<cr>")
-map("n", "<leader>gs", "<cmd>Git<cr>")
-map("n", "<leader>gd", "<cmd>Gvdiffsplit<cr>")
-map("n", "<leader>gD", "<cmd>Git diff<cr>")
-map("n", "<leader>gp", "<cmd>Git push -u origin main<cr>")
--- map("n", "<leader>gl", "<cmd>Git log --oneline --all<cr>")
-map("n", "<leader>gl", "<cmd>Git log --graph --decorate --oneline --all<cr>")
-map("n", "<leader>gc", "<cmd>Git commit<cr>")
-map("n", "<leader>ga", "<cmd>Git add .<cr>")
 
 -- FTerm
 
