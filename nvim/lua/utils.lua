@@ -53,7 +53,7 @@ end
 
 utils.run_file = function()
 	if vim.bo.filetype == "python" then
-		vim.cmd("!python %")
+		vim.cmd("! echo \\n &&  python %")
 	else
 		if vim.bo.filetype == "go" then
 			vim.cmd("!go run %")
