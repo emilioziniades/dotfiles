@@ -30,3 +30,6 @@ done
 # symlink nvim file into ~/.config
 echo "Creating symlink to ~/.config/nvim"
 ln -s $dir/nvim ~/.config/nvim
+
+
+
