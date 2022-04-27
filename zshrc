@@ -79,10 +79,27 @@ mkcd() {
 it2zsh=~/.iterm2_shell_integration.zsh
 if [ "$TERM_PROGRAM" = "iTerm.app" ]
 then
-    if ! [ -f $it2zsh ]
+    if ! [[ -f $it2zsh ]]
     then
-        echo "iterm script not exist"
         curl -L https://iterm2.com/shell_integration/zsh -o $it2zsh &> /dev/null
     fi
     source $it2zsh
+fi
+
+#TMUX PLUGIN MANAGER
+
+if [[ ! -d ~/.tmux/plugins/tpm ]]
+then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    echo "press prefix + I to install plugins"
+fi
+
+#HOMEBREW
+if ! command -v brew &> /dev/null
+then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    xargs brew install < ./brew/brew_casks.txt
+    xargs brew install < ./brew/brew_packages.txt
+    brew tap homebrew/cask-fonts
+    brew install font-meslo-lg-nerd-font
 fi

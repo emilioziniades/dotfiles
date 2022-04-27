@@ -1,0 +1,13 @@
+firefox
+iterm2
+obsidian
+roboform
+discord
+openemu
+qbittorrent
+signal
+whatsapp
+telegram
+vlc
+spotify
+tor-browser
