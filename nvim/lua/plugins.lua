@@ -26,7 +26,7 @@ vim.cmd([[
 -- })
 
 -- caching
-require("impatient")
+-- require("impatient")
 
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")

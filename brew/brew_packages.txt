@@ -1,0 +1,12 @@
+neovim
+tmux
+go
+node
+pyenv
+ipython
+pandoc
+tree
+universal-ctags
+pyright
+lua-language-server
+font-meslo-lg-nerd-font
