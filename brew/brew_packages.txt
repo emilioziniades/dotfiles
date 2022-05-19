@@ -5,6 +5,7 @@ node
 pyenv
 ipython
 pandoc
+wkhtmltopdf
 tree
 universal-ctags
 pyright
