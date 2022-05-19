@@ -58,7 +58,7 @@ fi
 
 # PROMPT
 
-PROMPT='%F{green}%n@%m%f:%F{yellow}%~%f %F{blue}%#%f '
+PROMPT='%F{yellow}%~%f %F{blue}%#%f '
 
 # PYENV SHIMS
 
