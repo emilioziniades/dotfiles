@@ -74,6 +74,15 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
+venv() {
+    python -m venv venv
+    source venv/bin/activate
+}
+
+activate() {
+    source venv/bin/activate
+}
+
 # ITERM2 
 
 it2zsh=~/.iterm2_shell_integration.zsh
