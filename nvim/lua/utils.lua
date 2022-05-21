@@ -45,12 +45,6 @@ function M.count_words()
 	end
 end
 
-function M.start_repl()
-	if vim.bo.filetype == "python" then
-		vim.cmd("vsplit | terminal ipython -i % ")
-	end
-end
-
 function M.run_file()
 	if vim.bo.filetype == "python" then
 		vim.cmd([[! echo \\n &&  python "%"]])
@@ -61,4 +55,11 @@ function M.run_file()
 	end
 end
 
+function M.run_file_repl()
+    require("iron").core.send(vim.bo.ft, vim.fn.readfile(vim.fn.expand("%")))
+end
+
+function M.start_repl()
+    require("iron.core").repl_for(vim.bo.ft)
+end
 return M
