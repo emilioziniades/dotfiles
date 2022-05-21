@@ -1,10 +1,10 @@
-local utils = {}
+local M = {}
 
-utils.I = function(item)
+M.I = function(item)
 	print(vim.inspect(item))
 end
 
-utils.toggle_relative_line_numbers = function()
+function M.toggle_relative_line_numbers()
 	if vim.o.relativenumber then
 		vim.o.relativenumber = false
 	else
@@ -12,7 +12,7 @@ utils.toggle_relative_line_numbers = function()
 	end
 end
 
-utils.line_number_emphasize = function()
+function M.line_number_emphasize()
 	local line_num_colour
 	if vim.o.background == "light" then
 		line_num_colour = "Black"
@@ -24,7 +24,7 @@ utils.line_number_emphasize = function()
 	vim.cmd("hi CursorLineNr term=bold ctermfg=" .. line_num_colour .. " gui=bold guifg=" .. line_num_colour)
 end
 
-utils.toggle_theme_background = function()
+function M.toggle_theme_background()
 	local colorscheme = vim.cmd("silent colorscheme")
 	if vim.o.background == "dark" then
 		vim.o.background = "light"
@@ -32,10 +32,10 @@ utils.toggle_theme_background = function()
 		vim.o.background = "dark"
 	end
 	vim.cmd("silent colorscheme " .. colorscheme)
-	utils.line_number_emphasize()
+	M.line_number_emphasize()
 end
 
-utils.count_words = function()
+function M.count_words()
 	if vim.fn.wordcount().visual_words == 1 then
 		print(vim.fn.wordcount().visual_words .. " word selected")
 	elseif not (vim.fn.wordcount().visual_words == nil) then
@@ -45,13 +45,13 @@ utils.count_words = function()
 	end
 end
 
-utils.start_repl = function()
+function M.start_repl()
 	if vim.bo.filetype == "python" then
 		vim.cmd("vsplit | terminal ipython -i % ")
 	end
 end
 
-utils.run_file = function()
+function M.run_file()
 	if vim.bo.filetype == "python" then
 		vim.cmd([[! echo \\n &&  python "%"]])
 	else
@@ -61,4 +61,4 @@ utils.run_file = function()
 	end
 end
 
-return utils
+return M
