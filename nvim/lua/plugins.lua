@@ -194,19 +194,8 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- floating terminal
-	use("numToStr/FTerm.nvim")
-
 	-- optimize startup
 	use("lewis6991/impatient.nvim")
-
-	-- auto save
-	use({
-		"Pocco81/AutoSave.nvim",
-		config = function()
-			require("config.autosave")
-		end,
-	})
 
 	-- markdown
 	use({
