@@ -82,11 +82,6 @@ map("n", "<leader><leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
 -- git commands
 map("n", "<leader>gg", "<cmd>Neogit<cr>")
 
--- FTerm
-
-map({ "n", "t" }, "<leader>tt", require("FTerm").toggle)
-map({ "n", "t" }, "<leader>tq", require("FTerm").exit)
-
 -- Telescope
 
 map("n", "<leader><space>", require("telescope.builtin").buffers)
