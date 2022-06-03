@@ -91,6 +91,7 @@ map("n", "<leader>fh", require("telescope.builtin").help_tags)
 map("n", "<leader>fo", require("telescope.builtin").oldfiles)
 map("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
 map("n", "<leader>fc", require("telescope.builtin").colorscheme)
+map("n", "<leader>fe", require("telescope").extensions.file_browser.file_browser)
 
 -- iron
 map("n", "<leader>sr", utils.start_repl)
