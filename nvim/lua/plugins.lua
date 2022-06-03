@@ -65,15 +65,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- tree file explorer
-	use({
-		"kyazdani42/nvim-tree.lua",
-		config = function()
-			require("nvim-tree").setup()
-		end,
-	})
-	use("kyazdani42/nvim-web-devicons")
-
 	-- telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -83,6 +74,7 @@ require("packer").startup(function(use)
 		end,
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({ "nvim-telescope/telescope-file-browser.nvim" })
 
 	-- status line
 	use({
@@ -129,7 +121,7 @@ require("packer").startup(function(use)
 	use({
 		"hkupty/iron.nvim",
 		config = function()
-			require("config.iron")
+			require("config._iron")
 		end,
 	})
 
