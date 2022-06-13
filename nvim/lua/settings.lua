@@ -5,6 +5,7 @@ local utils = require("utils")
 
 -- theme (time dependent)
 vim.g.tokyonight_dark_float = true
+vim.g.tokyonight_style = "night"
 vim.cmd("colorscheme " .. vars.theme)
 vim.o.background = vars.background
 
