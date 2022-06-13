@@ -21,6 +21,11 @@ ls.add_snippets("all", {
 		t({ [[if __name__ == "__main__":]], "   main()" }),
 	}),
 })
+ls.add_snippets("all", {
+	s("db", {
+		t({ "from IPython.core.debugger import set_trace; set_trace() # fmt: skip" }),
+	}),
+})
 
 vim.keymap.set({ "i", "s" }, "<c-s>", function()
 	if ls.expand_or_jumpable() then
