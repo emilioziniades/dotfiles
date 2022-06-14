@@ -23,7 +23,7 @@ ls.add_snippets("all", {
 })
 ls.add_snippets("all", {
 	s("db", {
-		t({ "from IPython.core.debugger import set_trace; set_trace() # fmt: skip" }),
+		t({ "from IPython import embed; embed(colors='neutral')  # fmt: skip" }),
 	}),
 })
 
