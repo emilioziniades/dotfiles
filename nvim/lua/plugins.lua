@@ -141,15 +141,6 @@ require("packer").startup(function(use)
 		},
 	})
 
-	-- startup screen
-	use({
-		"startup-nvim/startup.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
-			require("startup").setup(require("config.startup"))
-		end,
-	})
-
 	-- show indents
 	use({
 		"lukas-reineke/indent-blankline.nvim",
