@@ -55,11 +55,4 @@ function M.run_file()
 	end
 end
 
-function M.run_file_repl()
-    require("iron").core.send(vim.bo.ft, vim.fn.readfile(vim.fn.expand("%")))
-end
-
-function M.start_repl()
-    require("iron.core").repl_for(vim.bo.ft)
-end
 return M
