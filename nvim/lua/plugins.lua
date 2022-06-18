@@ -25,6 +25,10 @@ vim.cmd([[
 -- 	end,
 -- })
 
+-- mappings
+vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
+vim.keymap.set("n", "<leader>pc", "<cmd>PackerCompile<cr>")
+
 -- caching
 require("impatient")
 

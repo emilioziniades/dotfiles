@@ -44,7 +44,6 @@ map("c", "<Esc>", "<C-C><Esc>")
 map("n", "<leader>rp", utils.run_file)
 
 -- insert current file into repl
-map("n", "<leader>rr", utils.run_file_repl)
 
 -- lsp mappings
 map("n", "<leader>d", vim.diagnostic.open_float)
@@ -58,14 +57,10 @@ map("n", "<leader><leader>c", utils.toggle_theme_background)
 -- Word count shortcut
 map({ "n", "v" }, "<leader>c", utils.count_words)
 
+-- Toggle spellcheck
+map("n", "<leader>s", "<cmd>set spell!<cr>")
+
 -- plugin-relevant mappings
-
--- packer
-map("n", "<leader>ps", "<cmd>PackerSync<cr>")
-map("n", "<leader>pc", "<cmd>PackerCompile<cr>")
-
--- NvimTree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<cr>")
 
 -- Zen Mode
 map("n", "<leader>z", "<cmd>ZenMode<cr>")
@@ -73,25 +68,5 @@ map("n", "<leader>z", "<cmd>ZenMode<cr>")
 -- markdown preview
 map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>")
 
--- Toggle spellcheck
-map("n", "<leader>s", "<cmd>set spell!<cr>")
-
--- nvim-treesitter
-map("n", "<leader><leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
-
 -- git commands
 map("n", "<leader>gg", "<cmd>Neogit<cr>")
-
--- Telescope
-
-map("n", "<leader><space>", require("telescope.builtin").buffers)
-map("n", "<leader>ff", require("telescope.builtin").find_files)
-map("n", "<leader>fg", require("telescope.builtin").live_grep)
-map("n", "<leader>fh", require("telescope.builtin").help_tags)
-map("n", "<leader>fo", require("telescope.builtin").oldfiles)
-map("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-map("n", "<leader>fc", require("telescope.builtin").colorscheme)
-map("n", "<leader>fe", require("telescope").extensions.file_browser.file_browser)
-
--- iron
-map("n", "<leader>sr", utils.start_repl)

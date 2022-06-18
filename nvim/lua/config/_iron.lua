@@ -35,3 +35,13 @@ iron.setup({
 --     go = "gore",
 --   }
 -- }
+local function run_file_repl()
+	require("iron").core.send(vim.bo.ft, vim.fn.readfile(vim.fn.expand("%")))
+end
+
+local function start_repl()
+	require("iron.core").repl_for(vim.bo.ft)
+end
+
+vim.keymap.set("n", "<leader>rr", run_file_repl)
+vim.keymap.set("n", "<leader>sr", start_repl)
