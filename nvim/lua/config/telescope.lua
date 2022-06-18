@@ -8,12 +8,12 @@ require("telescope").setup({
 		},
 	},
 	pickers = {
-		find_files = {
-			theme = "dropdown",
-		},
-		buffers = {
-			theme = "dropdown",
-		},
+		-- find_files = {
+		-- 	theme = "dropdown",
+		-- },
+		-- buffers = {
+		-- 	theme = "dropdown",
+		-- },
 		-- live_grep = {
 		-- theme = "dropdown",
 		-- },
@@ -23,9 +23,9 @@ require("telescope").setup({
 		-- oldfiles = {
 		-- theme = "dropdown",
 		-- },
-		current_buffer_fuzzy_find = {
-			theme = "dropdown",
-		},
+		-- current_buffer_fuzzy_find = {
+		-- 	theme = "dropdown",
+		-- },
 	},
 })
 require("telescope").load_extension("fzf")
