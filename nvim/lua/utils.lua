@@ -46,13 +46,13 @@ function M.count_words()
 end
 
 function M.run_file()
-	if vim.bo.filetype == "python" then
-		vim.cmd([[! echo \\n &&  python "%"]])
-	else
-		if vim.bo.filetype == "go" then
-			vim.cmd("!go run %")
-		end
-	end
+	local ft = vim.bo.filetype
+	local run_cmds = {
+		["python"] = [[! echo \\n &&  python %]],
+		["go"] = "!go run %",
+		["javascript"] = [[! echo \\n && node %]],
+	}
+	vim.cmd(run_cmds[ft])
 end
 
 return M
