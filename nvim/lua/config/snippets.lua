@@ -39,17 +39,21 @@ ls.add_snippets("python", {
 })
 
 ls.add_snippets("javascript", {
-	-- html expansion of the form ".tag.class1.class2"
-	s({ trig = ".(%w+).([-.a-zA-Z0-9]+)", regTrig = true }, {
+	-- html expansion of the form ".tag.class1.class2" or ".tag." for elements without classes
+	s({ trig = ".(%w+).([-.a-zA-Z0-9]*)", regTrig = true }, {
 		f(function(_, snip)
 			local tag = snip.captures[1]
 			local class = snip.captures[2]:gsub("[.]", " ")
-			return string.format([[<%s className="%s">]], tag, class)
+			if class == "" then
+				return string.format([[<%s>]], tag)
+			else
+				return string.format([[<%s className="%s">]], tag, class)
+			end
 		end),
 		i(0),
 		f(function(_, snip)
 			local tag = snip.captures[1]
-			return string.format([[<%s/>]], tag)
+			return string.format([[</%s>]], tag)
 		end),
 	}),
 })
