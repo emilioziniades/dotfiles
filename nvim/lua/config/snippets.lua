@@ -4,7 +4,7 @@ local s = ls.snippet
 -- local isn = ls.indent_snippet_node
 local t = ls.text_node
 local i = ls.insert_node
--- local f = ls.function_node
+local f = ls.function_node
 -- local c = ls.choice_node
 -- local d = ls.dynamic_node
 -- local r = ls.restore_node
@@ -18,17 +18,15 @@ ls.config.set_config({
 })
 
 ls.add_snippets("python", {
+	-- __name__ __main__
 	s("nm", {
 		t({ [[if __name__ == "__main__":]], "   main()" }),
 	}),
-})
-ls.add_snippets("python", {
+	-- iPython debug
 	s("db", {
 		t({ "from IPython import embed; embed(colors='neutral')  # fmt: skip" }),
 	}),
-})
-
-ls.add_snippets("python", {
+	-- function definition
 	s("df", {
 		t("def "),
 		i(1),
@@ -41,16 +39,18 @@ ls.add_snippets("python", {
 })
 
 ls.add_snippets("javascript", {
-	s("el", {
-		t("<"),
-		i(1),
-		t(" "),
-		i(2),
-		t(">"),
+	-- html expansion of the form ".tag.class1.class2"
+	s({ trig = ".(%w+).([-.a-zA-Z0-9]+)", regTrig = true }, {
+		f(function(_, snip)
+			local tag = snip.captures[1]
+			local class = snip.captures[2]:gsub("[.]", " ")
+			return string.format([[<%s className="%s">]], tag, class)
+		end),
 		i(0),
-		t("<"),
-		rep(1),
-		t(">"),
+		f(function(_, snip)
+			local tag = snip.captures[1]
+			return string.format([[<%s/>]], tag)
+		end),
 	}),
 })
 
