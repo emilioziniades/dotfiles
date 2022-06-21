@@ -40,7 +40,7 @@ ls.add_snippets("python", {
 
 ls.add_snippets("javascript", {
 	-- html expansion of the form ".tag.class1.class2" or ".tag." for elements without classes
-	s({ trig = ".(%w+).([-.a-zA-Z0-9]*)", regTrig = true }, {
+	s({ trig = ".(%a+).([-./a-zA-Z0-9]*)", regTrig = true }, {
 		f(function(_, snip)
 			local tag = snip.captures[1]
 			local class = snip.captures[2]:gsub("[.]", " ")
