@@ -3,7 +3,7 @@ local map = vim.keymap.set
 local esc = "§"
 
 -- source config file
-map("n", "<leader><leader>s", "<cmd>luafile $MYVIMRC<cr>")
+map("n", "<leader>sf", "<cmd>luafile $MYVIMRC<cr>")
 
 -- tab, buffer and window navigation
 map("n", "<TAB>", "<cmd>tabn<cr>")
@@ -22,11 +22,18 @@ map("n", "<C-Down>", "<cmd>resize -5<cr>")
 map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
 map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 
+map("n", "<leader>mk", "<cmd>split<cr>")
+map("n", "<leader>ml", "<cmd>vsplit<cr>")
+map("n", "<leader>mr", "<C-w>R")
+
+map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
+
 -- quit shortcuts
 map("n", "<leader>q", "<cmd>qa<cr>")
+map("n", "<leader>w", "<cmd>q<cr>")
 
 -- save shortcut
-map("n", "<leader>w", "<cmd>w<cr>")
+map("n", "<leader>e", "<cmd>w<cr>")
 
 -- remove highlights
 map("n", "<leader>,", "<cmd>nohlsearch<cr>")
@@ -43,8 +50,6 @@ map("c", "<Esc>", "<C-C><Esc>")
 -- run current file
 map("n", "<leader>rp", utils.run_file)
 
--- insert current file into repl
-
 -- lsp mappings
 map("n", "<leader>d", vim.diagnostic.open_float)
 
@@ -52,7 +57,7 @@ map("n", "<leader>d", vim.diagnostic.open_float)
 map("n", "<leader>n", utils.toggle_relative_line_numbers)
 
 -- toggles backgound between light and dark
-map("n", "<leader><leader>c", utils.toggle_theme_background)
+map("n", "<leader>sc", utils.toggle_theme_background)
 
 -- Word count shortcut
 map({ "n", "v" }, "<leader>c", utils.count_words)
@@ -69,4 +74,4 @@ map("n", "<leader>z", "<cmd>ZenMode<cr>")
 map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>")
 
 -- git commands
-map("n", "<leader>gg", "<cmd>Neogit<cr>")
+map("n", "<leader>g", "<cmd>Neogit<cr>")

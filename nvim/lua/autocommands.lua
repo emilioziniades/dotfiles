@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- js or jsx
 vim.api.nvim_create_augroup("JavascriptFile", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.js", "*.jsx", "*.html" },
+	pattern = { "*.js", "*.jsx", "*.html", "*.ts", "*.tsx" },
 	group = "JavascriptFile",
 	callback = function()
 		vim.schedule(function()

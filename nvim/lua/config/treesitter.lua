@@ -14,4 +14,4 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
-vim.keymap.set("n", "<leader><leader>r", "<cmd>write | edit | TSBufEnable highlight<cr>")
+vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
