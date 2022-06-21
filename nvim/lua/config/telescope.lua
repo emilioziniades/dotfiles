@@ -1,6 +1,13 @@
 local actions = require("telescope.actions")
 require("telescope").setup({
 	defaults = {
+		layout_strategy = "vertical",
+		layout_config = {
+			height = 0.80,
+			width = function(_, max_columns, _)
+				return math.min(max_columns, 80)
+			end,
+		},
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
