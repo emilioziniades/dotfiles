@@ -17,14 +17,19 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
+map("n", "<leader>ms", "<cmd>split<cr>")
+map("n", "<leader>mv", "<cmd>vsplit<cr>")
+map("n", "<leader>mr", "<C-w>R")
+
+map("n", "<leader>ml", "<C-w>L")
+map("n", "<leader>mk", "<C-w>K")
+map("n", "<leader>mj", "<C-w>J")
+map("n", "<leader>mh", "<C-w>H")
+
 map("n", "<C-Up>", "<cmd>resize +5<cr>")
 map("n", "<C-Down>", "<cmd>resize -5<cr>")
 map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
 map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
-
-map("n", "<leader>mk", "<cmd>split<cr>")
-map("n", "<leader>ml", "<cmd>vsplit<cr>")
-map("n", "<leader>mr", "<C-w>R")
 
 map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
 
@@ -71,7 +76,7 @@ map("n", "<leader>s", "<cmd>set spell!<cr>")
 map("n", "<leader>z", "<cmd>ZenMode<cr>")
 
 -- markdown preview
-map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>")
+map("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>")
 
 -- git commands
 map("n", "<leader>g", "<cmd>Neogit<cr>")
