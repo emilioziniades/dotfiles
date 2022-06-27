@@ -44,4 +44,4 @@ local function start_repl()
 end
 
 vim.keymap.set("n", "<leader>rr", run_file_repl)
-vim.keymap.set("n", "<leader>sr", start_repl)
+vim.keymap.set("n", "<leader>rs", start_repl)

@@ -20,7 +20,6 @@ require("telescope").load_extension("file_browser")
 
 local function find_dotfiles()
 	local config_dir = vim.fn.stdpath("config")
-	print(config_dir)
 	require("telescope.builtin").find_files({ cwd = config_dir })
 end
 
