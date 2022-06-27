@@ -13,5 +13,7 @@ require("nvim-treesitter.configs").setup({
 		"css",
 	},
 })
-vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
