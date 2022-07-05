@@ -30,7 +30,7 @@ end
 
 -- set up language servers
 
-local servers = { "pyright", "gopls", "tsserver" }
+local servers = { "pyright", "gopls", "tsserver", "rls" }
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, lsp in pairs(servers) do
 	require("lspconfig")[lsp].setup({
