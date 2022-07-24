@@ -31,5 +31,7 @@ done
 echo "Creating symlink to ~/.config/nvim"
 ln -s $dir/nvim ~/.config/nvim
 
+# prevent last login message on MacOS
+touch ~/.hushlogin
 
 
