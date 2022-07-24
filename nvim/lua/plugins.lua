@@ -25,7 +25,7 @@ vim.keymap.set("n", "<leader>pc", "<cmd>PackerCompile<cr>")
 -- caching
 require("impatient")
 
-require("packer").startup(function(use)
+return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- FUNCTIONALITY
@@ -195,9 +195,9 @@ require("packer").startup(function(use)
 	-- use("tanvirtin/monokai.nvim")
 	-- use("morhetz/gruvbox")
 	-- use({ "rose-pine/neovim", as = "rose-pine" })
-end)
 
--- sync if bootstrapping
-if packer_bootstrap then
-	require("packer").sync()
-end
+	-- sync if bootstrapping
+	if packer_bootstrap then
+		require("packer").sync()
+	end
+end)
