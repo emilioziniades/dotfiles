@@ -1,29 +1,22 @@
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+-- bootstrapping packer
 
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+	packer_bootstrap =
+		vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 end
 
-vim.cmd([[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-]])
-
--- TODO : change vim.cmd above to use vim api calls
--- vim.api.nvim_create_augroup("packer_user_config", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePost", {
--- 	pattern = "plugins.lua",
--- 	group = "packer_user_config",
--- 	-- command = "source <afile> | PackerCompile",
--- 	callback = function()
--- 		vim.schedule(function()
--- 			-- local file = vim.fn.expand("<afile>")
--- 			-- make call to plenary reload module function
--- 		end)
--- 	end,
--- })
+vim.api.nvim_create_augroup("packer_user_config", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "plugins.lua",
+	group = "packer_user_config",
+	callback = function()
+		vim.schedule(function()
+			vim.cmd("source % | PackerCompile ")
+		end)
+	end,
+})
 
 -- mappings
 vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
@@ -191,15 +184,20 @@ require("packer").startup(function(use)
 		ft = "markdown",
 	})
 
-	-- THEMES
+	-- COLOURSCHEMES
 
-	use("folke/tokyonight.nvim")
+	use("sainnhe/sonokai")
+	-- use("folke/tokyonight.nvim")
 	-- use("shaunsingh/nord.nvim")
 	-- use("Mofiqul/dracula.nvim")
 	-- use("mjlbach/onedark.nvim")
 	-- use("sjl/badwolf")
-	use("tanvirtin/monokai.nvim")
-	use("sainnhe/sonokai")
+	-- use("tanvirtin/monokai.nvim")
 	-- use("morhetz/gruvbox")
-	use({ "rose-pine/neovim", as = "rose-pine" })
+	-- use({ "rose-pine/neovim", as = "rose-pine" })
 end)
+
+-- sync if bootstrapping
+if packer_bootstrap then
+	require("packer").sync()
+end
