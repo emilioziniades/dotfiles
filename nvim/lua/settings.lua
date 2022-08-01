@@ -12,6 +12,7 @@ vim.g.mapleader = " "
 
 local options = {
 	background = vars.background,
+	mouse = "",
 	undofile = true,
 	wrap = true,
 	linebreak = true,
