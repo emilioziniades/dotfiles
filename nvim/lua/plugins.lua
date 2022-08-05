@@ -23,7 +23,9 @@ vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
 vim.keymap.set("n", "<leader>pc", "<cmd>PackerCompile<cr>")
 
 -- caching
-require("impatient")
+if not packer_bootstrap then
+	require("impatient")
+end
 
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
