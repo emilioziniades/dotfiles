@@ -59,7 +59,8 @@ else
     os_type="MacOS"
 fi
 
-if $os_type = "Ubuntu" then
+if [[ $os_type == "Ubuntu" ]] 
+then
     setup_ubuntu
 else
     setup_macos
