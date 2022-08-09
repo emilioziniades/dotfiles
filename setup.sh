@@ -11,6 +11,8 @@ function setup_ubuntu() {
     sudo apt install -y zsh
     chsh $(which zsh)
 
+    sudo apt install -y build-essential
+
 }
 
 function setup_macos() {
