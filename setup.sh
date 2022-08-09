@@ -43,14 +43,16 @@ function setup() {
     mkdir -p ~/.config
     ln -s $dotdir/nvim ~/.config/nvim
 
-    if [[ ! -d ~/.tmux/plugins/tpm ]] then
+    if [[ ! -d ~/.tmux/plugins/tpm ]] 
+    then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
         ~/.tmux/plugins/tpm/scripts/update_plugin.sh
     fi
 
 }
 
-if [[ -f /etc/os-release ]] then
+if [[ -f /etc/os-release ]] 
+then
     os_type=$(grep -oP '^NAME="\K\w*' /etc/os-release)
 else
     os_type="MacOS"
