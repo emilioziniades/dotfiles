@@ -1,3 +1,4 @@
+#!/bin/bash
 
 function setup_ubuntu() {
     sudo apt upgrade && sudo apt update
@@ -19,14 +20,36 @@ function setup_macos() {
 }
 
 function setup() {
-    echo "hi"
+    dotdir=~/dotfiles
+    olddotdir=~/dotfiles_old
+    files="zshrc zshenv zprofile tmux.conf"
+
+    mkdir -p $olddotdir
+    cd $dotdir
+
+    for file in $files; do
+        if [[ -f ~/.$file ]] then
+            mv ~/.$file $olddotdir
+        fi
+        ln -s $dotdir/$file ~/.$file
+    done
+
+    mkdir -p ~/.config
+    ln -s $dotdir/nvim ~/.config/nvim
+
+
+
 }
 
-if test -f /etc/os-release 
-then
+if test -f /etc/os-release then
     os_type=$(grep -oP '^NAME="\K\w*' /etc/os-release)
 else
     os_type="MacOS"
 fi
 
-echo $os_type
+if $os_type = "Ubuntu" then
+    setup_ubuntu
+else
+    setup_macos
+fi
+setup
