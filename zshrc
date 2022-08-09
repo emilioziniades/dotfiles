@@ -99,14 +99,6 @@ then
     source $it2zsh
 fi
 
-#TMUX PLUGIN MANAGER
-
-if [[ ! -d ~/.tmux/plugins/tpm ]]
-then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    echo "press prefix + I to install plugins"
-fi
-
 # NVM 
 
 export NVM_DIR="$HOME/.nvm"
