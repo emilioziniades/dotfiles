@@ -28,16 +28,27 @@ local function on_attach(client, bufnr)
 	-- map("n", "<leader>f", vim.lsp.buf.formatting(), { buffer = bufnr })
 end
 
+-- nvim cmp
+
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- set up language servers
 
-local servers = { "pyright", "gopls", "tsserver", "rls", "omnisharp" }
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local servers = { "pyright", "gopls", "tsserver", "rls" }
 for _, lsp in pairs(servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
+
+-- set up omnisharp
+
+local pid = vim.fn.getpid()
+local omnisharp_bin = "omnisharp"
+require("lspconfig").omnisharp.setup({
+	cmd = { omnisharp_bin, "--languageserver", "--hostpid", tostring(pid) },
+})
 
 -- set up sumneko_lua
 
