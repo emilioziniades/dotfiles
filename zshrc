@@ -42,6 +42,21 @@ alias ve="view"
 
 export LC_ALL=C.UTF-8
 
+#FUNCTIONS
+
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+venv() {
+    python -m venv venv
+    source venv/bin/activate
+}
+
+activate() {
+    source venv/bin/activate
+}
+
 # PATH 
 
 export PATH="/usr/local/sbin:$PATH"
@@ -71,20 +86,6 @@ then
     eval "$(pyenv init -)"
 fi
 
-#FUNCTIONS
-
-mkcd() {
-    mkdir -p "$1" && cd "$1"
-}
-
-venv() {
-    python -m venv venv
-    source venv/bin/activate
-}
-
-activate() {
-    source venv/bin/activate
-}
 
 # ITERM2 
 
@@ -104,16 +105,6 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]
 then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     echo "press prefix + I to install plugins"
-fi
-
-#HOMEBREW
-if ! command -v brew &> /dev/null
-then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    xargs brew install < ./brew/brew_casks.txt
-    xargs brew install < ./brew/brew_packages.txt
-    brew tap homebrew/cask-fonts
-    brew install font-meslo-lg-nerd-font
 fi
 
 # NVM 
