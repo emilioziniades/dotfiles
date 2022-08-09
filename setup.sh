@@ -34,7 +34,8 @@ function setup() {
     mkdir -p $olddotdir
     cd $dotdir
     for file in $files; do
-        if [[ -f ~/.$file ]] then
+        if [[ -f ~/.$file ]] 
+        then
             mv ~/.$file $olddotdir
         fi
         ln -s $dotdir/$file ~/.$file
