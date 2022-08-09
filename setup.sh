@@ -1,37 +1,32 @@
-#!/bin/bash
-###############
-# Creates symlinks in home directory to the dotfiles in this folder
-###############
 
-#Variables
+function setup_ubuntu() {
+    sudo apt upgrade && sudo apt update
 
-dir=~/dotfiles
-olddir=~/dotfiles_old
-files="zshrc zshenv zprofile tmux.conf"
+    git clone https://github.com/emilioziniades/dotfiles
 
-# create dotfiles_old in homedir
-echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
-mkdir -p $olddir
-echo "done"
+    sudo add-apt-repository ppa:neovim-ppa/stable -y
+    sudo apt update
 
-# change to the dotfiles directory
-echo -n "Changing to the $dir directory ..."
-cd $dir
-echo "done"
+    sudo apt install -y neovim
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
-echo "Moving any existing dotfiles from ~ to $olddir"
-for file in $files; do
-    mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
-done
+    sudo apt install -y zsh
+    chsh $(which zsh)
 
-# symlink nvim file into ~/.config
-echo "Creating symlink to ~/.config/nvim"
-ln -s $dir/nvim ~/.config/nvim
+}
 
-# prevent last login message on MacOS
-touch ~/.hushlogin
+function setup_macos() {
+    touch ~/.hushlogin
+}
 
+function setup() {
+    echo "hi"
+}
 
+if test -f /etc/os-release 
+then
+    os_type=$(grep -oP '^NAME="\K\w*' /etc/os-release)
+else
+    os_type="MacOS"
+fi
+
+echo $os_type
