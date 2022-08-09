@@ -6,12 +6,10 @@ function setup_ubuntu() {
     sudo add-apt-repository ppa:neovim-ppa/stable -y
     sudo apt update
 
-    sudo apt install -y neovim
+    sudo apt install -y neovim build-essential zsh
 
-    sudo apt install -y zsh
     chsh -s $(which zsh)
 
-    sudo apt install -y build-essential
 
 }
 
