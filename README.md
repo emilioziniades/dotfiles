@@ -4,4 +4,6 @@
 
 ```
 git clone https://github.com/emilioziniades/dotfiles
+cd dotfiles
+./setup.sh
 ```
