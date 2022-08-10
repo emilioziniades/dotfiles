@@ -55,4 +55,15 @@ function M.run_file()
 	vim.cmd(run_cmds[ft])
 end
 
+function M.set_variables(vars, var_type)
+	for key, value in pairs(vars) do
+		var_type[key] = value
+	end
+end
+
+function M.map(mode, lhs, rhs, more_opts)
+	local opts = { noremap = true, silent = true }
+	more_opts = more_opts or {}
+	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
+end
 return M
