@@ -27,12 +27,9 @@ return require("packer").startup(function(use)
 	-- FUNCTIONALITY
 
 	--lsp
-	use({
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("config.lsp")
-		end,
-	})
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("onsails/lspkind-nvim")
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -40,7 +37,12 @@ return require("packer").startup(function(use)
 			require("config.null-ls")
 		end,
 	})
-	use("onsails/lspkind-nvim")
+	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("config.lsp")
+		end,
+	})
 
 	-- git
 	use({
