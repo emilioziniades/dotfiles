@@ -1,3 +1,10 @@
+local language_servers = { "pyright", "gopls", "tsserver", "rls", "sumneko_lua", "omnisharp" }
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = language_servers,
+})
+
 local map = require("utils").map
 
 map("n", "<space>d", vim.diagnostic.open_float)
@@ -30,6 +37,10 @@ local setups = {
 	end,
 }
 
+local cmds = {
+	omnisharp = { io.popen("which omnisharp"):read("*a"), "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+}
+
 local settings = {
 	sumneko_lua = {
 		Lua = {
@@ -52,16 +63,17 @@ local settings = {
 	},
 }
 
-local servers = { "pyright", "gopls", "tsserver", "rls", "sumneko_lua" }
-
-for _, lsp in pairs(servers) do
-	if setups[lsp] then
-		setups[lsp]()
+-- TODO: ensure settings and cmds don't overwrite defaults
+for _, language_server in pairs(language_servers) do
+	if setups[language_server] then
+		setups[language_server]()
 	end
-	local setting = settings[lsp] or {}
-	require("lspconfig")[lsp].setup({
+	-- local setting = settings[language_server] or {}
+	-- local cmd = cmds[language_server] or {}
+	require("lspconfig")[language_server].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
-		settings = setting,
+		-- settings = setting,
+		-- cmd = cmd,
 	})
 end
