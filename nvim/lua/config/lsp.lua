@@ -1,9 +1,4 @@
---convenience keymap function
-local function map(mode, lhs, rhs, more_opts)
-	local opts = { noremap = true, silent = true }
-	more_opts = more_opts or {}
-	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
-end
+local map = require("utils").map
 
 -- general keymaps
 map("n", "<space>d", vim.diagnostic.open_float)
