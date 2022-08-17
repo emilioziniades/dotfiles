@@ -1,18 +1,18 @@
---convenience keymap function
-local function map(mode, lhs, rhs, more_opts)
-	local opts = { noremap = true, silent = true }
-	more_opts = more_opts or {}
-	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
-end
+local language_servers = { "pyright", "gopls", "tsserver", "rls", "sumneko_lua", "omnisharp" }
 
--- general keymaps
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = language_servers,
+})
+
+local map = require("utils").map
+
 map("n", "<space>d", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 
--- keymaps only after language server attaches to current buffer
 local function on_attach(client, bufnr)
-	--disable formatting, to be handled by null-ls
+	-- null-ls handles formatting
 	client.resolved_capabilities.document_formatting = false
 	client.resolved_capabilities.document_range_formatting = false
 
@@ -25,45 +25,28 @@ local function on_attach(client, bufnr)
 	map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr })
 	map("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
 	map("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
-	-- map("n", "<leader>f", vim.lsp.buf.formatting(), { buffer = bufnr })
 end
-
--- nvim cmp
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- set up language servers
+local setups = {
+	sumneko_lua = function()
+		local runtime_path = vim.split(package.path, ";")
+		table.insert(runtime_path, "lua/?.lua")
+		table.insert(runtime_path, "lua/?/init.lua")
+	end,
+}
 
-local servers = { "pyright", "gopls", "tsserver", "rls" }
-for _, lsp in pairs(servers) do
-	require("lspconfig")[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
+local cmds = {
+	omnisharp = { io.popen("which omnisharp"):read("*a"), "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+}
 
--- set up omnisharp
-
-local pid = vim.fn.getpid()
-local omnisharp_bin = "omnisharp"
-require("lspconfig").omnisharp.setup({
-	cmd = { omnisharp_bin, "--languageserver", "--hostpid", tostring(pid) },
-})
-
--- set up sumneko_lua
-
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-require("lspconfig").sumneko_lua.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
+local settings = {
+	sumneko_lua = {
 		Lua = {
 			runtime = {
 				version = "LuaJIT",
-				path = runtime_path,
+				path = vim.split(package.path, ";"),
 			},
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
@@ -78,4 +61,19 @@ require("lspconfig").sumneko_lua.setup({
 			},
 		},
 	},
-})
+}
+
+-- TODO: ensure settings and cmds don't overwrite defaults
+for _, language_server in pairs(language_servers) do
+	if setups[language_server] then
+		setups[language_server]()
+	end
+	-- local setting = settings[language_server] or {}
+	-- local cmd = cmds[language_server] or {}
+	require("lspconfig")[language_server].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+		-- settings = setting,
+		-- cmd = cmd,
+	})
+end

@@ -1,17 +1,14 @@
-require("autocommands")
-
-local vars = require("variables")
 local utils = require("utils")
+local colorscheme = "sonokai"
 
--- theme (time dependent)
-vim.cmd("colorscheme " .. vars.theme)
+vim.cmd("colorscheme " .. colorscheme)
+utils.line_number_emphasize()
 
--- other settings
-
-vim.g.mapleader = " "
+local globals = {
+	mapleader = " ",
+}
 
 local options = {
-	background = vars.background,
 	mouse = "",
 	undofile = true,
 	wrap = true,
@@ -31,8 +28,5 @@ local options = {
 	splitright = true,
 }
 
-for key, value in pairs(options) do
-	vim.o[key] = value
-end
--- make current line number pop
-utils.line_number_emphasize()
+utils.set_variables(globals, vim.g)
+utils.set_variables(options, vim.o)
