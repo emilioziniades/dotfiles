@@ -1,26 +1,20 @@
--- Highlight on yank
-vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
-	group = "YankHighlight",
+	group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,
 })
 
-vim.api.nvim_create_augroup("ManualFold", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
-	group = "ManualFold",
+	group = vim.api.nvim_create_augroup("ManualFold", { clear = true }),
 	command = "normal zx",
 })
--- filetype specific actions
 
--- js or jsx
-vim.api.nvim_create_augroup("JavascriptFile", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.js", "*.jsx", "*.html", "*.ts", "*.tsx" },
-	group = "JavascriptFile",
+	group = vim.api.nvim_create_augroup("JavascriptFile", { clear = true }),
 	callback = function()
 		vim.schedule(function()
 			vim.api.nvim_set_option_value("tabstop", 2, { scope = "local" })
@@ -29,11 +23,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
--- mdx
-vim.api.nvim_create_augroup("MarkdownXFile", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.mdx",
-	group = "MarkdownXFile",
+	group = vim.api.nvim_create_augroup("MarkdownXFile", { clear = true }),
 	callback = function()
 		vim.schedule(function()
 			vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local" })
