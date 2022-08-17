@@ -152,7 +152,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- auto tags
-	use("ludovicchabant/vim-gutentags")
+	-- use("ludovicchabant/vim-gutentags")
 
 	--brackets
 	use({
