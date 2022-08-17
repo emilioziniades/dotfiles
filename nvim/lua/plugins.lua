@@ -1,17 +1,14 @@
--- bootstrapping packer
-
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-	packer_bootstrap =
+	Packer_bootstrap =
 		vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	vim.cmd("packadd packer.nvim")
 end
 
-vim.api.nvim_create_augroup("packer_user_config", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "plugins.lua",
-	group = "packer_user_config",
+	group = vim.api.nvim_create_augroup("packer_user_config", { clear = true }),
 	callback = function()
 		vim.schedule(function()
 			vim.cmd("source % | PackerCompile ")
@@ -19,27 +16,20 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	end,
 })
 
--- mappings
-vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
-vim.keymap.set("n", "<leader>pc", "<cmd>PackerCompile<cr>")
-
--- caching
-if not packer_bootstrap then
-	require("impatient")
-end
-
 return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+	use({
+		"wbthomason/packer.nvim",
+		config = function()
+			require("config.packer")
+		end,
+	})
 
 	-- FUNCTIONALITY
 
 	--lsp
-	use({
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("config.lsp")
-		end,
-	})
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("onsails/lspkind-nvim")
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -47,14 +37,19 @@ return require("packer").startup(function(use)
 			require("config.null-ls")
 		end,
 	})
-	use("onsails/lspkind-nvim")
+	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("config.lsp")
+		end,
+	})
 
 	-- git
 	use({
 		"TimUntersberger/neogit",
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
-			require("neogit").setup()
+			require("config.neogit")
 		end,
 	})
 	use({
@@ -119,14 +114,6 @@ return require("packer").startup(function(use)
 	})
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 
-	--repl
-	use({
-		"hkupty/iron.nvim",
-		config = function()
-			require("config._iron")
-		end,
-	})
-
 	-- commenting
 	use({
 		"numToStr/Comment.nvim",
@@ -153,7 +140,7 @@ return require("packer").startup(function(use)
 
 	-- auto tags
 	-- use("ludovicchabant/vim-gutentags")
-
+  
 	--brackets
 	use({
 		"windwp/nvim-autopairs",
@@ -164,45 +151,11 @@ return require("packer").startup(function(use)
 	use("machakann/vim-sandwich")
 	use("p00f/nvim-ts-rainbow")
 
-	--zen mode
-	use({
-		"folke/zen-mode.nvim",
-		config = function()
-			require("config.zen-mode")
-		end,
-	})
-
-	use({
-		"folke/twilight.nvim",
-		config = function()
-			require("twilight").setup()
-		end,
-	})
-
-	-- optimize startup
-	use("lewis6991/impatient.nvim")
-
-	-- markdown
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && yarn install",
-		ft = "markdown",
-	})
-
 	-- COLOURSCHEMES
 
 	use("sainnhe/sonokai")
-	-- use("folke/tokyonight.nvim")
-	-- use("shaunsingh/nord.nvim")
-	-- use("Mofiqul/dracula.nvim")
-	-- use("mjlbach/onedark.nvim")
-	-- use("sjl/badwolf")
-	-- use("tanvirtin/monokai.nvim")
-	-- use("morhetz/gruvbox")
-	-- use({ "rose-pine/neovim", as = "rose-pine" })
 
-	-- sync if bootstrapping
-	if packer_bootstrap then
+	if Packer_bootstrap then
 		require("packer").sync()
 	end
 end)
