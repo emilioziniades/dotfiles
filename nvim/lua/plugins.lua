@@ -138,6 +138,9 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- auto tags
+	-- use("ludovicchabant/vim-gutentags")
+  
 	--brackets
 	use({
 		"windwp/nvim-autopairs",

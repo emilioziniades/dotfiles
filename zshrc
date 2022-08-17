@@ -41,6 +41,7 @@ alias ve="view"
 # VARIABLES
 
 export LC_ALL=C.UTF-8
+export W_HOME=/mnt/c/Users/EmilioZiniades
 
 #FUNCTIONS
 
@@ -105,3 +106,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+# start in tmux always
+if [[ $TMUX == "" ]]
+then
+    tmux
+fi
