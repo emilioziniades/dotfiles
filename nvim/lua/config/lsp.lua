@@ -11,20 +11,29 @@ map("n", "<space>d", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 
-local function on_attach(client, bufnr)
+local on_attach = function(client, bufnr)
 	-- null-ls handles formatting
 	client.resolved_capabilities.document_formatting = false
 	client.resolved_capabilities.document_range_formatting = false
 
-	map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
-	map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
-	map("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-	map("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
-	map("n", "gh", vim.lsp.buf.signature_help, { buffer = bufnr })
-	map("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = bufnr })
-	map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr })
-	map("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
-	map("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+	vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
+	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	vim.keymap.set("n", "<space>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, bufopts)
+	vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+	vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -63,7 +72,18 @@ local settings = {
 	},
 }
 
--- TODO: ensure settings and cmds don't overwrite defaults
+require("lspconfig")["pyright"].setup({
+	on_attach = on_attach,
+})
+require("lspconfig")["tsserver"].setup({
+	on_attach = on_attach,
+})
+require("lspconfig")["sumneko_lua"].setup({
+	on_attach = on_attach,
+	settings = settings["sumneko_lua"],
+})
+
+--[[ -- TODO: ensure settings and cmds don't overwrite defaults
 for _, language_server in pairs(language_servers) do
 	if setups[language_server] then
 		setups[language_server]()
@@ -76,4 +96,4 @@ for _, language_server in pairs(language_servers) do
 		-- settings = setting,
 		-- cmd = cmd,
 	})
-end
+end ]]
