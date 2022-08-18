@@ -30,7 +30,7 @@ function setup_macos() {
 function setup() {
     dotdir=~/dotfiles
     olddotdir=~/dotfiles_old
-    files="zshrc zshenv zprofile tmux.conf"
+    files="zshrc tmux.conf"
     mkdir -p $olddotdir
     cd $dotdir
     for file in $files; do
