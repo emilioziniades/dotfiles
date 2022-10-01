@@ -38,6 +38,8 @@ alias v="nvim"
 alias t="tmux"
 alias ve="view"
 
+alias tree="tree --gitignore"
+
 # VARIABLES
 
 export LC_ALL=C.UTF-8

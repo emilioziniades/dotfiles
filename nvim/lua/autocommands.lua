@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	group = vim.api.nvim_create_augroup("ManualFold", { clear = true }),
-	command = "normal zx",
+	command = "normal zx | zi",
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
