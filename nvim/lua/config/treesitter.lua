@@ -9,11 +9,14 @@ require("nvim-treesitter.configs").setup({
 		"go",
 		"python",
 		"javascript",
+		"typescript",
+		"tsx",
 		"lua",
-        "c_sharp",
+		"c_sharp",
 		"css",
 		"rust",
 		"html",
+		"toml",
 	},
 })
 

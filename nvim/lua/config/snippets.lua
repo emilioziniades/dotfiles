@@ -26,6 +26,10 @@ ls.add_snippets("python", {
 	s("db", {
 		t({ "from IPython import embed; embed(colors='neutral')  # fmt: skip" }),
 	}),
+	-- normal debug breakpoint
+	s("bp", {
+		t({ "breakpoint()" }),
+	}),
 	-- function definition
 	s("df", {
 		t("def "),
@@ -57,6 +61,11 @@ ls.add_snippets("javascript", {
 		end),
 	}),
 })
+
+local js_like_filetypes = { "javascriptreact", "typescript", "typescriptreact" }
+for _, filetype in ipairs(js_like_filetypes) do
+	ls.filetype_extend(filetype, { "javascript" })
+end
 
 vim.keymap.set({ "i", "s" }, "<c-s>", function()
 	if ls.expand_or_jumpable() then
