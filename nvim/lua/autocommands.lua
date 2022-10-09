@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.js", "*.jsx", "*.html", "*.ts", "*.tsx" },
+	pattern = { "*.js", "*.jsx", "*.html", "*.ts", "*.tsx", "*.tpl" },
 	group = vim.api.nvim_create_augroup("JavascriptFile", { clear = true }),
 	callback = function()
 		vim.schedule(function()
