@@ -71,6 +71,14 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- harpoon
+	use({
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("config._harpoon")
+		end,
+	})
+
 	-- status line
 	use({
 		"nvim-lualine/lualine.nvim",
