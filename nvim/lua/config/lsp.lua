@@ -72,28 +72,37 @@ local settings = {
 	},
 }
 
-require("lspconfig")["pyright"].setup({
-	on_attach = on_attach,
-})
-require("lspconfig")["tsserver"].setup({
-	on_attach = on_attach,
-})
-require("lspconfig")["sumneko_lua"].setup({
-	on_attach = on_attach,
-	settings = settings["sumneko_lua"],
-})
-
---[[ -- TODO: ensure settings and cmds don't overwrite defaults
 for _, language_server in pairs(language_servers) do
 	if setups[language_server] then
 		setups[language_server]()
 	end
-	-- local setting = settings[language_server] or {}
-	-- local cmd = cmds[language_server] or {}
-	require("lspconfig")[language_server].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		-- settings = setting,
-		-- cmd = cmd,
-	})
-end ]]
+
+	local setting = settings[language_server]
+	local cmd = cmds[language_server]
+
+	if setting and cmd then
+		require("lspconfig")[language_server].setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = setting,
+			cmd = cmd,
+		})
+	elseif setting then
+		require("lspconfig")[language_server].setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = setting,
+		})
+	elseif cmd then
+		require("lspconfig")[language_server].setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			cmd = cmd,
+		})
+	else
+		require("lspconfig")[language_server].setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+	end
+end
