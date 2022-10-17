@@ -17,6 +17,8 @@ require("nvim-treesitter.configs").setup({
 		"rust",
 		"html",
 		"toml",
+        "typescript",
+        "tsx"
 	},
 })
 
