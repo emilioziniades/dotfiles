@@ -40,6 +40,7 @@ alias ve="view"
 
 alias tree="tree --gitignore"
 
+alias k="kubectl"
 # VARIABLES
 
 export LC_ALL=C.UTF-8
@@ -76,6 +77,7 @@ if [[ -f "$HOME/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
 fi
 
+export PATH="$PATH:$HOME/.local/bin"
 
 # PROMPT
 
@@ -104,12 +106,14 @@ fi
 
 # NVM 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 # start in tmux always
 if [[ $TMUX == "" ]]
 then
     tmux
 fi
+
