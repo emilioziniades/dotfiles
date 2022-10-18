@@ -1,4 +1,4 @@
-local language_servers = { "pyright", "gopls", "tsserver", "rls", "sumneko_lua", "omnisharp" }
+local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "sumneko_lua", "omnisharp" }
 
 require("mason").setup()
 require("mason-lspconfig").setup({
