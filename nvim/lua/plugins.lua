@@ -154,6 +154,7 @@ return require("packer").startup(function(use)
 	-- COLOURSCHEMES
 
 	use("sainnhe/sonokai")
+	use("folke/tokyonight.nvim")
 
 	if Packer_bootstrap then
 		require("packer").sync()

@@ -1,5 +1,5 @@
 local utils = require("utils")
-local colorscheme = "sonokai"
+local colorscheme = "tokyonight-night"
 
 vim.cmd("colorscheme " .. colorscheme)
 utils.line_number_emphasize()
