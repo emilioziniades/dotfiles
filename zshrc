@@ -23,6 +23,16 @@ alias gc="git commit"
 alias gca="git commit -am"
 alias gp="git push -u origin main"
 
+# git push current branch
+gpcb() {
+    git push -u origin $(git branch --show-current)
+}
+
+# git delete current branch
+gpcb() {
+    git push -u origin $(git branch --show-current)
+}
+
 alias py="python"
 alias ipy="ipython"
 alias jn="jupyter notebook"
@@ -116,4 +126,3 @@ if [[ $TMUX == "" ]]
 then
     tmux
 fi
-
