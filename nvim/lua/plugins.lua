@@ -60,6 +60,20 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- debug
+	use({
+		"mfussenegger/nvim-dap",
+		config = function()
+			require("config.dap")
+		end,
+	})
+	use({
+		"leoluz/nvim-dap-go",
+		config = function()
+			require("config.dapgo")
+		end,
+	})
+
 	-- telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
