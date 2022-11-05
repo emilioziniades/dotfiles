@@ -42,6 +42,14 @@ ls.add_snippets("python", {
 	}),
 })
 
+ls.add_snippets("go", {
+	s("enil", {
+		t({ "if err != nil {", "\t" }),
+		i(0),
+		t({ "", "}" }),
+	}),
+})
+
 ls.add_snippets("javascript", {
 	-- html expansion of the form ".tag.class1.class2" or ".tag." for elements without classes
 	s({ trig = ".(%a+).([-./a-zA-Z0-9]*)", regTrig = true }, {
