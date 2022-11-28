@@ -73,6 +73,15 @@ return require("packer").startup(function(use)
 			require("config.dapgo")
 		end,
 	})
+	use({
+		"rcarriga/nvim-dap-ui",
+		requires = {
+			"mfussenegger/nvim-dap",
+			config = function()
+				require("dapiui").setup()
+			end,
+		},
+	})
 
 	-- telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -152,9 +161,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- auto tags
-	-- use("ludovicchabant/vim-gutentags")
-
 	--brackets
 	use({
 		"windwp/nvim-autopairs",
@@ -164,6 +170,14 @@ return require("packer").startup(function(use)
 	})
 	use("machakann/vim-sandwich")
 	use("p00f/nvim-ts-rainbow")
+
+	--icons
+	use({
+		"nvim-tree/nvim-web-devicons",
+		config = function()
+			require("nvim-web-devicons").setup()
+		end,
+	})
 
 	-- COLOURSCHEMES
 
