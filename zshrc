@@ -53,7 +53,7 @@ alias tree="tree --gitignore"
 alias k="kubectl"
 # VARIABLES
 
-export LC_ALL=C.UTF-8
+export LC_ALL=en_US.UTF-8
 export W_HOME=/mnt/c/Users/EmilioZiniades
 
 #FUNCTIONS
