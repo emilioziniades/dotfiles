@@ -6,7 +6,7 @@ function setup_ubuntu() {
     sudo add-apt-repository ppa:neovim-ppa/stable -y
     sudo apt update
 
-    sudo apt install -y neovim build-essential zsh fd-find ripgrep
+    sudo apt install -y neovim build-essential zsh fd-find ripgrep zip
 
     chsh -s $(which zsh)
 
