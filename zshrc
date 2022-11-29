@@ -29,8 +29,8 @@ gpcb() {
 }
 
 # git delete current branch
-gpcb() {
-    git push -u origin $(git branch --show-current)
+gdcb() {
+    git push -d origin $(git branch --show-current)
 }
 
 alias py="python"
