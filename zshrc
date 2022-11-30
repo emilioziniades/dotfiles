@@ -77,12 +77,14 @@ export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 
+# ruby
 if command -v gem &> /dev/null
 then
     export PATH="/usr/local/opt/ruby/bin:$PATH"
     export PATH="$(gem environment gemdir)/bin:$PATH"
 fi
 
+#rush
 if [[ -f "$HOME/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
 fi
