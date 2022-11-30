@@ -84,7 +84,7 @@ then
     export PATH="$(gem environment gemdir)/bin:$PATH"
 fi
 
-#rush
+#rust
 if [[ -f "$HOME/.cargo/env" ]]; then
     source "$HOME/.cargo/env"
 fi
