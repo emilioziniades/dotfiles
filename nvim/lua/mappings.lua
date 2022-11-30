@@ -29,6 +29,7 @@ map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
 map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 
 map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
+map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
 -- quit
 map("n", "<leader>q", "<cmd>qa<cr>")
