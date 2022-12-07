@@ -41,6 +41,9 @@ alias gr="go run"
 alias gt="go test"
 alias gtv="go test -v ."
 
+alias cr="cargo run"
+alias ct="cargo test -- --color always --nocapture"
+
 alias view="nvim -R"
 alias tmux="tmux -u"
 
