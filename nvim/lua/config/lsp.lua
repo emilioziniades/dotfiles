@@ -13,8 +13,8 @@ map("n", "]d", vim.diagnostic.goto_next)
 
 local on_attach = function(client, bufnr)
 	-- null-ls handles formatting
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
+	client.server_capabilities.documentFormattingProvider = false
+	client.server_capabilities.documentFormattingProvider = false
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
