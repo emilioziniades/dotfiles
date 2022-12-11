@@ -6,7 +6,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd("packadd packer.nvim")
 end
 
-
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "plugins.lua",
 	group = vim.api.nvim_create_augroup("packer_user_config", { clear = true }),
