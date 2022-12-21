@@ -2,7 +2,7 @@ local utils = require("utils")
 local colorscheme = "tokyonight-night"
 
 vim.cmd("colorscheme " .. colorscheme)
-utils.line_number_emphasize()
+-- utils.line_number_emphasize()
 
 local globals = {
 	mapleader = " ",
@@ -16,7 +16,7 @@ local options = {
 	spell = false,
 	spelllang = "en_gb",
 	number = true,
-	relativenumber = true,
+	relativenumber = false,
 	tabstop = 4,
 	shiftwidth = 4,
 	softtabstop = 4,
