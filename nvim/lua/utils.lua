@@ -32,7 +32,7 @@ function M.toggle_theme_background()
 		vim.o.background = "dark"
 	end
 	vim.cmd("silent colorscheme " .. colorscheme)
-	M.line_number_emphasize()
+	-- M.line_number_emphasize()
 end
 
 function M.count_words()
@@ -51,6 +51,18 @@ function M.run_file()
 		["python"] = [[! echo \\n &&  python %]],
 		["go"] = "!go run %",
 		["javascript"] = [[! echo \\n && node %]],
+		["rust"] = "!cargo run",
+	}
+	vim.cmd(run_cmds[ft])
+end
+
+function M.test_file()
+	local filename = vim.fn.expand("%:t")
+	filename = string.gsub(filename, ".rs", "")
+	print(filename)
+	local ft = vim.bo.filetype
+	local run_cmds = {
+		["rust"] = "!cargo test " .. filename,
 	}
 	vim.cmd(run_cmds[ft])
 end

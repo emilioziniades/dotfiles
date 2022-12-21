@@ -51,3 +51,7 @@ map("v", "<Esc>", "<Esc>")
 map("c", "<Esc>", "<C-C><Esc>")
 
 map("n", "<leader>n", utils.toggle_relative_line_numbers)
+
+-- run  and test file
+map("n", "<leader>rr", utils.run_file)
+map("n", "<leader>rt", utils.test_file)
