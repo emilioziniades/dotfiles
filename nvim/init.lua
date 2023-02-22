@@ -1,7 +1,6 @@
 -- UTILITY FUNCTIONS
 
 local utils = {}
-
 function I(item)
 	print(vim.inspect(item))
 end
@@ -171,7 +170,7 @@ require("packer").startup(function(use)
 				Map("n", "<space>rn", vim.lsp.buf.rename, bufopts)
 				Map("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
 				Map("n", "gr", vim.lsp.buf.references, bufopts)
-				Map("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+				Map("n", "<space>f", vim.lsp.buf.format, bufopts)
 			end
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -588,6 +587,46 @@ require("packer").startup(function(use)
 		"nvim-tree/nvim-web-devicons",
 		config = function()
 			require("nvim-web-devicons").setup()
+		end,
+	})
+
+	-- which key
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup()
+		end,
+	})
+
+	-- zen mode
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				window = {
+					backdrop = 0.85,
+					width = 0.85,
+					height = 0.95,
+					options = {
+						number = false,
+						relativenumber = false,
+					},
+				},
+				plugins = {
+					-- disable some global vim options (vim.o...)
+					-- comment the lines to not apply the options
+					options = {
+						enabled = true,
+						ruler = false, -- disables the ruler text in the cmd line area
+						showcmd = false, -- disables the command in the last line of the screen
+					},
+					gitsigns = { enabled = false }, -- disables git signs
+					tmux = { enabled = false }, -- disables the tmux statusline
+				},
+			})
+			Map("n", "<leader>zz", require("zen-mode").toggle)
 		end,
 	})
 
