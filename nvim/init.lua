@@ -76,6 +76,14 @@ function utils.set_variables(vars, var_type)
 end
 
 function utils.map(mode, lhs, rhs, more_opts)
+	print("I ran once")
+	local opts = { noremap = true, silent = true }
+	more_opts = more_opts or {}
+	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
+end
+
+function map(mode, lhs, rhs, more_opts)
+	print("I ran once")
 	local opts = { noremap = true, silent = true }
 	more_opts = more_opts or {}
 	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
@@ -138,14 +146,13 @@ require("packer").startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		config = function()
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "sumneko_lua", "omnisharp" }
+			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "sumneko_lua" }
+			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer" }
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = language_servers,
 			})
-
-			local map = utils.map
 
 			map("n", "<space>d", vim.diagnostic.open_float)
 			map("n", "[d", vim.diagnostic.goto_prev)
@@ -218,6 +225,7 @@ require("packer").startup(function(use)
 			}
 
 			for _, language_server in pairs(language_servers) do
+				print(language_server)
 				if setups[language_server] then
 					setups[language_server]()
 				end
