@@ -2,8 +2,14 @@
 
 local utils = {}
 
-utils.I = function(item)
+function I(item)
 	print(vim.inspect(item))
+end
+
+function Map(mode, lhs, rhs, more_opts)
+	local opts = { noremap = true, silent = true }
+	more_opts = more_opts or {}
+	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
 end
 
 function utils.toggle_relative_line_numbers()
@@ -34,7 +40,7 @@ function utils.toggle_theme_background()
 		vim.o.background = "dark"
 	end
 	vim.cmd("silent colorscheme " .. colorscheme)
-	-- M.line_number_emphasize()
+	-- utils.line_number_emphasize()
 end
 
 function utils.count_words()
@@ -75,20 +81,6 @@ function utils.set_variables(vars, var_type)
 	end
 end
 
-function utils.map(mode, lhs, rhs, more_opts)
-	print("I ran once")
-	local opts = { noremap = true, silent = true }
-	more_opts = more_opts or {}
-	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
-end
-
-function map(mode, lhs, rhs, more_opts)
-	print("I ran once")
-	local opts = { noremap = true, silent = true }
-	more_opts = more_opts or {}
-	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
-end
-
 -- PLUGINS
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -103,8 +95,8 @@ require("packer").startup(function(use)
 	use({
 		"wbthomason/packer.nvim",
 		config = function()
-			vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
-			vim.keymap.set("n", "<leader>pc", "<cmd>PackerCompile<cr>")
+			Map("n", "<leader>ps", "<cmd>PackerSync<cr>")
+			Map("n", "<leader>pc", "<cmd>PackerCompile<cr>")
 		end,
 	})
 
@@ -146,17 +138,16 @@ require("packer").startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		config = function()
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "sumneko_lua" }
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer" }
+			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls" }
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = language_servers,
 			})
 
-			map("n", "<space>d", vim.diagnostic.open_float)
-			map("n", "[d", vim.diagnostic.goto_prev)
-			map("n", "]d", vim.diagnostic.goto_next)
+			Map("n", "<space>d", vim.diagnostic.open_float)
+			Map("n", "[d", vim.diagnostic.goto_prev)
+			Map("n", "]d", vim.diagnostic.goto_next)
 
 			local on_attach = function(client, bufnr)
 				-- null-ls handles formatting
@@ -166,44 +157,35 @@ require("packer").startup(function(use)
 				-- Mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-				vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
-				vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-				vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-				vim.keymap.set("n", "<space>wl", function()
+				Map("n", "gD", vim.lsp.buf.declaration, bufopts)
+				Map("n", "gd", vim.lsp.buf.definition, bufopts)
+				Map("n", "K", vim.lsp.buf.hover, bufopts)
+				Map("n", "gi", vim.lsp.buf.implementation, bufopts)
+				Map("n", "gh", vim.lsp.buf.signature_help, bufopts)
+				Map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+				Map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+				Map("n", "<space>wl", function()
 					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 				end, bufopts)
-				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-				vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-				vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+				Map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+				Map("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+				Map("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+				Map("n", "gr", vim.lsp.buf.references, bufopts)
+				Map("n", "<space>f", vim.lsp.buf.formatting, bufopts)
 			end
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local setups = {
-				sumneko_lua = function()
+				lua_ls = function()
 					local runtime_path = vim.split(package.path, ";")
 					table.insert(runtime_path, "lua/?.lua")
 					table.insert(runtime_path, "lua/?/init.lua")
 				end,
 			}
 
-			local cmds = {
-				omnisharp = {
-					io.popen("which omnisharp"):read("*a"),
-					"--languageserver",
-					"--hostPID",
-					tostring(vim.fn.getpid()),
-				},
-			}
-
 			local settings = {
-				sumneko_lua = {
+				lua_ls = {
 					Lua = {
 						runtime = {
 							version = "LuaJIT",
@@ -225,32 +207,17 @@ require("packer").startup(function(use)
 			}
 
 			for _, language_server in pairs(language_servers) do
-				print(language_server)
 				if setups[language_server] then
 					setups[language_server]()
 				end
 
 				local setting = settings[language_server]
-				local cmd = cmds[language_server]
 
-				if setting and cmd then
+				if setting then
 					require("lspconfig")[language_server].setup({
 						on_attach = on_attach,
 						capabilities = capabilities,
 						settings = setting,
-						cmd = cmd,
-					})
-				elseif setting then
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						settings = setting,
-					})
-				elseif cmd then
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						cmd = cmd,
 					})
 				else
 					require("lspconfig")[language_server].setup({
@@ -268,7 +235,7 @@ require("packer").startup(function(use)
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
 			require("neogit").setup()
-			vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>")
+			Map("n", "<leader>g", "<cmd>Neogit<cr>")
 		end,
 	})
 	use({
@@ -293,12 +260,12 @@ require("packer").startup(function(use)
 		config = function()
 			local dap = require("dap")
 
-			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
-			vim.keymap.set("n", "<leader>dc", dap.continue)
-			vim.keymap.set("n", "<leader>du", dap.step_over)
-			vim.keymap.set("n", "<leader>di", dap.step_into)
-			vim.keymap.set("n", "<leader>do", dap.step_out)
-			vim.keymap.set("n", "<leader>dr", dap.repl.open)
+			Map("n", "<leader>db", dap.toggle_breakpoint)
+			Map("n", "<leader>dc", dap.continue)
+			Map("n", "<leader>du", dap.step_over)
+			Map("n", "<leader>di", dap.step_into)
+			Map("n", "<leader>do", dap.step_out)
+			Map("n", "<leader>dr", dap.repl.open)
 		end,
 	})
 	use({
@@ -309,7 +276,7 @@ require("packer").startup(function(use)
 			dapgo.setup()
 
 			-- todo: only do this for .go files with an autocmd
-			vim.keymap.set("n", "<leader>dt", dapgo.debug_test)
+			Map("n", "<leader>dt", dapgo.debug_test)
 		end,
 	})
 	use({
@@ -351,16 +318,16 @@ require("packer").startup(function(use)
 				require("telescope").extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
 			end
 
-			vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers)
-			vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files)
-			vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep)
-			vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags)
-			vim.keymap.set("n", "<leader>fo", require("telescope.builtin").oldfiles)
-			vim.keymap.set("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-			vim.keymap.set("n", "<leader>fc", require("telescope.builtin").colorscheme)
-			vim.keymap.set("n", "<leader>fp", require("telescope").extensions.file_browser.file_browser)
-			vim.keymap.set("n", "<leader>fe", file_browser_cwd)
-			vim.keymap.set("n", "<leader>fd", find_dotfiles)
+			Map("n", "<leader><space>", require("telescope.builtin").buffers)
+			Map("n", "<leader>ff", require("telescope.builtin").find_files)
+			Map("n", "<leader>fg", require("telescope.builtin").live_grep)
+			Map("n", "<leader>fh", require("telescope.builtin").help_tags)
+			Map("n", "<leader>fo", require("telescope.builtin").oldfiles)
+			Map("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
+			Map("n", "<leader>fc", require("telescope.builtin").colorscheme)
+			Map("n", "<leader>fp", require("telescope").extensions.file_browser.file_browser)
+			Map("n", "<leader>fe", file_browser_cwd)
+			Map("n", "<leader>fd", find_dotfiles)
 		end,
 	})
 
@@ -462,13 +429,13 @@ require("packer").startup(function(use)
 				ls.filetype_extend(filetype, { "javascript" })
 			end
 
-			vim.keymap.set({ "i", "s" }, "<c-s>", function()
+			Map({ "i", "s" }, "<c-s>", function()
 				if ls.expand_or_jumpable() then
 					ls.expand_or_jump()
 				end
 			end, { silent = true })
 
-			vim.keymap.set({ "i", "s" }, "<c-a>", function()
+			Map({ "i", "s" }, "<c-a>", function()
 				if ls.jumpable(-1) then
 					ls.jump(-1)
 				end
@@ -567,12 +534,13 @@ require("packer").startup(function(use)
 					"toml",
 					"typescript",
 					"tsx",
+					"vim",
 				},
 			})
 
 			vim.opt.foldmethod = "expr"
 			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-			vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
+			Map("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
 	})
 	use("nvim-treesitter/nvim-treesitter-textobjects")
@@ -583,14 +551,6 @@ require("packer").startup(function(use)
 		config = function()
 			require("Comment").setup()
 		end,
-	})
-
-	-- debug
-	use({
-		"tpope/vim-scriptease",
-		cmd = {
-			"Messages", --view messages in quickfix list
-		},
 	})
 
 	-- show indents
@@ -677,62 +637,61 @@ utils.set_variables(options, vim.o)
 
 -- KEYMAPS
 
-local map = vim.keymap.set
 local esc = "§"
 
 -- tab, buffer and window navigation
-map("n", "<TAB>", "<cmd>tabn<cr>")
-map("n", "<S-TAB>", "<cmd>tabp<cr>")
+Map("n", "<TAB>", "<cmd>tabn<cr>")
+Map("n", "<S-TAB>", "<cmd>tabp<cr>")
 
-map("n", "<leader>[", "<cmd>bn<cr>")
-map("n", "<leader>]", "<cmd>bp<cr>")
+Map("n", "<leader>[", "<cmd>bn<cr>")
+Map("n", "<leader>]", "<cmd>bp<cr>")
 
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
+Map("n", "<C-h>", "<C-w>h")
+Map("n", "<C-j>", "<C-w>j")
+Map("n", "<C-k>", "<C-w>k")
+Map("n", "<C-l>", "<C-w>l")
 
-map("n", "<leader>ms", "<cmd>split<cr>")
-map("n", "<leader>mv", "<cmd>vsplit<cr>")
-map("n", "<leader>mr", "<C-w>R")
+Map("n", "<leader>ms", "<cmd>split<cr>")
+Map("n", "<leader>mv", "<cmd>vsplit<cr>")
+Map("n", "<leader>mr", "<C-w>R")
 
-map("n", "<leader>ml", "<C-w>L")
-map("n", "<leader>mk", "<C-w>K")
-map("n", "<leader>mj", "<C-w>J")
-map("n", "<leader>mh", "<C-w>H")
+Map("n", "<leader>ml", "<C-w>L")
+Map("n", "<leader>mk", "<C-w>K")
+Map("n", "<leader>mj", "<C-w>J")
+Map("n", "<leader>mh", "<C-w>H")
 
-map("n", "<C-Up>", "<cmd>resize +5<cr>")
-map("n", "<C-Down>", "<cmd>resize -5<cr>")
-map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
-map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
+Map("n", "<C-Up>", "<cmd>resize +5<cr>")
+Map("n", "<C-Down>", "<cmd>resize -5<cr>")
+Map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
+Map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 
-map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
-map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
+Map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
+Map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
 -- quit
-map("n", "<leader>q", "<cmd>qa<cr>")
-map("n", "<leader>w", "<cmd>q<cr>")
+Map("n", "<leader>q", "<cmd>qa<cr>")
+Map("n", "<leader>w", "<cmd>q<cr>")
 
 -- save
-map("n", "<leader>e", "<cmd>w<cr>")
+Map("n", "<leader>e", "<cmd>w<cr>")
 
 -- remove highlights
-map("n", "<leader>,", "<cmd>nohlsearch<cr>")
+Map("n", "<leader>,", "<cmd>nohlsearch<cr>")
 
 -- go back
-map("n", "<leader>b", "<C-^>")
+Map("n", "<leader>b", "<C-^>")
 
 -- easier escape key for macbook
-map({ "i", "t", "v", "c", "n" }, esc, "<Esc>", { remap = true })
-map("t", "<Esc>", "<C-\\><C-n>")
-map("v", "<Esc>", "<Esc>")
-map("c", "<Esc>", "<C-C><Esc>")
+Map({ "i", "t", "v", "c", "n" }, esc, "<Esc>", { remap = true })
+Map("t", "<Esc>", "<C-\\><C-n>")
+Map("v", "<Esc>", "<Esc>")
+Map("c", "<Esc>", "<C-C><Esc>")
 
-map("n", "<leader>n", utils.toggle_relative_line_numbers)
+Map("n", "<leader>n", utils.toggle_relative_line_numbers)
 
 -- run  and test file
-map("n", "<leader>rr", utils.run_file)
-map("n", "<leader>rt", utils.test_file)
+Map("n", "<leader>rr", utils.run_file)
+Map("n", "<leader>rt", utils.test_file)
 
 -- AUTOCOMMANDS
 
