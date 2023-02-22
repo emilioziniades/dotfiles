@@ -1,6 +1,5 @@
 -- UTILITY FUNCTIONS
 
-local utils = {}
 function I(item)
 	print(vim.inspect(item))
 end
@@ -11,7 +10,7 @@ function Map(mode, lhs, rhs, more_opts)
 	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
 end
 
-function utils.toggle_relative_line_numbers()
+local function toggle_relative_line_numbers()
 	if vim.o.relativenumber then
 		vim.o.relativenumber = false
 	else
@@ -19,7 +18,7 @@ function utils.toggle_relative_line_numbers()
 	end
 end
 
-function utils.line_number_emphasize()
+local function line_number_emphasize()
 	local line_num_colour
 	if vim.o.background == "light" then
 		line_num_colour = "Black"
@@ -31,7 +30,7 @@ function utils.line_number_emphasize()
 	vim.cmd("hi CursorLineNr term=bold ctermfg=" .. line_num_colour .. " gui=bold guifg=" .. line_num_colour)
 end
 
-function utils.toggle_theme_background()
+local function toggle_theme_background()
 	local colorscheme = vim.cmd("silent colorscheme")
 	if vim.o.background == "dark" then
 		vim.o.background = "light"
@@ -42,7 +41,7 @@ function utils.toggle_theme_background()
 	-- utils.line_number_emphasize()
 end
 
-function utils.count_words()
+local function count_words()
 	if vim.fn.wordcount().visual_words == 1 then
 		print(vim.fn.wordcount().visual_words .. " word selected")
 	elseif not (vim.fn.wordcount().visual_words == nil) then
@@ -52,7 +51,7 @@ function utils.count_words()
 	end
 end
 
-function utils.run_file()
+local function run_file()
 	local ft = vim.bo.filetype
 	local run_cmds = {
 		["python"] = [[! echo \\n &&  python %]],
@@ -63,7 +62,7 @@ function utils.run_file()
 	vim.cmd(run_cmds[ft])
 end
 
-function utils.test_file()
+local function test_file()
 	local filename = vim.fn.expand("%:t")
 	filename = string.gsub(filename, ".rs", "")
 	print(filename)
@@ -74,11 +73,40 @@ function utils.test_file()
 	vim.cmd(run_cmds[ft])
 end
 
-function utils.set_variables(vars, var_type)
-	for key, value in pairs(vars) do
-		var_type[key] = value
+local function set_options(opts, option_group)
+	for key, value in pairs(opts) do
+		option_group[key] = value
 	end
 end
+-- SETTINGS
+
+local globals = {
+	mapleader = " ",
+}
+
+local options = {
+	mouse = "",
+	undofile = true,
+	wrap = true,
+	linebreak = true,
+	spell = false,
+	spelllang = "en_gb",
+	number = true,
+	relativenumber = false,
+	tabstop = 4,
+	shiftwidth = 4,
+	softtabstop = 4,
+	expandtab = true,
+	foldmethod = "expr",
+	foldenable = false,
+	showmode = false,
+	termguicolors = true,
+	splitright = true,
+}
+
+set_options(globals, vim.g)
+set_options(options, vim.o)
+-- utils.line_number_emphasize()
 
 -- PLUGINS
 
@@ -126,8 +154,7 @@ require("packer").startup(function(use)
                 augroup LspFormatting
                     autocmd! * <buffer>
                     autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-                augroup END
-                ]])
+                augroup END ]])
 					end
 				end,
 			})
@@ -633,46 +660,17 @@ require("packer").startup(function(use)
 	-- COLOURSCHEMES
 
 	use("sainnhe/sonokai")
-	use("folke/tokyonight.nvim")
+	use({
+		"folke/tokyonight.nvim",
+		config = function()
+			vim.cmd.colorscheme("tokyonight-night")
+		end,
+	})
 
 	if Packer_bootstrap then
 		require("packer").sync()
 	end
 end)
-
--- SETTINGS
-
-local colorscheme = "tokyonight-night"
-
-vim.cmd("colorscheme " .. colorscheme)
--- utils.line_number_emphasize()
-
-local globals = {
-	mapleader = " ",
-}
-
-local options = {
-	mouse = "",
-	undofile = true,
-	wrap = true,
-	linebreak = true,
-	spell = false,
-	spelllang = "en_gb",
-	number = true,
-	relativenumber = false,
-	tabstop = 4,
-	shiftwidth = 4,
-	softtabstop = 4,
-	expandtab = true,
-	foldmethod = "expr",
-	foldenable = false,
-	showmode = false,
-	termguicolors = true,
-	splitright = true,
-}
-
-utils.set_variables(globals, vim.g)
-utils.set_variables(options, vim.o)
 
 -- KEYMAPS
 
@@ -726,11 +724,11 @@ Map("t", "<Esc>", "<C-\\><C-n>")
 Map("v", "<Esc>", "<Esc>")
 Map("c", "<Esc>", "<C-C><Esc>")
 
-Map("n", "<leader>n", utils.toggle_relative_line_numbers)
+Map("n", "<leader>n", toggle_relative_line_numbers)
 
 -- run  and test file
-Map("n", "<leader>rr", utils.run_file)
-Map("n", "<leader>rt", utils.test_file)
+Map("n", "<leader>rr", run_file)
+Map("n", "<leader>rt", test_file)
 
 -- AUTOCOMMANDS
 
