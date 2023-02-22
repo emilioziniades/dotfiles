@@ -584,16 +584,6 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- which key
-	use({
-		"folke/which-key.nvim",
-		config = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-			require("which-key").setup()
-		end,
-	})
-
 	-- zen mode
 	use({
 		"folke/zen-mode.nvim",
