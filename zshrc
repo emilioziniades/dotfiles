@@ -79,6 +79,7 @@ activate() {
 export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:/Users/emilioziniades/.dotnet/tools"
 
 # ruby
 if command -v gem &> /dev/null
@@ -131,3 +132,7 @@ if [[ $TMUX == "" ]]
 then
     tmux
 fi
+
+# GPG
+
+export GPG_TTY=$(tty)

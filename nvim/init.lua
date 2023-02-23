@@ -112,6 +112,7 @@ require("packer").startup(function(use)
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.rustfmt,
+				null_ls.builtins.formatting.csharpier,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -131,7 +132,7 @@ require("packer").startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		config = function()
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls" }
+			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls", "omnisharp" }
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
@@ -199,14 +200,33 @@ require("packer").startup(function(use)
 				},
 			}
 
+			local function omnisharp_path()
+				local handle = io.popen("which omnisharp")
+				local result = handle:read("*a")
+				handle:close()
+				return result
+			end
+
+			local cmds = {
+				omnisharp = { "dotnet", omnisharp_path() },
+			}
+
 			for _, language_server in pairs(language_servers) do
 				if setups[language_server] then
 					setups[language_server]()
 				end
 
 				local setting = settings[language_server]
+				local cmd = cmds[language_server]
 
-				if setting then
+				if setting and cmd then
+					require("lspconfig")[language_server].setup({
+						on_attach = on_attach,
+						capabilities = capabilities,
+						settings = setting,
+						cmd = cmd,
+					})
+				elseif setting then
 					require("lspconfig")[language_server].setup({
 						on_attach = on_attach,
 						capabilities = capabilities,
