@@ -733,6 +733,16 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*.go" },
+	group = vim.api.nvim_create_augroup("GolangFile", { clear = true }),
+	callback = function()
+		vim.schedule(function()
+			vim.api.nvim_set_option_value("tabstop", 8, { scope = "local" })
+		end)
+	end,
+})
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.mdx",
 	group = vim.api.nvim_create_augroup("MarkdownXFile", { clear = true }),
