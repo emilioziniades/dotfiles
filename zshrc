@@ -136,3 +136,8 @@ fi
 # GPG
 
 export GPG_TTY=$(tty)
+
+# KEYBINDS
+
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
