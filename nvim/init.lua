@@ -377,7 +377,7 @@ require("packer").startup(function(use)
 			-- local r = ls.restore_node
 			-- local events = require("luasnip.util.events")
 			-- local ai = require("luasnip.nodes.absolute_indexer")
-			local rep = require("luasnip.extras").rep
+			-- local rep = require("luasnip.extras").rep
 
 			ls.config.set_config({
 				history = true,
@@ -695,6 +695,13 @@ Map("n", "<leader>n", toggle_relative_line_numbers)
 -- run  and test file
 Map("n", "<leader>rr", run_file)
 Map("n", "<leader>rt", test_file)
+
+-- go to init.lua quickly
+Map("n", "<leader>ci", function()
+	local config_dir = vim.fn.stdpath("config")
+	local init_file = config_dir .. "/init.lua"
+	vim.cmd("edit " .. init_file)
+end)
 
 -- AUTOCOMMANDS
 
