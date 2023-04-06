@@ -6,7 +6,14 @@ function setup_ubuntu() {
     sudo add-apt-repository ppa:neovim-ppa/stable -y
     sudo apt update
 
-    sudo apt install -y neovim build-essential zsh fd-find ripgrep zip
+    sudo apt install -y \
+        neovim \
+        build-essential \
+        zsh \
+        fd-find \
+        ripgrep \
+        zip \
+        tmux
 
     chsh -s $(which zsh)
 
