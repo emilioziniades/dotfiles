@@ -15,12 +15,12 @@ function setup_ubuntu() {
         zip \
         tmux \
         jq
-
-    chsh -s $(which zsh)
-
+        
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 
-
+   
+    
+    chsh -s $(which zsh)
 }
 
 function setup_macos() {
@@ -57,7 +57,8 @@ function setup() {
     if [[ ! -d ~/.tmux/plugins/tpm ]] 
     then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        ~/.tmux/plugins/tpm/scripts/update_plugin.sh
+        ~/.tmux/plugins/tpm/bin/update_plugins all
+        ~/.tmux/plugins/tpm/bin/install_plugins
     fi
 
 }
