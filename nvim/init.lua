@@ -556,7 +556,11 @@ require("packer").startup(function(use)
 			Map("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
 	})
-	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use({
+  		"nvim-treesitter/nvim-treesitter-textobjects",
+  		after = "nvim-treesitter",
+  		requires = "nvim-treesitter/nvim-treesitter",
+	})
 
 	-- commenting
 	use({
