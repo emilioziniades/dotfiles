@@ -243,14 +243,7 @@ require("packer").startup(function(use)
 	})
 
 	-- git
-	use({
-		"TimUntersberger/neogit",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("neogit").setup()
-			Map("n", "<leader>g", "<cmd>Neogit<cr>")
-		end,
-	})
+    use("tpope/vim-fugitive")
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
