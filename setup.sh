@@ -13,7 +13,8 @@ function setup_ubuntu() {
         fd-find \
         ripgrep \
         zip \
-        tmux
+        tmux \
+        jq
 
     chsh -s $(which zsh)
 
