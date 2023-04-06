@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function setup_ubuntu() {
-    sudo apt upgrade -y && sudo apt update
+    sudo apt update && sudo apt upgrade -y
 
     sudo add-apt-repository ppa:neovim-ppa/stable -y
     sudo apt update
