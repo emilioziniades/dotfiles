@@ -561,6 +561,11 @@ require("packer").startup(function(use)
   		after = "nvim-treesitter",
   		requires = "nvim-treesitter/nvim-treesitter",
 	})
+	use({
+		"p00f/nvim-ts-rainbow",
+		after = "nvim-treesitter",
+  		requires = "nvim-treesitter/nvim-treesitter",
+	})
 
 	-- commenting
 	use({
@@ -598,7 +603,7 @@ require("packer").startup(function(use)
 		end,
 	})
 	use("machakann/vim-sandwich")
-	use("p00f/nvim-ts-rainbow")
+
 
 	--icons
 	use({
