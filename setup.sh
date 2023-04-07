@@ -79,4 +79,4 @@ else
     setup_macos
 fi
 setup
-reset
+echo "restart the terminal and enjoy!"
