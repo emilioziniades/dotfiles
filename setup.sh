@@ -4,7 +4,6 @@ function setup_ubuntu() {
     sudo apt update && sudo apt upgrade -y
 
     sudo apt install -y \
-        neovim \
         build-essential \
         zsh \
         fd-find \
@@ -13,8 +12,7 @@ function setup_ubuntu() {
         tmux \
         jq
 
-    chsh -s $(which zsh)
-
+    # install neovim from .deb
     tmpdir=$(mktemp -d)
     wget -O $tmpdir/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
     sudo apt install $tmpdir/nvim-linux64.deb
@@ -26,9 +24,6 @@ function setup_ubuntu() {
 }
 
 function setup_macos() {
-
-    touch ~/.hushlogin
-
     if ! command -v brew &> /dev/null
     then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -40,6 +35,8 @@ function setup_macos() {
 }
 
 function setup() {
+    touch ~/.hushlogin
+    
     dotdir=~/dotfiles
     olddotdir=~/dotfiles_old
     files="zshrc tmux.conf"
@@ -62,8 +59,8 @@ function setup() {
     if [[ ! -d ~/.tmux/plugins/tpm ]] 
     then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        ~/.tmux/plugins/tpm/bin/update_plugins all
         ~/.tmux/plugins/tpm/bin/install_plugins
+        ~/.tmux/plugins/tpm/bin/update_plugins all
     fi
 
 }
