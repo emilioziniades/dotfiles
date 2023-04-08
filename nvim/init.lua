@@ -77,13 +77,18 @@ set_options(options, vim.o)
 
 -- PLUGINS
 
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-	Packer_bootstrap =
-		vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-	vim.cmd("packadd packer.nvim")
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 require("packer").startup(function(use)
 	use({
@@ -243,7 +248,7 @@ require("packer").startup(function(use)
 	})
 
 	-- git
-    use("tpope/vim-fugitive")
+	use("tpope/vim-fugitive")
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -550,14 +555,14 @@ require("packer").startup(function(use)
 		end,
 	})
 	use({
-  		"nvim-treesitter/nvim-treesitter-textobjects",
-  		after = "nvim-treesitter",
-  		requires = "nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	use({
 		"p00f/nvim-ts-rainbow",
 		after = "nvim-treesitter",
-  		requires = "nvim-treesitter/nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
 	})
 
 	-- commenting
@@ -597,7 +602,6 @@ require("packer").startup(function(use)
 	})
 	use("machakann/vim-sandwich")
 
-
 	--icons
 	use({
 		"nvim-tree/nvim-web-devicons",
@@ -635,7 +639,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	if Packer_bootstrap then
+	if packer_bootstrap then
 		require("packer").sync()
 	end
 end)
