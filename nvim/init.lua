@@ -243,14 +243,7 @@ require("packer").startup(function(use)
 	})
 
 	-- git
-	use({
-		"TimUntersberger/neogit",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("neogit").setup()
-			Map("n", "<leader>g", "<cmd>Neogit<cr>")
-		end,
-	})
+    use("tpope/vim-fugitive")
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -556,7 +549,16 @@ require("packer").startup(function(use)
 			Map("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
 	})
-	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use({
+  		"nvim-treesitter/nvim-treesitter-textobjects",
+  		after = "nvim-treesitter",
+  		requires = "nvim-treesitter/nvim-treesitter",
+	})
+	use({
+		"p00f/nvim-ts-rainbow",
+		after = "nvim-treesitter",
+  		requires = "nvim-treesitter/nvim-treesitter",
+	})
 
 	-- commenting
 	use({
@@ -594,7 +596,7 @@ require("packer").startup(function(use)
 		end,
 	})
 	use("machakann/vim-sandwich")
-	use("p00f/nvim-ts-rainbow")
+
 
 	--icons
 	use({
