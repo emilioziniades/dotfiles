@@ -3,7 +3,5 @@
 ## dotfiles for zsh, neovim and tmux
 
 ```
-git clone https://github.com/emilioziniades/dotfiles
-cd dotfiles
-./setup.sh
+git clone https://github.com/emilioziniades/dotfiles && ./dotfiles/setup.sh
 ```
