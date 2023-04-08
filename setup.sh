@@ -1,24 +1,29 @@
 #!/bin/bash
 
 function setup_ubuntu() {
-    sudo apt upgrade && sudo apt update -y
+    sudo apt update && sudo apt upgrade -y
 
-    sudo add-apt-repository ppa:neovim-ppa/stable -y
-    sudo apt update
+    sudo apt install -y \
+        build-essential \
+        zsh \
+        fd-find \
+        ripgrep \
+        zip \
+        tmux \
+        jq
 
-    sudo apt install -y neovim build-essential zsh fd-find ripgrep zip
+    # install neovim from .deb
+    tmpdir=$(mktemp -d)
+    wget -O $tmpdir/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+    sudo apt install $tmpdir/nvim-linux64.deb
+    rm -rf $tmpdir
+
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | zsh
 
     chsh -s $(which zsh)
-
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-
-
 }
 
 function setup_macos() {
-
-    touch ~/.hushlogin
-
     if ! command -v brew &> /dev/null
     then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -30,6 +35,8 @@ function setup_macos() {
 }
 
 function setup() {
+    touch ~/.hushlogin
+    
     dotdir=~/dotfiles
     olddotdir=~/dotfiles_old
     files="zshrc tmux.conf"
@@ -44,12 +51,16 @@ function setup() {
     done
 
     mkdir -p ~/.config
-    ln -s $dotdir/nvim ~/.config/nvim
+    if [[ ! -L ~/.config/nvim ]]
+    then
+        ln -s $dotdir/nvim ~/.config/nvim
+    fi
 
     if [[ ! -d ~/.tmux/plugins/tpm ]] 
     then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        ~/.tmux/plugins/tpm/scripts/update_plugin.sh
+        ~/.tmux/plugins/tpm/bin/install_plugins
+        ~/.tmux/plugins/tpm/bin/update_plugins all
     fi
 
 }
@@ -68,4 +79,4 @@ else
     setup_macos
 fi
 setup
-reset
+echo "restart the terminal and enjoy!"
