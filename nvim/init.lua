@@ -642,10 +642,7 @@ end)
 
 local esc = "§"
 
--- tab, buffer and window navigation
-Map("n", "<TAB>", "<cmd>tabn<cr>")
-Map("n", "<S-TAB>", "<cmd>tabp<cr>")
-
+-- buffer and window navigation
 Map("n", "<leader>[", "<cmd>bn<cr>")
 Map("n", "<leader>]", "<cmd>bp<cr>")
 
