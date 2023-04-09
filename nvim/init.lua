@@ -620,14 +620,13 @@ require("packer").startup(function(use)
 
 	-- COLOURSCHEMES
 
-	use("sainnhe/sonokai")
-	use("savq/melange-nvim")
 	use({
-		"folke/tokyonight.nvim",
+		"savq/melange-nvim",
 		config = function()
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("melange")
 		end,
 	})
+	use("folke/tokyonight.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
