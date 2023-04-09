@@ -660,9 +660,6 @@ Map("n", "<leader>q", "<cmd>q<cr>")
 -- save
 Map("n", "<leader>w", "<cmd>w<cr>")
 
--- remove highlights
-Map("n", "<leader>,", "<cmd>nohlsearch<cr>")
-
 -- easier escape key for macbook
 Map({ "i", "t", "v", "c", "n" }, esc, "<Esc>", { remap = true })
 Map("t", "<Esc>", "<C-\\><C-n>")
