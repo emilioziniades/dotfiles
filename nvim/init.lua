@@ -199,8 +199,10 @@ require("packer").startup(function(use)
 
 			local function omnisharp_path()
 				local handle = io.popen("which omnisharp")
-				local result = handle:read("*a")
-				handle:close()
+				if handle then
+					local result = handle:read("*a")
+					handle:close()
+				end
 				return result
 			end
 
