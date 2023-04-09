@@ -10,14 +10,6 @@ function Map(mode, lhs, rhs, more_opts)
 	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
 end
 
-local function toggle_relative_line_numbers()
-	if vim.o.relativenumber then
-		vim.o.relativenumber = false
-	else
-		vim.o.relativenumber = true
-	end
-end
-
 local function run_file()
 	local ft = vim.bo.filetype
 	local run_cmds = {
@@ -45,6 +37,7 @@ local function set_options(opts, option_group)
 		option_group[key] = value
 	end
 end
+
 -- SETTINGS
 
 local globals = {
@@ -59,7 +52,7 @@ local options = {
 	spell = false,
 	spelllang = "en_gb",
 	number = true,
-	relativenumber = false,
+	relativenumber = true,
 	tabstop = 4,
 	shiftwidth = 4,
 	softtabstop = 4,
@@ -73,7 +66,6 @@ local options = {
 
 set_options(globals, vim.g)
 set_options(options, vim.o)
--- utils.line_number_emphasize()
 
 -- PLUGINS
 
@@ -248,7 +240,12 @@ require("packer").startup(function(use)
 	})
 
 	-- git
-	use("tpope/vim-fugitive")
+	use({
+		"tpope/vim-fugitive",
+		config = function()
+			Map("n", "<leader>g", "<cmd>Git<cr>")
+		end,
+	})
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
@@ -528,9 +525,6 @@ require("packer").startup(function(use)
 				highlight = {
 					enable = true,
 				},
-				rainbow = {
-					enable = true,
-				},
 				ensure_installed = {
 					"go",
 					"python",
@@ -556,11 +550,6 @@ require("packer").startup(function(use)
 	})
 	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		after = "nvim-treesitter",
-		requires = "nvim-treesitter/nvim-treesitter",
-	})
-	use({
-		"p00f/nvim-ts-rainbow",
 		after = "nvim-treesitter",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
@@ -632,6 +621,7 @@ require("packer").startup(function(use)
 	-- COLOURSCHEMES
 
 	use("sainnhe/sonokai")
+	use("savq/melange-nvim")
 	use({
 		"folke/tokyonight.nvim",
 		config = function()
@@ -652,19 +642,8 @@ local esc = "§"
 Map("n", "<leader>[", "<cmd>bn<cr>")
 Map("n", "<leader>]", "<cmd>bp<cr>")
 
-Map("n", "<C-h>", "<C-w>h")
-Map("n", "<C-j>", "<C-w>j")
-Map("n", "<C-k>", "<C-w>k")
-Map("n", "<C-l>", "<C-w>l")
-
 Map("n", "<leader>ms", "<cmd>split<cr>")
 Map("n", "<leader>mv", "<cmd>vsplit<cr>")
-Map("n", "<leader>mr", "<C-w>R")
-
-Map("n", "<leader>ml", "<C-w>L")
-Map("n", "<leader>mk", "<C-w>K")
-Map("n", "<leader>mj", "<C-w>J")
-Map("n", "<leader>mh", "<C-w>H")
 
 Map("n", "<C-Up>", "<cmd>resize +5<cr>")
 Map("n", "<C-Down>", "<cmd>resize -5<cr>")
@@ -675,17 +654,13 @@ Map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
 Map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
 -- quit
-Map("n", "<leader>q", "<cmd>qa<cr>")
-Map("n", "<leader>w", "<cmd>q<cr>")
+Map("n", "<leader>q", "<cmd>q<cr>")
 
 -- save
-Map("n", "<leader>e", "<cmd>w<cr>")
+Map("n", "<leader>w", "<cmd>w<cr>")
 
 -- remove highlights
 Map("n", "<leader>,", "<cmd>nohlsearch<cr>")
-
--- go back
-Map("n", "<leader>b", "<C-^>")
 
 -- easier escape key for macbook
 Map({ "i", "t", "v", "c", "n" }, esc, "<Esc>", { remap = true })
@@ -693,7 +668,10 @@ Map("t", "<Esc>", "<C-\\><C-n>")
 Map("v", "<Esc>", "<Esc>")
 Map("c", "<Esc>", "<C-C><Esc>")
 
-Map("n", "<leader>n", toggle_relative_line_numbers)
+-- toggle relative number
+Map("n", "<leader>n", function()
+	vim.o.relativenumber = not vim.o.relativenumber
+end)
 
 -- run  and test file
 Map("n", "<leader>rr", run_file)
