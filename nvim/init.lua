@@ -202,8 +202,8 @@ require("packer").startup(function(use)
 				if handle then
 					local result = handle:read("*a")
 					handle:close()
+					return result
 				end
-				return result
 			end
 
 			local cmds = {
