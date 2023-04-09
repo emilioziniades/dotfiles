@@ -676,13 +676,6 @@ end)
 Map("n", "<leader>rr", run_file)
 Map("n", "<leader>rt", test_file)
 
--- go to init.lua quickly
-Map("n", "<leader>ci", function()
-	local config_dir = vim.fn.stdpath("config")
-	local init_file = config_dir .. "/init.lua"
-	vim.cmd("edit " .. init_file)
-end)
-
 -- AUTOCOMMANDS
 
 vim.api.nvim_create_autocmd("BufWritePost", {
