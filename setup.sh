@@ -10,13 +10,13 @@ function setup_ubuntu() {
         ripgrep \
         zip \
         tmux \
+	fuse \
         jq
 
-    # install neovim from .deb
-    tmpdir=$(mktemp -d)
-    wget -O $tmpdir/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-    sudo apt install $tmpdir/nvim-linux64.deb
-    rm -rf $tmpdir
+    # install neovim from .appimage
+    mkdir -p ~/.local/bin/
+    wget -O ~/.local/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    chmod u+x ~/.local/bin/nvim
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | zsh
 
