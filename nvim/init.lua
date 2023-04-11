@@ -634,14 +634,9 @@ end)
 
 -- KEYMAPS
 
-local esc = "§"
-
 -- buffer and window navigation
 Map("n", "<leader>[", "<cmd>bn<cr>")
 Map("n", "<leader>]", "<cmd>bp<cr>")
-
-Map("n", "<leader>ms", "<cmd>split<cr>")
-Map("n", "<leader>mv", "<cmd>vsplit<cr>")
 
 Map("n", "<C-Up>", "<cmd>resize +5<cr>")
 Map("n", "<C-Down>", "<cmd>resize -5<cr>")
@@ -651,16 +646,15 @@ Map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 Map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
 Map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
--- quit
 Map("n", "<leader>q", "<cmd>q<cr>")
 
--- save
 Map("n", "<leader>w", "<cmd>w<cr>")
 
--- easier escape key for macbook
-Map({ "i", "t", "v", "c", "n" }, esc, "<Esc>", { remap = true })
+-- easier escape key for macbook with touchbar
+Map({ "i", "t", "v", "c", "n" }, "§", "<Esc>", { remap = true })
+
+-- sane escape for terminal and command modes
 Map("t", "<Esc>", "<C-\\><C-n>")
-Map("v", "<Esc>", "<Esc>")
 Map("c", "<Esc>", "<C-C><Esc>")
 
 -- toggle relative number
