@@ -1,41 +1,9 @@
 -- UTILITY FUNCTIONS
 
-function I(item)
-	print(vim.inspect(item))
-end
-
 function Map(mode, lhs, rhs, more_opts)
 	local opts = { noremap = true, silent = true }
 	more_opts = more_opts or {}
 	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
-end
-
-local function run_file()
-	local ft = vim.bo.filetype
-	local run_cmds = {
-		["python"] = [[! echo \\n &&  python %]],
-		["go"] = "!go run %",
-		["javascript"] = [[! echo \\n && node %]],
-		["rust"] = "!cargo run",
-	}
-	vim.cmd(run_cmds[ft])
-end
-
-local function test_file()
-	local filename = vim.fn.expand("%:t")
-	filename = string.gsub(filename, ".rs", "")
-	print(filename)
-	local ft = vim.bo.filetype
-	local run_cmds = {
-		["rust"] = "!cargo test " .. filename,
-	}
-	vim.cmd(run_cmds[ft])
-end
-
-local function set_options(opts, option_group)
-	for key, value in pairs(opts) do
-		option_group[key] = value
-	end
 end
 
 -- SETTINGS
@@ -63,6 +31,12 @@ local options = {
 	termguicolors = true,
 	splitright = true,
 }
+
+local function set_options(opts, option_group)
+	for key, value in pairs(opts) do
+		option_group[key] = value
+	end
+end
 
 set_options(globals, vim.g)
 set_options(options, vim.o)
@@ -145,23 +119,17 @@ require("packer").startup(function(use)
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentFormattingProvider = false
 
-				-- Mappings.
-				-- See `:help vim.lsp.*` for documentation on any of the below functions
+				-- see `:help vim.lsp.*`
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				Map("n", "gD", vim.lsp.buf.declaration, bufopts)
 				Map("n", "gd", vim.lsp.buf.definition, bufopts)
-				Map("n", "K", vim.lsp.buf.hover, bufopts)
 				Map("n", "gi", vim.lsp.buf.implementation, bufopts)
 				Map("n", "gh", vim.lsp.buf.signature_help, bufopts)
-				Map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-				Map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-				Map("n", "<space>wl", function()
-					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, bufopts)
+				Map("n", "gr", vim.lsp.buf.references, bufopts)
+				Map("n", "K", vim.lsp.buf.hover, bufopts)
 				Map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 				Map("n", "<space>rn", vim.lsp.buf.rename, bufopts)
 				Map("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-				Map("n", "gr", vim.lsp.buf.references, bufopts)
 				Map("n", "<space>f", vim.lsp.buf.format, bufopts)
 			end
 
@@ -619,7 +587,7 @@ require("packer").startup(function(use)
 					gitsigns = { enabled = true },
 				},
 			})
-			Map("n", "<leader>zz", require("zen-mode").toggle)
+			Map("n", "<leader>z", require("zen-mode").toggle)
 		end,
 	})
 
@@ -665,8 +633,30 @@ Map("n", "<leader>n", function()
 	vim.o.relativenumber = not vim.o.relativenumber
 end)
 
--- run  and test file
+local function run_file()
+	local ft = vim.bo.filetype
+	local run_cmds = {
+		["python"] = [[! echo \\n &&  python %]],
+		["go"] = "!go run %",
+		["javascript"] = [[! echo \\n && node %]],
+		["rust"] = "!cargo run",
+	}
+	vim.cmd(run_cmds[ft])
+end
+
 Map("n", "<leader>rr", run_file)
+
+local function test_file()
+	local filename = vim.fn.expand("%:t")
+	filename = string.gsub(filename, ".rs", "")
+	print(filename)
+	local ft = vim.bo.filetype
+	local run_cmds = {
+		["rust"] = "!cargo test " .. filename,
+	}
+	vim.cmd(run_cmds[ft])
+end
+
 Map("n", "<leader>rt", test_file)
 
 -- AUTOCOMMANDS
@@ -676,7 +666,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	group = vim.api.nvim_create_augroup("packer_user_config", { clear = true }),
 	callback = function()
 		vim.schedule(function()
-			vim.cmd("source % | PackerCompile ")
+			vim.cmd("source % | PackerCompile")
 		end)
 	end,
 })
@@ -689,39 +679,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	group = vim.api.nvim_create_augroup("ManualFold", { clear = true }),
-	command = "normal zx | zi",
-})
+local function set_filetype_options(group_name, pattern, options_map)
+	vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+		pattern = pattern,
+		group = vim.api.nvim_create_augroup(group_name, { clear = true }),
+		callback = function()
+			vim.schedule(function()
+				for option_key, option_value in pairs(options_map) do
+					vim.api.nvim_set_option_value(option_key, option_value, { scope = "local" })
+				end
+			end)
+		end,
+	})
+end
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.js", "*.jsx", "*.html", "*.ts", "*.tsx", "*.tpl" },
-	group = vim.api.nvim_create_augroup("JavascriptFile", { clear = true }),
-	callback = function()
-		vim.schedule(function()
-			vim.api.nvim_set_option_value("tabstop", 2, { scope = "local" })
-			vim.api.nvim_set_option_value("shiftwidth", 2, { scope = "local" })
-		end)
-	end,
-})
+set_filetype_options(
+	"JavaScriptFile",
+	{ "*.js", "*.jsx", "*.html", "*.ts", "*.tsx", "*.tpl" },
+	{ tabstop = 2, shiftwidth = 2 }
+)
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = { "*.go" },
-	group = vim.api.nvim_create_augroup("GolangFile", { clear = true }),
-	callback = function()
-		vim.schedule(function()
-			vim.api.nvim_set_option_value("tabstop", 8, { scope = "local" })
-		end)
-	end,
-})
+set_filetype_options("GolangFile", { "*.go" }, { tabstop = 8 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.mdx",
-	group = vim.api.nvim_create_augroup("MarkdownXFile", { clear = true }),
-	callback = function()
-		vim.schedule(function()
-			vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local" })
-		end)
-	end,
-})
+set_filetype_options("MdxFile", { "*.mdx" }, { filetype = "markdown" })
