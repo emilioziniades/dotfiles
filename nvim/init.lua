@@ -575,9 +575,9 @@ require("packer").startup(function(use)
 		config = function()
 			require("zen-mode").setup({
 				window = {
-					backdrop = 0.85,
-					width = 0.85,
-					height = 0.95,
+					backdrop = 1,
+					width = 0.80,
+					height = 0.90,
 					options = {
 						number = false,
 						relativenumber = false,
