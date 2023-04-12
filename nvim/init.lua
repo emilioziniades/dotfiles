@@ -615,6 +615,9 @@ require("packer").startup(function(use)
 						relativenumber = false,
 					},
 				},
+				plugins = {
+					gitsigns = { enabled = true },
+				},
 			})
 			Map("n", "<leader>zz", require("zen-mode").toggle)
 		end,
