@@ -569,7 +569,13 @@ require("packer").startup(function(use)
 		end,
 	})
 
-	-- zen mode
+	-- twilight + zen mode
+	use({
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup()
+		end,
+	})
 	use({
 		"folke/zen-mode.nvim",
 		config = function()
@@ -594,7 +600,7 @@ require("packer").startup(function(use)
 	use({
 		"folke/tokyonight.nvim",
 		config = function()
-			vim.cmd.colorscheme("tokyonight")
+			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	})
 
