@@ -585,6 +585,11 @@ require("packer").startup(function(use)
 	use({
 		"folke/tokyonight.nvim",
 		config = function()
+			require("tokyonight").setup({
+				styles = {
+					floats = "normal",
+				},
+			})
 			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	})
