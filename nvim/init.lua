@@ -1,3 +1,16 @@
+--[[ 
+TODO:
+- package management
+    - consider switching to lazy.nvim
+- lsp
+    - mason ensure installed for dap clients and formatters
+    - tidy up lsp config based on kickstart.nvim
+    - look at trouble.nvim
+- make dotnet debugging a little smoother
+    - build project before every debug
+    - identify .dll's and provide selection option
+]]
+
 -- UTILITY FUNCTIONS
 
 function Map(mode, lhs, rhs, more_opts)
