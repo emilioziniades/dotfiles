@@ -82,7 +82,6 @@ require("packer").startup(function(use)
 			local null_ls = require("null-ls")
 			local sources = {
 				null_ls.builtins.formatting.black,
-				-- null_ls.builtins.diagnostics.mypy,
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.stylua,
@@ -123,7 +122,6 @@ require("packer").startup(function(use)
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentFormattingProvider = false
 
-				-- see `:help vim.lsp.*`
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				Map("n", "gD", vim.lsp.buf.declaration, bufopts)
 				Map("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -139,27 +137,29 @@ require("packer").startup(function(use)
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			require("lspconfig").pyright.setup({
+			local lspconfig = require("lspconfig")
+
+			lspconfig.pyright.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 
-			require("lspconfig").gopls.setup({
+			lspconfig.gopls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 
-			require("lspconfig").tsserver.setup({
+			lspconfig.tsserver.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 
-			require("lspconfig").rust_analyzer.setup({
+			lspconfig.rust_analyzer.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 
-			require("lspconfig").csharp_ls.setup({
+			lspconfig.csharp_ls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
@@ -168,7 +168,7 @@ require("packer").startup(function(use)
 			table.insert(runtime_path, "lua/?.lua")
 			table.insert(runtime_path, "lua/?/init.lua")
 
-			require("lspconfig").lua_ls.setup({
+			lspconfig.lua_ls.setup({
 				settings = {
 					Lua = {
 						runtime = {
@@ -176,11 +176,9 @@ require("packer").startup(function(use)
 							path = vim.split(package.path, ";"),
 						},
 						diagnostics = {
-							-- Get the language server to recognize the `vim` global
 							globals = { "vim" },
 						},
 						workspace = {
-							-- Make the server aware of Neovim runtime files
 							library = vim.api.nvim_get_runtime_file("", true),
 						},
 						telemetry = {
@@ -274,12 +272,10 @@ require("packer").startup(function(use)
 	})
 	use({
 		"leoluz/nvim-dap-go",
+		ft = { "go" },
 		config = function()
 			local dapgo = require("dap-go")
-
 			dapgo.setup()
-
-			-- todo: only do this for .go files with an autocmd
 			Map("n", "<leader>dt", dapgo.debug_test)
 		end,
 	})
@@ -292,7 +288,30 @@ require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local actions = require("telescope.actions")
-			require("telescope").setup({
+			local telescope = require("telescope")
+			local builtin = require("telescope.builtin")
+
+			local bottom = {
+				theme = "ivy",
+				preview = {
+					hide_on_startup = true,
+				},
+				layout_config = {
+					height = 0.25,
+				},
+			}
+
+			local center = {
+				theme = "dropdown",
+				preview = {
+					hide_on_startup = true,
+				},
+				layout_config = {
+					height = 0.75,
+				},
+			}
+
+			telescope.setup({
 				defaults = {
 					mappings = {
 						i = {
@@ -300,27 +319,38 @@ require("packer").startup(function(use)
 						},
 					},
 				},
+				pickers = {
+					buffers = bottom,
+					lsp_references = bottom,
+					find_files = center,
+					current_buffer_fuzzy_find = {
+						theme = "dropdown",
+						layout_config = {
+							height = 0.75,
+						},
+					},
+				},
 			})
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("file_browser")
+			telescope.load_extension("fzf")
+			telescope.load_extension("file_browser")
 
 			local function find_dotfiles()
 				local config_dir = vim.fn.stdpath("config")
-				require("telescope.builtin").find_files({ cwd = config_dir })
+				builtin.find_files({ cwd = config_dir })
 			end
 
 			local function file_browser_cwd()
-				require("telescope").extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
+				telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
 			end
 
-			Map("n", "<leader><space>", require("telescope.builtin").buffers)
-			Map("n", "<leader>ff", require("telescope.builtin").find_files)
-			Map("n", "<leader>fg", require("telescope.builtin").live_grep)
-			Map("n", "<leader>fh", require("telescope.builtin").help_tags)
-			Map("n", "<leader>fo", require("telescope.builtin").oldfiles)
-			Map("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-			Map("n", "<leader>fc", require("telescope.builtin").colorscheme)
-			Map("n", "<leader>fp", require("telescope").extensions.file_browser.file_browser)
+			Map("n", "<leader><space>", builtin.buffers)
+			Map("n", "<leader>ff", builtin.find_files)
+			Map("n", "<leader>fg", builtin.live_grep)
+			Map("n", "<leader>fh", builtin.help_tags)
+			Map("n", "<leader>fo", builtin.oldfiles)
+			Map("n", "<leader>fb", builtin.current_buffer_fuzzy_find)
+			Map("n", "<leader>fc", builtin.colorscheme)
+			Map("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
 			Map("n", "<leader>fe", file_browser_cwd)
 			Map("n", "<leader>fd", find_dotfiles)
 		end,
