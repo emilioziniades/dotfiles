@@ -6,6 +6,10 @@ function Map(mode, lhs, rhs, more_opts)
 	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
 end
 
+function Mason_path(executable)
+	return vim.fn.stdpath("data") .. "/mason/bin/" .. executable
+end
+
 -- SETTINGS
 
 local globals = {
@@ -103,7 +107,7 @@ require("packer").startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		config = function()
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls", "omnisharp" }
+			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls", "csharp_ls" }
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
@@ -135,16 +139,37 @@ require("packer").startup(function(use)
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			local setups = {
-				lua_ls = function()
-					local runtime_path = vim.split(package.path, ";")
-					table.insert(runtime_path, "lua/?.lua")
-					table.insert(runtime_path, "lua/?/init.lua")
-				end,
-			}
+			require("lspconfig").pyright.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
 
-			local settings = {
-				lua_ls = {
+			require("lspconfig").gopls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			require("lspconfig").tsserver.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			require("lspconfig").rust_analyzer.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			require("lspconfig").csharp_ls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			local runtime_path = vim.split(package.path, ";")
+			table.insert(runtime_path, "lua/?.lua")
+			table.insert(runtime_path, "lua/?/init.lua")
+
+			require("lspconfig").lua_ls.setup({
+				settings = {
 					Lua = {
 						runtime = {
 							version = "LuaJIT",
@@ -163,49 +188,9 @@ require("packer").startup(function(use)
 						},
 					},
 				},
-			}
-
-			local function omnisharp_path()
-				local handle = io.popen("which omnisharp")
-				if handle then
-					local result = handle:read("*a")
-					handle:close()
-					return result
-				end
-			end
-
-			local cmds = {
-				omnisharp = { "dotnet", omnisharp_path() },
-			}
-
-			for _, language_server in pairs(language_servers) do
-				if setups[language_server] then
-					setups[language_server]()
-				end
-
-				local setting = settings[language_server]
-				local cmd = cmds[language_server]
-
-				if setting and cmd then
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						settings = setting,
-						cmd = cmd,
-					})
-				elseif setting then
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						settings = setting,
-					})
-				else
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-					})
-				end
-			end
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
 		end,
 	})
 
