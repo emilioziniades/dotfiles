@@ -222,13 +222,54 @@ require("packer").startup(function(use)
 		"mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
-
 			Map("n", "<leader>db", dap.toggle_breakpoint)
 			Map("n", "<leader>dc", dap.continue)
 			Map("n", "<leader>du", dap.step_over)
 			Map("n", "<leader>di", dap.step_into)
 			Map("n", "<leader>do", dap.step_out)
 			Map("n", "<leader>dr", dap.repl.open)
+			Map("n", "<leader>dx", dap.terminate)
+
+			dap.adapters.coreclr = {
+				type = "executable",
+				command = Mason_path("netcoredbg"),
+				args = { "--interpreter=vscode" },
+			}
+
+			dap.configurations.cs = {
+				{
+					type = "coreclr",
+					name = "launch - netcoredbg",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+					end,
+				},
+			}
+		end,
+	})
+	use({
+		"rcarriga/nvim-dap-ui",
+		requires = {
+			"mfussenegger/nvim-dap",
+		},
+		config = function()
+			local dap, dapui = require("dap"), require("dapui")
+
+			Map("n", "<leader>de", dapui.eval)
+
+			-- open dapui automatically
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+
+			dapui.setup()
 		end,
 	})
 	use({
@@ -241,15 +282,6 @@ require("packer").startup(function(use)
 			-- todo: only do this for .go files with an autocmd
 			Map("n", "<leader>dt", dapgo.debug_test)
 		end,
-	})
-	use({
-		"rcarriga/nvim-dap-ui",
-		requires = {
-			"mfussenegger/nvim-dap",
-			config = function()
-				require("dapiui").setup()
-			end,
-		},
 	})
 
 	-- telescope
