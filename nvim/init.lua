@@ -233,12 +233,15 @@ require("packer").startup(function(use)
 		"mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
-			Map("n", "<leader>db", dap.toggle_breakpoint)
-			Map("n", "<leader>dc", dap.continue)
-			Map("n", "<leader>du", dap.step_over)
-			Map("n", "<leader>di", dap.step_into)
-			Map("n", "<leader>do", dap.step_out)
-			Map("n", "<leader>dr", dap.repl.open)
+			vim.fn.sign_define("DapBreakpoint", { text = "🟢", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapBreakpointRejected", { text = "⚠️", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapStopped", { text = "➡️", texthl = "", linehl = "", numhl = "" })
+
+			Map("n", "<leader>b", dap.toggle_breakpoint)
+			Map("n", "<F5>", dap.continue)
+			Map("n", "<F10>", dap.step_over)
+			Map("n", "<F11>", dap.step_into)
+			Map("n", "<F12>", dap.step_out)
 			Map("n", "<leader>dx", dap.terminate)
 
 			dap.adapters.coreclr = {
@@ -253,8 +256,32 @@ require("packer").startup(function(use)
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+						return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
 					end,
+				},
+			}
+
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = Mason_path("codelldb"),
+					args = { "--port", "${port}" },
+					-- On windows you may have to uncomment this:
+					-- detached = false,
+				},
+			}
+
+			dap.configurations.rust = {
+				{
+					type = "codelldb",
+					name = "launch - codelldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
 				},
 			}
 		end,
