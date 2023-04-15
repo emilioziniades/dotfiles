@@ -12,7 +12,6 @@ TODO:
 - rust
     - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 ]]
-
 -- UTILITY FUNCTIONS
 
 function Map(mode, lhs, rhs, more_opts)
@@ -142,7 +141,7 @@ require("packer").startup(function(use)
 				Map("n", "gd", vim.lsp.buf.definition, bufopts)
 				Map("n", "gi", vim.lsp.buf.implementation, bufopts)
 				Map("n", "gh", vim.lsp.buf.signature_help, bufopts)
-				Map("n", "gr", vim.lsp.buf.references, bufopts)
+				-- Map("n", "gr", vim.lsp.buf.references, bufopts) - use telescope instead
 				Map("n", "K", vim.lsp.buf.hover, bufopts)
 				Map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 				Map("n", "<space>rn", vim.lsp.buf.rename, bufopts)
@@ -329,29 +328,26 @@ require("packer").startup(function(use)
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
-			local actions = require("telescope.actions")
 			local telescope = require("telescope")
+			local actions = require("telescope.actions")
 			local builtin = require("telescope.builtin")
+			local themes = require("telescope.themes")
 
-			local bottom = {
-				theme = "ivy",
+			local ivy = themes.get_ivy({
 				preview = {
 					hide_on_startup = true,
 				},
 				layout_config = {
 					height = 0.25,
 				},
-			}
+			})
 
-			local center = {
-				theme = "dropdown",
-				preview = {
-					hide_on_startup = true,
-				},
+			local dropdown = themes.get_dropdown({
 				layout_config = {
-					height = 0.75,
+					height = 0.4,
+					width = 0.6,
 				},
-			}
+			})
 
 			telescope.setup({
 				defaults = {
@@ -360,17 +356,19 @@ require("packer").startup(function(use)
 							["<esc>"] = actions.close,
 						},
 					},
-				},
-				pickers = {
-					buffers = bottom,
-					lsp_references = bottom,
-					find_files = center,
-					current_buffer_fuzzy_find = {
-						theme = "dropdown",
-						layout_config = {
-							height = 0.75,
+					layout_strategy = "horizontal",
+					layout_config = {
+						horizontal = {
+							height = 0.95,
+							width = 0.95,
+							preview_width = 0.65,
 						},
 					},
+				},
+				pickers = {
+					buffers = ivy,
+					lsp_references = ivy,
+					current_buffer_fuzzy_find = dropdown,
 				},
 			})
 			telescope.load_extension("fzf")
@@ -395,6 +393,7 @@ require("packer").startup(function(use)
 			Map("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
 			Map("n", "<leader>fe", file_browser_cwd)
 			Map("n", "<leader>fd", find_dotfiles)
+			Map("n", "gr", builtin.lsp_references)
 		end,
 	})
 
