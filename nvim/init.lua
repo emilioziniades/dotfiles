@@ -359,8 +359,16 @@ require("packer").startup(function(use)
 					layout_strategy = "horizontal",
 					layout_config = {
 						horizontal = {
-							height = 0.95,
-							width = 0.95,
+							height = function(_, _, max_lines)
+								local max_height = 60
+								local lines_padding = 4
+								return math.min(max_lines - lines_padding, max_height)
+							end,
+							width = function(_, max_columns, _)
+								local max_width = 180
+								local columns_padding = 12
+								return math.min(max_columns - columns_padding, max_width)
+							end,
 							preview_width = 0.65,
 						},
 					},
