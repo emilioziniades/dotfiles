@@ -6,9 +6,11 @@ TODO:
     - mason ensure installed for dap clients and formatters
     - tidy up lsp config based on kickstart.nvim
     - look at trouble.nvim
-- make dotnet debugging a little smoother
+- dotnet
     - build project before every debug
     - identify .dll's and provide selection option
+- rust
+    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 ]]
 
 -- UTILITY FUNCTIONS
@@ -516,9 +518,8 @@ require("packer").startup(function(use)
 			local lspkind = require("lspkind")
 			cmp.setup({
 				snippet = {
-					-- REQUIRED - you must specify a snippet engine
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 				mapping = {
