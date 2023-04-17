@@ -1,9 +1,27 @@
+--[[ 
+TODO:
+- package management
+    - consider switching to lazy.nvim
+- lsp
+    - mason ensure installed for dap clients and formatters
+    - tidy up lsp config based on kickstart.nvim
+    - look at trouble.nvim
+- dotnet
+    - build project before every debug
+    - identify .dll's and provide selection option
+- rust
+    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
+]]
 -- UTILITY FUNCTIONS
 
 function Map(mode, lhs, rhs, more_opts)
 	local opts = { noremap = true, silent = true }
 	more_opts = more_opts or {}
 	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
+end
+
+function Mason_path(executable)
+	return vim.fn.stdpath("data") .. "/mason/bin/" .. executable
 end
 
 -- SETTINGS
@@ -78,7 +96,6 @@ require("packer").startup(function(use)
 			local null_ls = require("null-ls")
 			local sources = {
 				null_ls.builtins.formatting.black,
-				-- null_ls.builtins.diagnostics.mypy,
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.stylua,
@@ -103,7 +120,7 @@ require("packer").startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		config = function()
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls", "omnisharp" }
+			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls", "csharp_ls" }
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
@@ -119,13 +136,12 @@ require("packer").startup(function(use)
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentFormattingProvider = false
 
-				-- see `:help vim.lsp.*`
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				Map("n", "gD", vim.lsp.buf.declaration, bufopts)
 				Map("n", "gd", vim.lsp.buf.definition, bufopts)
 				Map("n", "gi", vim.lsp.buf.implementation, bufopts)
 				Map("n", "gh", vim.lsp.buf.signature_help, bufopts)
-				Map("n", "gr", vim.lsp.buf.references, bufopts)
+				-- Map("n", "gr", vim.lsp.buf.references, bufopts) - use telescope instead
 				Map("n", "K", vim.lsp.buf.hover, bufopts)
 				Map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 				Map("n", "<space>rn", vim.lsp.buf.rename, bufopts)
@@ -135,27 +151,48 @@ require("packer").startup(function(use)
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			local setups = {
-				lua_ls = function()
-					local runtime_path = vim.split(package.path, ";")
-					table.insert(runtime_path, "lua/?.lua")
-					table.insert(runtime_path, "lua/?/init.lua")
-				end,
-			}
+			local lspconfig = require("lspconfig")
 
-			local settings = {
-				lua_ls = {
+			lspconfig.pyright.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			lspconfig.gopls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			lspconfig.tsserver.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			lspconfig.rust_analyzer.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			lspconfig.csharp_ls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			local runtime_path = vim.split(package.path, ";")
+			table.insert(runtime_path, "lua/?.lua")
+			table.insert(runtime_path, "lua/?/init.lua")
+
+			lspconfig.lua_ls.setup({
+				settings = {
 					Lua = {
 						runtime = {
 							version = "LuaJIT",
 							path = vim.split(package.path, ";"),
 						},
 						diagnostics = {
-							-- Get the language server to recognize the `vim` global
 							globals = { "vim" },
 						},
 						workspace = {
-							-- Make the server aware of Neovim runtime files
 							library = vim.api.nvim_get_runtime_file("", true),
 						},
 						telemetry = {
@@ -163,49 +200,9 @@ require("packer").startup(function(use)
 						},
 					},
 				},
-			}
-
-			local function omnisharp_path()
-				local handle = io.popen("which omnisharp")
-				if handle then
-					local result = handle:read("*a")
-					handle:close()
-					return result
-				end
-			end
-
-			local cmds = {
-				omnisharp = { "dotnet", omnisharp_path() },
-			}
-
-			for _, language_server in pairs(language_servers) do
-				if setups[language_server] then
-					setups[language_server]()
-				end
-
-				local setting = settings[language_server]
-				local cmd = cmds[language_server]
-
-				if setting and cmd then
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						settings = setting,
-						cmd = cmd,
-					})
-				elseif setting then
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-						settings = setting,
-					})
-				else
-					require("lspconfig")[language_server].setup({
-						on_attach = on_attach,
-						capabilities = capabilities,
-					})
-				end
-			end
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
 		end,
 	})
 
@@ -237,34 +234,91 @@ require("packer").startup(function(use)
 		"mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
+			vim.fn.sign_define("DapBreakpoint", { text = "🟢", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapBreakpointRejected", { text = "⚠️", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapStopped", { text = "➡️", texthl = "", linehl = "", numhl = "" })
 
-			Map("n", "<leader>db", dap.toggle_breakpoint)
-			Map("n", "<leader>dc", dap.continue)
-			Map("n", "<leader>du", dap.step_over)
-			Map("n", "<leader>di", dap.step_into)
-			Map("n", "<leader>do", dap.step_out)
-			Map("n", "<leader>dr", dap.repl.open)
-		end,
-	})
-	use({
-		"leoluz/nvim-dap-go",
-		config = function()
-			local dapgo = require("dap-go")
+			Map("n", "<leader>b", dap.toggle_breakpoint)
+			Map("n", "<F5>", dap.continue)
+			Map("n", "<F10>", dap.step_over)
+			Map("n", "<F11>", dap.step_into)
+			Map("n", "<F12>", dap.step_out)
+			Map("n", "<leader>dx", dap.terminate)
 
-			dapgo.setup()
+			dap.adapters.coreclr = {
+				type = "executable",
+				command = Mason_path("netcoredbg"),
+				args = { "--interpreter=vscode" },
+			}
 
-			-- todo: only do this for .go files with an autocmd
-			Map("n", "<leader>dt", dapgo.debug_test)
+			dap.configurations.cs = {
+				{
+					type = "coreclr",
+					name = "launch - netcoredbg",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+					end,
+				},
+			}
+
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = Mason_path("codelldb"),
+					args = { "--port", "${port}" },
+					-- On windows you may have to uncomment this:
+					-- detached = false,
+				},
+			}
+
+			dap.configurations.rust = {
+				{
+					type = "codelldb",
+					name = "launch - codelldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+				},
+			}
 		end,
 	})
 	use({
 		"rcarriga/nvim-dap-ui",
 		requires = {
 			"mfussenegger/nvim-dap",
-			config = function()
-				require("dapiui").setup()
-			end,
 		},
+		config = function()
+			local dap, dapui = require("dap"), require("dapui")
+
+			Map("n", "<leader>de", dapui.eval)
+
+			-- open dapui automatically
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+
+			dapui.setup()
+		end,
+	})
+	use({
+		"leoluz/nvim-dap-go",
+		ft = { "go" },
+		config = function()
+			local dapgo = require("dap-go")
+			dapgo.setup()
+			Map("n", "<leader>dt", dapgo.debug_test)
+		end,
 	})
 
 	-- telescope
@@ -274,38 +328,80 @@ require("packer").startup(function(use)
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
+			local telescope = require("telescope")
 			local actions = require("telescope.actions")
-			require("telescope").setup({
+			local builtin = require("telescope.builtin")
+			local themes = require("telescope.themes")
+
+			local ivy = themes.get_ivy({
+				preview = {
+					hide_on_startup = true,
+				},
+				layout_config = {
+					height = 0.25,
+				},
+			})
+
+			local dropdown = themes.get_dropdown({
+				layout_config = {
+					height = 0.4,
+					width = 0.6,
+				},
+			})
+
+			telescope.setup({
 				defaults = {
 					mappings = {
 						i = {
 							["<esc>"] = actions.close,
 						},
 					},
+					layout_strategy = "horizontal",
+					layout_config = {
+						horizontal = {
+							height = function(_, _, max_lines)
+								local max_height = 60
+								local lines_padding = 4
+								return math.min(max_lines - lines_padding, max_height)
+							end,
+							width = function(_, max_columns, _)
+								local max_width = 180
+								local columns_padding = 12
+								return math.min(max_columns - columns_padding, max_width)
+							end,
+							preview_width = 0.65,
+						},
+					},
+				},
+				pickers = {
+					buffers = ivy,
+					lsp_references = ivy,
+					current_buffer_fuzzy_find = dropdown,
 				},
 			})
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("file_browser")
+			telescope.load_extension("fzf")
+			telescope.load_extension("file_browser")
 
 			local function find_dotfiles()
 				local config_dir = vim.fn.stdpath("config")
-				require("telescope.builtin").find_files({ cwd = config_dir })
+				builtin.find_files({ cwd = config_dir })
 			end
 
 			local function file_browser_cwd()
-				require("telescope").extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
+				telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
 			end
 
-			Map("n", "<leader><space>", require("telescope.builtin").buffers)
-			Map("n", "<leader>ff", require("telescope.builtin").find_files)
-			Map("n", "<leader>fg", require("telescope.builtin").live_grep)
-			Map("n", "<leader>fh", require("telescope.builtin").help_tags)
-			Map("n", "<leader>fo", require("telescope.builtin").oldfiles)
-			Map("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-			Map("n", "<leader>fc", require("telescope.builtin").colorscheme)
-			Map("n", "<leader>fp", require("telescope").extensions.file_browser.file_browser)
+			Map("n", "<leader><space>", builtin.buffers)
+			Map("n", "<leader>ff", builtin.find_files)
+			Map("n", "<leader>fg", builtin.live_grep)
+			Map("n", "<leader>fh", builtin.help_tags)
+			Map("n", "<leader>fo", builtin.oldfiles)
+			Map("n", "<leader>fb", builtin.current_buffer_fuzzy_find)
+			Map("n", "<leader>fc", builtin.colorscheme)
+			Map("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
 			Map("n", "<leader>fe", file_browser_cwd)
 			Map("n", "<leader>fd", find_dotfiles)
+			Map("n", "gr", builtin.lsp_references)
 		end,
 	})
 
@@ -429,9 +525,8 @@ require("packer").startup(function(use)
 			local lspkind = require("lspkind")
 			cmp.setup({
 				snippet = {
-					-- REQUIRED - you must specify a snippet engine
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 				mapping = {
@@ -600,6 +695,11 @@ require("packer").startup(function(use)
 	use({
 		"folke/tokyonight.nvim",
 		config = function()
+			require("tokyonight").setup({
+				styles = {
+					floats = "normal",
+				},
+			})
 			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	})
