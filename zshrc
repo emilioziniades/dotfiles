@@ -23,16 +23,6 @@ alias gc="git commit"
 alias gca="git commit -am"
 alias gp="git push -u origin main"
 
-# git push current branch
-gpcb() {
-    git push -u origin $(git branch --show-current)
-}
-
-# git delete current branch
-gdcb() {
-    git push -d origin $(git branch --show-current)
-}
-
 alias py="python"
 alias ipy="ipython"
 alias jn="jupyter notebook"
@@ -72,6 +62,16 @@ venv() {
 
 activate() {
     source venv/bin/activate
+}
+
+# git push current branch
+gpcb() {
+    git push -u origin $(git branch --show-current)
+}
+
+# git delete current branch
+gdcb() {
+    git push -d origin $(git branch --show-current)
 }
 
 # PATH 
@@ -131,6 +131,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 if [[ $TMUX == "" ]]
 then
     tmux
+fi
+
+if  command -v vt &> /dev/null
+then
+    vt login
 fi
 
 # GPG
