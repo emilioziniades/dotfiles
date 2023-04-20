@@ -654,7 +654,7 @@ require("packer").startup(function(use)
 			npairs.add_rule(Rule("<", ">", "javascript"))
 		end,
 	})
-	use("machakann/vim-sandwich")
+	use("tpope/vim-surround")
 
 	--icons
 	use({
