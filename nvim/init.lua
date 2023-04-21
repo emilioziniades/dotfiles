@@ -723,10 +723,6 @@ Map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 Map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
 Map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
-Map("n", "<leader>q", "<cmd>q<cr>")
-
-Map("n", "<leader>w", "<cmd>w<cr>")
-
 -- easier escape key for macbook with touchbar
 Map({ "i", "t", "v", "c", "n" }, "§", "<Esc>", { remap = true })
 
