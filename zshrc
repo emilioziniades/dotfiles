@@ -32,7 +32,6 @@ alias gt="go test"
 alias gtv="go test -v ."
 
 alias cr="cargo run"
-alias ct="cargo test -- --color always --nocapture"
 
 alias view="nvim -R"
 alias tmux="tmux -u"
@@ -72,6 +71,11 @@ gpcb() {
 # git delete current branch
 gdcb() {
     git push -d origin $(git branch --show-current)
+}
+
+# cargo test
+ct() {
+    cargo test $1 -- --nocapture --color=always
 }
 
 # PATH 
