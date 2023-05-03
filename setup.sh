@@ -39,7 +39,7 @@ function setup() {
     
     dotdir=~/dotfiles
     olddotdir=~/dotfiles_old
-    files="zshrc tmux.conf"
+    files="zshrc tmux.conf alacritty.yml"
     mkdir -p $olddotdir
     cd $dotdir
     for file in $files; do
