@@ -111,19 +111,6 @@ then
     eval "$(pyenv init -)"
 fi
 
-
-# ITERM2 
-
-it2zsh=~/.iterm2_shell_integration.zsh
-if [ "$TERM_PROGRAM" = "iTerm.app" ]
-then
-    if ! [[ -f $it2zsh ]]
-    then
-        curl -L https://iterm2.com/shell_integration/zsh -o $it2zsh &> /dev/null
-    fi
-    source $it2zsh
-fi
-
 # NVM 
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
