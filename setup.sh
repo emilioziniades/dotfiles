@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function setup_ubuntu() {
+function setup_debian() {
     sudo apt update && sudo apt upgrade -y
 
     sudo apt install -y \
@@ -10,7 +10,6 @@ function setup_ubuntu() {
         ripgrep \
         zip \
         tmux \
-	fuse \
         jq
 
     # install neovim from .appimage
@@ -43,11 +42,12 @@ function setup() {
     mkdir -p $olddotdir
     cd $dotdir
     for file in $files; do
-        if [[ -f ~/.$file ]] 
+        if [[ -f ~/.$file && ! -L ~/.$file ]]
+
         then
             mv ~/.$file $olddotdir
+            ln -s $dotdir/$file ~/.$file
         fi
-        ln -s $dotdir/$file ~/.$file
     done
 
     mkdir -p ~/.config
@@ -67,14 +67,14 @@ function setup() {
 
 if [[ -f /etc/os-release ]] 
 then
-    os_type=$(grep -oP '^NAME="\K\w*' /etc/os-release)
+    os_type=$(grep -oP '^NAME="\K([^"]*)' /etc/os-release)
 else
     os_type="MacOS"
 fi
 
-if [[ $os_type == "Ubuntu" ]] 
+if [[ $os_type == "Ubuntu" || $os_type == "Pop!_OS" ]]
 then
-    setup_ubuntu
+    setup_debian
 else
     setup_macos
 fi
