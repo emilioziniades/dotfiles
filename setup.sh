@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 function setup_debian() {
     sudo apt update && sudo apt upgrade -y
 
@@ -12,10 +16,7 @@ function setup_debian() {
         tmux \
         jq
 
-    # install neovim from .appimage
-    mkdir -p ~/.local/bin/
-    wget -O ~/.local/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    chmod u+x ~/.local/bin/nvim
+    $SCRIPT_DIR/bin/install_neovim.sh
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | zsh
 
