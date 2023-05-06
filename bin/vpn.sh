@@ -129,25 +129,31 @@ install() {
         qtwebengine5-dev
 
     # install openfortivpn
-    git clone https://github.com/adrienverge/openfortivpn
-    cd openfortivpn
-    git checkout v1.20.2
-    ./autogen.sh
-    ./configure --prefix=/usr/local --sysconfdir=/etc
-    make
-    sudo make install
-    cd ..
-    rm -rf ./openfortivpn
+    if ! command -v openfortivpn &> /dev/null
+    then
+        git clone https://github.com/adrienverge/openfortivpn
+        cd openfortivpn
+        git checkout v1.20.2
+        ./autogen.sh
+        ./configure --prefix=/usr/local --sysconfdir=/etc
+        make
+        sudo make install
+        cd ..
+        rm -rf ./openfortivpn
+    fi
 
     # install openfortivpn-webview
-    git clone https://github.com/gm-vm/openfortivpn-webview
-    cd openfortivpn-webview/openfortivpn-webview-qt
-    git checkout v1.1.0-electron
-    qmake .
-    make
-    sudo cp openfortivpn-webview /usr/local/bin
-    cd ../..
-    rm -rf ./openfortivpn-webview
+    if ! command -v openfortivpn-webview &> /dev/null
+    then
+        git clone https://github.com/gm-vm/openfortivpn-webview
+        cd openfortivpn-webview/openfortivpn-webview-qt
+        git checkout v1.1.0-electron
+        qmake .
+        make
+        sudo cp openfortivpn-webview /usr/local/bin
+        cd ../..
+        rm -rf ./openfortivpn-webview
+    fi
 
     # install this script in path
     SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
