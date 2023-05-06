@@ -41,7 +41,7 @@ VPN_CFG_FILE=~/.vpn
 VPN_NAME_FILE=~/.vpn.current
 VPN_PID=$(pgrep openfortivpn || true)
 
-function main() {
+main() {
     if [[ ! -e $VPN_CFG_FILE ]]
     then
         echo "please create a configuration file at ~/.vpn with at least one default"
@@ -64,7 +64,7 @@ function main() {
     esac
 }
 
-function up() {
+up() {
     if [[ -z $VPN_PID ]]
     then
         if [[ -z $1 ]]
@@ -90,7 +90,7 @@ function up() {
     fi
 }
 
-function down() {
+down() {
     if [[ -z $VPN_PID ]]
     then
         echo "vpn already down"
@@ -101,7 +101,7 @@ function down() {
     fi
 }
 
-function status() {
+status() {
     if [[ -z $VPN_PID ]]
     then
         echo "[DOWN]"
@@ -110,7 +110,8 @@ function status() {
     fi
 }
 
-function install() {
+# we need to build from source because packages in apt are outdated :(
+install() {
 
     echo "installing vpn"
     sudo apt install -y \
