@@ -1,4 +1,2 @@
 nvim/plugin/
-tags
 .luarc.json
-tmux/plugins
