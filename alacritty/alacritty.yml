@@ -14,3 +14,6 @@ font:
     family: FiraCode Nerd Font Mono
     style: Regular
   size: 14.0
+
+key_bindings:
+  - { key: Key6, mods: Control, chars: "\x1e" }
