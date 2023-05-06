@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-function setup_debian() {
+setup_debian() {
     sudo apt update && sudo apt upgrade -y
 
     sudo apt install -y \
@@ -23,7 +23,7 @@ function setup_debian() {
     chsh -s $(which zsh)
 }
 
-function setup_macos() {
+setup_macos() {
     if ! command -v brew &> /dev/null
     then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -34,7 +34,7 @@ function setup_macos() {
     fi
 }
 
-function setup() {
+setup() {
     touch ~/.hushlogin
     
     dotdir=~/dotfiles
@@ -58,14 +58,6 @@ function setup() {
             ln -s $dotdir/$config_folder ~/.config/$config_folder
         fi
     done
-
-    if [[ ! -d ~/.tmux/plugins/tpm ]] 
-    then
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        ~/.tmux/plugins/tpm/bin/install_plugins
-        ~/.tmux/plugins/tpm/bin/update_plugins all
-    fi
-
 }
 
 if [[ -f /etc/os-release ]] 
