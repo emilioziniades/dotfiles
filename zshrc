@@ -37,12 +37,12 @@ alias view="nvim -R"
 alias tmux="tmux -u"
 
 alias v="nvim"
-alias t="tmux"
-alias ve="view"
+alias ve="nvim -R"
 
 alias tree="tree --gitignore"
 
 alias k="kubectl"
+
 # VARIABLES
 
 export LC_ALL=en_US.UTF-8

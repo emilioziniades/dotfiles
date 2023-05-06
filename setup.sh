@@ -41,10 +41,10 @@ setup() {
     olddotdir=~/dotfiles_old
 
     files="zshrc"
-    mkdir -p $olddotdir
     for file in $files; do
         if [[ -f ~/.$file && ! -L ~/.$file ]]
         then
+            mkdir -p $olddotdir
             mv ~/.$file $olddotdir
             ln -s $dotdir/$file ~/.$file
         fi
