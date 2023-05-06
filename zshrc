@@ -1,3 +1,13 @@
+# STARTUP PROFILING
+
+# zmodload zsh/datetime
+# setopt PROMPT_SUBST
+# PS4='+$EPOCHREALTIME %N:%i> '
+# logfile=$(mktemp zsh_profile.XXXXXXXX)
+# echo "Logging to $logfile"
+# exec 3>&2 2>$logfile
+# setopt XTRACE
+
 #CONFIG
 
 setopt inc_append_history histignorealldups share_history
@@ -72,9 +82,31 @@ gdcb() {
     git push -d origin $(git branch --show-current)
 }
 
-# cargo test
 ct() {
     cargo test $1 -- --nocapture --color=always
+}
+
+load-nvm() {
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+}
+
+load-pyenv() {
+    if command -v pyenv &> /dev/null
+    then
+        eval "$(pyenv init --path)"
+        eval "$(pyenv init -)"
+    fi
+}
+
+#tmux-sessionizer
+tms() {
+    ~/dotfiles/bin/tmux-sessionizer.sh
+
+}
+
+time-startup() {
+    time zsh -i -c echo
 }
 
 # PATH 
@@ -88,7 +120,7 @@ export PATH="$PATH:/Users/emilioziniades/.dotnet/tools"
 if command -v gem &> /dev/null
 then
     export PATH="/usr/local/opt/ruby/bin:$PATH"
-    export PATH="$(gem environment gemdir)/bin:$PATH"
+    export PATH="/Library/Ruby/Gems/2.6.0/bin:$PATH"
 fi
 
 #rust
@@ -102,31 +134,6 @@ export PATH="$PATH:$HOME/.local/bin"
 
 PROMPT='%F{yellow}%~%f %F{blue}%#%f '
 
-# PYENV SHIMS
-
-if command -v pyenv &> /dev/null
-then
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-fi
-
-# NVM 
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-
-# start in tmux always
-if [[ $TMUX == "" ]]
-then
-    tmux
-fi
-
-if  command -v vt &> /dev/null
-then
-    vt login
-fi
-
 # GPG
 
 export GPG_TTY=$(tty)
@@ -135,3 +142,9 @@ export GPG_TTY=$(tty)
 
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
+
+
+# STARTUP PROFILING
+
+# unsetopt XTRACE
+# exec 2>&3 3>&-
