@@ -592,6 +592,9 @@ require("packer").startup(function(use)
 					"typescript",
 					"tsx",
 					"vim",
+					"bash",
+					"dockerfile",
+					"json",
 				},
 			})
 
