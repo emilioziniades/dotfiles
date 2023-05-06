@@ -39,23 +39,25 @@ function setup() {
     
     dotdir=~/dotfiles
     olddotdir=~/dotfiles_old
-    files="zshrc tmux.conf alacritty.yml"
+
+    files="zshrc"
     mkdir -p $olddotdir
-    cd $dotdir
     for file in $files; do
         if [[ -f ~/.$file && ! -L ~/.$file ]]
-
         then
             mv ~/.$file $olddotdir
             ln -s $dotdir/$file ~/.$file
         fi
     done
 
+    config_folders="nvim tmux alacritty"
     mkdir -p ~/.config
-    if [[ ! -L ~/.config/nvim ]]
-    then
-        ln -s $dotdir/nvim ~/.config/nvim
-    fi
+    for config_folder in $config_folders; do
+        if [[ ! -L ~/.config/$config_folder ]]
+        then
+            ln -s $dotdir/$config_folder ~/.config/$config_folder
+        fi
+    done
 
     if [[ ! -d ~/.tmux/plugins/tpm ]] 
     then
