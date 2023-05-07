@@ -48,6 +48,8 @@ alias tmux="tmux -u"
 
 alias v="nvim"
 alias ve="nvim -R"
+alias t="tmux"
+alias c="clear && tmux clear-history"
 
 alias tree="tree --gitignore"
 
