@@ -14,12 +14,6 @@ TODO:
 ]]
 -- UTILITY FUNCTIONS
 
-function Map(mode, lhs, rhs, more_opts)
-	local opts = { noremap = true, silent = true }
-	more_opts = more_opts or {}
-	vim.keymap.set(mode, lhs, rhs, vim.tbl_deep_extend("force", opts, more_opts))
-end
-
 function Mason_path(executable)
 	return vim.fn.stdpath("data") .. "/mason/bin/" .. executable
 end
@@ -78,8 +72,8 @@ require("packer").startup(function(use)
 	use({
 		"wbthomason/packer.nvim",
 		config = function()
-			Map("n", "<leader>ps", "<cmd>PackerSync<cr>")
-			Map("n", "<leader>pc", "<cmd>PackerCompile<cr>")
+			vim.keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>")
+			vim.keymap.set("n", "<leader>pc", "<cmd>PackerCompile<cr>")
 		end,
 	})
 
@@ -127,9 +121,9 @@ require("packer").startup(function(use)
 				ensure_installed = language_servers,
 			})
 
-			Map("n", "<space>d", vim.diagnostic.open_float)
-			Map("n", "[d", vim.diagnostic.goto_prev)
-			Map("n", "]d", vim.diagnostic.goto_next)
+			vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
 			local on_attach = function(client, bufnr)
 				-- null-ls handles formatting
@@ -137,16 +131,16 @@ require("packer").startup(function(use)
 				client.server_capabilities.documentFormattingProvider = false
 
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				Map("n", "gD", vim.lsp.buf.declaration, bufopts)
-				Map("n", "gd", vim.lsp.buf.definition, bufopts)
-				Map("n", "gi", vim.lsp.buf.implementation, bufopts)
-				Map("n", "gh", vim.lsp.buf.signature_help, bufopts)
-				Map("n", "gr", vim.lsp.buf.references, bufopts)
-				Map("n", "K", vim.lsp.buf.hover, bufopts)
-				Map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-				Map("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-				Map("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-				Map("n", "<space>f", vim.lsp.buf.format, bufopts)
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+				vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+				vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+				vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
 			end
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -225,12 +219,12 @@ require("packer").startup(function(use)
 			vim.fn.sign_define("DapBreakpointRejected", { text = "⚠️", texthl = "", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapStopped", { text = "➡️", texthl = "", linehl = "", numhl = "" })
 
-			Map("n", "<leader>b", dap.toggle_breakpoint)
-			Map("n", "<F5>", dap.continue)
-			Map("n", "<F10>", dap.step_over)
-			Map("n", "<F11>", dap.step_into)
-			Map("n", "<F12>", dap.step_out)
-			Map("n", "<leader>dx", dap.terminate)
+			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+			vim.keymap.set("n", "<F5>", dap.continue)
+			vim.keymap.set("n", "<F10>", dap.step_over)
+			vim.keymap.set("n", "<F11>", dap.step_into)
+			vim.keymap.set("n", "<F12>", dap.step_out)
+			vim.keymap.set("n", "<leader>dx", dap.terminate)
 
 			dap.adapters.coreclr = {
 				type = "executable",
@@ -282,7 +276,7 @@ require("packer").startup(function(use)
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
 
-			Map("n", "<leader>de", dapui.eval)
+			vim.keymap.set("n", "<leader>de", dapui.eval)
 
 			-- open dapui automatically
 			dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -304,7 +298,7 @@ require("packer").startup(function(use)
 		config = function()
 			local dapgo = require("dap-go")
 			dapgo.setup()
-			Map("n", "<leader>dt", dapgo.debug_test)
+			vim.keymap.set("n", "<leader>dt", dapgo.debug_test)
 		end,
 	})
 
@@ -378,17 +372,17 @@ require("packer").startup(function(use)
 				telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
 			end
 
-			Map("n", "<leader><space>", builtin.buffers)
-			Map("n", "<leader>ff", builtin.find_files)
-			Map("n", "<leader>fg", builtin.live_grep)
-			Map("n", "<leader>fh", builtin.help_tags)
-			Map("n", "<leader>fo", builtin.oldfiles)
-			Map("n", "<leader>fb", builtin.current_buffer_fuzzy_find)
-			Map("n", "<leader>fc", builtin.colorscheme)
-			-- Map("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
-			Map("n", "<leader>fe", file_browser_cwd)
-			Map("n", "<leader>fd", find_dotfiles)
-			Map("n", "gr", builtin.lsp_references)
+			vim.keymap.set("n", "<leader><space>", builtin.buffers)
+			vim.keymap.set("n", "<leader>ff", builtin.find_files)
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep)
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags)
+			vim.keymap.set("n", "<leader>fo", builtin.oldfiles)
+			vim.keymap.set("n", "<leader>fb", builtin.current_buffer_fuzzy_find)
+			vim.keymap.set("n", "<leader>fc", builtin.colorscheme)
+			-- vim.keymap.set("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
+			vim.keymap.set("n", "<leader>fe", file_browser_cwd)
+			vim.keymap.set("n", "<leader>fd", find_dotfiles)
+			vim.keymap.set("n", "gr", builtin.lsp_references)
 		end,
 	})
 
@@ -490,13 +484,13 @@ require("packer").startup(function(use)
 				ls.filetype_extend(filetype, { "javascript" })
 			end
 
-			Map({ "i", "s" }, "<c-s>", function()
+			vim.keymap.set({ "i", "s" }, "<c-s>", function()
 				if ls.expand_or_jumpable() then
 					ls.expand_or_jump()
 				end
 			end, { silent = true })
 
-			Map({ "i", "s" }, "<c-a>", function()
+			vim.keymap.set({ "i", "s" }, "<c-a>", function()
 				if ls.jumpable(-1) then
 					ls.jump(-1)
 				end
@@ -600,7 +594,7 @@ require("packer").startup(function(use)
 
 			vim.opt.foldmethod = "expr"
 			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-			Map("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
+			vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
 	})
 	use({
@@ -678,7 +672,7 @@ require("packer").startup(function(use)
 					gitsigns = { enabled = true },
 				},
 			})
-			Map("n", "<leader>z", require("zen-mode").toggle)
+			vim.keymap.set("n", "<leader>z", require("zen-mode").toggle)
 		end,
 	})
 
@@ -702,26 +696,26 @@ end)
 -- KEYMAPS
 
 -- buffer and window navigation
-Map("n", "<leader>[", "<cmd>bn<cr>")
-Map("n", "<leader>]", "<cmd>bp<cr>")
+vim.keymap.set("n", "<leader>[", "<cmd>bn<cr>")
+vim.keymap.set("n", "<leader>]", "<cmd>bp<cr>")
 
-Map("n", "<C-Up>", "<cmd>resize +5<cr>")
-Map("n", "<C-Down>", "<cmd>resize -5<cr>")
-Map("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
-Map("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +5<cr>")
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -5<cr>")
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
 
-Map("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
-Map("n", "<leader>ms", "<cmd>tabnew | term <cr>")
+vim.keymap.set("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
+vim.keymap.set("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
 -- easier escape key for macbook with touchbar
-Map({ "i", "t", "v", "c", "n" }, "§", "<Esc>", { remap = true })
+vim.keymap.set({ "i", "t", "v", "c", "n" }, "§", "<Esc>", { remap = true })
 
 -- sane escape for terminal and command modes
-Map("t", "<Esc>", "<C-\\><C-n>")
-Map("c", "<Esc>", "<C-C><Esc>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("c", "<Esc>", "<C-C><Esc>")
 
 -- toggle relative number
-Map("n", "<leader>n", function()
+vim.keymap.set("n", "<leader>n", function()
 	vim.o.relativenumber = not vim.o.relativenumber
 end)
 
@@ -736,7 +730,7 @@ local function run_file()
 	vim.cmd(run_cmds[ft])
 end
 
-Map("n", "<leader>rr", run_file)
+vim.keymap.set("n", "<leader>rr", run_file)
 
 local function test_file()
 	local filename = vim.fn.expand("%:t")
@@ -749,7 +743,7 @@ local function test_file()
 	vim.cmd(run_cmds[ft])
 end
 
-Map("n", "<leader>rt", test_file)
+vim.keymap.set("n", "<leader>rt", test_file)
 
 -- AUTOCOMMANDS
 
