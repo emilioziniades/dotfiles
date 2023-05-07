@@ -3,7 +3,6 @@ TODO:
 - lsp
     - mason ensure installed for dap clients and formatters
     - tidy up lsp config based on kickstart.nvim
-    - look at trouble.nvim
 - dotnet
     - build project before every debug
     - identify .dll's and provide selection option
@@ -183,6 +182,12 @@ require("lazy").setup({
 				capabilities = capabilities,
 			})
 		end,
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = {},
+		keys = { { "<leader>tt", "<cmd>TroubleToggle<cr>" } },
 	},
 
 	-- git
