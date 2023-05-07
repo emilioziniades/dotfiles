@@ -12,12 +12,6 @@ TODO:
 - rust
     - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 ]]
--- UTILITY FUNCTIONS
-
-function Mason_path(executable)
-	return vim.fn.stdpath("data") .. "/mason/bin/" .. executable
-end
-
 -- SETTINGS
 
 local globals = {
@@ -226,9 +220,13 @@ require("packer").startup(function(use)
 			vim.keymap.set("n", "<F12>", dap.step_out)
 			vim.keymap.set("n", "<leader>dx", dap.terminate)
 
+			local function mason_path(executable)
+				return vim.fn.stdpath("data") .. "/mason/bin/" .. executable
+			end
+
 			dap.adapters.coreclr = {
 				type = "executable",
-				command = Mason_path("netcoredbg"),
+				command = mason_path("netcoredbg"),
 				args = { "--interpreter=vscode" },
 			}
 
@@ -247,7 +245,7 @@ require("packer").startup(function(use)
 				type = "server",
 				port = "${port}",
 				executable = {
-					command = Mason_path("codelldb"),
+					command = mason_path("codelldb"),
 					args = { "--port", "${port}" },
 					-- On windows you may have to uncomment this:
 					-- detached = false,
