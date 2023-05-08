@@ -156,7 +156,6 @@ install() {
     fi
 
     # install this script in path
-    SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
     sudo cp ./vpn.sh /usr/local/bin/vpn
 
     echo "installation successful"
