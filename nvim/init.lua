@@ -343,7 +343,7 @@ require("lazy").setup({
 								local columns_padding = 12
 								return math.min(max_columns - columns_padding, max_width)
 							end,
-							preview_width = 0.65,
+							preview_width = 0,
 						},
 					},
 				},
