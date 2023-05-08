@@ -1,9 +1,13 @@
 --[[ 
 TODO:
 - lsp
-    - mason ensure installed for dap clients and formatters
-    - tidy up lsp config based on kickstart.nvim
+    - mason ensure installed for dap clients and formatters - custom function
+    - tidy up lsp config based on kickstart.nvim - maybe split into dap.lua and lsp.lua files?
+    - install latest chsarp_ls - need figure out net6 and net7 and the issues there
+    - csharp_ls doesn't do go to definitions across multiple projects well, maybe above point will help
 - dotnet
+    - implement run_file and test_file keymaps for dotnet (probably more like run_project and test_project). 
+        Would be nice to have a selection option of all the projects in the current solution
     - build project before every debug
     - identify .dll's and provide selection option
 - rust
