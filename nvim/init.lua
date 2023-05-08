@@ -519,9 +519,10 @@ require("lazy").setup({
 	-- treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				highlight = {
@@ -542,6 +543,7 @@ require("lazy").setup({
 					"typescript",
 					"tsx",
 					"vim",
+					"vimdoc",
 					"bash",
 					"dockerfile",
 					"json",
@@ -552,10 +554,6 @@ require("lazy").setup({
 			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 			vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
 
 	-- commenting
