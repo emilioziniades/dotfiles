@@ -303,54 +303,19 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local telescope = require("telescope")
-			local actions = require("telescope.actions")
 			local builtin = require("telescope.builtin")
-			local themes = require("telescope.themes")
-
-			local ivy = themes.get_ivy({
-				preview = {
-					hide_on_startup = true,
-				},
-				layout_config = {
-					height = 0.25,
-				},
-			})
-
-			local dropdown = themes.get_dropdown({
-				layout_config = {
-					height = 0.4,
-					width = 0.6,
-				},
-			})
 
 			telescope.setup({
 				defaults = {
 					mappings = {
 						i = {
-							["<esc>"] = actions.close,
+							["<esc>"] = require("telescope.actions").close,
+							["<C-s>"] = require("telescope.actions.layout").toggle_preview,
 						},
 					},
-					layout_strategy = "horizontal",
-					layout_config = {
-						horizontal = {
-							height = function(_, _, max_lines)
-								local max_height = 60
-								local lines_padding = 4
-								return math.min(max_lines - lines_padding, max_height)
-							end,
-							width = function(_, max_columns, _)
-								local max_width = 180
-								local columns_padding = 12
-								return math.min(max_columns - columns_padding, max_width)
-							end,
-							preview_width = 0,
-						},
+					preview = {
+						hide_on_startup = true,
 					},
-				},
-				pickers = {
-					buffers = ivy,
-					lsp_references = ivy,
-					current_buffer_fuzzy_find = dropdown,
 				},
 			})
 			telescope.load_extension("fzf")
