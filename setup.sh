@@ -14,6 +14,7 @@ setup_debian() {
         ripgrep \
         zip \
         tmux \
+        fzf \
         jq
 
     $SCRIPT_DIR/bin/install_neovim.sh
