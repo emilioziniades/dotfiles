@@ -70,10 +70,10 @@ up() {
         if [[ -z $1 ]]
         then
             echo "connecting to default vpn"
-            host=$(jq -e -c 'map(select(.default == true)) | "\(.[0].host):\(.[0].port)"' $VPN_CFG_FILE)
+            host=$(jq -e -c 'map(select(.default == true)) | "\(.[0].host):\(.[0].port)"' $VPN_CFG_FILE | tr -d '"')
             name=$(jq -e -c 'map(select(.default == true)) | .[0].name' $VPN_CFG_FILE | tr -d '"')
         else
-            host=$(jq -e -c "map(select(.name == \"$1\")) | \"\(.[0].host):\(.[0].port)\"" $VPN_CFG_FILE)
+            host=$(jq -e -c "map(select(.name == \"$1\")) | \"\(.[0].host):\(.[0].port)\"" $VPN_CFG_FILE | tr -d '"')
             name=$(jq -e -c "map(select(.name == \"$1\")) | .[0].name" $VPN_CFG_FILE | tr -d '"')
             if [[ $? == 1 ]]
             then
