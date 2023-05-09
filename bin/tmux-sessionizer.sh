@@ -4,7 +4,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(cat <(find ~/code -mindepth 1 -maxdepth 1 -type d)  <(echo ~/dotfiles) | fzf)
+    selected=$(cat <(find ~/code ~/work ~/personal -mindepth 1 -maxdepth 1 -type d)  <(echo ~/dotfiles) | fzf)
 fi
 
 if [[ -z $selected ]]; then
