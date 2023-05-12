@@ -51,7 +51,7 @@ setup() {
         fi
     done
 
-    config_folders="nvim tmux alacritty"
+    config_folders="nvim tmux alacritty regolith2"
     mkdir -p ~/.config
     for config_folder in $config_folders; do
         if [[ ! -L ~/.config/$config_folder ]]
