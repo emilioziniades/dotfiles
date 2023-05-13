@@ -12,7 +12,7 @@ window:
 font:
   normal:
     family: FiraCode Nerd Font Mono
-    style: Regular
+    style: Medium
   size: 14.0
 
 key_bindings:

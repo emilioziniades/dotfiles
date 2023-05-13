@@ -117,6 +117,8 @@ export PATH="/usr/local/sbin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/Users/emilioziniades/.dotnet/tools"
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
+export DOTNET_ROOT=$HOME/.dotnet
 
 # ruby
 if command -v gem &> /dev/null

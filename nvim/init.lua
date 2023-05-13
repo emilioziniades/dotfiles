@@ -3,8 +3,7 @@ TODO:
 - lsp
     - mason ensure installed for dap clients and formatters - custom function
     - tidy up lsp config based on kickstart.nvim - maybe split into dap.lua and lsp.lua files?
-    - install latest chsarp_ls - need figure out net6 and net7 and the issues there
-    - csharp_ls doesn't do go to definitions across multiple projects well, maybe above point will help
+    - csharp_ls doesn't do go to definitions across multiple projects well - see
 - dotnet
     - implement run_file and test_file keymaps for dotnet (probably more like run_project and test_project). 
         Would be nice to have a selection option of all the projects in the current solution
@@ -154,7 +153,16 @@ require("lazy").setup({
 				capabilities = capabilities,
 			})
 
+			local find_sln = function()
+				print(vim.fn.getcwd())
+				return { "csharp-ls", "-s", "~/work/vt.ms.tradeservice/VT.MS.TradeService.sln" }
+			end
+
 			lspconfig.csharp_ls.setup({
+				-- root_dir = lspconfig.util.root_pattern("../*.sln")
+				-- 	or lspconfig.util.root_pattern("*.sln")
+				-- 	or lspconfig.util.root_pattern("*.csproj"),
+				-- cmd = find_sln(),
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
