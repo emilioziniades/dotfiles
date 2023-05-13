@@ -3,7 +3,6 @@ TODO:
 - lsp
     - mason ensure installed for dap clients and formatters - custom function
     - tidy up lsp config based on kickstart.nvim - maybe split into dap.lua and lsp.lua files?
-    - csharp_ls doesn't do go to definitions across multiple projects well - see
 - dotnet
     - implement run_file and test_file keymaps for dotnet (probably more like run_project and test_project). 
         Would be nice to have a selection option of all the projects in the current solution
@@ -157,6 +156,8 @@ require("lazy").setup({
 				root_dir = function(startpath)
 					return lspconfig.util.root_pattern("*.sln")(startpath)
 						or lspconfig.util.root_pattern("*.csproj")(startpath)
+						or lspconfig.util.root_pattern("*.fsproj")(startpath)
+						or lspconfig.util.root_pattern(".git")(startpath)
 				end,
 				on_attach = on_attach,
 				capabilities = capabilities,
