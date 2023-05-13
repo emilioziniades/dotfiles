@@ -153,16 +153,11 @@ require("lazy").setup({
 				capabilities = capabilities,
 			})
 
-			local find_sln = function()
-				print(vim.fn.getcwd())
-				return { "csharp-ls", "-s", "~/work/vt.ms.tradeservice/VT.MS.TradeService.sln" }
-			end
-
 			lspconfig.csharp_ls.setup({
-				-- root_dir = lspconfig.util.root_pattern("../*.sln")
-				-- 	or lspconfig.util.root_pattern("*.sln")
-				-- 	or lspconfig.util.root_pattern("*.csproj"),
-				-- cmd = find_sln(),
+				root_dir = function(startpath)
+					return lspconfig.util.root_pattern("*.sln")(startpath)
+						or lspconfig.util.root_pattern("*.csproj")(startpath)
+				end,
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
