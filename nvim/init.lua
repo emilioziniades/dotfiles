@@ -9,7 +9,8 @@ TODO:
     - build project before every debug
     - identify .dll's and provide selection option
 - rust
-    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
+    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and 
+    https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 ]]
 
 -- SETTINGS
@@ -212,9 +213,22 @@ require("lazy").setup({
 		"mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
-			vim.fn.sign_define("DapBreakpoint", { text = "🟢", texthl = "", linehl = "", numhl = "" })
-			vim.fn.sign_define("DapBreakpointRejected", { text = "⚠️", texthl = "", linehl = "", numhl = "" })
-			vim.fn.sign_define("DapStopped", { text = "➡️", texthl = "", linehl = "", numhl = "" })
+
+			vim.api.nvim_set_hl(0, "DapGreen", { fg = "#9ece6a" })
+			vim.api.nvim_set_hl(0, "DapWarningRed", { fg = "#b21009" })
+			vim.api.nvim_set_hl(0, "DapAttentionOrange", { fg = "#ff7f00" })
+
+			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapGreen", linehl = "", numhl = "DapGreen" })
+			vim.fn.sign_define("DapBreakpointRejected", {
+				text = "○",
+				texthl = "DapWarningRed",
+				linehl = "",
+				numhl = "DapWarningRed",
+			})
+			vim.fn.sign_define(
+				"DapStopped",
+				{ text = "➡️", texthl = "DapAttentionOrange", linehl = "", numhl = "DapAttentionOrange" }
+			)
 
 			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 			vim.keymap.set("n", "<F5>", dap.continue)
