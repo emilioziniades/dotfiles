@@ -3,11 +3,6 @@ TODO:
 - lsp
     - mason ensure installed for dap clients and formatters - custom function
     - tidy up lsp config based on kickstart.nvim - maybe split into dap.lua and lsp.lua files?
-- dotnet
-    - implement run_file and test_file keymaps for dotnet (probably more like run_project and test_project). 
-        Would be nice to have a selection option of all the projects in the current solution
-    - build project before every debug
-    - identify .dll's and provide selection option
 - rust
     - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and 
     https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
@@ -247,13 +242,46 @@ require("lazy").setup({
 				args = { "--interpreter=vscode" },
 			}
 
+			local function find_project_dlls() end
+
+			vim.api.nvim_create_user_command("Test", find_project_dlls, {})
+
 			dap.configurations.cs = {
 				{
 					type = "coreclr",
 					name = "launch - netcoredbg",
 					request = "launch",
 					program = function()
-						return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+						local csproj_files = vim.fs.find(function(name)
+							return name:match(".*%.csproj")
+						end, { path = vim.fn.getcwd() })
+
+						local project_names = {}
+						for _, csproj_file in ipairs(csproj_files) do
+							local file_name = vim.fs.basename(csproj_file)
+							local project_name = file_name:match("(.*)%.")
+							table.insert(project_names, project_name)
+						end
+
+						local dll_files = vim.fs.find(function(name)
+							for _, project_name in ipairs(project_names) do
+								if name:find(".*" .. project_name .. "%.dll") then
+									return name
+								end
+							end
+						end, { path = vim.fn.getcwd() })
+
+						-- TODO: it almost works, but it should search from
+						-- the project root, not the current file's directory
+						-- (maybe that info can come from lsp somehow?)
+
+						local dll_file = ""
+						vim.ui.select(dll_files, {
+							prompt = "Select project to run:",
+						}, function(choice)
+							dll_file = choice
+						end)
+						return dll_file
 					end,
 				},
 			}
