@@ -2,3 +2,5 @@ regolith.wallpaper.file: ~/dotfiles/images/pexels-francesco-ungaro-2325446.jpg
 regolith.wallpaper.options: "zoom"
 regolith.lockscreen.wallpaper.file: ~/dotfiles/images/pexels-luca-minguz-14512444.jpg
 regolith.lockscreen.wallpaper.options: "zoom"
+!regolith.look.path: /usr/share/regolith-look/i3-default
+regolith.look.path: /usr/share/regolith-look/default
