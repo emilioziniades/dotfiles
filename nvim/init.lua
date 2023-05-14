@@ -1,8 +1,5 @@
 --[[ 
 TODO:
-- lsp
-    - mason ensure installed for dap clients and formatters - custom function
-    - tidy up lsp config based on kickstart.nvim - maybe split into dap.lua and lsp.lua files?
 - rust
     - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and 
     https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
@@ -62,8 +59,32 @@ require("lazy").setup({
 	-- FUNCTIONALITY
 
 	--lsp
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
+	{ "williamboman/mason.nvim", opts = {} },
+	{ "williamboman/mason-lspconfig.nvim", opts = {} },
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
+			ensure_installed = {
+				-- language servers
+				"pyright",
+				"gopls",
+				"typescript-language-server",
+				"rust-analyzer",
+				"lua-language-server",
+				"csharp-language-server",
+				-- formatters
+				"black",
+				"goimports",
+				"prettier",
+				"stylua",
+				"rustfmt",
+				"csharpier",
+				-- debuggers
+				"netcoredbg",
+				"codelldb",
+			},
+		},
+	},
 	"onsails/lspkind-nvim",
 	{
 		"jose-elias-alvarez/null-ls.nvim",
@@ -95,13 +116,6 @@ require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local language_servers = { "pyright", "gopls", "tsserver", "rust_analyzer", "lua_ls", "csharp_ls" }
-
-			require("mason").setup()
-			require("mason-lspconfig").setup({
-				ensure_installed = language_servers,
-			})
-
 			vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
@@ -157,10 +171,6 @@ require("lazy").setup({
 				capabilities = capabilities,
 			})
 
-			local runtime_path = vim.split(package.path, ";")
-			table.insert(runtime_path, "lua/?.lua")
-			table.insert(runtime_path, "lua/?/init.lua")
-
 			lspconfig.lua_ls.setup({
 				settings = {
 					Lua = {
@@ -199,7 +209,16 @@ require("lazy").setup({
 			{ "<leader>g", "<cmd>Git<cr>" },
 		},
 	},
-	{ "lewis6991/gitsigns.nvim", opts = {} },
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+			},
+		},
+	},
 
 	-- debug
 	{
