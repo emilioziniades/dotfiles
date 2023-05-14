@@ -152,7 +152,6 @@ require("lazy").setup({
 				root_dir = function(startpath)
 					return lspconfig.util.root_pattern("*.sln")(startpath)
 						or lspconfig.util.root_pattern("*.csproj")(startpath)
-						or lspconfig.util.root_pattern("*.fsproj")(startpath)
 						or lspconfig.util.root_pattern(".git")(startpath)
 				end,
 				on_attach = on_attach,
