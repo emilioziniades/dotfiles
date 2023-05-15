@@ -688,9 +688,10 @@ require("lazy").setup({
 
 	-- colorscheme
 	{
-		"folke/tokyonight.nvim",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		config = function()
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 		lazy = false,
 		priority = 1000,
