@@ -269,11 +269,15 @@ require("lazy").setup({
 					return name:match(".*%.csproj$")
 				end, { limit = math.huge, type = "file" })
 
+				print(csproj_files)
+
 				local project_names = {}
 				for _, csproj_file in ipairs(csproj_files) do
 					local project_name = filename_no_extension(csproj_file)
 					table.insert(project_names, project_name)
 				end
+
+				print(project_names)
 
 				local dll_files = vim.fs.find(function(name, path)
 					for _, project_name in ipairs(project_names) do
@@ -282,6 +286,8 @@ require("lazy").setup({
 						end
 					end
 				end, { limit = math.huge, type = "file" })
+
+				print(dll_files)
 
 				local dll_file = ""
 				vim.ui.select(dll_files, {
