@@ -60,7 +60,7 @@ require("lazy").setup({
 
 	--lsp
 	{ "williamboman/mason.nvim", opts = {} },
-	{ "williamboman/mason-lspconfig.nvim", opts = {} },
+	{ "williamboman/mason-lspconfig.nvim", opts = {}, dependencies = { "williamboman/mason.nvim" } },
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
@@ -84,6 +84,7 @@ require("lazy").setup({
 				"codelldb",
 			},
 		},
+		dependencies = { "williamboman/mason-lspconfig.nvim" },
 	},
 	"onsails/lspkind-nvim",
 	{
