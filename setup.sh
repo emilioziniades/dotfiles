@@ -59,6 +59,15 @@ setup() {
             ln -s $dotdir/$config_folder ~/.config/$config_folder
         fi
     done
+
+    if [[ ! -d ~/.tmux/plugins/tpm ]] 
+    then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        ~/.tmux/plugins/tpm/bin/install_plugins
+    else
+    fi
+
+
 }
 
 if [[ -f /etc/os-release ]] 
