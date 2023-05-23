@@ -104,7 +104,10 @@ load-pyenv() {
 #tmux-sessionizer
 tms() {
     ~/dotfiles/bin/tmux-sessionizer.sh
+}
 
+vpn() {
+    ~/dotfiles/bin/vpn.sh $1 $2
 }
 
 time-startup() {
