@@ -101,6 +101,10 @@ load-pyenv() {
     fi
 }
 
+hist() {
+    history 0 | grep $1
+}
+
 #tmux-sessionizer
 tms() {
     ~/dotfiles/bin/tmux-sessionizer.sh
