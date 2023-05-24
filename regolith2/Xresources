@@ -6,9 +6,6 @@ regolith.wallpaper.options: "zoom"
 regolith.lockscreen.wallpaper.file: ~/dotfiles/images/pexels-luca-minguz-14512444.jpg
 regolith.lockscreen.wallpaper.options: "zoom"
 
-!regolith.look.path: /usr/share/regolith-look/i3-default
-regolith.look.path: /usr/share/regolith-look/default
-
 ! remove coloured dots
 i3-wm.workspace.01.name: 1:<span>1</span>
 i3-wm.workspace.02.name: 2:<span>2</span>
@@ -29,3 +26,10 @@ i3-wm.workspace.16.name: 16:<span>16</span>
 i3-wm.workspace.17.name: 17:<span>17</span>
 i3-wm.workspace.18.name: 18:<span>18</span>
 i3-wm.workspace.19.name: 19:<span>19</span>
+
+! startup
+i3-wm.program.1: /usr/bin/nm-applet
+
+! look
+!regolith.look.path: /usr/share/regolith-look/lascaille
+regolith.look.path: /usr/share/regolith-look/default
