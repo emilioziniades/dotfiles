@@ -3,6 +3,8 @@ TODO:
 - rust
     - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and 
     https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
+- csharp
+    - filter out dll's more
 ]]
 
 -- SETTINGS
@@ -281,7 +283,11 @@ require("lazy").setup({
 
 				local dll_files = vim.fs.find(function(name, path)
 					for _, project_name in ipairs(project_names) do
-						if name:find(".*" .. project_name .. "%.dll") and path:match("bin") then
+						if
+							name:find(".*" .. project_name .. "%.dll")
+							and path:match("bin")
+							and not path:match("ref")
+						then
 							return name
 						end
 					end
@@ -293,7 +299,7 @@ require("lazy").setup({
 				vim.ui.select(dll_files, {
 					prompt = "Select project to run:",
 					format_item = function(item)
-						return filename_no_extension(item)
+						return filename_no_extension(item) .. " (" .. item .. ")"
 					end,
 				}, function(choice)
 					dll_file = choice
