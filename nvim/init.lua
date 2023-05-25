@@ -418,10 +418,10 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fo", builtin.oldfiles)
 			vim.keymap.set("n", "<leader>fb", builtin.current_buffer_fuzzy_find)
 			vim.keymap.set("n", "<leader>fc", builtin.colorscheme)
-			-- vim.keymap.set("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
+			vim.keymap.set("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
 			vim.keymap.set("n", "<leader>fe", file_browser_cwd)
 			vim.keymap.set("n", "<leader>fd", find_dotfiles)
-			vim.keymap.set("n", "gr", builtin.lsp_references)
+			-- vim.keymap.set("n", "gr", builtin.lsp_references)
 		end,
 	},
 
