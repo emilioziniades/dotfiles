@@ -17,6 +17,8 @@ setup_debian() {
         fzf \
         jq
 
+    ln -s $(which fdfind) ~/.local/bin/fd
+
     $SCRIPT_DIR/bin/install_neovim.sh
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | zsh
