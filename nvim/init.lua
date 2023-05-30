@@ -5,6 +5,7 @@ TODO:
     https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 - csharp
     - filter out dll's more
+    - add ability to debug tests
 ]]
 
 -- SETTINGS
@@ -221,6 +222,20 @@ require("lazy").setup({
 				change = { text = "~" },
 			},
 		},
+		keys = {
+			{
+				"]c",
+				function()
+					require("gitsigns").next_hunk()
+				end,
+			},
+			{
+				"[c",
+				function()
+					require("gitsigns").prev_hunk()
+				end,
+			},
+		},
 	},
 
 	-- debug
@@ -391,6 +406,8 @@ require("lazy").setup({
 					mappings = {
 						i = {
 							["<esc>"] = require("telescope.actions").close,
+							["<C-j>"] = require("telescope.actions").move_selection_next,
+							["<C-k>"] = require("telescope.actions").move_selection_previous,
 							["<C-s>"] = require("telescope.actions.layout").toggle_preview,
 						},
 					},
