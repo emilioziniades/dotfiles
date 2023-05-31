@@ -88,17 +88,22 @@ ct() {
     cargo test $1 -- --nocapture --color=always
 }
 
-load-nvm() {
-    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-}
-
-load-pyenv() {
-    if command -v pyenv &> /dev/null
-    then
-        eval "$(pyenv init --path)"
-        eval "$(pyenv init -)"
-    fi
+load() {
+    case $1 in
+        nvm)
+            export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+            ;;
+        pyenv)
+            if command -v pyenv &> /dev/null
+            then
+                eval "$(pyenv init --path)"
+                eval "$(pyenv init -)"
+            fi
+            ;;
+        *)
+            echo "I don't know how to load $1"
+    esac
 }
 
 hist() {
