@@ -216,25 +216,15 @@ require("lazy").setup({
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
-
 			signs = {
 				add = { text = "+" },
 				change = { text = "~" },
 			},
-		},
-		keys = {
-			{
-				"]c",
-				function()
-					require("gitsigns").next_hunk()
-				end,
-			},
-			{
-				"[c",
-				function()
-					require("gitsigns").prev_hunk()
-				end,
-			},
+			on_attach = function(bufnr)
+				vim.keymap.set("n", "[c", require("gitsigns").prev_hunk, { buffer = bufnr })
+				vim.keymap.set("n", "]c", require("gitsigns").next_hunk, { buffer = bufnr, desc = "Go to Next Hunk" })
+				vim.keymap.set("n", "<leader>ph", require("gitsigns").preview_hunk, { buffer = bufnr })
+			end,
 		},
 	},
 
@@ -409,6 +399,12 @@ require("lazy").setup({
 							["<C-j>"] = require("telescope.actions").move_selection_next,
 							["<C-k>"] = require("telescope.actions").move_selection_previous,
 							["<C-s>"] = require("telescope.actions.layout").toggle_preview,
+							["<C-p>"] = function()
+								print("Use <C-k> instead>")
+							end,
+							["<C-n>"] = function()
+								print("Use <C-j> instead>")
+							end,
 						},
 					},
 					preview = {
