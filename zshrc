@@ -123,6 +123,10 @@ time-startup() {
     time zsh -i -c echo
 }
 
+pbcopy() {
+    xclip -selection clipboard
+}
+
 # PATH 
 
 export PATH="/usr/local/sbin:$PATH"
