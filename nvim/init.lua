@@ -174,6 +174,9 @@ require("lazy").setup({
 				end,
 				on_attach = on_attach,
 				capabilities = capabilities,
+				handlers = {
+					["textDocument/definition"] = require("csharpls_extended").handler,
+				},
 			})
 
 			lspconfig.lua_ls.setup({
@@ -206,6 +209,7 @@ require("lazy").setup({
 		opts = {},
 		keys = { { "<leader>tt", "<cmd>TroubleToggle<cr>" } },
 	},
+	{ "Decodetalkers/csharpls-extended-lsp.nvim" },
 
 	-- git
 	{
