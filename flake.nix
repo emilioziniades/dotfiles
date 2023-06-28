@@ -1,35 +1,35 @@
 {
-  description = "My Home Manager flake";
+  description = "Home Manager Flake";
 
   inputs = {
     nixpkgs = {
-        url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
     home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs: {
-    defaultPackage.x86_64-linux = inputs.home-manager.defaultPackage.x86_64-linux;
-    defaultPackage.x86_64-darwin = inputs.home-manager.defaultPackage.x86_64-darwin;
- 
-    homeConfigurations = {
-        "emilioziniades" = let system = "x86_64-darwin"; in inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages.${system};
-            modules = [ 
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
+    let system = "x86_64-darwin"; in {
+      defaultPackage.${system} = home-manager.defaultPackage.${system};
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+
+      homeConfigurations = {
+        "emilioziniades" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
             ./home.nix
             {
-
-             home = {
+              home = {
                 username = "emilioziniades";
                 homeDirectory = "/Users/emilioziniades";
                 stateVersion = "23.11";
-             };
+              };
             }
-             ];
+          ];
+        };
       };
     };
-  };
 }
