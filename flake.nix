@@ -16,11 +16,19 @@
     defaultPackage.x86_64-darwin = inputs.home-manager.defaultPackage.x86_64-darwin;
  
     homeConfigurations = {
-      "emilioziniades" = inputs.home-manager.lib.homeManagerConfiguration {
-        system = "x86_64-darwin";
-        homeDirectory = "/Users/emilioziniades";
-        username = "emilioziniades";
-        configuration.imports = [ ./home.nix ];
+        "emilioziniades" = let system = "x86_64-darwin"; in inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
+            modules = [ 
+            ./home.nix
+            {
+
+             home = {
+                username = "emilioziniades";
+                homeDirectory = "/Users/emilioziniades";
+                stateVersion = "23.11";
+             };
+            }
+             ];
       };
     };
   };
