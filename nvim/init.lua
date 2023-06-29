@@ -102,6 +102,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.rustfmt,
 				null_ls.builtins.formatting.csharpier,
+				null_ls.builtins.formatting.alejandra,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -646,6 +647,7 @@ require("lazy").setup({
 					"bash",
 					"dockerfile",
 					"json",
+					"nix",
 				},
 			})
 
