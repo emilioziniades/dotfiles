@@ -2,12 +2,17 @@
   programs.home-manager.enable = true;
   home.packages = [
     pkgs.alacritty
+    pkgs.tmux
+    pkgs.htop
     pkgs.fd
+    pkgs.fzf
     pkgs.tree
     pkgs.ripgrep
     pkgs.jq
     pkgs.diffutils
     pkgs.wget
+    pkgs.flyctl
+    pkgs.gh
     pkgs.alejandra
   ];
 
@@ -30,5 +35,10 @@
         size = 14.0;
       };
     };
+  };
+
+  programs.tmux = {
+    enable = true;
+    extraConfig = builtins.readFile ./tmux/tmux.conf;
   };
 }

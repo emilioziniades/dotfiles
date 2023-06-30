@@ -42,7 +42,6 @@ alias gtv="go test -v ."
 alias cr="cargo run"
 
 alias view="nvim -R"
-alias tmux="tmux -u"
 
 alias v="nvim"
 alias ve="nvim -R"
