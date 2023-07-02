@@ -15,7 +15,7 @@
   };
 
   home.packages = with pkgs; [
-    # CLI tools
+    neovim-unwrapped
     alacritty
     tmux
     htop
@@ -35,18 +35,19 @@
     tor
     pandoc
     nushell
+
     # GUI apps
     #TODO: get this working on darwin
     # discord #TODO: find better way to manage nix + nixpkgs config, nix-darwin maybe?
     # firefox-bin
     # vlc
-    # Nix
+
     alejandra
-    # Go
+
     go
     gopls
     gotools
-    # Python
+
     (python311.withPackages
       (p: [
         p.ipython
@@ -55,13 +56,13 @@
         p.pandas
         p.seaborn
       ]))
-    # Lua
+
     lua
     stylua
     lua-language-server
-    # C
+
     gcc11
-    # JavaScript/TypeScript
+
     nodejs_16
     nodePackages.pyright
   ];
@@ -94,5 +95,13 @@
   programs.tmux = {
     enable = true;
     extraConfig = builtins.readFile ./tmux/tmux.conf; # TODO, flatten this into single directory
+  };
+
+  programs.neovim = {
+    enable = true;
+    extraLuaConfig = builtins.readFile ./nvim/init.lua;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
   };
 }
