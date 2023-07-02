@@ -1,3 +1,4 @@
+#TODO: find better way to manage nix + nixpkgs config, nix-darwin maybe?
 {pkgs, ...}: {
   nix = {
     package = pkgs.nix;
@@ -15,9 +16,6 @@
   };
 
   home.packages = with pkgs; [
-    neovim-unwrapped
-    alacritty
-    tmux
     htop
     fd
     fzf
@@ -35,10 +33,12 @@
     tor
     pandoc
     nushell
+    awscli2
+    kubectl
 
     # GUI apps
     #TODO: get this working on darwin
-    # discord #TODO: find better way to manage nix + nixpkgs config, nix-darwin maybe?
+    # discord
     # firefox-bin
     # vlc
 
@@ -65,9 +65,60 @@
 
     nodejs_16
     nodePackages.pyright
+
+    (with dotnetCorePackages;
+      combinePackages [
+        sdk_6_0
+        sdk_7_0
+      ])
   ];
 
   programs.home-manager.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      v = "nvim";
+      t = "tmux";
+      k = "kubectl";
+      c = "clear && tmux clear-history";
+      py = "python";
+      ipy = "ipython";
+      ll = "ls -alh --color=always";
+      gr = "go run";
+      gt = "go test";
+      gtv = "go test -v .";
+      cr = "cargo run";
+      switch = "home-manager switch --flake ~/dotfiles";
+    };
+    sessionVariables = {
+      EDITOR = "nvim";
+      LC_ALL = "en_US.UTF-8";
+    };
+    history = {
+      ignoreDups = true;
+      share = true;
+      save = 10000;
+      size = 10000;
+      path = "~/.local/share/zsh";
+    };
+    initExtra = builtins.readFile ./zshrc;
+  };
+
+  programs.git = {
+    enable = true;
+    aliases = {
+      i = "init";
+      s = "status";
+      l = "log --oneline --all";
+      g = "log --oneline --graph --decorate --all";
+      lf = "log";
+      d = "diff";
+      a = "add";
+      c = "commit";
+      p = "push";
+    };
+  };
 
   programs.alacritty = {
     enable = true;
