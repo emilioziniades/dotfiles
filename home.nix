@@ -94,7 +94,7 @@
 
   programs.tmux = {
     enable = true;
-    extraConfig = builtins.readFile ./tmux/tmux.conf; # TODO, flatten this into single directory
+    extraConfig = builtins.readFile ./tmux.conf; # TODO, flatten this into single directory
   };
 
   programs.neovim = {
