@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
-brew "neovim"
 cask "firefox"
 cask "font-fira-code-nerd-font"
 cask "font-meslo-lg-nerd-font"
