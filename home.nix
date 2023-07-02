@@ -67,9 +67,7 @@
     nodePackages.pyright
   ];
 
-  programs.home-manager = {
-    enable = true;
-  };
+  programs.home-manager.enable = true;
 
   programs.alacritty = {
     enable = true;
