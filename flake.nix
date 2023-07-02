@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      # config = {
+      #   permittedInsecurePackages = [
+      #     "nodejs-16.20.1"
+      #   ];
+      # };
     };
     home-manager = {
       url = "github:nix-community/home-manager";
