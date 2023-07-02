@@ -6,6 +6,8 @@ TODO:
 - csharp
     - filter out dll's more
     - add ability to debug tests
+- nix
+    - tidy up mason/remove installers, and consider handling them in nix
 ]]
 
 -- SETTINGS
@@ -722,7 +724,7 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1000,
 	},
-})
+}, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
 -- KEYMAPS
 
