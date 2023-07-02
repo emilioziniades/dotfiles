@@ -16,8 +16,8 @@ bindkey '^[[1;5C' forward-word
 
 export GPG_TTY=$(tty)
 
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
 export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 mkcd() {
     mkdir -p "$1" && cd "$1"

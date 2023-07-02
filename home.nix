@@ -19,6 +19,8 @@
     htop
     fd
     fzf
+    exa
+    bat
     tree
     ripgrep
     jq
@@ -105,8 +107,16 @@
     initExtra = builtins.readFile ./zshrc;
   };
 
-  programs.git = {
+  # TODO: instead of these hacky if else's everywhere, split into three files: nix-darwin, nix-os, and common to both
+  programs.git = let
+    isPersonal = pkgs.system == "x86_64-darwin";
+  in {
     enable = true;
+    userName = "Emilio Ziniades";
+    userEmail =
+      if isPersonal
+      then "emilioziniades@protonmail.com"
+      else "emilioz@za.velocitytrade.com";
     aliases = {
       i = "init";
       s = "status";
@@ -117,6 +127,26 @@
       a = "add";
       c = "commit";
       p = "push";
+    };
+    extraConfig = {
+      user = {
+        signingkey =
+          if isPersonal
+          then "877E9B0125E55C17CF2E52DAEA106EB7199A20CA"
+          else null;
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      core = {
+        editor = "nvim";
+      };
+      commit = {
+        gpgsign = false;
+      };
+      push = {
+        autoSetupRemote = true;
+      };
     };
   };
 
