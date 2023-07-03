@@ -1,45 +1,16 @@
 {
-  description = "Home Manager Flake";
+  description = "John's darwin system";
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable";
-      # config = {
-      #   permittedInsecurePackages = [
-      #     "nodejs-16.20.1"
-      #   ];
-      # };
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {
-    nixpkgs,
-    home-manager,
-    ...
-  }: let
-    system = "x86_64-darwin";
-  in {
-    defaultPackage.${system} = home-manager.defaultPackage.${system};
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
-
-    homeConfigurations = {
-      "emilioziniades" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = [
-          ./home.nix
-          {
-            home = {
-              username = "emilioziniades";
-              homeDirectory = "/Users/emilioziniades";
-              stateVersion = "23.11";
-            };
-          }
-        ];
-      };
+  outputs = { self, darwin, nixpkgs }: {
+    darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
+      modules = [ ./configuration.nix ];
     };
   };
 }
