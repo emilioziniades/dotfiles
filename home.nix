@@ -1,19 +1,22 @@
 #TODO: find better way to manage nix + nixpkgs config, nix-darwin maybe?
 {pkgs, ...}: {
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      build-users-group = "nixbld";
-      experimental-features = ["nix-command" "flakes"];
-    };
-  };
+  home.stateVersion = "23.11";
+	#TODO put this all into configuration.nix
+# nix = {
+#   package = pkgs.nix;
+#   settings = {
+#     build-users-group = "nixbld";
+#     experimental-features = ["nix-command" "flakes"];
+#   };
+# };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      "nodejs-16.20.1"
-    ];
-  };
+# nixpkgs.config = {
+#   allowUnfree = true;
+#   permittedInsecurePackages = [
+#     "nodejs-16.20.1"
+#   ];
+# };
+manual.manpages.enable = false;
 
   home.packages = with pkgs; [
     htop
