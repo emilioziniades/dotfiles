@@ -1,19 +1,43 @@
-{ config, pkgs, ... }:
-
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [ pkgs.vim
-    ];
-
+  config,
+  pkgs,
+  ...
+}: {
   nixpkgs.config = {
-allowUnfree = true;
-   permittedInsecurePackages = [
-     "nodejs-16.20.1"
-   ];
-};
-users.users.emilioziniades.home = "/Users/emilioziniades";
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "nodejs-16.20.1"
+    ];
+  };
+  users.users.emilioziniades.home = "/Users/emilioziniades";
+
+  homebrew = {
+    enable = true;
+    taps = [
+      "homebrew/bundle"
+      "homebrew/cask-fonts"
+      "homebrew/services"
+    ];
+    casks = [
+      "discord"
+      "firefox"
+      "font-fira-code-nerd-font"
+      "mactex"
+      "multipass"
+      "obsidian"
+      "openemu"
+      "qbittorrent"
+      "roboform"
+      "signal"
+      "slack"
+      "spotify"
+      "telegram"
+      "tor-browser"
+      "vlc"
+      "whatsapp"
+      "zoom"
+    ];
+  };
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
   environment.darwinConfig = "$HOME/dotfiles/configuration.nix";
@@ -23,7 +47,7 @@ users.users.emilioziniades.home = "/Users/emilioziniades";
   # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
