@@ -1,22 +1,15 @@
-#TODO: find better way to manage nix + nixpkgs config, nix-darwin maybe?
 {pkgs, ...}: {
   home.stateVersion = "23.11";
-	#TODO put this all into configuration.nix
-# nix = {
-#   package = pkgs.nix;
-#   settings = {
-#     build-users-group = "nixbld";
-#     experimental-features = ["nix-command" "flakes"];
-#   };
-# };
+  #TODO put this all into configuration.nix
+  # nix = {
+  #   package = pkgs.nix;
+  #   settings = {
+  #     build-users-group = "nixbld";
+  #     experimental-features = ["nix-command" "flakes"];
+  #   };
+  # };
 
-# nixpkgs.config = {
-#   allowUnfree = true;
-#   permittedInsecurePackages = [
-#     "nodejs-16.20.1"
-#   ];
-# };
-manual.manpages.enable = false;
+  manual.manpages.enable = false;
 
   home.packages = with pkgs; [
     htop
@@ -40,12 +33,6 @@ manual.manpages.enable = false;
     nushell
     awscli2
     kubectl
-
-    # GUI apps
-    #TODO: get this working on darwin
-    # discord
-    # firefox-bin
-    # vlc
 
     alejandra
 
@@ -94,7 +81,7 @@ manual.manpages.enable = false;
       gt = "go test";
       gtv = "go test -v .";
       cr = "cargo run";
-      switch = "home-manager switch --flake ~/dotfiles";
+      switch = "darwin-rebuild switch --flake $HOME/dotfiles";
     };
     sessionVariables = {
       EDITOR = "nvim";
