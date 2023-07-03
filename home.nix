@@ -102,7 +102,6 @@
       share = true;
       save = 10000;
       size = 10000;
-      path = "~/.local/share/zsh";
     };
     initExtra = builtins.readFile ./zshrc;
   };
