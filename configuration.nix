@@ -7,9 +7,16 @@
     [ pkgs.vim
     ];
 
+  nixpkgs.config = {
+allowUnfree = true;
+   permittedInsecurePackages = [
+     "nodejs-16.20.1"
+   ];
+};
+users.users.emilioziniades.home = "/Users/emilioziniades";
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
+  environment.darwinConfig = "$HOME/dotfiles/configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
