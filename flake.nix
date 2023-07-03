@@ -9,20 +9,26 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ darwin, nixpkgs, home-manager, ... }: {
+  outputs = inputs @ {
+    darwin,
+    nixpkgs,
+    home-manager,
+    ...
+  }: {
     darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
-      modules = [ 
-		./configuration.nix 
-		 home-manager.darwinModules.home-manager{
-		home-manager.useGlobalPkgs = true;
-		home-manager.useUserPackages = true;
-		home-manager.users.emilioziniades = import ./home.nix;
+      modules = [
+        ./configuration.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.emilioziniades = import ./home.nix;
 
-		# Optionally, use home-manager.extraSpecialArgs to pass
-		# arguments to home.nix
-		}
-	];
+          # Optionally, use home-manager.extraSpecialArgs to pass
+          # arguments to home.nix
+        }
+      ];
     };
   };
 }
