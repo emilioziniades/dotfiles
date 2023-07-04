@@ -2,7 +2,7 @@
 
 **NOTE: I am in the process of migrating all my dotfiles over to nix.**
 
-## MacOS nix-darwin setup
+## MacOS `nix-darwin` setup
 
 Fetch these dotfiles. All this config assumes that the dotfiles are cloned to `~/dotfiles`.
 
