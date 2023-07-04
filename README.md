@@ -22,7 +22,7 @@ Install [nix-darwin](http://daiderd.com/nix-darwin/). See all options [here](htt
 nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
 ```
 
-Bootstrap nix-darwin flake. This will install [home-manager](https://nix-community.github.io/home-manager/index.html), which is responsible for managing configuration for applicstions like neovim, tmux and alacritty.
+Bootstrap nix-darwin flake. This will install [home-manager](https://nix-community.github.io/home-manager/index.html), which is responsible for managing configuration for applications like `neovim`, `tmux` and `alacritty`.
 
 ```
 nix build ~/dotfiles\#darwinConfigurations.Emilios-MacBook-Pro.system
