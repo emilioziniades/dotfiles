@@ -14,6 +14,7 @@ Install nix using the [determinate systems installer](https://github.com/Determi
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+./result/bin/darwin-installer
 ```
 
 Install [nix-darwin](http://daiderd.com/nix-darwin/). See all options [here](https://daiderd.com/nix-darwin/manual/index.html).
