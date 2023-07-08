@@ -18,7 +18,7 @@
     darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
-        ./configuration.nix
+        ./darwin-configuration.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
