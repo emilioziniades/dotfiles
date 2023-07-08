@@ -67,11 +67,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
+  environment.shells = [pkgs.zsh];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.emilioz = {
     isNormalUser = true;
     description = "Emilio Ziniades";
     extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       firefox
       #  thunderbird
@@ -85,7 +89,7 @@
     ];
   };
   fonts.fonts = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCodeMono"];})
+    (nerdfonts.override {fonts = ["FiraCode"];})
   ];
 
   # List packages installed in system profile. To search, run:
