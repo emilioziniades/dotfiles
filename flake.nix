@@ -15,6 +15,21 @@
     home-manager,
     ...
   }: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.emilioz = import ./home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
+        ];
+};
     darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
