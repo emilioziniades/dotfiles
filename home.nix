@@ -9,7 +9,7 @@
   #   };
   # };
 
-  manual.manpages.enable = false;
+  manual.manpages.enable = true;
 
   home.packages = with pkgs; [
     htop
