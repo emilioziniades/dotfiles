@@ -10,7 +10,7 @@ Fetch these dotfiles. All this config assumes that the dotfiles are cloned to `~
 cd && git clone https://github.com/emilioziniades/dotfiles && cd dotfiles
 ```
 
-Install nix using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
+Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
