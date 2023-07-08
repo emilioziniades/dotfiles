@@ -3,6 +3,7 @@
 Before setting up either MacOS or NixOS, you will need to clone these dotfiles.
 
 If you are on NixOS, you will need to setup a nix shell with git to bootstrap the process. Vim might come in handy as well.
+
 ```
 nix-shell -p git vim
 ```
@@ -56,3 +57,5 @@ Then, build the flake-based configuration.
 ```
 sudo nixos-rebuild switch --flake ~/dotfiles
 ```
+
+From then on, you can run `switch`, an alias for the above.
