@@ -122,7 +122,7 @@
         signingkey =
           if isPersonal
           then "877E9B0125E55C17CF2E52DAEA106EB7199A20CA"
-          else null;
+          else false;
       };
       init = {
         defaultBranch = "main";
