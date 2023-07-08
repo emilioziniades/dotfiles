@@ -1,14 +1,19 @@
 # dotfiles
 
-**NOTE: I am in the process of migrating all my dotfiles over to nix.**
+Before setting up either MacOS or NixOS, you will need to clone these dotfiles.
 
-## MacOS `nix-darwin` setup
+If you are on NixOS, you will need to setup a nix shell with git to bootstrap the process. Vim might come in handy as well.
+```
+nix-shell -p git vim
+```
 
-Fetch these dotfiles. All this config assumes that the dotfiles are cloned to `~/dotfiles`.
+Then, proceed to fetch these dotfiles. All this config assumes that the dotfiles are cloned to `~/dotfiles`.
 
 ```
 cd && git clone https://github.com/emilioziniades/dotfiles && cd dotfiles
 ```
+
+## MacOS `nix-darwin` setup
 
 Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
 
@@ -46,3 +51,8 @@ Save a freshly generated version of `hardware-configuration.nix` into this repos
 nixos-generate-config --dir ~/dotfiles
 ```
 
+Then, build the flake-based configuration.
+
+```
+sudo nixos-rebuild switch --flake ~/dotfiles
+```
