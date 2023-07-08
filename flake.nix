@@ -1,5 +1,5 @@
 {
-  description = "Emilio's darwin configuration";
+  description = "Emilio's nixos + darwin configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
