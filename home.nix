@@ -163,6 +163,7 @@ in {
     };
   };
 
+  # TODO: catppuccin plugins not respecting config options set in tmux.conf
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
