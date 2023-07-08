@@ -77,8 +77,12 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "nodejs-16.20.1"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
