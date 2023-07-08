@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  isPersonal = pkgs.system == "x86_64-darwin";
+in {
   home.stateVersion = "23.11";
   #TODO put this all into configuration.nix
   # nix = {
@@ -81,7 +83,10 @@
       gt = "go test";
       gtv = "go test -v .";
       cr = "cargo run";
-      switch = "darwin-rebuild switch --flake $HOME/dotfiles";
+      switch =
+        if isPersonal
+        then "darwin-rebuild switch --flake $HOME/dotfiles"
+        else "sudo nixos-rebuild switch --flake $HOME/dotfiles";
     };
     sessionVariables = {
       EDITOR = "nvim";
@@ -97,9 +102,7 @@
   };
 
   # TODO: instead of these hacky if else's everywhere, split into three files: nix-darwin, nix-os, and common to both
-  programs.git = let
-    isPersonal = pkgs.system == "x86_64-darwin";
-  in {
+  programs.git = {
     enable = true;
     userName = "Emilio Ziniades";
     userEmail =
