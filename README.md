@@ -38,6 +38,11 @@ In addition, there is not great Nix support for GUI applications on MacOS, so I 
 
 From now on, configuration can be updated by runing `darwin-rebuild switch --flake ~/dotfiles`, which I have aliased to simply `switch`.
 
-# Ubuntu/Pop_OS!/NixOS setup
+# NixOS setup
 
-_TODO_
+Save a freshly generated version of `hardware-configuration.nix` into this repository. Commit the changes.
+
+```
+nixos-generate-config --dir ~/dotfiles
+```
+
