@@ -157,10 +157,31 @@
   # TODO: catppuccin plugins not respecting config options set in tmux.conf
   programs.tmux = {
     enable = true;
+    prefix = "C-Space";
+    keyMode = "vi";
+    terminal = "tmux-256color";
+    historyLimit = 100000;
+    escapeTime = 10;
     plugins = with pkgs; [
       tmuxPlugins.catppuccin
     ];
-    extraConfig = builtins.readFile ./tmux.conf;
+    extraConfig = ''
+      set -ag terminal-overrides ",xterm-256color:RGB"
+      set-option -g focus-events on
+      set-option -g renumber-windows on
+
+      set -g @catppuccin_window_tabs_enabled on
+      set -g @catppuccin_left_separator "█"
+      set -g @catppuccin_right_separator "█"
+      run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
+
+      bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded ~/.config/tmux/tmux.conf"
+      bind j next-window
+      bind k previous-window
+      bind h set -g status
+      bind e clear-history
+      bind t display-popup -E "~/dotfiles/bin/tmux-sessionizer.sh"
+    '';
   };
 
   programs.neovim = {

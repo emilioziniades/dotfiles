@@ -62,7 +62,6 @@ From then on, you can run `switch`, an alias for the above.
 
 # TODO
 
-- [ ] get tmux catpuccin theme to respect globals set in tmux.conf
 - [ ] set up VPN and ensure script works with new setup
 - [ ] set up i3wm
 - [ ] comb through existing dotfile scripts and config files, purging what isn't needed and updating nix config
