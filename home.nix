@@ -187,7 +187,7 @@
       bind k previous-window
       bind h set -g status
       bind e clear-history
-      bind t display-popup -E "~/dotfiles/bin/tmux-sessionizer.sh"
+      bind t display-popup -E "tms"
     '';
   };
 
