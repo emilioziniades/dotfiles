@@ -1,10 +1,8 @@
 {
   pkgs,
-  gitEmail,
+  extraConfig,
   ...
-}: let
-  isPersonal = pkgs.system == "x86_64-darwin";
-in {
+}: {
   home.stateVersion = "23.11";
   #TODO put this all into configuration.nix
   # nix = {
@@ -87,10 +85,7 @@ in {
       gt = "go test";
       gtv = "go test -v .";
       cr = "cargo run";
-      switch =
-        if isPersonal
-        then "darwin-rebuild switch --flake $HOME/dotfiles"
-        else "sudo nixos-rebuild switch --flake $HOME/dotfiles";
+      switch = extraConfig.switchCommand;
     };
     sessionVariables = {
       EDITOR = "nvim";
@@ -105,14 +100,10 @@ in {
     initExtra = builtins.readFile ./zshrc;
   };
 
-  # TODO: instead of these hacky if else's everywhere, split into three files: nix-darwin, nix-os, and common to both
   programs.git = {
     enable = true;
     userName = "Emilio Ziniades";
-    userEmail = gitEmail;
-    # if isPersonal
-    # then "emilioziniades@protonmail.com"
-    # else "emilioz@za.velocitytrade.com";
+    userEmail = extraConfig.gitEmail;
     aliases = {
       i = "init";
       s = "status";
@@ -126,10 +117,7 @@ in {
     };
     extraConfig = {
       user = {
-        signingkey =
-          if isPersonal
-          then "877E9B0125E55C17CF2E52DAEA106EB7199A20CA"
-          else false;
+        signingkey = extraConfig.gitGpgKey;
       };
       init = {
         defaultBranch = "main";
@@ -159,7 +147,7 @@ in {
       };
       font = {
         normal = {
-          family = "FiraCode Nerd Font Mono"; #TODO: install this nerdfont
+          family = "FiraCode Nerd Font Mono";
           style = "Medium";
         };
         size = 14.0;
