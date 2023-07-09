@@ -155,7 +155,6 @@
     };
   };
 
-  # TODO: catppuccin plugins not respecting config options set in tmux.conf
   programs.tmux = {
     enable = true;
     prefix = "C-Space";
@@ -172,6 +171,7 @@
       set-option -g focus-events on
       set-option -g renumber-windows on
 
+      # manually source catpuccin plugin after options are applied
       set -g @catppuccin_window_tabs_enabled on
       set -g @catppuccin_left_separator "█"
       set -g @catppuccin_right_separator "█"
