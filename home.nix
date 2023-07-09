@@ -162,6 +162,7 @@
     terminal = "tmux-256color";
     historyLimit = 100000;
     escapeTime = 10;
+    sensibleOnTop = false;
     plugins = with pkgs; [
       tmuxPlugins.catppuccin
     ];
