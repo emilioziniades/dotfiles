@@ -50,9 +50,9 @@ hist() {
     history 0 | grep $1
 }
 
-tms() {
-    ~/dotfiles/bin/tmux-sessionizer.sh
-}
+# tms() {
+#     ~/dotfiles/bin/tmux-sessionizer.sh
+# }
 
 vpn() {
     ~/dotfiles/bin/vpn.sh $1 $2
