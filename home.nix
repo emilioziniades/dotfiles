@@ -15,59 +15,68 @@
 
   manual.manpages.enable = true;
 
-  home.packages = with pkgs; [
-    htop
-    fd
-    fzf
-    exa
-    bat
-    tree
-    ripgrep
-    jq
-    diffutils
-    wget
-    flyctl
-    gh
-    timewarrior
-    gnupg
-    imagemagick
-    postgresql_15
-    tor
-    pandoc
-    nushell
-    awscli2
-    kubectl
+  home.packages = with pkgs;
+    [
+      htop
+      fd
+      fzf
+      exa
+      bat
+      tree
+      ripgrep
+      jq
+      diffutils
+      wget
+      flyctl
+      gh
+      timewarrior
+      gnupg
+      imagemagick
+      postgresql_15
+      tor
+      pandoc
+      nushell
+      awscli2
+      kubectl
 
-    alejandra
+      alejandra
 
-    go
-    gopls
-    gotools
+      go
+      gopls
+      gotools
 
-    (python311.withPackages
-      (p: [
-        p.ipython
-        p.requests
-        p.numpy
-        p.pandas
-        p.seaborn
-      ]))
+      (python311.withPackages
+        (p: [
+          p.ipython
+          p.requests
+          p.numpy
+          p.pandas
+          p.seaborn
+        ]))
 
-    lua
-    stylua
-    lua-language-server
+      lua
+      stylua
+      lua-language-server
 
-    gcc11
+      gcc11
 
-    nodejs_16
-    nodePackages.pyright
+      nodejs_16
+      nodePackages.pyright
 
-    (with dotnetCorePackages;
-      combinePackages [
-        sdk_6_0
-        sdk_7_0
-      ])
-  ];
+      (with dotnetCorePackages;
+        combinePackages [
+          sdk_6_0
+          sdk_7_0
+        ])
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      firefox
+      obsidian
+      mongodb-compass
+      remmina
+      teams
+      spotify
+    ];
 
   programs.home-manager.enable = true;
 

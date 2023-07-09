@@ -76,10 +76,8 @@
     description = "Emilio Ziniades";
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
-    #TODO: setup these GUI packages in home manager, conditional on it being nixos
     packages = with pkgs; [
-      firefox
-      #  thunderbird
+      # handled by home-manager
     ];
   };
 
