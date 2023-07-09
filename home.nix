@@ -31,7 +31,8 @@
       kubectl
       zip
       unzip
-      make
+      gnumake
+      tmux-sessionizer
 
       alejandra
 
@@ -196,4 +197,13 @@
     viAlias = true;
     vimAlias = true;
   };
+
+  home.file."~/.config/tms/default-config.toml".text = ''
+    search_paths = [
+        '/home/emilioz/code',
+        '/home/emilioz/work',
+        '/home/emilioz/personal',
+        '/home/emilioz/dotfiles',
+    ]
+  '';
 }
