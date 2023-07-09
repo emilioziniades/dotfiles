@@ -1,5 +1,5 @@
 {
-  description = "Emilio's nixos + darwin configuration";
+  description = "Emilio's NixOS and Darwin configurations";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -24,12 +24,13 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.emilioz = import ./home.nix;
-
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+          home-manager.extraSpecialArgs = {
+            gitEmail = "emilioz@za.velocitytrade.com";
+          };
         }
       ];
     };
+
     darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
@@ -39,9 +40,9 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./home.nix;
-
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+          home-manager.extraSpecialArgs = {
+            gitEmail = "emilioziniades@protonmail.com";
+          };
         }
       ];
     };

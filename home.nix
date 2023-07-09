@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  gitEmail,
+  ...
+}: let
   isPersonal = pkgs.system == "x86_64-darwin";
 in {
   home.stateVersion = "23.11";
@@ -105,10 +109,10 @@ in {
   programs.git = {
     enable = true;
     userName = "Emilio Ziniades";
-    userEmail =
-      if isPersonal
-      then "emilioziniades@protonmail.com"
-      else "emilioz@za.velocitytrade.com";
+    userEmail = gitEmail;
+    # if isPersonal
+    # then "emilioziniades@protonmail.com"
+    # else "emilioz@za.velocitytrade.com";
     aliases = {
       i = "init";
       s = "status";
