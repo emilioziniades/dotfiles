@@ -15,6 +15,7 @@
       tree
       ripgrep
       jq
+      yq
       diffutils
       wget
       flyctl
@@ -28,7 +29,9 @@
       nushell
       awscli2
       kubectl
+      zip
       unzip
+      make
 
       alejandra
 
