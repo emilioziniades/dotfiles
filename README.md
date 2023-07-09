@@ -64,4 +64,5 @@ From then on, you can run `switch`, an alias for the above.
 
 - [ ] set up VPN and ensure script works with new setup
 - [ ] set up i3wm
-- [ ] comb through existing dotfile scripts and config files, purging what isn't needed and updating nix config
+- [ ] set up all remaining secrets (remmina, awscli, kubectl)
+- [ ] create RedisInsight nixpkg
