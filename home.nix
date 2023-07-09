@@ -1,19 +1,9 @@
 {
   pkgs,
-  extraConfig,
+  emilioExtraConfig,
   ...
 }: {
   home.stateVersion = "23.11";
-  #TODO put this all into configuration.nix
-  # nix = {
-  #   package = pkgs.nix;
-  #   settings = {
-  #     build-users-group = "nixbld";
-  #     experimental-features = ["nix-command" "flakes"];
-  #   };
-  # };
-
-  manual.manpages.enable = true;
 
   home.packages = with pkgs;
     [
@@ -94,7 +84,7 @@
       gt = "go test";
       gtv = "go test -v .";
       cr = "cargo run";
-      switch = extraConfig.switchCommand;
+      switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
       EDITOR = "nvim";
@@ -112,7 +102,7 @@
   programs.git = {
     enable = true;
     userName = "Emilio Ziniades";
-    userEmail = extraConfig.gitEmail;
+    userEmail = emilioExtraConfig.gitEmail;
     aliases = {
       i = "init";
       s = "status";
@@ -126,7 +116,7 @@
     };
     extraConfig = {
       user = {
-        signingkey = extraConfig.gitGpgKey;
+        signingkey = emilioExtraConfig.gitGpgKey;
       };
       init = {
         defaultBranch = "main";
