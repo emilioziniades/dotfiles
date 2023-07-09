@@ -164,7 +164,7 @@
     escapeTime = 10;
     sensibleOnTop = false;
     plugins = with pkgs; [
-      tmuxPlugins.catppuccin
+      # tmuxPlugins.catppuccin
     ];
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
