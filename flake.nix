@@ -25,7 +25,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioz = import ./home.nix;
           home-manager.extraSpecialArgs = {
-            extraConfig = {
+            emilioExtraConfig = {
               gitEmail = "emilioz@za.velocitytrade.com";
               gitGpgKey = false;
               switchCommand = "sudo nixos-rebuild switch --flake $HOME/dotfiles";
@@ -45,7 +45,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./home.nix;
           home-manager.extraSpecialArgs = {
-            extraConfig = {
+            emilioExtraConfig = {
               gitEmail = "emilioziniades@protonmail.com";
               gitGpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
               switchCommand = "darwin-rebuild switch --flake $HOME/dotfiles";
