@@ -72,6 +72,8 @@
       remmina
       teams
       spotify
+      element-desktop
+      discord
     ];
 
   programs.home-manager.enable = true;
