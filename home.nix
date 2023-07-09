@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   emilioExtraConfig,
   ...
 }: {
@@ -198,12 +199,14 @@
     vimAlias = true;
   };
 
+  # TODO: find some way to express this as an attrset, and then convert to toml,
+  # instead of hand-writing the toml
   home.file.".config/tms/default-config.toml".text = ''
     search_paths = [
-        '/home/emilioz/code',
-        '/home/emilioz/work',
-        '/home/emilioz/personal',
-        '/home/emilioz/dotfiles',
+        '${config.home.homeDirectory}/code',
+        '${config.home.homeDirectory}/work',
+        '${config.home.homeDirectory}/personal',
+        '${config.home.homeDirectory}/dotfiles',
     ]
   '';
 }
