@@ -198,7 +198,7 @@
     vimAlias = true;
   };
 
-  home.file."~/.config/tms/default-config.toml".text = ''
+  home.file.".config/tms/default-config.toml".text = ''
     search_paths = [
         '/home/emilioz/code',
         '/home/emilioz/work',
