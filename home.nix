@@ -28,6 +28,7 @@
       nushell
       awscli2
       kubectl
+      unzip
 
       alejandra
 
