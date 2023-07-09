@@ -7,7 +7,6 @@
 # echo "Logging to $logfile"
 # exec 3>&2 2>$logfile
 # setopt XTRACE
-#
 
 PROMPT='%F{yellow}%~%f %F{blue}%#%f '
 
