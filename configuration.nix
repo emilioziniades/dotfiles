@@ -70,6 +70,11 @@
   programs.zsh.enable = true;
   environment.shells = [pkgs.zsh];
 
+  #TODO: curl not working
+  # environment.sessionVariables = {
+  #   CURL_CA_BUNDLE = /etc/ssl/certs/ca-bundle.crt;
+  # };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.emilioz = {
     isNormalUser = true;
@@ -78,6 +83,7 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       # handled by home-manager
+      # cacert
     ];
   };
 
