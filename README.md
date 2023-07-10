@@ -62,7 +62,5 @@ From then on, you can run `switch`, an alias for the above.
 
 # TODO
 
-- [ ] set up VPN and ensure script works with new setup
 - [ ] set up i3wm
-- [ ] set up all remaining secrets (remmina, awscli, kubectl)
-- [ ] create RedisInsight nixpkg
+- [ ] create RedisInsight nixpkg, and import connection strings
