@@ -2,6 +2,7 @@
   pkgs,
   config,
   emilioExtraConfig,
+  openfortivpn-cli,
   ...
 }: {
   home.stateVersion = "23.11";
@@ -34,6 +35,7 @@
       unzip
       gnumake
       tmux-sessionizer
+      xclip
 
       alejandra
 
@@ -74,6 +76,7 @@
       spotify
       element-desktop
       discord
+      openfortivpn-cli
     ];
 
   programs.home-manager.enable = true;
@@ -87,11 +90,15 @@
       c = "clear && tmux clear-history";
       py = "python";
       ipy = "ipython";
+      venv = "python -m venv venv";
+      activate = "source venv/bin/activate";
       ll = "ls -alh --color=always";
       gr = "go run";
       gt = "go test";
       gtv = "go test -v .";
       cr = "cargo run";
+      copy = "xclip -selection clipboard";
+      hist = "history | grep";
       switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
