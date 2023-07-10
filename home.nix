@@ -38,6 +38,7 @@
       xclip
 
       alejandra
+      manix
 
       go
       gopls
@@ -45,6 +46,7 @@
 
       (python311.withPackages
         (p: [
+          p.pip
           p.ipython
           p.requests
           p.numpy
