@@ -79,6 +79,7 @@
       element-desktop
       discord
       openfortivpn-cli
+      etcher
     ];
 
   programs.home-manager.enable = true;
