@@ -95,6 +95,7 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "nodejs-16.20.1"
+      "electron-12.2.3"
     ];
   };
   fonts.fonts = with pkgs; [
