@@ -2,20 +2,26 @@
   description = "Emilio's NixOS and Darwin configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    darwin.url = "github:lnl7/nix-darwin/master";
+    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+
+    darwin.url = github:lnl7/nix-darwin/master;
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+
+    home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    openfortivpn-cli.url = github:emilioziniades/openfortivpn-cli;
+    openfortivpn-cli.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
     darwin,
     nixpkgs,
     home-manager,
+    openfortivpn-cli,
     ...
   }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
@@ -30,6 +36,7 @@
               gitGpgKey = false;
               switchCommand = "sudo nixos-rebuild switch --flake $HOME/dotfiles";
             };
+            openfortivpn-cli = openfortivpn-cli.defaultPackage.${system};
           };
         }
       ];

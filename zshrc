@@ -18,47 +18,12 @@ export GPG_TTY=$(tty)
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
-mkcd() {
-    mkdir -p "$1" && cd "$1"
-}
-
-venv() {
-    python -m venv venv
-    source venv/bin/activate
-}
-
-activate() {
-    source venv/bin/activate
-}
-
-# git push current branch
-gpcb() {
-    git push -u origin $(git branch --show-current)
-}
-
-# git delete current branch
-gdcb() {
-    git push -d origin $(git branch --show-current)
-}
-
 ct() {
     cargo test $1 -- --nocapture --color=always
 }
 
-hist() {
-    history 0 | grep $1
-}
-
-vpn() {
-    ~/dotfiles/bin/vpn.sh $1 $2
-}
-
 time-startup() {
     time zsh -i -c echo
-}
-
-pbcopy() {
-    xclip -selection clipboard
 }
 
 # PATH 
