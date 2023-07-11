@@ -44,7 +44,7 @@ nix build ~/dotfiles\#darwinConfigurations.Emilios-MacBook-Pro.system
 
 From now on, configuration can be updated by runing `darwin-rebuild switch --flake ~/dotfiles`, which I have aliased to simply `switch`.
 
-# NixOS setup
+## NixOS setup
 
 Save a freshly generated version of `hardware-configuration.nix` into this repository. Commit the changes.
 
@@ -60,7 +60,7 @@ sudo nixos-rebuild switch --flake ~/dotfiles
 
 From then on, you can run `switch`, an alias for the above.
 
-# POP!\_OS standalone `home-manager` setup
+## POP!\_OS standalone `home-manager` setup
 
 Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
 
@@ -86,7 +86,7 @@ Run home manager manually the first time. Thereafter you can run the alias `swit
 home-manager switch --flake ~/dotfiles
 ```
 
-# TODO
+## TODO
 
 - [ ] set up i3wm
 - [ ] create RedisInsight nixpkg, and import connection strings
@@ -98,3 +98,7 @@ POP specific:
 - [ ] zsh as default shell using home-manager only
 - [ ] install fonts in home-manger
 - [ ] figure out why gui applications are not showing in POP launcher
+
+## NOTE
+
+So after a rash decision to put everything onto home-manager, I am aiming to switch over slowly to nix, adding things one at a time. The first thing I think I will include is `git`, since it is a simple enough program and the Ubuntu 22.04 git is pretty old.
