@@ -80,10 +80,18 @@ Install home-manager.
 nix run home-manager/master -- init --switch
 ```
 
-Run home manager manually the first time. Thereafter you can run the alias `switch`.
+Run home-manager manually the first time. Thereafter you can run the alias `switch`.
 
 ```
 home-manager switch --flake ~/dotfiles
+```
+
+Unfortunately, home-manager cannot handle system level configuration such as setting the default shell for users, as this requires root privileges. As a result,
+it is necessary to set `zsh` to the default shell manually.
+
+```
+command -v zsh | sudo tee -a /etc/shells
+chsh -s $(command -v zsh)
 ```
 
 ## TODO
@@ -94,11 +102,6 @@ home-manager switch --flake ~/dotfiles
 POP specific:
 
 - [ ] get dotnet working!
-- [ ] get VPN working!
-- [ ] zsh as default shell using home-manager only
-- [ ] install fonts in home-manger
+- [ ] get VPN working! (maybe try electron - since there is an issue with openGL on non-nixos linuxes)
+- [ ] install fonts in home-manger <https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=fira-code>
 - [ ] figure out why gui applications are not showing in POP launcher
-
-## NOTE
-
-So after a rash decision to put everything onto home-manager, I am aiming to switch over slowly to nix, adding things one at a time. The first thing I think I will include is `git`, since it is a simple enough program and the Ubuntu 22.04 git is pretty old.
