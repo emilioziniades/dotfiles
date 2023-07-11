@@ -20,83 +20,85 @@
     ];
   };
 
-  home.packages = with pkgs;
-    [
-      htop
-      fd
-      fzf
-      exa
-      bat
-      tree
-      ripgrep
-      jq
-      yq
-      diffutils
-      wget
-      flyctl
-      gh
-      timewarrior
-      gnupg
-      postgresql_15
-      nushell
-      awscli2
-      kubectl
-      zip
-      unzip
-      gnumake
-      tmux-sessionizer
-      xclip
-      # imagemagick
-      # tor
-      # pandoc
+  home.packages = with pkgs; [
+    htop
+    fd
+    fzf
+    exa
+    bat
+    tree
+    ripgrep
+    jq
+    yq
+    diffutils
+    wget
+    flyctl
+    gh
+    timewarrior
+    gnupg
+    postgresql_15
+    nushell
+    awscli2
+    kubectl
+    zip
+    unzip
+    gnumake
+    tmux-sessionizer
+    xclip
+    # imagemagick
+    # tor
+    # pandoc
 
-      alejandra
-      manix
+    # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
+    # openfortivpn-cli
 
-      # rustc
-      # cargo
+    alejandra
+    manix
 
-      # go
-      # gopls
-      # gotools
+    # rustc
+    # cargo
 
-      # (python311.withPackages
-      #   (p: [
-      #     p.pip
-      #     p.ipython
-      #     p.requests
-      #     p.numpy
-      #     p.pandas
-      #     p.seaborn
-      #   ]))
-      #
-      # lua
-      # stylua
-      # lua-language-server
+    # go
+    # gopls
+    # gotools
 
-      gcc11
+    # (python311.withPackages
+    #   (p: [
+    #     p.pip
+    #     p.ipython
+    #     p.requests
+    #     p.numpy
+    #     p.pandas
+    #     p.seaborn
+    #   ]))
+    #
+    # lua
+    # stylua
+    # lua-language-server
 
-      nodejs_16
-      nodePackages.pyright
+    gcc11
 
-      # (with dotnetCorePackages;
-      #   combinePackages [
-      #     sdk_6_0
-      #     sdk_7_0
-      #   ])
-    ]
-    # ++ lib.optionals pkgs.stdenv.isLinux [
-      # firefox
-      # obsidian
-      # mongodb-compass
-      # remmina
-      # teams
-      # spotify
-      # element-desktop
-      # discord
-      # openfortivpn-cli
-      # etcher
-    # ];
+    nodejs_16
+    nodePackages.pyright
+    nodePackages.prettier
+
+    # (with dotnetCorePackages;
+    #   combinePackages [
+    #     sdk_6_0
+    #     sdk_7_0
+    #   ])
+  ];
+  # ++ lib.optionals pkgs.stdenv.isLinux [
+  # firefox
+  # obsidian
+  # mongodb-compass
+  # remmina
+  # teams
+  # spotify
+  # element-desktop
+  # discord
+  # etcher
+  # ];
 
   programs.home-manager.enable = true;
 
