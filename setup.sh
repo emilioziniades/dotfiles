@@ -15,9 +15,16 @@ setup_debian() {
         zip \
         tmux \
         fzf \
-        jq
+        jq \
+        python3-pip \
+        tree
 
-    ln -s $(which fdfind) ~/.local/bin/fd
+    LOCALBIN=~/.local/bin
+    mkdir -p $LOCALBIN
+    if [ ! -L $LOCALBIN/fd ]; then
+        ln -s $(which fdfind) $LOCALBIN/fd
+    fi
+
 
     $SCRIPT_DIR/bin/install_neovim.sh
 
@@ -66,7 +73,6 @@ setup() {
     then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
         ~/.tmux/plugins/tpm/bin/install_plugins
-    else
     fi
 
 
