@@ -135,6 +135,7 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/Users/emilioziniades/.dotnet/tools"
 export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
 export DOTNET_ROOT=$HOME/.dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # ruby
 if command -v gem &> /dev/null
