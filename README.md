@@ -60,7 +60,41 @@ sudo nixos-rebuild switch --flake ~/dotfiles
 
 From then on, you can run `switch`, an alias for the above.
 
+# POP!\_OS standalone `home-manager` setup
+
+Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
+
+```
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+For some reason, the above installer does not create the following directory, so create it.
+
+```
+mkdir -p ~/.local/state/nix/profiles
+```
+
+Install home-manager.
+
+```
+nix run home-manager/master -- init --switch
+```
+
+Run home manager manually the first time. Thereafter you can run the alias `switch`.
+
+```
+home-manager switch --flake ~/dotfiles
+```
+
 # TODO
 
 - [ ] set up i3wm
 - [ ] create RedisInsight nixpkg, and import connection strings
+
+POP specific:
+
+- [ ] get dotnet working!
+- [ ] get VPN working!
+- [ ] zsh as default shell using home-manager only
+- [ ] install fonts in home-manger
+- [ ] figure out why gui applications are not showing in POP launcher

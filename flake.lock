@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688973178,
-        "narHash": "sha256-nsIzOjD3v5zuozWeUvifEQ778C8cLMqW5ga5cfrmxAA=",
+        "lastModified": 1688999459,
+        "narHash": "sha256-b0rFzeHWXGq2rrx+W93I1Lpb0HFq0T5Pfx7QLVcZ/jE=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "90ae979e352d241a86b73f8c7193bf7f749f37e4",
+        "rev": "83620edf499ba8033ad43d4f5edc50fdf3eeee5f",
         "type": "github"
       },
       "original": {
@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688892808,
-        "narHash": "sha256-AeWzyG37EqyHH2C1GmrV9y0ZQ4e7rAs9AUOnw8I4YUI=",
+        "lastModified": 1688999869,
+        "narHash": "sha256-gLD2UI6+Nb9JV5Wh4FnLHAZwLMiY11RHYBKmBZCxLXc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b70db52ff06f30e3de7f21b6ea47e75baa0c46f6",
+        "rev": "a6d1d954b81caf4c9291b8ac35452fef842f289b",
         "type": "github"
       },
       "original": {
@@ -84,11 +84,11 @@
         "openfortivpn-webview": "openfortivpn-webview"
       },
       "locked": {
-        "lastModified": 1688985936,
-        "narHash": "sha256-BAU121rssfAtyMTUnwXVF0oaukUDbZP1ActLv9p+ZHc=",
+        "lastModified": 1688986731,
+        "narHash": "sha256-lUoaSF+2sWnipCBVXGk6O4gn80PNJkYV0cO9jWf94Bw=",
         "owner": "emilioziniades",
         "repo": "openfortivpn-cli",
-        "rev": "cdc549f555b1e41a58cbe08fb8be54170c61725d",
+        "rev": "362d451bd0a4392f8babcb7bef464424a2980d5a",
         "type": "github"
       },
       "original": {

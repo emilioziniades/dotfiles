@@ -5,6 +5,7 @@
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # todo: does this belong in here, or home.nix?
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [

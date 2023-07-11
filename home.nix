@@ -7,6 +7,19 @@
 }: {
   home.stateVersion = "23.11";
 
+  home.username = emilioExtraConfig.username;
+  home.homeDirectory = emilioExtraConfig.homeDirectory;
+
+  nixpkgs.config = {
+    #allowUnfree = true;
+    # see for below voodoo: https://github.com/nix-community/home-manager/issues/2942
+    allowUnfreePredicate = _: true;
+    permittedInsecurePackages = [
+      "electron-12.2.3"
+      "nodejs-16.20.1"
+    ];
+  };
+
   home.packages = with pkgs;
     [
       htop
@@ -39,6 +52,9 @@
 
       alejandra
       manix
+
+      # rustc
+      # cargo
 
       go
       gopls
