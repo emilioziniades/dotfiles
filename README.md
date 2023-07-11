@@ -1,6 +1,6 @@
 # dotfiles
 
-Before setting up either MacOS or NixOS, you will need to clone these dotfiles.
+Before setting up MacOS, NixOS or POP!\_OS, you will need to clone these dotfiles.
 
 If you are on NixOS, you will need to setup a nix shell with git to bootstrap the process. Vim might come in handy as well.
 
