@@ -17,6 +17,7 @@ export GPG_TTY=$(tty)
 
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 ct() {
     cargo test $1 -- --nocapture --color=always
@@ -26,12 +27,9 @@ time-startup() {
     time zsh -i -c echo
 }
 
-# PATH 
-
-#rust
-if [[ -f "$HOME/.cargo/env" ]]; then
-    source "$HOME/.cargo/env"
-fi
+hist() {
+    history 0 | grep $1
+}
 
 # STARTUP PROFILING
 
