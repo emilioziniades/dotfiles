@@ -17,6 +17,7 @@ setup_debian() {
         fzf \
         jq \
         python3-pip \
+        python3.10-venv \
         tree
 
     LOCALBIN=~/.local/bin
