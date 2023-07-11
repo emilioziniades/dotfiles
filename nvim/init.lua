@@ -6,6 +6,8 @@ TODO:
 - csharp
     - filter out dll's more
     - add ability to debug tests
+- nix
+    - tidy up mason/remove installers, and consider handling them in nix
 ]]
 
 -- SETTINGS
@@ -102,6 +104,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.rustfmt,
 				null_ls.builtins.formatting.csharpier,
+				null_ls.builtins.formatting.alejandra,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -646,6 +649,7 @@ require("lazy").setup({
 					"bash",
 					"dockerfile",
 					"json",
+					"nix",
 				},
 			})
 
@@ -720,7 +724,7 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1000,
 	},
-})
+}, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
 -- KEYMAPS
 
