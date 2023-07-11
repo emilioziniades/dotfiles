@@ -37,10 +37,7 @@
       gh
       timewarrior
       gnupg
-      imagemagick
       postgresql_15
-      tor
-      pandoc
       nushell
       awscli2
       kubectl
@@ -49,6 +46,9 @@
       gnumake
       tmux-sessionizer
       xclip
+      # imagemagick
+      # tor
+      # pandoc
 
       alejandra
       manix
@@ -56,47 +56,47 @@
       # rustc
       # cargo
 
-      go
-      gopls
-      gotools
+      # go
+      # gopls
+      # gotools
 
-      (python311.withPackages
-        (p: [
-          p.pip
-          p.ipython
-          p.requests
-          p.numpy
-          p.pandas
-          p.seaborn
-        ]))
-
-      lua
-      stylua
-      lua-language-server
+      # (python311.withPackages
+      #   (p: [
+      #     p.pip
+      #     p.ipython
+      #     p.requests
+      #     p.numpy
+      #     p.pandas
+      #     p.seaborn
+      #   ]))
+      #
+      # lua
+      # stylua
+      # lua-language-server
 
       gcc11
 
       nodejs_16
       nodePackages.pyright
 
-      (with dotnetCorePackages;
-        combinePackages [
-          sdk_6_0
-          sdk_7_0
-        ])
+      # (with dotnetCorePackages;
+      #   combinePackages [
+      #     sdk_6_0
+      #     sdk_7_0
+      #   ])
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
-      firefox
-      obsidian
-      mongodb-compass
-      remmina
-      teams
-      spotify
-      element-desktop
-      discord
-      openfortivpn-cli
-      etcher
-    ];
+    # ++ lib.optionals pkgs.stdenv.isLinux [
+      # firefox
+      # obsidian
+      # mongodb-compass
+      # remmina
+      # teams
+      # spotify
+      # element-desktop
+      # discord
+      # openfortivpn-cli
+      # etcher
+    # ];
 
   programs.home-manager.enable = true;
 
