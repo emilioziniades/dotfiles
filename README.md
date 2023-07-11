@@ -87,7 +87,7 @@ home-manager switch --flake ~/dotfiles
 ```
 
 Unfortunately, home-manager cannot handle system level configuration such as setting the default shell for users, as this requires root privileges. As a result,
-it is necessary to set `zsh` to the default shell manually.
+it is necessary to set the nix-installed `zsh` to the default shell manually.
 
 ```
 command -v zsh | sudo tee -a /etc/shells
