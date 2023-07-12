@@ -83,11 +83,11 @@
     nodePackages.pyright
     nodePackages.prettier
 
-    # (with dotnetCorePackages;
-    #   combinePackages [
-    #     sdk_6_0
-    #     sdk_7_0
-    #   ])
+    (with dotnetCorePackages;
+      combinePackages [
+        sdk_6_0
+        sdk_7_0
+      ])
   ];
   # ++ lib.optionals pkgs.stdenv.isLinux [
   # firefox
