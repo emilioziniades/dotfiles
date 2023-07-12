@@ -21,6 +21,7 @@
   };
 
   home.packages = with pkgs; [
+    curl
     htop
     fd
     fzf
