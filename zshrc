@@ -27,10 +27,6 @@ time-startup() {
     time zsh -i -c echo
 }
 
-hist() {
-    history 0 | grep $1
-}
-
 # STARTUP PROFILING
 
 # unsetopt XTRACE
