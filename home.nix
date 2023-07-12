@@ -119,7 +119,7 @@
       gtv = "go test -v .";
       cr = "cargo run";
       copy = "xclip -selection clipboard";
-      hist = "history | grep";
+      hist = "history 0 | fzf --tac";
       switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
@@ -133,6 +133,7 @@
       size = 10000;
     };
     initExtra = builtins.readFile ./zshrc;
+    syntaxHighlighting.enable = true;
   };
 
   programs.git = {
