@@ -20,86 +20,87 @@
     ];
   };
 
-  home.packages = with pkgs; [
-    curl
-    htop
-    fd
-    fzf
-    exa
-    bat
-    tree
-    ripgrep
-    jq
-    yq
-    diffutils
-    wget
-    flyctl
-    gh
-    timewarrior
-    gnupg
-    postgresql_15
-    nushell
-    awscli2
-    kubectl
-    zip
-    unzip
-    gnumake
-    tmux-sessionizer
-    xclip
-    # imagemagick
-    # tor
-    # pandoc
+  home.packages = with pkgs;
+    [
+      curl
+      htop
+      fd
+      fzf
+      exa
+      bat
+      tree
+      ripgrep
+      jq
+      yq
+      diffutils
+      wget
+      flyctl
+      gh
+      timewarrior
+      gnupg
+      postgresql_15
+      nushell
+      awscli2
+      kubectl
+      zip
+      unzip
+      gnumake
+      tmux-sessionizer
+      xclip
+      # imagemagick
+      # tor
+      # pandoc
 
-    # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
-    # openfortivpn-cli
+      # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
+      # openfortivpn-cli
 
-    alejandra
-    manix
+      alejandra
+      manix
 
-    # rustc
-    # cargo
+      # rustc
+      # cargo
 
-    go
-    gopls
-    gotools
+      go
+      gopls
+      gotools
 
-    # (python311.withPackages
-    #   (p: [
-    #     p.pip
-    #     p.ipython
-    #     p.requests
-    #     p.numpy
-    #     p.pandas
-    #     p.seaborn
-    #   ]))
-    #
-    # lua
-    # stylua
-    # lua-language-server
+      # (python311.withPackages
+      #   (p: [
+      #     p.pip
+      #     p.ipython
+      #     p.requests
+      #     p.numpy
+      #     p.pandas
+      #     p.seaborn
+      #   ]))
+      #
+      # lua
+      # stylua
+      # lua-language-server
 
-    gcc11
+      gcc11
 
-    nodejs_16
-    nodePackages.pyright
-    nodePackages.prettier
+      nodejs_16
+      nodePackages.pyright
+      nodePackages.prettier
 
-    (with dotnetCorePackages;
-      combinePackages [
-        sdk_6_0
-        sdk_7_0
-      ])
-  ];
-  # ++ lib.optionals pkgs.stdenv.isLinux [
-  # firefox
-  # obsidian
-  # mongodb-compass
-  # remmina
-  # teams
-  # spotify
-  # element-desktop
-  # discord
-  # etcher
-  # ];
+      (with dotnetCorePackages;
+        combinePackages [
+          sdk_6_0
+          sdk_7_0
+        ])
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      # firefox
+      # obsidian
+      # mongodb-compass
+      # remmina
+      # teams
+      # spotify
+      # element-desktop
+      # discord
+      # etcher
+    ];
 
   programs.home-manager.enable = true;
 
