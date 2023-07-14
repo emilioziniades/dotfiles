@@ -84,11 +84,11 @@
       nodePackages.pyright
       nodePackages.prettier
 
-      (with dotnetCorePackages;
-        combinePackages [
-          sdk_6_0
-          sdk_7_0
-        ])
+      # (with dotnetCorePackages;
+      #   combinePackages [
+      #     sdk_6_0
+      #     sdk_7_0
+      #   ])
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # firefox
@@ -121,7 +121,8 @@
       gtv = "go test -v .";
       cr = "cargo run";
       copy = "xclip -selection clipboard";
-      hist = "history 0 | fzf --tac | sed 's/^\s\+[0-9]\+\s\+//' | bash";
+      # TODO: fix this guy - check home-manager config for zsh builtins
+      hist = "history 0 | fzf --tac | sed 's/^\s*[0-9]*\s*//' | bash";
       switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
