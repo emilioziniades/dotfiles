@@ -121,7 +121,7 @@
       gtv = "go test -v .";
       cr = "cargo run";
       copy = "xclip -selection clipboard";
-      hist = "history 0 | fzf --tac";
+      hist = "history 0 | fzf --tac | sed 's/^\s\+[0-9]\+\s\+//' | bash";
       switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
