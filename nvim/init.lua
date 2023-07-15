@@ -719,6 +719,10 @@ require("lazy").setup({
 		"catppuccin/nvim",
 		name = "catppuccin",
 		config = function()
+			-- TODO: italics are messing up syntax highlighting in macos tmux, why?!
+			require("catppuccin").setup({
+				no_italic = true,
+			})
 			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 		lazy = false,
