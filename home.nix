@@ -47,6 +47,7 @@
       gnumake
       tmux-sessionizer
       xclip
+      just
       # imagemagick
       # tor
       # pandoc
@@ -57,8 +58,10 @@
       alejandra
       manix
 
-      # rustc
-      # cargo
+      #TODO: how tf do I package rust projects
+      rustup
+      llvmPackages.bintools
+      sqlx-cli
 
       go
       gopls
@@ -78,7 +81,7 @@
       # stylua
       # lua-language-server
 
-      gcc11
+      # gcc11
 
       nodejs_16
       nodePackages.pyright
