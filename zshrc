@@ -27,6 +27,11 @@ time-startup() {
     time zsh -i -c echo
 }
 
+#rust
+if [[ -f "$HOME/.cargo/env" ]]; then
+    source "$HOME/.cargo/env"
+fi
+
 # STARTUP PROFILING
 
 # unsetopt XTRACE
