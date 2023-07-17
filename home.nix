@@ -25,7 +25,6 @@
       curl
       htop
       fd
-      fzf
       exa
       bat
       tree
@@ -124,8 +123,6 @@
       gtv = "go test -v .";
       cr = "cargo run";
       copy = "xclip -selection clipboard";
-      # TODO: fix this guy - check home-manager config for zsh builtins
-      hist = "history 0 | fzf --tac | sed 's/^\s*[0-9]*\s*//' | bash";
       switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
@@ -237,6 +234,11 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # TODO: find some way to express this as an attrset, and then convert to toml,
