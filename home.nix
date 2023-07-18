@@ -82,9 +82,9 @@
 
       # gcc11
 
-      # nodejs_16
-      # nodePackages.pyright
-      # nodePackages.prettier
+      nodejs_16
+      nodePackages.pyright
+      nodePackages.prettier
 
       # (with dotnetCorePackages;
       #   combinePackages [
