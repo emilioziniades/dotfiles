@@ -113,15 +113,7 @@
       t = "tmux";
       k = "kubectl";
       c = "clear && tmux clear-history";
-      py = "python";
-      ipy = "ipython";
-      venv = "python -m venv venv";
-      activate = "source venv/bin/activate";
       ll = "ls -alh --color=always";
-      gr = "go run";
-      gt = "go test";
-      gtv = "go test -v .";
-      cr = "cargo run";
       copy = "xclip -selection clipboard";
       ls = "exa";
       cat = "bat";
