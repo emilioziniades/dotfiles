@@ -153,6 +153,8 @@
       a = "add";
       c = "commit";
       p = "push";
+      ls = "exa";
+      cat = "bat";
     };
     extraConfig = {
       user = {
