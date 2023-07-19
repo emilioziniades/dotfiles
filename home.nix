@@ -123,6 +123,9 @@
       gtv = "go test -v .";
       cr = "cargo run";
       copy = "xclip -selection clipboard";
+      ls = "exa";
+      cat = "bat";
+      find = "fd";
       switch = emilioExtraConfig.switchCommand;
     };
     sessionVariables = {
@@ -153,8 +156,6 @@
       a = "add";
       c = "commit";
       p = "push";
-      ls = "exa";
-      cat = "bat";
     };
     extraConfig = {
       user = {
