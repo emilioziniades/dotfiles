@@ -810,6 +810,6 @@ set_filetype_options(
 	{ tabstop = 2, shiftwidth = 2 }
 )
 
-set_filetype_options("GolangFile", { "*.go" }, { tabstop = 8 })
+set_filetype_options("GolangFile", { "*.go" }, { tabstop = 8, shiftwidth = 8 })
 
 set_filetype_options("MdxFile", { "*.mdx" }, { filetype = "markdown" })
