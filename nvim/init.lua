@@ -220,6 +220,7 @@ require("lazy").setup({
 		keys = {
 			{ "<leader>g", "<cmd>Git<cr>" },
 		},
+		lazy = false,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
