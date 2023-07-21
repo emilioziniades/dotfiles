@@ -407,12 +407,6 @@ require("lazy").setup({
 							["<C-j>"] = require("telescope.actions").move_selection_next,
 							["<C-k>"] = require("telescope.actions").move_selection_previous,
 							["<C-s>"] = require("telescope.actions.layout").toggle_preview,
-							["<C-p>"] = function()
-								print("Use <C-k> instead")
-							end,
-							["<C-n>"] = function()
-								print("Use <C-j> instead")
-							end,
 						},
 					},
 					preview = {
