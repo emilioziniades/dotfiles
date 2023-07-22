@@ -108,15 +108,14 @@ require("lazy").setup({
 			}
 			null_ls.setup({
 				sources = sources,
-				on_attach = function(client, bufnr)
+				on_attach = function(client)
 					if client.server_capabilities.documentFormattingProvider then
-						vim.api.nvim_create_autocmd("BufWritePost", {
-							group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({ timeout_ms = 1500 })
-							end,
-						})
+						-- TODO: make this lua autocommand
+						vim.cmd([[
+                        augroup LspFormatting
+                            autocmd! * <buffer>
+                            autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 1500 })
+                        augroup END ]])
 					end
 				end,
 			})
