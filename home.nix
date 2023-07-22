@@ -210,8 +210,10 @@
 
       # manually source catpuccin plugin after options are applied
       set -g @catppuccin_window_tabs_enabled on
-      set -g @catppuccin_left_separator "█"
-      set -g @catppuccin_right_separator "█"
+      set -g @catppuccin_l_right_separator "█"
+      set -g @catppuccin_r_right_separator "█"
+      set -g @catppuccin_l_left_separator "█"
+      set -g @catppuccin_r_left_separator "█"
       run-shell ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
 
       bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded ~/.config/tmux/tmux.conf"
