@@ -110,10 +110,8 @@ require("lazy").setup({
 				sources = sources,
 				on_attach = function(client, bufnr)
 					if client.server_capabilities.documentFormattingProvider then
-						vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-						vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "LspFormatting" })
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = "LspFormatting",
+						vim.api.nvim_create_autocmd("BufWritePost", {
+							group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
 							buffer = bufnr,
 							callback = function()
 								vim.lsp.buf.format({ timeout_ms = 1500 })
