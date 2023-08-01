@@ -154,7 +154,7 @@
         signingkey = emilioExtraConfig.gitGpgKey;
       };
       init = {
-        defaultBranch = "main";
+        defaultBranch = emilioExtraConfig.gitDefaultBranch;
       };
       core = {
         editor = "nvim";
