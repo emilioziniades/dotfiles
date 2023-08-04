@@ -15,6 +15,9 @@ bindkey '^[[1;5C' forward-word
 
 export GPG_TTY=$(tty)
 
+export GOPATH=$HOME/go/bin
+export PATH="$GOPATH:$PATH"
+
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
