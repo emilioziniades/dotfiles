@@ -105,6 +105,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.rustfmt,
 				null_ls.builtins.formatting.csharpier,
 				null_ls.builtins.formatting.alejandra,
+				null_ls.builtins.formatting.djlint,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -772,6 +773,14 @@ local function test_file()
 end
 
 vim.keymap.set("n", "<leader>rt", test_file)
+
+-- FILETYPE DETECTION
+
+vim.filetype.add({
+	pattern = {
+		[".*.html.jinja"] = "jinja.html",
+	},
+})
 
 -- AUTOCOMMANDS
 
