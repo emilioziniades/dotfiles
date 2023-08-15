@@ -47,6 +47,7 @@
       tmux-sessionizer
       xclip
       just
+      hey
       # imagemagick
       # tor
       # pandoc
