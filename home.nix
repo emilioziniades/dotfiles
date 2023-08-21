@@ -16,7 +16,7 @@
     allowUnfreePredicate = _: true;
     permittedInsecurePackages = [
       "electron-12.2.3"
-      "nodejs-16.20.1"
+      "nodejs-16.20.2"
     ];
   };
 
