@@ -38,6 +38,7 @@
       timewarrior
       gnupg
       postgresql_15
+      pgformatter
       nushell
       awscli2
       kubectl
