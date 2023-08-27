@@ -49,6 +49,7 @@
       xclip
       just
       hey
+      nmap
       # imagemagick
       # tor
       # pandoc
