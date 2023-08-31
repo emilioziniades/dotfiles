@@ -69,16 +69,17 @@
       gopls
       gotools
 
-      # (python311.withPackages
-      #   (p: [
-      #     p.pip
-      #     p.ipython
-      #     p.requests
-      #     p.numpy
-      #     p.pandas
-      #     p.seaborn
-      #   ]))
-      #
+      (python311.withPackages
+        (p: [
+          p.pip
+          p.ipython
+          p.requests
+          p.numpy
+          p.pandas
+          p.seaborn
+        ]))
+      poetry
+
       # lua
       # stylua
       # lua-language-server
