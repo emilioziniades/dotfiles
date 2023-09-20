@@ -106,6 +106,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.csharpier,
 				null_ls.builtins.formatting.alejandra,
 				null_ls.builtins.formatting.djlint,
+				null_ls.builtins.formatting.terraform_fmt,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -646,6 +647,7 @@ require("lazy").setup({
 					"dockerfile",
 					"json",
 					"nix",
+					"terraform",
 				},
 			})
 
