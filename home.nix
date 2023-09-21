@@ -50,6 +50,8 @@
       just
       hey
       nmap
+      packer
+      terraform
       # imagemagick
       # tor
       # pandoc
