@@ -52,6 +52,7 @@
       nmap
       packer
       terraform
+      shfmt
       # imagemagick
       # tor
       # pandoc
