@@ -65,7 +65,7 @@
 
       #TODO: how tf do I package rust projects
       rustup
-      # llvmPackages.bintools
+      llvmPackages.bintools
       sqlx-cli
 
       go
@@ -87,7 +87,7 @@
       # stylua
       # lua-language-server
 
-      gcc11
+      # gcc11
 
       nodejs_16
       nodePackages.pyright
