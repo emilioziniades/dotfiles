@@ -107,6 +107,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.alejandra,
 				null_ls.builtins.formatting.djlint,
 				null_ls.builtins.formatting.terraform_fmt,
+				null_ls.builtins.formatting.shfmt,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -648,6 +649,7 @@ require("lazy").setup({
 					"json",
 					"nix",
 					"terraform",
+					"cooklang",
 				},
 			})
 
