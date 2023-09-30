@@ -665,14 +665,21 @@ require("lazy").setup({
 	-- show indents
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
 		opts = {
-			char = "┊",
-			space_char_blankline = " ",
-			show_current_context = true,
-			show_current_context_start = false,
-			show_trailing_blankline_indent = false,
-			filetype_exclude = { "help", "packer" },
-			buftype_exclude = { "terminal", "nofile" },
+			indent = {
+				char = "┊",
+			},
+			exclude = {
+				filetypes = {
+					"help",
+					"packer",
+				},
+				buftypes = {
+					"terminal",
+					"nofile",
+				},
+			},
 		},
 	},
 
