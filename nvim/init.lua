@@ -670,6 +670,9 @@ require("lazy").setup({
 			indent = {
 				char = "┊",
 			},
+			scope = {
+				show_start = false,
+			},
 			exclude = {
 				filetypes = {
 					"help",
