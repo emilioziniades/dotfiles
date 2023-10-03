@@ -672,6 +672,7 @@ require("lazy").setup({
 			},
 			scope = {
 				show_start = false,
+				show_end = false,
 			},
 			exclude = {
 				filetypes = {
