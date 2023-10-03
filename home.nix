@@ -25,7 +25,7 @@
       curl
       htop
       fd
-      exa
+      eza
       bat
       tree
       ripgrep
@@ -122,7 +122,7 @@
       c = "clear && tmux clear-history";
       ll = "ls -alh --color=always";
       copy = "xclip -selection clipboard";
-      ls = "exa";
+      ls = "eza";
       cat = "bat";
       find = "fd";
       switch = emilioExtraConfig.switchCommand;
