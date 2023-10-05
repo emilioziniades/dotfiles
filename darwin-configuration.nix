@@ -30,7 +30,6 @@
       "obsidian"
       "openemu"
       "qbittorrent"
-      "roboform"
       "signal"
       "slack"
       "spotify"
