@@ -649,6 +649,7 @@ require("lazy").setup({
 					"json",
 					"nix",
 					"terraform",
+					"hcl",
 					"cooklang",
 				},
 			})
