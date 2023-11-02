@@ -651,6 +651,7 @@ require("lazy").setup({
 					"terraform",
 					"hcl",
 					"cooklang",
+					"groovy",
 				},
 			})
 
