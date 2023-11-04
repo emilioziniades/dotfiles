@@ -4,7 +4,7 @@
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.sandbox = true;
+  nix.settings.sandbox = false;
 
   # todo: does this belong in here, or home.nix?
   nixpkgs.config = {
