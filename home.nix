@@ -98,6 +98,11 @@
       #     sdk_6_0
       #     sdk_7_0
       #   ])
+
+      ghc
+      haskell-language-server
+      haskellPackages.stack
+      haskellPackages.fourmolu
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # firefox
