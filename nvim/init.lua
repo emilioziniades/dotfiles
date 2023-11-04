@@ -108,6 +108,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.djlint,
 				null_ls.builtins.formatting.terraform_fmt,
 				null_ls.builtins.formatting.shfmt,
+				null_ls.builtins.formatting.fourmolu,
 			}
 			null_ls.setup({
 				sources = sources,
@@ -168,6 +169,11 @@ require("lazy").setup({
 			})
 
 			lspconfig.rust_analyzer.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			lspconfig.hls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
@@ -652,6 +658,7 @@ require("lazy").setup({
 					"hcl",
 					"cooklang",
 					"groovy",
+					"haskell",
 				},
 			})
 
