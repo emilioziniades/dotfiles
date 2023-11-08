@@ -33,32 +33,32 @@
       yq
       diffutils
       wget
-      flyctl
-      gh
-      timewarrior
       gnupg
-      postgresql_15
-      pgformatter
-      nushell
-      awscli2
-      kubectl
       zip
       unzip
       gnumake
-      tmux-sessionizer
       xclip
       just
       hey
       nmap
-      packer
-      terraform
-      shfmt
+      nushell
+      tmux-sessionizer
+      watchexec
+      timewarrior
+      flyctl
+      gh
+      awscli2
+      kubectl
+      postgresql_15
+      pgformatter
       # imagemagick
       # tor
       # pandoc
 
       # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
       # openfortivpn-cli
+
+      shfmt
 
       alejandra
       manix
@@ -98,6 +98,9 @@
       #     sdk_6_0
       #     sdk_7_0
       #   ])
+
+      packer
+      terraform
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # firefox
