@@ -101,6 +101,11 @@
 
       packer
       terraform
+
+      ghc
+      haskell-language-server
+      haskellPackages.stack
+      haskellPackages.fourmolu
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # firefox
