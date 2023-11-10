@@ -101,6 +101,7 @@
 
       packer
       terraform
+      terraform-lsp
 
       ghc
       haskell-language-server
