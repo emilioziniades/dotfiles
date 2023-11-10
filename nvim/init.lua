@@ -178,7 +178,7 @@ require("lazy").setup({
 				capabilities = capabilities,
 			})
 
-			lspconfig.terraform_lsp.setup({
+			lspconfig.terraformls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
