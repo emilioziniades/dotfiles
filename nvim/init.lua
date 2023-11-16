@@ -178,6 +178,11 @@ require("lazy").setup({
 				capabilities = capabilities,
 			})
 
+			lspconfig.terraformls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
 			lspconfig.csharp_ls.setup({
 				root_dir = function(startpath)
 					return lspconfig.util.root_pattern("*.sln")(startpath)
