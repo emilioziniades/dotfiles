@@ -37,6 +37,7 @@
       zip
       unzip
       gnumake
+      mktemp
       xclip
       just
       hey
