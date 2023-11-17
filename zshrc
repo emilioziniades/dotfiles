@@ -1,12 +1,4 @@
-# STARTUP PROFILING
-
-# zmodload zsh/datetime
-# setopt PROMPT_SUBST
-# PS4='+$EPOCHREALTIME %N:%i> '
-# logfile=$(mktemp zsh_profile.XXXXXXXX)
-# echo "Logging to $logfile"
-# exec 3>&2 2>$logfile
-# setopt XTRACE
+# if you want to profile zsh startup times, see: https://esham.io/2018/02/zsh-profiling
 
 PROMPT='%F{yellow}%~%f %F{blue}%#%f '
 
@@ -22,20 +14,4 @@ export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-ct() {
-    cargo test $1 -- --nocapture --color=always
-}
-
-time-startup() {
-    time zsh -i -c echo
-}
-
-#rust
-if [[ -f "$HOME/.cargo/env" ]]; then
-    source "$HOME/.cargo/env"
-fi
-
-# STARTUP PROFILING
-
-# unsetopt XTRACE
-# exec 2>&3 3>&-
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
