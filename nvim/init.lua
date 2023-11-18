@@ -7,7 +7,9 @@ TODO:
     - filter out dll's more
     - add ability to debug tests
 - nix
-    - tidy up mason/remove installers, and consider handling them in nix
+    - tidy up mason/remove installers, and consider handling them in nix. This is possible already, but three of the mason-installed
+    binaries are not in nixpkgs: csharpier, csharp_ls, and codelldb. The first two are easy and can be packaged with existing dotnet
+    tooling in nixpkgs. See this PR: https://github.com/NixOS/nixpkgs/pull/235041, this example: https://github.com/NixOS/nixpkgs/tree/master/pkgs/development/tools/fsautocomplete, and these docs: https://ryantm.github.io/nixpkgs/languages-frameworks/dotnet/
 ]]
 
 -- SETTINGS
