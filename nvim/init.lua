@@ -816,4 +816,4 @@ set_filetype_options("GolangFile", { "*.go" }, { tabstop = 8, shiftwidth = 8 })
 
 set_filetype_options("MdxFile", { "*.mdx" }, { filetype = "markdown" })
 set_filetype_options("TerraformFile", { "*.tf" }, { filetype = "terraform" })
-set_filetype_options("TerraformFile", { "Jenkinsfile" }, { filetype = "groovy" })
+set_filetype_options("JenkinsFile", { "Jenkinsfile" }, { filetype = "groovy" })
