@@ -774,32 +774,6 @@ vim.keymap.set("n", "<leader>n", function()
 	vim.o.relativenumber = not vim.o.relativenumber
 end)
 
-local function run_file()
-	local ft = vim.bo.filetype
-	local run_cmds = {
-		["python"] = [[! echo \\n &&  python %]],
-		["go"] = "!go run %",
-		["javascript"] = [[! echo \\n && node %]],
-		["rust"] = "!cargo run",
-	}
-	vim.cmd(run_cmds[ft])
-end
-
-vim.keymap.set("n", "<leader>rr", run_file)
-
-local function test_file()
-	local filename = vim.fn.expand("%:t")
-	filename = string.gsub(filename, ".rs", "")
-	print(filename)
-	local ft = vim.bo.filetype
-	local run_cmds = {
-		["rust"] = "!cargo test " .. filename,
-	}
-	vim.cmd(run_cmds[ft])
-end
-
-vim.keymap.set("n", "<leader>rt", test_file)
-
 -- FILETYPE DETECTION
 
 vim.filetype.add({
