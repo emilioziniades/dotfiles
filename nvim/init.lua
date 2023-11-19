@@ -98,6 +98,7 @@ require("lazy").setup({
 		"nvimtools/none-ls.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
+			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 			local null_ls = require("null-ls")
 			local sources = {
 				null_ls.builtins.formatting.black,
@@ -116,8 +117,9 @@ require("lazy").setup({
 				sources = sources,
 				on_attach = function(client, bufnr)
 					if client.server_capabilities.documentFormattingProvider then
+						vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
+							group = augroup,
 							buffer = bufnr,
 							callback = function()
 								vim.lsp.buf.format({ async = false })
