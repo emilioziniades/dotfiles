@@ -95,7 +95,7 @@ require("lazy").setup({
 	},
 	"onsails/lspkind-nvim",
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local null_ls = require("null-ls")
@@ -114,14 +114,15 @@ require("lazy").setup({
 			}
 			null_ls.setup({
 				sources = sources,
-				on_attach = function(client)
+				on_attach = function(client, bufnr)
 					if client.server_capabilities.documentFormattingProvider then
-						-- TODO: make this lua autocommand
-						vim.cmd([[
-                        augroup LspFormatting
-                            autocmd! * <buffer>
-                            autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 1500 })
-                        augroup END ]])
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
+							buffer = bufnr,
+							callback = function()
+								vim.lsp.buf.format({ async = false })
+							end,
+						})
 					end
 				end,
 			})
