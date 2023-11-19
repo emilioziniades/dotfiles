@@ -780,6 +780,14 @@ end)
 vim.filetype.add({
 	pattern = {
 		[".*.html.jinja"] = "jinja.html",
+		[".*.html"] = function(_, bufnr)
+			local content = vim.filetype.getlines(bufnr)
+			for _, line in ipairs(content) do
+				if line:match("{%%") or line:match("%%}") then
+					return "jinja.html"
+				end
+			end
+		end,
 	},
 })
 
