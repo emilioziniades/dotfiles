@@ -98,7 +98,6 @@ require("lazy").setup({
 		"nvimtools/none-ls.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 			local null_ls = require("null-ls")
 			local sources = {
 				null_ls.builtins.formatting.black,
@@ -113,6 +112,7 @@ require("lazy").setup({
 				null_ls.builtins.formatting.shfmt,
 				null_ls.builtins.formatting.fourmolu,
 			}
+			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 			null_ls.setup({
 				sources = sources,
 				on_attach = function(client, bufnr)
