@@ -188,6 +188,16 @@
     };
   };
 
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      yellow=$(tput setaf 3)
+      blue=$(tput setaf 4)
+      reset=$(tput sgr0)
+      PS1='\[$yellow\]\w\[$reset\] \[$blue\]$\[$reset\] '
+    '';
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
