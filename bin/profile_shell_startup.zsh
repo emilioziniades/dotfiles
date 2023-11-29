@@ -2,7 +2,21 @@
 # shamelessly yoinked from https://esham.io/2018/02/zsh-profiling
 #
 # note on how to use: 
-# - go to zshrc and uncomment the code at the top and the bottom
+# - add the following to the top of your zshrc
+#
+# zmodload zsh/datetime
+# setopt PROMPT_SUBST
+# PS4='+$EPOCHREALTIME %N:%i> '
+# logfile=$(mktemp zsh_profile.XXXXXXXX)
+# echo "Logging to $logfile"
+# exec 3>&2 2>$logfile
+# setopt XTRACE
+#
+# - add the following to the bottom
+#
+# unsetopt XTRACE
+# exec 2>&3 3>&-
+#
 # - open a new zsh shell
 # - run: ./sort_timings.zsh zsh_profile.abcd1234 | head
 
