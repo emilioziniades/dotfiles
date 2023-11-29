@@ -20,6 +20,10 @@
     ];
   };
 
+  imports = [
+    ./nix/vt-cli.nix
+  ];
+
   home.packages = with pkgs;
     [
       curl
