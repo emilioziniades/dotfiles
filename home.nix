@@ -194,6 +194,9 @@
 
   programs.bash = {
     enable = true;
+    shellAliases = {
+      v = "nvim";
+    };
     initExtra = ''
       yellow=$(tput setaf 3)
       blue=$(tput setaf 4)
