@@ -127,20 +127,21 @@
 
   programs.home-manager.enable = true;
 
+  home.shellAliases = {
+    v = "nvim";
+    t = "tmux";
+    k = "kubectl";
+    c = "clear && tmux clear-history";
+    ll = "ls -alh --color=always";
+    copy = "xclip -selection clipboard";
+    ls = "eza";
+    cat = "bat";
+    find = "fd";
+    switch = emilioExtraConfig.switchCommand;
+  };
+
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      v = "nvim";
-      t = "tmux";
-      k = "kubectl";
-      c = "clear && tmux clear-history";
-      ll = "ls -alh --color=always";
-      copy = "xclip -selection clipboard";
-      ls = "eza";
-      cat = "bat";
-      find = "fd";
-      switch = emilioExtraConfig.switchCommand;
-    };
     sessionVariables = {
       EDITOR = "nvim";
       LC_ALL = "en_US.UTF-8";
@@ -153,6 +154,16 @@
     };
     initExtra = builtins.readFile ./zshrc;
     syntaxHighlighting.enable = true;
+  };
+
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      yellow=$(tput setaf 3)
+      blue=$(tput setaf 4)
+      reset=$(tput sgr0)
+      PS1='\[$yellow\]\w\[$reset\] \[$blue\]$\[$reset\] '
+    '';
   };
 
   programs.git = {
@@ -190,19 +201,6 @@
         rebase = false;
       };
     };
-  };
-
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      v = "nvim";
-    };
-    initExtra = ''
-      yellow=$(tput setaf 3)
-      blue=$(tput setaf 4)
-      reset=$(tput sgr0)
-      PS1='\[$yellow\]\w\[$reset\] \[$blue\]$\[$reset\] '
-    '';
   };
 
   programs.alacritty = {
