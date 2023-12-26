@@ -14,10 +14,6 @@
     #allowUnfree = true;
     # see for below voodoo: https://github.com/nix-community/home-manager/issues/2942
     allowUnfreePredicate = _: true;
-    permittedInsecurePackages = [
-      "electron-12.2.3"
-      "nodejs-16.20.2"
-    ];
   };
 
   imports = [
@@ -57,6 +53,7 @@
       postgresql_15
       pgformatter
       # imagemagick
+      # ffmpeg
       # tor
       # pandoc
 
@@ -94,7 +91,7 @@
 
       # gcc11
 
-      nodejs_16
+      nodejs
       nodePackages.pyright
       nodePackages.prettier
 
