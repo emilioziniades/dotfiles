@@ -293,11 +293,22 @@
   # instead of hand-writing the toml
   # TODO: on MacOS this config lives at ./Library/Application Support/rs.tms/default-config.toml
   home.file.".config/tms/default-config.toml".text = ''
-    search_paths = [
-        '${config.home.homeDirectory}/code',
-        '${config.home.homeDirectory}/work',
-        '${config.home.homeDirectory}/personal',
-        '${config.home.homeDirectory}/dotfiles',
-    ]
+    search_paths = []
+
+    [[search_dirs]]
+    path = '${config.home.homeDirectory}/code'
+    depth = 10
+
+    [[search_dirs]]
+    path = '${config.home.homeDirectory}/work'
+    depth = 10
+
+    [[search_dirs]]
+    path = '${config.home.homeDirectory}/personal'
+    depth = 10
+
+    [[search_dirs]]
+    path = '${config.home.homeDirectory}/dotfiles'
+    depth = 10
   '';
 }
