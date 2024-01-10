@@ -221,7 +221,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      import = ["~/dotfiles/colours/catppuccin/alacritty/catppuccin-mocha.yml"];
+      import = ["~/dotfiles/colours/catppuccin/alacritty/catppuccin-mocha.toml"];
       env = {
         TERM = "xterm-256color";
       };
