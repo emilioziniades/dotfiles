@@ -82,6 +82,7 @@
           p.numpy
           p.pandas
           p.seaborn
+          p.black
         ]))
       poetry
 
