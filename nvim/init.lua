@@ -80,7 +80,7 @@ require("lazy").setup({
 				"lua-language-server",
 				"csharp-language-server",
 				-- formatters
-				"black",
+				-- "black", - installed with nix
 				"goimports",
 				"prettier",
 				"stylua",
