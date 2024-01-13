@@ -4,9 +4,11 @@
   ...
 }: let
   name = "vpn";
+  openfortivpn-webview = pkgs.callPackage ./openfortivpn-webview.nix {};
   buildInputs = with pkgs; [
     jq
     openfortivpn
+    openfortivpn-webview
   ];
   script =
     (pkgs.writeScriptBin name (builtins.readFile ./vpn.sh))
