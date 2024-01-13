@@ -292,8 +292,11 @@
 
   # TODO: find some way to express this as an attrset, and then convert to toml,
   # instead of hand-writing the toml
-  # TODO: on MacOS this config lives at ./Library/Application Support/rs.tms/default-config.toml
-  home.file.".config/tms/default-config.toml".text = ''
+  home.file.${
+    if pkgs.stdenv.isDarwin
+    then "/Library/Application Support/rs.tms/default-config.toml"
+    else ".config/tms/default-config.toml"
+  }.text = ''
     search_paths = []
 
     [[search_dirs]]
