@@ -17,8 +17,8 @@
   };
 
   imports = [
-    ./nix/vt-cli.nix
-    ./nix/vpn/default.nix
+    # ./nix/vt-cli.nix
+    # ./nix/vpn/default.nix
   ];
 
   home.packages = with pkgs;
@@ -85,7 +85,7 @@
           p.seaborn
           p.black
         ]))
-      poetry
+      # poetry
 
       # lua
       # stylua
