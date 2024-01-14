@@ -9,16 +9,12 @@
 
     home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    openfortivpn-cli.url = github:emilioziniades/openfortivpn-cli;
-    openfortivpn-cli.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
     darwin,
     nixpkgs,
     home-manager,
-    openfortivpn-cli,
     ...
   }: let
     linuxSystem = "x86_64-linux";
@@ -43,7 +39,6 @@
               gitGpgKey = false;
               switchCommand = "sudo nixos-rebuild switch --flake $HOME/dotfiles";
             };
-            openfortivpn-cli = openfortivpn-cli.defaultPackage.${linuxSystem};
           };
         }
       ];
@@ -84,7 +79,6 @@
           gitGpgKey = false;
           switchCommand = "home-manager switch --flake $HOME/dotfiles";
         };
-        openfortivpn-cli = openfortivpn-cli.defaultPackage.${linuxSystem};
       };
     };
   };
