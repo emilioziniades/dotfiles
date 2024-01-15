@@ -17,7 +17,7 @@
   };
 
   imports = [
-    # ./nix/vt-cli.nix
+    ./nix/vt-cli.nix
     # ./nix/vpn/default.nix
   ];
 

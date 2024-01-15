@@ -18,7 +18,7 @@
     src = builtins.fetchGit {
       url = "git@bitbucket.org:velocitytrade/vt.cli.git";
       ref = "master";
-      rev = "25c6d0fb0eb329b06275fdf1f1c7950ef6067ce5";
+      rev = "540e35b78bbb491c56d4e89ab1f021b12f1ecf9a";
     };
   };
 in {
