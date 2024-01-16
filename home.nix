@@ -93,7 +93,7 @@
 
       # gcc11
 
-      nodejs
+      nodejs_18
       nodePackages.pyright
       nodePackages.prettier
 
