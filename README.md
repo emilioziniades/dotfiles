@@ -1,6 +1,6 @@
 # dotfiles
 
-Before setting up MacOS, NixOS or POP!\_OS, you will need to clone these dotfiles.
+Before setting up MacOS, NixOS or Debian, you will need to clone these dotfiles.
 
 If you are on NixOS, you will need to setup a nix shell with git to bootstrap the process. Vim might come in handy as well.
 
@@ -60,7 +60,7 @@ sudo nixos-rebuild switch --flake ~/dotfiles
 
 From then on, you can run `switch`, an alias for the above.
 
-## POP!\_OS standalone `home-manager` setup
+## Debian standalone `home-manager` setup
 
 Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
 
