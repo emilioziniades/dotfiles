@@ -7,9 +7,7 @@ TODO:
     - filter out dll's more
     - add ability to debug tests
 - nix
-    - tidy up mason/remove installers, and consider handling them in nix. This is possible already, but three of the mason-installed
-    binaries are not in nixpkgs: csharpier, csharp_ls, and codelldb. The first two are easy and can be packaged with existing dotnet
-    tooling in nixpkgs. See this PR: https://github.com/NixOS/nixpkgs/pull/235041, this example: https://github.com/NixOS/nixpkgs/tree/master/pkgs/development/tools/fsautocomplete, and these docs: https://ryantm.github.io/nixpkgs/languages-frameworks/dotnet/
+    - package codelldb 
 ]]
 
 -- SETTINGS
@@ -66,34 +64,6 @@ require("lazy").setup({
 	-- FUNCTIONALITY
 
 	--lsp
-	{ "williamboman/mason.nvim", opts = {} },
-	{ "williamboman/mason-lspconfig.nvim", opts = {}, dependencies = { "williamboman/mason.nvim" } },
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		opts = {
-			ensure_installed = {
-				-- language servers
-				"pyright",
-				"gopls",
-				"typescript-language-server",
-				"rust-analyzer",
-				"lua-language-server",
-				"csharp-language-server",
-				-- formatters
-				-- "black", - installed with nix
-				"goimports",
-				"prettier",
-				"stylua",
-				"rustfmt",
-				"csharpier",
-				-- debuggers
-				"netcoredbg",
-				"codelldb",
-			},
-		},
-		dependencies = { "williamboman/mason-lspconfig.nvim" },
-	},
-	"onsails/lspkind-nvim",
 	{
 		"nvimtools/none-ls.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -227,6 +197,7 @@ require("lazy").setup({
 		keys = { { "<leader>tt", "<cmd>TroubleToggle<cr>" } },
 	},
 	{ "Decodetalkers/csharpls-extended-lsp.nvim" },
+	"onsails/lspkind-nvim",
 
 	-- git
 	{
@@ -280,13 +251,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<F12>", dap.step_out)
 			vim.keymap.set("n", "<leader>dx", dap.terminate)
 
-			local function mason_path(executable)
-				return vim.fn.stdpath("data") .. "/mason/bin/" .. executable
-			end
-
 			dap.adapters.coreclr = {
 				type = "executable",
-				command = mason_path("netcoredbg"),
+				command = "netcoredbg",
 				args = { "--interpreter=vscode" },
 			}
 
@@ -349,7 +316,7 @@ require("lazy").setup({
 				type = "server",
 				port = "${port}",
 				executable = {
-					command = mason_path("codelldb"),
+					command = "codelldb",
 					args = { "--port", "${port}" },
 					-- On windows you may have to uncomment this:
 					-- detached = false,
@@ -822,9 +789,7 @@ set_filetype_options(
 	{ "*.js", "*.jsx", "*.html", "*.ts", "*.tsx", "*.tpl" },
 	{ tabstop = 2, shiftwidth = 2 }
 )
-
 set_filetype_options("GolangFile", { "*.go" }, { tabstop = 8, shiftwidth = 8 })
-
 set_filetype_options("MdxFile", { "*.mdx" }, { filetype = "markdown" })
 set_filetype_options("TerraformFile", { "*.tf" }, { filetype = "terraform" })
 set_filetype_options("JenkinsFile", { "Jenkinsfile" }, { filetype = "groovy" })

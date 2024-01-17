@@ -20,6 +20,7 @@
 
   home.packages = with pkgs;
     [
+      # GENERAL TOOLS
       curl
       htop
       fd
@@ -50,63 +51,64 @@
       kubectl
       postgresql_15
       pgformatter
+      (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
+      (pkgs.callPackage ./pkgs/vpn/package.nix {})
       # imagemagick
       # ffmpeg
       # tor
       # pandoc
 
-      (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
-      (pkgs.callPackage ./pkgs/vpn/package.nix {})
-
-      # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
-      # openfortivpn-cli
-
+      # SHELL
       shfmt
+      shellcheck
 
+      # NIX
       alejandra
       manix
 
-      #TODO: how tf do I package rust projects
-      rustup
-      llvmPackages.bintools
-      sqlx-cli
+      # RUST
+      cargo
+      rustc
+      rustfmt
+      rust-analyzer
 
+      # GO
       go
       gopls
       gotools
 
-      (python311.withPackages
-        (p: [
-          p.pip
-          p.ipython
-          p.requests
-          p.numpy
-          p.pandas
-          p.seaborn
-          p.black
-        ]))
-      # poetry
-
-      # lua
-      # stylua
-      # lua-language-server
-
-      # gcc11
-
-      nodejs_18
+      # PYTHON
+      python311
+      python311Packages.ipython
+      python311Packages.black
       nodePackages.pyright
+
+      # LUA
+      lua
+      stylua
+      lua-language-server
+
+      # JAVASCRIPT/TYPESCRIPT
+      nodejs_18
       nodePackages.prettier
+      nodePackages.typescript-language-server
 
-      # (with dotnetCorePackages;
-      #   combinePackages [
-      #     sdk_6_0
-      #     sdk_7_0
-      #   ])
+      # DOTNET
+      (with dotnetCorePackages;
+        combinePackages [
+          sdk_6_0
+          sdk_7_0
+        ])
+      csharp-ls
+      (pkgs.callPackage ./pkgs/vpn/package.nix {}) # TODO: use upstream once merged: https://github.com/NixOS/nixpkgs/pull/272806
+      netcoredbg
 
+      # IAC
       packer
       terraform
       terraform-ls
 
+      # HASKELL
       ghc
       haskell-language-server
       haskellPackages.stack
