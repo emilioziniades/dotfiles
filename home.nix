@@ -16,10 +16,7 @@
     allowUnfreePredicate = _: true;
   };
 
-  imports = [
-    # ./nix/vt-cli.nix
-    ./nix/vpn/default.nix
-  ];
+  imports = [];
 
   home.packages = with pkgs;
     [
@@ -59,6 +56,7 @@
       # pandoc
 
       (pkgs.callPackage ./nix/vt-cli.nix {pythonPackages = python3.pkgs;})
+      (pkgs.callPackage ./nix/vpn/default.nix {})
 
       # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
       # openfortivpn-cli
