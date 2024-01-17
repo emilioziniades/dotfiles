@@ -93,15 +93,3 @@ it is necessary to set the nix-installed `zsh` to the default shell manually.
 command -v zsh | sudo tee -a /etc/shells
 chsh -s $(command -v zsh)
 ```
-
-## TODO
-
-- [ ] set up i3wm
-- [ ] create RedisInsight nixpkg, and import connection strings
-
-POP specific:
-
-- [ ] get dotnet working!
-- [ ] get VPN working! (maybe try electron - since there is an issue with openGL on non-nixos linuxes)
-- [ ] install fonts in home-manger <https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=fira-code>
-- [ ] figure out why gui applications are not showing in POP launcher
