@@ -24,7 +24,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = linuxSystem;
       modules = [
-        ./configuration.nix
+        ./nix/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -47,7 +47,7 @@
     darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
       system = macosSystem;
       modules = [
-        ./darwin-configuration.nix
+        ./nix/darwin-configuration.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -69,7 +69,7 @@
 
     homeConfigurations."emilioziniades" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./home.nix];
+      modules = [./nix/home.nix];
       extraSpecialArgs = {
         emilioExtraConfig = {
           username = "emilioziniades";
