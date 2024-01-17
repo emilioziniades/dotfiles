@@ -64,4 +64,4 @@ fi
 
 echo "connecting to $name"
 COOKIE=$(openfortivpn-webview $host)
-sudo --preserve-env=$PATH openfortivpn --cookie=$COOKIE $host
+sudo --preserve-env=PATH env openfortivpn --cookie=$COOKIE $host
