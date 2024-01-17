@@ -55,8 +55,8 @@
       # tor
       # pandoc
 
-      (pkgs.callPackage ./nix/pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
-      (pkgs.callPackage ./nix/pkgs/vpn/package.nix {})
+      (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
+      (pkgs.callPackage ./pkgs/vpn/package.nix {})
 
       # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
       # openfortivpn-cli
@@ -280,7 +280,7 @@
 
   programs.neovim = {
     enable = true;
-    extraLuaConfig = builtins.readFile ./nvim/init.lua;
+    extraLuaConfig = builtins.readFile ../nvim/init.lua;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
