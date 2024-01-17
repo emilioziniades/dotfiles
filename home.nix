@@ -17,7 +17,7 @@
   };
 
   imports = [
-    ./nix/vt-cli.nix
+    # ./nix/vt-cli.nix
     ./nix/vpn/default.nix
   ];
 
@@ -57,6 +57,8 @@
       # ffmpeg
       # tor
       # pandoc
+
+      (pkgs.callPackage ./nix/vt-cli.nix {pythonPackages = python3.pkgs;})
 
       # issue with openGL on non-NixOS systems, see https://github.com/NixOS/nixpkgs/issues/9415
       # openfortivpn-cli
