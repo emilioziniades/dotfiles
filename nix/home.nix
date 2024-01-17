@@ -118,6 +118,7 @@
       # firefox
       # obsidian
       # mongodb-compass
+      # redisinsight
       # remmina
       # teams
       # spotify
