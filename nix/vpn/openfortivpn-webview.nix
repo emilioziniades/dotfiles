@@ -1,9 +1,13 @@
-{pkgs}:
-pkgs.buildNpmPackage rec {
+{
+  buildNpmPackage,
+  fetchFromGitHub,
+  electron,
+}:
+buildNpmPackage rec {
   pname = "openfortivpn-webview";
   version = "1.1.2-electron";
 
-  project = pkgs.fetchFromGitHub {
+  project = fetchFromGitHub {
     owner = "gm-vm";
     repo = "openfortivpn-webview";
     rev = "v${version}";
@@ -14,7 +18,6 @@ pkgs.buildNpmPackage rec {
   npmDepsHash = "sha256-FvonIgVWAB0mHQaYcJkrZ9pn/nrTju2Br5OkmtGFsIk";
 
   ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
-  electron = pkgs.electron;
 
   dontNpmBuild = true;
 

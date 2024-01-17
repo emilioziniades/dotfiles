@@ -1,26 +1,32 @@
 {
-  inputs,
-  pkgs,
+  callPackage,
+  makeWrapper,
+  writeScriptBin,
+  symlinkJoin,
+  openfortivpn,
+  jq,
   ...
-}: let
+}:
+symlinkJoin rec {
   name = "vpn";
-  openfortivpn-webview = pkgs.callPackage ./openfortivpn-webview.nix {};
-  buildInputs = with pkgs; [
+  paths = [script] ++ runtimeInputs;
+  postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
+
+  script =
+    (writeScriptBin name (builtins.readFile ./vpn.sh))
+    .overrideAttrs (old: {
+      buildCommand = "${old.buildCommand}\n patchShebangs $out";
+    });
+
+  openfortivpn-webview = callPackage ./openfortivpn-webview.nix {};
+
+  runtimeInputs = [
     jq
     openfortivpn
     openfortivpn-webview
   ];
-  script =
-    (pkgs.writeScriptBin name (builtins.readFile ./vpn.sh))
-    .overrideAttrs (old: {
-      buildCommand = "${old.buildCommand}\n patchShebangs $out";
-    });
-  vpn = pkgs.symlinkJoin {
-    name = name;
-    paths = [script] ++ buildInputs;
-    buildInputs = [pkgs.makeWrapper];
-    postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
-  };
-in {
-  home.packages = [vpn];
+
+  buildInputs = [
+    makeWrapper
+  ];
 }
