@@ -29,7 +29,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.emilioz = import ./home.nix;
+          home-manager.users.emilioz = import ./nix/home.nix;
           home-manager.extraSpecialArgs = {
             emilioExtraConfig = {
               username = "emilioz";
@@ -52,7 +52,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.emilioziniades = import ./home.nix;
+          home-manager.users.emilioziniades = import ./nix/home.nix;
           home-manager.extraSpecialArgs = {
             emilioExtraConfig = {
               username = "emilioziniades";
