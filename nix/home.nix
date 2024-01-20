@@ -114,6 +114,9 @@
       haskell-language-server
       haskellPackages.stack
       haskellPackages.fourmolu
+
+      # C/C++
+      gcc
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # firefox
