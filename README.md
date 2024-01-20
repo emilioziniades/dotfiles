@@ -49,7 +49,7 @@ From now on, configuration can be updated by runing `darwin-rebuild switch --fla
 Save a freshly generated version of `hardware-configuration.nix` into this repository. Commit the changes.
 
 ```
-nixos-generate-config --dir ~/dotfiles
+nixos-generate-config --dir ~/dotfiles/nix
 ```
 
 Then, build the flake-based configuration.
