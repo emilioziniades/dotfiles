@@ -119,15 +119,14 @@
       gcc
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      # firefox
-      # obsidian
-      # mongodb-compass
+      firefox
+      obsidian
+      mongodb-compass
+      teams-for-linux
+      spotify
+      discord
       # redisinsight
-      # remmina
-      # teams
-      # spotify
       # element-desktop
-      # discord
       # etcher
     ];
 
