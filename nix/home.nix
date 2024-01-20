@@ -174,6 +174,7 @@
       export DOTNET_ROOT=$HOME/.dotnet
       export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
       export DOTNET_CLI_TELEMETRY_OPTOUT=1
+      export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
       [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
     '';
