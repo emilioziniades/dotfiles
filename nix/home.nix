@@ -28,6 +28,7 @@
       bat
       tree
       ripgrep
+      fzf
       jq
       yq
       diffutils
