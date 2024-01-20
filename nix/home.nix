@@ -101,7 +101,7 @@
           sdk_7_0
         ])
       csharp-ls
-      (pkgs.callPackage ./pkgs/vpn/package.nix {}) # TODO: use upstream once merged: https://github.com/NixOS/nixpkgs/pull/272806
+      (pkgs.callPackage ./pkgs/csharpier/package.nix {}) # TODO: use upstream once merged: https://github.com/NixOS/nixpkgs/pull/272806
       netcoredbg
 
       # IAC
@@ -256,9 +256,7 @@
     historyLimit = 100000;
     escapeTime = 10;
     sensibleOnTop = false;
-    plugins = with pkgs; [
-      # tmuxPlugins.catppuccin
-    ];
+    plugins = [];
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
       # see here for below voodoo: https://github.com/tmux/tmux/issues/1202
@@ -266,7 +264,7 @@
       set-option -g focus-events on
       set-option -g renumber-windows on
 
-      # manually source catpuccin plugin after options are applied
+      # manually source catppuccin plugin after options are applied
       set -g @catppuccin_window_default_text "#W"
       set -g @catppuccin_window_current_text "#W"
       set -g @catppuccin_window_left_separator "█"
