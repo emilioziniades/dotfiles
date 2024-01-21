@@ -18,14 +18,24 @@
 
   i18n.defaultLocale = "en_ZA.UTF-8";
 
-  services.xserver.enable = true;
-
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   services.xserver = {
+    enable = true;
+
     layout = "za";
     xkbVariant = "";
+
+    desktopManager.xterm.enable = false;
+
+    displayManager.defaultSession = "none+i3";
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3lock
+      ];
+    };
   };
 
   services.printing.enable = true;
