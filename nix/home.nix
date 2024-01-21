@@ -101,7 +101,7 @@
           sdk_7_0
         ])
       csharp-ls
-      (pkgs.callPackage ./pkgs/csharpier/package.nix {}) # TODO: use upstream once merged: https://github.com/NixOS/nixpkgs/pull/272806
+      csharpier
       netcoredbg
 
       # IAC
