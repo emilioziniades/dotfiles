@@ -24,9 +24,16 @@
     layout = "za";
     xkbVariant = "";
 
-    desktopManager.xterm.enable = false;
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
 
-    displayManager.defaultSession = "none+i3";
+    displayManager.defaultSession = "xfce+i3";
 
     windowManager.i3 = {
       enable = true;
@@ -41,7 +48,7 @@
   services.printing.enable = true;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = true;
 
   hardware.bluetooth.enable = true;
 
@@ -51,7 +58,7 @@
   users.users.emilioz = {
     isNormalUser = true;
     description = "Emilio Ziniades";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "audio"];
     shell = pkgs.zsh;
   };
 
@@ -62,6 +69,7 @@
     permittedInsecurePackages = [
       "electron-25.9.0"
     ];
+    pulseaudio = true;
   };
 
   fonts.packages = with pkgs; [
