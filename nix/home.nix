@@ -244,7 +244,7 @@
           family = "FiraCode Nerd Font Mono";
           style = "Medium";
         };
-        size = 12.0;
+        size = 14.0;
       };
     };
   };
