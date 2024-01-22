@@ -103,6 +103,7 @@
       csharp-ls
       csharpier
       netcoredbg
+      (pkgs.callPackage ./pkgs/dotnet-outdated/package.nix {})
 
       # IAC
       packer
