@@ -2,7 +2,6 @@
   pkgs,
   config,
   emilioExtraConfig,
-  openfortivpn-cli,
   ...
 }: {
   home.stateVersion = "23.11";
