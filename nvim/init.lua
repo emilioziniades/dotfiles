@@ -128,35 +128,25 @@ require("lazy").setup({
 
 			local lspconfig = require("lspconfig")
 
-			lspconfig.pyright.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
+			local language_servers = {
+				"pyright",
+				"gopls",
+				"tsserver",
+				"rust_analyzer",
+				"hls",
+				"terraformls",
+				"nil_ls",
+			}
 
-			lspconfig.gopls.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
+			for _, language_server in ipairs(language_servers) do
+				lspconfig[language_server].setup({
+					on_attach = on_attach,
+					capabilities = capabilities,
+				})
+			end
 
-			lspconfig.tsserver.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
-
-			lspconfig.rust_analyzer.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
-
-			lspconfig.hls.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
-
-			lspconfig.terraformls.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
+			-- Setup the two language servers below outside of the above looop
+			-- because they have additional configuration fields.
 
 			lspconfig.csharp_ls.setup({
 				on_attach = on_attach,
