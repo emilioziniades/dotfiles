@@ -2,27 +2,22 @@
   description = "Emilio's nix configurations";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    darwin.url = github:lnl7/nix-darwin/master;
+    darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = github:nix-community/home-manager;
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {
+  outputs = {
     darwin,
     nixpkgs,
     home-manager,
-    ...
-  }: let
-    linuxSystem = "x86_64-linux";
-    macosSystem = "x86_64-darwin";
-    pkgs = nixpkgs.legacyPackages.${linuxSystem};
-  in {
+  }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = linuxSystem;
+      system = "x86_64-linux";
       modules = [
         ./nix/configuration.nix
         home-manager.nixosModules.home-manager
@@ -45,7 +40,7 @@
     };
 
     darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
-      system = macosSystem;
+      system = "x86_64-darwin";
       modules = [
         ./nix/darwin-configuration.nix
         home-manager.darwinModules.home-manager
@@ -68,7 +63,6 @@
     };
 
     homeConfigurations."emilioziniades" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
       modules = [./nix/home.nix];
       extraSpecialArgs = {
         emilioExtraConfig = {
