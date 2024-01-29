@@ -66,6 +66,7 @@
       # NIX
       alejandra
       manix
+      nil
 
       # RUST
       cargo
