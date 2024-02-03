@@ -51,6 +51,7 @@
       kubectl
       postgresql_15
       pgformatter
+      cook-cli
       (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
       (pkgs.callPackage ./pkgs/vpn/package.nix {})
       # imagemagick
