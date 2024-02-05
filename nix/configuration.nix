@@ -30,7 +30,7 @@
   users.users.emilioz = {
     isNormalUser = true;
     description = "Emilio Ziniades";
-    extraGroups = ["networkmanager" "wheel" "audio"];
+    extraGroups = ["networkmanager" "wheel" "audio" "docker"];
     shell = pkgs.zsh;
   };
 
@@ -61,6 +61,8 @@
     stdenv.cc.cc.lib
     openssl
   ];
+
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "23.11";
 }
