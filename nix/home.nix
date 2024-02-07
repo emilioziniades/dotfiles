@@ -247,6 +247,12 @@
         };
         size = 14.0;
       };
+      keyboard.bindings = [
+        {
+          key = "F11";
+          action = "ToggleFullscreen";
+        }
+      ];
     };
   };
 
