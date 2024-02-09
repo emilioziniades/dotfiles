@@ -40,6 +40,7 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
+      "openssl-1.1.1w"
     ];
     pulseaudio = true;
   };
@@ -60,6 +61,9 @@
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
     openssl
+    openssl_1_1
+    xz
+    curl
   ];
 
   virtualisation.docker.enable = true;
