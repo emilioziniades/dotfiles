@@ -59,7 +59,10 @@
   ];
 
   environment.etc."openfortivpn/config".text = ''
+    # CLM
     trusted-cert = d85894186688b5842459ae4833f7127237d0a4895ddb984cdf349c149707b6fe
+    # ISD
+    trusted-cert = 0fa7b4d0572540093833a443e739a316e29d586b0332bd7de02dddc6e00735da
   '';
 
   programs.nix-ld.enable = true;
