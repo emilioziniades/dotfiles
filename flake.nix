@@ -71,19 +71,5 @@
         }
       ];
     };
-
-    homeConfigurations."emilioziniades" = home-manager.lib.homeManagerConfiguration {
-      modules = [./nix/home.nix];
-      extraSpecialArgs = {
-        emilioExtraConfig = {
-          username = "emilioziniades";
-          homeDirectory = "/home/emilioziniades";
-          gitEmail = "emilioz@za.velocitytrade.com";
-          gitDefaultBranch = "master";
-          gitGpgKey = false;
-          switchCommand = "home-manager switch --flake $HOME/dotfiles";
-        };
-      };
-    };
   };
 }
