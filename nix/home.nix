@@ -194,7 +194,7 @@
   programs.git = {
     enable = true;
     userName = "Emilio Ziniades";
-    userEmail = emilioExtraConfig.gitEmail;
+    userEmail = emilioExtraConfig.git.email;
     aliases = {
       i = "init";
       s = "status";
@@ -208,10 +208,10 @@
     };
     extraConfig = {
       user = {
-        signingkey = emilioExtraConfig.gitGpgKey;
+        signingkey = emilioExtraConfig.git.gpgKey;
       };
       init = {
-        defaultBranch = emilioExtraConfig.gitDefaultBranch;
+        defaultBranch = emilioExtraConfig.git.defaultBranch;
       };
       core = {
         editor = "nvim";
