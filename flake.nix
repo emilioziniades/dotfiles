@@ -34,9 +34,11 @@
             emilioExtraConfig = {
               username = "emilioz";
               homeDirectory = "/home/emilioz";
-              gitEmail = "emilioz@za.velocitytrade.com";
-              gitDefaultBranch = "master";
-              gitGpgKey = false;
+              git = {
+                email = "emilioz@za.velocitytrade.com";
+                defaultBranch = "master";
+                gpgKey = null;
+              };
               switchCommand = "sudo -u $USER nixos-rebuild switch --flake $HOME/dotfiles";
             };
           };
@@ -58,9 +60,11 @@
             emilioExtraConfig = {
               username = "emilioziniades";
               homeDirectory = "/Users/emilioziniades";
-              gitEmail = "emilioziniades@protonmail.com";
-              gitDefaultBranch = "main";
-              gitGpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
+              git = {
+                email = "emilioziniades@protonmail.com";
+                defaultBranch = "main";
+                gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
+              };
               switchCommand = "darwin-rebuild switch --flake $HOME/dotfiles";
             };
           };
