@@ -9,12 +9,15 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-std.url = "github:chessai/nix-std";
   };
 
   outputs = {
-    darwin,
     nixpkgs,
     home-manager,
+    darwin,
+    nix-std,
     ...
   }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -27,6 +30,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioz = import ./nix/home.nix;
           home-manager.extraSpecialArgs = {
+            std = nix-std;
             emilioExtraConfig = {
               username = "emilioz";
               homeDirectory = "/home/emilioz";
@@ -50,6 +54,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./nix/home.nix;
           home-manager.extraSpecialArgs = {
+            std = nix-std;
             emilioExtraConfig = {
               username = "emilioziniades";
               homeDirectory = "/Users/emilioziniades";

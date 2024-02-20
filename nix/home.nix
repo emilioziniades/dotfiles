@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  std,
   emilioExtraConfig,
   ...
 }: {
@@ -308,23 +309,26 @@
     if pkgs.stdenv.isDarwin
     then "/Library/Application Support/rs.tms/default-config.toml"
     else ".config/tms/default-config.toml"
-  }.text = ''
-    search_paths = []
+  }.text = std.lib.serde.toTOML {
+    search_dirs = [
+      {
+        path = "${config.home.homeDirectory}/code";
+        depth = 2;
+      }
+      {
+        path = "${config.home.homeDirectory}/work";
+        depth = 2;
+      }
+      {
+        path = "${config.home.homeDirectory}/personal";
+        depth = 2;
+      }
+      {
+        path = "${config.home.homeDirectory}/dotfiles";
+        depth = 1;
+      }
+    ];
 
-    [[search_dirs]]
-    path = '${config.home.homeDirectory}/code'
-    depth = 10
-
-    [[search_dirs]]
-    path = '${config.home.homeDirectory}/work'
-    depth = 10
-
-    [[search_dirs]]
-    path = '${config.home.homeDirectory}/personal'
-    depth = 10
-
-    [[search_dirs]]
-    path = '${config.home.homeDirectory}/dotfiles'
-    depth = 10
-  '';
+    search_paths = [];
+  };
 }
