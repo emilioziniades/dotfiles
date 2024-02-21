@@ -37,7 +37,7 @@
               git = {
                 email = "emilioz@za.velocitytrade.com";
                 defaultBranch = "master";
-                gpgKey = null;
+                gpgKey = false;
               };
               switchCommand = "sudo -u $USER nixos-rebuild switch --flake $HOME/dotfiles";
             };
