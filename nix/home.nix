@@ -303,13 +303,7 @@
     enableZshIntegration = true;
   };
 
-  # TODO: find some way to express this as an attrset, and then convert to toml,
-  # instead of hand-writing the toml
-  home.file.${
-    if pkgs.stdenv.isDarwin
-    then "/Library/Application Support/rs.tms/default-config.toml"
-    else ".config/tms/default-config.toml"
-  }.text = std.lib.serde.toTOML {
+  home.file.".config/tms/config.toml".text = std.lib.serde.toTOML {
     search_dirs = [
       {
         path = "${config.home.homeDirectory}/code";
@@ -328,7 +322,5 @@
         depth = 1;
       }
     ];
-
-    search_paths = [];
   };
 }
