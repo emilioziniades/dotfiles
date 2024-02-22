@@ -74,6 +74,7 @@
       rustc
       rustfmt
       rust-analyzer
+      clippy
 
       # GO
       go
