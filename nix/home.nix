@@ -229,31 +229,39 @@
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      import = ["~/dotfiles/colours/catppuccin/alacritty/catppuccin-mocha.toml"];
-      env = {
-        TERM = "xterm-256color";
-      };
-      window.padding = {
-        x = 10;
-        y = 10;
-      };
-      font = {
-        normal = {
-          family = "FiraCode Nerd Font Mono";
-          style = "Medium";
-        };
-        size = 14.0;
-      };
-      keyboard.bindings = [
-        {
-          key = "F11";
-          action = "ToggleFullscreen";
-        }
-      ];
+  programs.alacritty = let
+    catppuccin = pkgs.fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "alacritty";
+      rev = "main";
+      hash = "sha256-ypYaxlsDjI++6YNcE+TxBSnlUXKKuAMmLQ4H74T/eLw=";
     };
+  in {
+    enable = true;
+    settings =
+      {
+        env = {
+          TERM = "xterm-256color";
+        };
+        window.padding = {
+          x = 10;
+          y = 10;
+        };
+        font = {
+          normal = {
+            family = "FiraCode Nerd Font Mono";
+            style = "Medium";
+          };
+          size = 14.0;
+        };
+        keyboard.bindings = [
+          {
+            key = "F11";
+            action = "ToggleFullscreen";
+          }
+        ];
+      }
+      // std.lib.serde.fromTOML (builtins.readFile "${catppuccin}/catppuccin-mocha.toml");
   };
 
   programs.tmux = {
