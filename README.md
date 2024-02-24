@@ -1,22 +1,18 @@
 # dotfiles
 
-Before setting up MacOS, NixOS or Debian, you will need to clone these dotfiles.
+These dotfiles use [Nix](https://nixos.org/) to manage configuration and development environments, for both my personal MacOS system and my work NixOS system.
 
-If you are on NixOS, you will need to setup a nix shell with git to bootstrap the process. Vim might come in handy as well.
-
-```
-nix-shell -p git vim
-```
-
-Then, proceed to fetch these dotfiles. All this config assumes that the dotfiles are cloned to `~/dotfiles`.
-
-```
-cd && git clone https://github.com/emilioziniades/dotfiles && cd dotfiles
-```
+Currently, my workflow revolves around a combination of [Alacritty](https://alacritty.org/), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
 
 ## MacOS `nix-darwin` setup
 
-Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
+Clone the dotfiles into `~/dotfiles`.
+
+```
+git clone https://github.com/emilioziniades ~/dotfiles
+```
+
+Install `nix` using the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer).
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
@@ -46,6 +42,18 @@ From now on, configuration can be updated by runing `darwin-rebuild switch --fla
 
 ## NixOS setup
 
+Enter a temporary shell with `git` and `curl`. `nvim` might come in handy for some quick edits.
+
+```
+nix-shell -p git curl neovim
+```
+
+Clone the dotfiles into `~/dotfiles`.
+
+```
+git clone https://github.com/emilioziniades ~/dotfiles
+```
+
 Save a freshly generated version of `hardware-configuration.nix` into this repository. Commit the changes.
 
 ```
@@ -55,41 +63,7 @@ nixos-generate-config --dir ~/dotfiles/nix
 Then, build the flake-based configuration.
 
 ```
-sudo nixos-rebuild switch --flake ~/dotfiles
+sudo -u $USER nixos-rebuild switch --flake ~/dotfiles
 ```
 
 From then on, you can run `switch`, an alias for the above.
-
-## Debian standalone `home-manager` setup
-
-Install `nix` using the [determinate systems installer](https://github.com/DeterminateSystems/nix-installer).
-
-```
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-```
-
-For some reason, the above installer does not create the following directory, so create it.
-
-```
-mkdir -p ~/.local/state/nix/profiles
-```
-
-Install home-manager.
-
-```
-nix run home-manager/master -- init --switch
-```
-
-Run home-manager manually the first time. Thereafter you can run the alias `switch`.
-
-```
-home-manager switch --flake ~/dotfiles
-```
-
-Unfortunately, home-manager cannot handle system level configuration such as setting the default shell for users, as this requires root privileges. As a result,
-it is necessary to set the nix-installed `zsh` to the default shell manually.
-
-```
-command -v zsh | sudo tee -a /etc/shells
-chsh -s $(command -v zsh)
-```
