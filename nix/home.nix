@@ -261,6 +261,11 @@
             key = "F11";
             action = "ToggleFullscreen";
           }
+          {
+            key = "Back";
+            mods = "Control";
+            chars = "\\u0017"; # delete entire word
+          }
         ];
       }
       // std.lib.serde.fromTOML (builtins.readFile "${catppuccin}/catppuccin-mocha.toml");
