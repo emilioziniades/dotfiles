@@ -89,60 +89,54 @@ require("lazy").setup({
 				vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
 			end
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local lspconfig = require("lspconfig")
 
 			local language_servers = {
-				"pyright",
-				"gopls",
-				"tsserver",
-				"rust_analyzer",
-				"hls",
-				"terraformls",
-				"nil_ls",
-			}
-
-			for _, language_server in ipairs(language_servers) do
-				lspconfig[language_server].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
-			end
-
-			-- Setup the two language servers below outside of the above looop
-			-- because they have additional configuration fields.
-
-			lspconfig.csharp_ls.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-				handlers = {
-					["textDocument/definition"] = require("csharpls_extended").handler,
+				pyright = {},
+				gopls = {},
+				tsserver = {},
+				rust_analyzer = {},
+				hls = {},
+				terraformls = {},
+				nil_ls = {},
+				csharp_ls = {
+					handlers = {
+						["textDocument/definition"] = require("csharpls_extended").handler,
+					},
 				},
-			})
-
-			lspconfig.lua_ls.setup({
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-							path = vim.split(package.path, ";"),
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
-						},
-						telemetry = {
-							enable = false,
+				lua_ls = {
+					settings = {
+						Lua = {
+							runtime = {
+								version = "LuaJIT",
+								path = vim.split(package.path, ";"),
+							},
+							diagnostics = {
+								globals = { "vim" },
+							},
+							workspace = {
+								library = vim.api.nvim_get_runtime_file("", true),
+								checkThirdParty = false,
+							},
+							telemetry = {
+								enable = false,
+							},
 						},
 					},
 				},
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
+			}
+
+			for language_server, language_server_config in pairs(language_servers) do
+				local default_config = {
+					capabilities = capabilities,
+					on_attach = on_attach,
+				}
+				language_server_config = vim.tbl_deep_extend("force", default_config, language_server_config)
+				lspconfig[language_server].setup(language_server_config)
+			end
 		end,
 	},
 	{
@@ -151,7 +145,7 @@ require("lazy").setup({
 		opts = {},
 		keys = { { "<leader>tt", "<cmd>TroubleToggle<cr>" } },
 	},
-	{ "Decodetalkers/csharpls-extended-lsp.nvim" },
+	"Decodetalkers/csharpls-extended-lsp.nvim",
 	"onsails/lspkind-nvim",
 
 	-- formatter
