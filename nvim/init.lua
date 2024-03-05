@@ -66,42 +66,6 @@ require("lazy").setup({
 
 	--lsp
 	{
-		"nvimtools/none-ls.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local null_ls = require("null-ls")
-			local sources = {
-				null_ls.builtins.formatting.black,
-				null_ls.builtins.formatting.goimports,
-				null_ls.builtins.formatting.prettier,
-				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.rustfmt,
-				null_ls.builtins.formatting.csharpier,
-				null_ls.builtins.formatting.alejandra,
-				null_ls.builtins.formatting.djlint,
-				null_ls.builtins.formatting.terraform_fmt,
-				null_ls.builtins.formatting.shfmt,
-				null_ls.builtins.formatting.fourmolu,
-			}
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-			null_ls.setup({
-				sources = sources,
-				on_attach = function(client, bufnr)
-					if client.server_capabilities.documentFormattingProvider then
-						vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = augroup,
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({ async = false })
-							end,
-						})
-					end
-				end,
-			})
-		end,
-	},
-	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
@@ -111,9 +75,6 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>")
 
 			local on_attach = function(client, bufnr)
-				-- none-ls handles formatting
-				client.server_capabilities.documentFormattingProvider = false
-
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				-- the below keymaps are handled by telescope
 				-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -192,6 +153,37 @@ require("lazy").setup({
 	},
 	{ "Decodetalkers/csharpls-extended-lsp.nvim" },
 	"onsails/lspkind-nvim",
+
+	-- formatter
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			notify_on_error = true,
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_fallback = true,
+			},
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "black" },
+				go = { "goimports" },
+				rust = { "rustfmt" },
+				cs = { "csharpier" },
+				nix = { "alejandra" },
+				terraform = { "terraform_fmt" },
+				hcl = { "terraform_fmt" },
+				sh = { "shfmt" },
+				haskell = { "fourmolu" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				javascriptreact = { "prettier" },
+				json = { "prettier" },
+			},
+		},
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+	},
 
 	-- git
 	{
