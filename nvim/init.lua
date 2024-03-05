@@ -74,7 +74,7 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>")
 
-			local on_attach = function(client, bufnr)
+			local on_attach = function(_, bufnr)
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				-- the below keymaps are handled by telescope
 				-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -112,14 +112,17 @@ require("lazy").setup({
 						Lua = {
 							runtime = {
 								version = "LuaJIT",
-								path = vim.split(package.path, ";"),
 							},
 							diagnostics = {
 								globals = { "vim" },
+								disable = { "missing-fields" },
 							},
 							workspace = {
-								library = vim.api.nvim_get_runtime_file("", true),
 								checkThirdParty = false,
+								library = {
+									"${3rd}/luv/library",
+									unpack(vim.api.nvim_get_runtime_file("", true)),
+								},
 							},
 							telemetry = {
 								enable = false,
@@ -309,7 +312,7 @@ require("lazy").setup({
 					name = "launch - codelldb",
 					request = "launch",
 					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+						return vim.fn.input({ "Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file" })
 					end,
 					cwd = "${workspaceFolder}",
 					stopOnEntry = false,
