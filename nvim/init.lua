@@ -47,6 +47,7 @@ set_options(options, vim.o)
 
 -- PLUGINS
 
+-- bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -364,11 +365,14 @@ require("lazy").setup({
 	},
 
 	-- telescope
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-	{ "nvim-telescope/telescope-file-browser.nvim" },
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			{ "nvim-telescope/telescope-file-browser.nvim" },
+		},
 		config = function()
 			local telescope = require("telescope")
 			local builtin = require("telescope.builtin")
@@ -527,6 +531,14 @@ require("lazy").setup({
 	-- completion
 	{
 		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
+		},
 		config = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
@@ -579,12 +591,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/cmp-cmdline",
-	"saadparwaiz1/cmp_luasnip",
 
 	-- treesitter
 	{
