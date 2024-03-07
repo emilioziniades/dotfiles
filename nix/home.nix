@@ -156,6 +156,9 @@
     sessionVariables = {
       EDITOR = "nvim";
       LC_ALL = "en_US.UTF-8";
+      DOTNET_CLI_TELEMETRY_OPTOUT = 1;
+      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
+      GPG_TTY = "$(tty)";
     };
     history = {
       ignoreDups = true;
@@ -166,21 +169,7 @@
     syntaxHighlighting.enable = true;
     initExtra = ''
       # if you want to profile zsh startup times, see: https://esham.io/2018/02/zsh-profiling
-
       PROMPT='%F{yellow}%~%f %F{blue}%#%f '
-
-      bindkey '^[[1;5D' backward-word
-      bindkey '^[[1;5C' forward-word
-
-      export GPG_TTY=$(tty)
-
-      export GOPATH=$HOME/go/bin
-      export PATH="$GOPATH:$PATH"
-
-      export DOTNET_ROOT=$HOME/.dotnet
-      export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
-      export DOTNET_CLI_TELEMETRY_OPTOUT=1
-      export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
     '';
   };
 
@@ -265,6 +254,16 @@
             key = "Back";
             mods = "Control";
             chars = "\\u0017"; # delete entire word
+          }
+          {
+            key = "Right";
+            mods = "Control";
+            chars = "\u001BF"; # forward one word
+          }
+          {
+            key = "Left";
+            mods = "Control";
+            chars = "\u001BB"; # backward one word
           }
         ];
       }
