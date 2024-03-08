@@ -151,6 +151,7 @@
     switch = emilioExtraConfig.switchCommand;
   };
 
+  # for profiling zsh startup times, see: https://esham.io/2018/02/zsh-profiling
   programs.zsh = {
     enable = true;
     sessionVariables = {
@@ -168,8 +169,10 @@
     };
     syntaxHighlighting.enable = true;
     initExtra = ''
-      # if you want to profile zsh startup times, see: https://esham.io/2018/02/zsh-profiling
       PROMPT='%F{yellow}%~%f %F{blue}%#%f '
+
+      bindkey '^[[1;5D' backward-word
+      bindkey '^[[1;5C' forward-word
     '';
   };
 
@@ -254,16 +257,6 @@
             key = "Back";
             mods = "Control";
             chars = "\\u0017"; # delete entire word
-          }
-          {
-            key = "Right";
-            mods = "Control";
-            chars = "\u001BF"; # forward one word
-          }
-          {
-            key = "Left";
-            mods = "Control";
-            chars = "\u001BB"; # backward one word
           }
         ];
       }
