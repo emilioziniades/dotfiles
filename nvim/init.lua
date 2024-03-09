@@ -177,6 +177,9 @@ require("lazy").setup({
 				javascriptreact = { "prettier" },
 				json = { "prettier" },
 				markdown = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
+				htmldjango = { "djlint" },
 			},
 		},
 		event = { "BufWritePre" },
@@ -622,6 +625,7 @@ require("lazy").setup({
 					"cooklang",
 					"groovy",
 					"haskell",
+					"htmldjango",
 				},
 			})
 
@@ -739,12 +743,11 @@ end)
 
 vim.filetype.add({
 	pattern = {
-		[".*.html.jinja"] = "jinja.html",
 		[".*.html"] = function(_, bufnr)
 			local content = vim.filetype.getlines(bufnr)
 			for _, line in ipairs(content) do
 				if line:match("{%%") or line:match("%%}") then
-					return "jinja.html"
+					return "htmldjango"
 				end
 			end
 		end,

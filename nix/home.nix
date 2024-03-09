@@ -123,6 +123,9 @@
 
       # C/C++
       gcc
+
+      # HTML
+      djlint
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       firefox
