@@ -176,6 +176,7 @@ require("lazy").setup({
 				typescriptreact = { "prettier" },
 				javascriptreact = { "prettier" },
 				json = { "prettier" },
+				markdown = { "prettier" },
 			},
 		},
 		event = { "BufWritePre" },
