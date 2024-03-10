@@ -179,6 +179,7 @@ require("lazy").setup({
 				markdown = { "prettier" },
 				html = { "prettier" },
 				css = { "prettier" },
+				scss = { "prettier" },
 				htmldjango = { "djlint" },
 			},
 		},
