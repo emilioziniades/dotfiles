@@ -626,6 +626,8 @@ require("lazy").setup({
 					"groovy",
 					"haskell",
 					"htmldjango",
+					"markdown",
+					"markdown_inline",
 				},
 			})
 
