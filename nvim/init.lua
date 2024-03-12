@@ -638,8 +638,15 @@ require("lazy").setup({
 		end,
 	},
 
-	-- commenting
-	{ "numToStr/Comment.nvim", opts = {} },
+	{
+		"echasnovski/mini.nvim",
+		config = function()
+			-- bracket add/delete/replace
+			require("mini.surround").setup()
+			-- commenting
+			require("mini.comment").setup()
+		end,
+	},
 
 	-- show indents
 	{
@@ -671,7 +678,6 @@ require("lazy").setup({
 		"windwp/nvim-autopairs",
 		opts = {},
 	},
-	"tpope/vim-surround",
 
 	--icons
 	"nvim-tree/nvim-web-devicons",
