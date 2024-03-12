@@ -738,17 +738,11 @@ require("lazy").setup({
 
 -- KEYMAPS
 
--- buffer and window navigation
-vim.keymap.set("n", "<leader>[", "<cmd>bn<cr>")
-vim.keymap.set("n", "<leader>]", "<cmd>bp<cr>")
-
+-- resizing windows
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +5<cr>")
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -5<cr>")
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<cr>")
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<cr>")
-
-vim.keymap.set("n", "<leader>mt", "<cmd>vsplit | vertical resize 50 | term <cr>")
-vim.keymap.set("n", "<leader>ms", "<cmd>tabnew | term <cr>")
 
 -- easier escape key for macbook with touchbar
 vim.keymap.set({ "i", "t", "v", "c", "n" }, "§", "<Esc>", { remap = true })
@@ -761,6 +755,10 @@ vim.keymap.set("c", "<Esc>", "<C-C><Esc>")
 vim.keymap.set("n", "<leader>n", function()
 	vim.o.relativenumber = not vim.o.relativenumber
 end)
+
+-- quickfix navigation
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<cr>")
+vim.keymap.set("n", "<C-k>", "<cmd>cprevious<cr>")
 
 -- FILETYPE DETECTION
 
