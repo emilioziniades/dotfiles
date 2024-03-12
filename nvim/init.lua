@@ -637,14 +637,13 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
 	},
-
+	-- commenting
+	{ "numToStr/Comment.nvim", opts = {} },
 	{
 		"echasnovski/mini.nvim",
 		config = function()
 			-- bracket add/delete/replace
 			require("mini.surround").setup()
-			-- commenting
-			require("mini.comment").setup()
 		end,
 	},
 
