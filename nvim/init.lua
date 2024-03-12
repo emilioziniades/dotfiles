@@ -76,10 +76,9 @@ require("lazy").setup({
 
 			local on_attach = function(_, bufnr)
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				-- the below keymaps are handled by telescope
-				-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-				-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-				-- vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 				vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -425,9 +424,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
 			vim.keymap.set("n", "<leader>fe", file_browser_cwd)
 			vim.keymap.set("n", "<leader>fd", find_dotfiles)
-			vim.keymap.set("n", "gr", builtin.lsp_references)
-			vim.keymap.set("n", "gd", builtin.lsp_definitions)
-			vim.keymap.set("n", "gi", builtin.lsp_implementations)
+			-- vim.keymap.set("n", "gr", builtin.lsp_references)
+			-- vim.keymap.set("n", "gd", builtin.lsp_definitions)
+			-- vim.keymap.set("n", "gi", builtin.lsp_implementations)
 		end,
 	},
 
