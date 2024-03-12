@@ -72,6 +72,7 @@
     openssl_1_1
     xz
     curl
+    libgdiplus
   ];
 
   virtualisation.docker.enable = true;
