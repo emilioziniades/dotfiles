@@ -154,37 +154,53 @@ require("lazy").setup({
 	-- formatter
 	{
 		"stevearc/conform.nvim",
-		opts = {
-			notify_on_error = true,
-			format_on_save = {
-				timeout_ms = 1000,
-				lsp_fallback = true,
-			},
-			formatters_by_ft = {
-				lua = { "stylua" },
-				python = { "black" },
-				go = { "goimports" },
-				rust = { "rustfmt" },
-				cs = { "csharpier" },
-				nix = { "alejandra" },
-				terraform = { "terraform_fmt" },
-				hcl = { "terraform_fmt" },
-				sh = { "shfmt" },
-				haskell = { "fourmolu" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				typescriptreact = { "prettier" },
-				javascriptreact = { "prettier" },
-				json = { "prettier" },
-				markdown = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
-				scss = { "prettier" },
-				htmldjango = { "djlint" },
-			},
-		},
+		config = function()
+			vim.g.conform_format_on_save = true
+
+			local function format_on_save_if_active(format_on_save_opts)
+				return function()
+					if vim.g.conform_format_on_save then
+						return format_on_save_opts
+					end
+				end
+			end
+
+			vim.api.nvim_create_user_command("ConformToggle", function()
+				vim.g.conform_format_on_save = not vim.g.conform_format_on_save
+			end, { desc = "toggles formatting for the current buffer" })
+
+			require("conform").setup({
+				notify_on_error = true,
+				format_on_save = format_on_save_if_active({
+					timeout_ms = 1000,
+					lsp_fallback = true,
+				}),
+				formatters_by_ft = {
+					lua = { "stylua" },
+					python = { "black" },
+					go = { "goimports" },
+					rust = { "rustfmt" },
+					cs = { "csharpier" },
+					nix = { "alejandra" },
+					terraform = { "terraform_fmt" },
+					hcl = { "terraform_fmt" },
+					sh = { "shfmt" },
+					haskell = { "fourmolu" },
+					javascript = { "prettier" },
+					typescript = { "prettier" },
+					typescriptreact = { "prettier" },
+					javascriptreact = { "prettier" },
+					json = { "prettier" },
+					markdown = { "prettier" },
+					html = { "prettier" },
+					css = { "prettier" },
+					scss = { "prettier" },
+					htmldjango = { "djlint" },
+				},
+			})
+		end,
 		event = { "BufWritePre" },
-		cmd = { "ConformInfo" },
+		cmd = { "ConformInfo", "ConformToggle" },
 	},
 
 	-- git
