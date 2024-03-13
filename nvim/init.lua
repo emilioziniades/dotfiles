@@ -72,8 +72,6 @@ require("lazy").setup({
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
-			vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>")
-
 			local on_attach = function(_, bufnr)
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
