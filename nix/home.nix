@@ -231,7 +231,7 @@
       owner = "catppuccin";
       repo = "alacritty";
       rev = "main";
-      hash = "sha256-ypYaxlsDjI++6YNcE+TxBSnlUXKKuAMmLQ4H74T/eLw=";
+      hash = "sha256-HiIYxTlif5Lbl9BAvPsnXp8WAexL8YuohMDd/eCJVQ8=";
     };
   in {
     enable = true;
