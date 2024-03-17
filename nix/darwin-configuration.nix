@@ -3,8 +3,11 @@
   pkgs,
   ...
 }: {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.sandbox = false;
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    sandbox = false;
+    trusted-users = ["emilioziniades"];
+  };
 
   # todo: does this belong in here, or home.nix?
   nixpkgs.config = {
