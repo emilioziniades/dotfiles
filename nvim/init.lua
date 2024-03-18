@@ -722,6 +722,13 @@ require("lazy").setup({
 		},
 	},
 
+	-- todo highlights
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
+
 	-- colorscheme
 	{
 		"catppuccin/nvim",
