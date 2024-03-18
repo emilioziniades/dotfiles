@@ -109,6 +109,7 @@
       csharpier
       netcoredbg
       (pkgs.callPackage ./pkgs/dotnet-outdated/package.nix {})
+      (pkgs.callPackage ./pkgs/dotnet-repl/package.nix {})
 
       # IAC
       packer
