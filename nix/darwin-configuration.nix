@@ -18,17 +18,23 @@
   };
   users.users.emilioziniades.home = "/Users/emilioziniades";
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+      ];
+    })
+  ];
+
   homebrew = {
     enable = true;
     taps = [
       "homebrew/bundle"
-      "homebrew/cask-fonts"
       "homebrew/services"
     ];
     casks = [
       "discord"
       "firefox"
-      "font-fira-code-nerd-font"
       "mactex"
       "multipass"
       "obsidian"
