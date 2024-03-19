@@ -9,7 +9,6 @@
     trusted-users = ["emilioziniades"];
   };
 
-  # todo: does this belong in here, or home.nix?
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
@@ -18,6 +17,7 @@
   };
   users.users.emilioziniades.home = "/Users/emilioziniades";
 
+  fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
     (nerdfonts.override {
       fonts = [
