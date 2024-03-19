@@ -135,6 +135,7 @@
       teams-for-linux
       spotify
       discord
+      libreoffice
       # redisinsight
       # element-desktop
       # etcher
