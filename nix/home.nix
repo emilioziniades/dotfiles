@@ -174,22 +174,14 @@
     };
     syntaxHighlighting.enable = true;
     initExtra = ''
-      PROMPT='%F{yellow}%~%f %F{blue}%#%f '
-
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word
     '';
   };
 
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      yellow=$(tput setaf 3)
-      blue=$(tput setaf 4)
-      reset=$(tput sgr0)
-      PS1='\[$yellow\]\w\[$reset\] \[$blue\]$\[$reset\] '
-    '';
-  };
+  programs.bash.enable = true;
+
+  programs.starship.enable = true;
 
   programs.git = {
     enable = true;
