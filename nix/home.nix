@@ -182,7 +182,12 @@
 
   programs.bash.enable = true;
 
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      aws.disabled = true;
+    };
+  };
 
   programs.git = {
     enable = true;
