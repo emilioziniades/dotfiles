@@ -22,6 +22,7 @@
     [
       # GENERAL TOOLS
       curl
+      file
       htop
       fd
       eza
