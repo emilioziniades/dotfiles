@@ -51,9 +51,7 @@
       timewarrior
       flyctl
       gh
-      # TODO: uncomment once upstream build issues are resolved: https://nixpk.gs/pr-tracker.html?pr=296007
-      # awscli2
-      awscli
+      awscli2
       kubectl
       postgresql_15
       pgformatter
