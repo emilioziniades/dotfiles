@@ -44,9 +44,7 @@
       hey
       nmap
       nushell
-      # TODO: delete local copy once upstream is updated: https://nixpk.gs/pr-tracker.html?pr=298913
-      # tmux-sessionizer
-      (pkgs.callPackage ./pkgs/tmux-sessionizer/package.nix {Security = darwin.apple_sdk.frameworks.Security;})
+      tmux-sessionizer
       watchexec
       timewarrior
       flyctl
