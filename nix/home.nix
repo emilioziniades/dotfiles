@@ -110,6 +110,7 @@
       csharp-ls
       csharpier
       netcoredbg
+      # TODO: update this with upstream once it is released into nixos-unstable: https://nixpk.gs/pr-tracker.html?pr=299787
       (pkgs.callPackage ./pkgs/dotnet-outdated/package.nix {})
       csharprepl
 
