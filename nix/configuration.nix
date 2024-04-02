@@ -77,5 +77,9 @@
 
   virtualisation.docker.enable = true;
 
+  virtualisation.virtualbox.host.enable = true;
+  #TODO: don't hardcode
+  users.extraGroups.vboxusers.members = ["emilioz"];
+
   system.stateVersion = "23.11";
 }
