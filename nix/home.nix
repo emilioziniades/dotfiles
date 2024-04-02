@@ -147,15 +147,15 @@
   programs.home-manager.enable = true;
 
   home.shellAliases = {
-    v = "nvim";
-    t = "tmux";
-    k = "kubectl";
     c = "clear && tmux clear-history";
-    ll = "ls -alh --color=always";
-    copy = "xclip -selection clipboard";
+    copy =
+      if pkgs.stdenv.isLinux
+      then "xclip -selection clipboard"
+      else "pbcopy";
     ls = "eza";
     cat = "bat";
     find = "fd";
+    grep = "rg";
     switch = emilioExtraConfig.switchCommand;
   };
 
