@@ -34,6 +34,7 @@ local options = {
 	showmode = false,
 	termguicolors = true,
 	splitright = true,
+	spellfile = vim.fs.normalize("~/dotfiles/nvim/spell/en.utf-8.add"),
 }
 
 local function set_options(opts, option_group)
