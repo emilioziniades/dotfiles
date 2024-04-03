@@ -1,9 +1,6 @@
 {
   pkgs,
-  config,
   emilioExtraConfig,
-  nix-std,
-  catppuccin-alacritty,
   ...
 }: {
   home.stateVersion = "24.05";
@@ -17,7 +14,13 @@
     allowUnfreePredicate = _: true;
   };
 
-  imports = [];
+  imports = [
+    ./modules/home-manager/neovim.nix
+    ./modules/home-manager/alacritty.nix
+    ./modules/home-manager/tmux.nix
+    ./modules/home-manager/tms.nix
+    ./modules/home-manager/starship.nix
+  ];
 
   home.packages = with pkgs;
     [
@@ -185,13 +188,6 @@
 
   programs.bash.enable = true;
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      aws.disabled = true;
-    };
-  };
-
   programs.git = {
     enable = true;
     userName = "Emilio Ziniades";
@@ -229,103 +225,8 @@
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-    settings =
-      {
-        env = {
-          TERM = "xterm-256color";
-        };
-        window.padding = {
-          x = 10;
-          y = 10;
-        };
-        font = {
-          normal = {
-            family = "FiraCode Nerd Font Mono";
-            style = "Medium";
-          };
-          size = 14.0;
-        };
-        keyboard.bindings = [
-          {
-            key = "F11";
-            action = "ToggleFullscreen";
-          }
-          {
-            key = "Back";
-            mods = "Control";
-            chars = "\\u0017"; # delete entire word
-          }
-        ];
-      }
-      // nix-std.lib.serde.fromTOML (builtins.readFile "${catppuccin-alacritty}/catppuccin-mocha.toml");
-  };
-
-  programs.tmux = {
-    enable = true;
-    prefix = "C-Space";
-    keyMode = "vi";
-    terminal = "tmux-256color";
-    historyLimit = 100000;
-    escapeTime = 10;
-    sensibleOnTop = false;
-    plugins = with pkgs; [
-      {
-        plugin = tmuxPlugins.catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_window_default_text "#W"
-          set -g @catppuccin_window_current_text "#W"
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_right_separator "█"
-          set -g @catppuccin_status_left_separator "█"
-          set -g @catppuccin_status_right_separator "█"
-          set -g @catppuccin_status_modules "session"
-        '';
-      }
-    ];
-    extraConfig = ''
-      set -ag terminal-overrides ",xterm-256color:RGB"
-      # see here for below voodoo: https://github.com/tmux/tmux/issues/1202
-      set -as terminal-overrides ',xterm*:sitm=\E[3m'
-      set-option -g focus-events on
-      set-option -g renumber-windows on
-
-      bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded ~/.config/tmux/tmux.conf"
-      bind j next-window
-      bind k previous-window
-      bind h set -g status
-      bind e clear-history
-      bind t display-popup -E "tms"
-    '';
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
-  xdg.configFile.nvim = {
-    source = ../nvim;
-    recursive = true;
-  };
-
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
   };
-
-  xdg.configFile."tms/config.toml".text = let
-    dirs = ["code" "work" "personal" "dotfiles"];
-    mkSearchDir = dir: {
-      path = "${config.home.homeDirectory}/${dir}";
-      depth = 2;
-    };
-    tmsConfig = {
-      search_dirs = map mkSearchDir dirs;
-    };
-  in
-    nix-std.lib.serde.toTOML tmsConfig;
 }
