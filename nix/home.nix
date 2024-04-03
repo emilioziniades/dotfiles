@@ -1,8 +1,9 @@
 {
   pkgs,
   config,
-  std,
   emilioExtraConfig,
+  nix-std,
+  catppuccin-alacritty,
   ...
 }: {
   home.stateVersion = "23.11";
@@ -228,14 +229,7 @@
     };
   };
 
-  programs.alacritty = let
-    catppuccin = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "alacritty";
-      rev = "main";
-      hash = "sha256-HiIYxTlif5Lbl9BAvPsnXp8WAexL8YuohMDd/eCJVQ8=";
-    };
-  in {
+  programs.alacritty = {
     enable = true;
     settings =
       {
@@ -265,7 +259,7 @@
           }
         ];
       }
-      // std.lib.serde.fromTOML (builtins.readFile "${catppuccin}/catppuccin-mocha.toml");
+      // nix-std.lib.serde.fromTOML (builtins.readFile "${catppuccin-alacritty}/catppuccin-mocha.toml");
   };
 
   programs.tmux = {
@@ -319,7 +313,7 @@
     enableZshIntegration = true;
   };
 
-  home.file.".config/tms/config.toml".text = std.lib.serde.toTOML {
+  home.file.".config/tms/config.toml".text = nix-std.lib.serde.toTOML {
     search_dirs = [
       {
         path = "${config.home.homeDirectory}/code";
