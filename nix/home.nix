@@ -55,6 +55,7 @@
       postgresql_15
       pgformatter
       cook-cli
+      mongosh
       # imagemagick
       # ffmpeg
       # tor
