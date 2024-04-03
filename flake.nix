@@ -2,15 +2,28 @@
   description = "Emilio's nix configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
 
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-std.url = "github:chessai/nix-std";
+    nix-std = {
+      url = "github:chessai/nix-std";
+    };
+
+    catppuccin-alacritty = {
+      url = "github:catppuccin/alacritty";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -18,6 +31,7 @@
     home-manager,
     darwin,
     nix-std,
+    catppuccin-alacritty,
     ...
   }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -30,7 +44,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioz = import ./nix/home.nix;
           home-manager.extraSpecialArgs = {
-            std = nix-std;
+            inherit catppuccin-alacritty nix-std;
             emilioExtraConfig = {
               username = "emilioz";
               homeDirectory = "/home/emilioz";
@@ -56,7 +70,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./nix/home.nix;
           home-manager.extraSpecialArgs = {
-            std = nix-std;
+            inherit catppuccin-alacritty nix-std;
             emilioExtraConfig = {
               username = "emilioziniades";
               homeDirectory = "/Users/emilioziniades";
