@@ -657,7 +657,9 @@ require("lazy").setup({
 		"echasnovski/mini.nvim",
 		config = function()
 			-- bracket add/delete/replace
-			require("mini.surround").setup()
+			require("mini.surround").setup({
+				n_lines = 100,
+			})
 		end,
 	},
 
