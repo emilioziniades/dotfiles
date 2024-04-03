@@ -313,24 +313,16 @@
     enableZshIntegration = true;
   };
 
-  home.file.".config/tms/config.toml".text = nix-std.lib.serde.toTOML {
-    search_dirs = [
-      {
-        path = "${config.home.homeDirectory}/code";
-        depth = 2;
-      }
-      {
-        path = "${config.home.homeDirectory}/work";
-        depth = 2;
-      }
-      {
-        path = "${config.home.homeDirectory}/personal";
-        depth = 2;
-      }
-      {
-        path = "${config.home.homeDirectory}/dotfiles";
-        depth = 1;
-      }
-    ];
-  };
+  xdg.configFile."tms/config.toml".text = let
+    # TODO: this could be configurable across different hosts, OR use the same dirs across hosts
+    dirs = ["code" "work" "personal" "dotfiles"];
+    mkSearchDir = dir: {
+      path = "${config.home.homeDirectory}/${dir}";
+      depth = 2;
+    };
+    tmsConfig = {
+      search_dirs = map mkSearchDir dirs;
+    };
+  in
+    nix-std.lib.serde.toTOML tmsConfig;
 }
