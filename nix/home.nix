@@ -318,7 +318,6 @@
   };
 
   xdg.configFile."tms/config.toml".text = let
-    # TODO: this could be configurable across different hosts, OR use the same dirs across hosts
     dirs = ["code" "work" "personal" "dotfiles"];
     mkSearchDir = dir: {
       path = "${config.home.homeDirectory}/${dir}";
