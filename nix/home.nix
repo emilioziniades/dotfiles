@@ -1,22 +1,11 @@
 {
-  pkgs,
-  emilioExtraConfig,
-  ...
-}: {
-  home.stateVersion = "24.05";
-  home.username = emilioExtraConfig.username;
-  home.homeDirectory = emilioExtraConfig.homeDirectory;
-  programs.home-manager.enable = true;
-
   imports = [
-    ./modules/home-manager/neovim.nix
-    ./modules/home-manager/alacritty.nix
-    ./modules/home-manager/tmux.nix
-    ./modules/home-manager/tms.nix
-    ./modules/home-manager/git.nix
-    ./modules/home-manager/shells.nix
-    ./modules/home-manager/gui.nix
+    ./modules/home-manager
   ];
+
+  home.username = "emilioziniades";
+  home.homeDirectory = "/Users/emilioziniades";
+  home.stateVersion = "24.05";
 
   ez.programs.git = {
     enable = true;
@@ -26,119 +15,19 @@
     gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
   };
 
+  ez.programs = {
+    rust.enable = true;
+    python.enable = true;
+    go.enable = true;
+    dotnet.enable = true;
+    haskell.enable = true;
+    lua.enable = true;
+    nix.enable = true;
+    infrastructure-as-code.enable = true;
+    webdev.enable = true;
+  };
+
+  ez.dev.velocity-trade.enable = true;
+
   ez.applications.gui.enable = false;
-  # ez.applications.gui.enable = true; TODO: carve this out into kayak/home.nix
-
-  home.packages = with pkgs; [
-    # GENERAL TOOLS
-    curl
-    file
-    htop
-    fd
-    eza
-    bat
-    tree
-    ripgrep
-    fzf
-    jq
-    yq
-    diffutils
-    wget
-    gnupg
-    zip
-    unzip
-    gnumake
-    mktemp
-    xclip
-    just
-    tokei
-    hey
-    nmap
-    nushell
-    tmux-sessionizer
-    watchexec
-    timewarrior
-    flyctl
-    gh
-    awscli2
-    kubectl
-    postgresql_15
-    pgformatter
-    cook-cli
-    mongosh
-    # imagemagick
-    # ffmpeg
-    # tor
-    # pandoc
-
-    # $WORK
-    (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
-    (pkgs.callPackage ./pkgs/vpn/package.nix {})
-
-    # SHELL
-    shfmt
-    shellcheck
-
-    # NIX
-    alejandra
-    manix
-    nil
-
-    # RUST
-    cargo
-    rustc
-    rustfmt
-    rust-analyzer
-    clippy
-
-    # GO
-    go
-    gopls
-    gotools
-
-    # PYTHON
-    python311
-    python311Packages.ipython
-    python311Packages.black
-    nodePackages.pyright
-
-    # LUA
-    lua
-    stylua
-    lua-language-server
-
-    # JAVASCRIPT/TYPESCRIPT
-    nodejs_18
-    nodePackages.prettier
-    nodePackages.typescript-language-server
-
-    # DOTNET
-    (with dotnetCorePackages;
-      combinePackages [
-        sdk_6_0
-        sdk_8_0
-      ])
-    csharp-ls
-    csharpier
-    netcoredbg
-    dotnet-outdated
-    csharprepl
-
-    # IAC
-    packer
-    terraform
-    terraform-ls
-
-    # HASKELL
-    ghc
-    haskell-language-server
-    haskellPackages.stack
-    haskellPackages.fourmolu
-
-    # C/C++
-    gcc
-
-    # HTML
-    djlint
-  ];
 }
