@@ -15,8 +15,8 @@ in {
       type = str;
     };
     gpgKey = mkOption {
-      type = nullOr str;
-      default = null;
+      type = either str bool;
+      default = false;
     };
     defaultBranch = mkOption {
       type = str;
