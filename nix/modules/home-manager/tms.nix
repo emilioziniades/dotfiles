@@ -1,8 +1,13 @@
 {
+  pkgs,
   config,
   nix-std,
   ...
 }: {
+  home.packages = [
+    pkgs.tmux-sessionizer
+  ];
+
   xdg.configFile."tms/config.toml".text = let
     dirs = ["code" "work" "personal" "dotfiles"];
     mkSearchDir = dir: {
