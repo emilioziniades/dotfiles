@@ -4,9 +4,9 @@
   ...
 }: {
   home.stateVersion = "24.05";
-
   home.username = emilioExtraConfig.username;
   home.homeDirectory = emilioExtraConfig.homeDirectory;
+  programs.home-manager.enable = true;
 
   nixpkgs.config = {
     #allowUnfree = true;
@@ -19,8 +19,16 @@
     ./modules/home-manager/alacritty.nix
     ./modules/home-manager/tmux.nix
     ./modules/home-manager/tms.nix
-    ./modules/home-manager/starship.nix
+    ./modules/home-manager/git.nix
   ];
+
+  ez.programs.git = {
+    enable = true;
+    username = "Emilio Ziniades";
+    email = "emilioziniades@protonmail.com";
+    defaultBranch = "main";
+    gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
+  };
 
   home.packages = with pkgs;
     [
@@ -148,8 +156,6 @@
       # etcher
     ];
 
-  programs.home-manager.enable = true;
-
   home.shellAliases = {
     c = "clear && tmux clear-history";
     copy =
@@ -188,40 +194,10 @@
 
   programs.bash.enable = true;
 
-  programs.git = {
+  programs.starship = {
     enable = true;
-    userName = "Emilio Ziniades";
-    userEmail = emilioExtraConfig.git.email;
-    aliases = {
-      i = "init";
-      s = "status";
-      l = "log --oneline --all";
-      g = "log --oneline --graph --decorate --all";
-      lf = "log";
-      d = "diff";
-      a = "add";
-      c = "commit";
-      p = "push";
-    };
-    extraConfig = {
-      user = {
-        signingkey = emilioExtraConfig.git.gpgKey;
-      };
-      init = {
-        defaultBranch = emilioExtraConfig.git.defaultBranch;
-      };
-      core = {
-        editor = "nvim";
-      };
-      commit = {
-        gpgsign = false;
-      };
-      push = {
-        autoSetupRemote = true;
-      };
-      pull = {
-        rebase = false;
-      };
+    settings = {
+      aws.disabled = true;
     };
   };
 
