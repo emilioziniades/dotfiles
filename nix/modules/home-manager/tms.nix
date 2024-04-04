@@ -9,6 +9,7 @@
   ];
 
   xdg.configFile."tms/config.toml".text = let
+    # TODO: Make this module option-able and pass this in as config
     dirs = ["code" "work" "personal" "dotfiles"];
     mkSearchDir = dir: {
       path = "${config.home.homeDirectory}/${dir}";
