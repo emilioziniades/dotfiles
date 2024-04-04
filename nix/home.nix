@@ -8,12 +8,6 @@
   home.homeDirectory = emilioExtraConfig.homeDirectory;
   programs.home-manager.enable = true;
 
-  nixpkgs.config = {
-    #allowUnfree = true;
-    # see for below voodoo: https://github.com/nix-community/home-manager/issues/2942
-    allowUnfreePredicate = _: true;
-  };
-
   imports = [
     ./modules/home-manager/neovim.nix
     ./modules/home-manager/alacritty.nix
