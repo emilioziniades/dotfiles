@@ -15,6 +15,7 @@
     ./modules/home-manager/tms.nix
     ./modules/home-manager/git.nix
     ./modules/home-manager/shells.nix
+    ./modules/home-manager/gui.nix
   ];
 
   ez.programs.git = {
@@ -25,129 +26,119 @@
     gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
   };
 
-  home.packages = with pkgs;
-    [
-      # GENERAL TOOLS
-      curl
-      file
-      htop
-      fd
-      eza
-      bat
-      tree
-      ripgrep
-      fzf
-      jq
-      yq
-      diffutils
-      wget
-      gnupg
-      zip
-      unzip
-      gnumake
-      mktemp
-      xclip
-      just
-      tokei
-      hey
-      nmap
-      nushell
-      tmux-sessionizer
-      watchexec
-      timewarrior
-      flyctl
-      gh
-      awscli2
-      kubectl
-      postgresql_15
-      pgformatter
-      cook-cli
-      mongosh
-      # imagemagick
-      # ffmpeg
-      # tor
-      # pandoc
+  ez.applications.gui.enable = false;
+  # ez.applications.gui.enable = true; TODO: carve this out into kayak/home.nix
 
-      # $WORK
-      (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
-      (pkgs.callPackage ./pkgs/vpn/package.nix {})
+  home.packages = with pkgs; [
+    # GENERAL TOOLS
+    curl
+    file
+    htop
+    fd
+    eza
+    bat
+    tree
+    ripgrep
+    fzf
+    jq
+    yq
+    diffutils
+    wget
+    gnupg
+    zip
+    unzip
+    gnumake
+    mktemp
+    xclip
+    just
+    tokei
+    hey
+    nmap
+    nushell
+    tmux-sessionizer
+    watchexec
+    timewarrior
+    flyctl
+    gh
+    awscli2
+    kubectl
+    postgresql_15
+    pgformatter
+    cook-cli
+    mongosh
+    # imagemagick
+    # ffmpeg
+    # tor
+    # pandoc
 
-      # SHELL
-      shfmt
-      shellcheck
+    # $WORK
+    (pkgs.callPackage ./pkgs/vt-cli/package.nix {pythonPackages = python3.pkgs;})
+    (pkgs.callPackage ./pkgs/vpn/package.nix {})
 
-      # NIX
-      alejandra
-      manix
-      nil
+    # SHELL
+    shfmt
+    shellcheck
 
-      # RUST
-      cargo
-      rustc
-      rustfmt
-      rust-analyzer
-      clippy
+    # NIX
+    alejandra
+    manix
+    nil
 
-      # GO
-      go
-      gopls
-      gotools
+    # RUST
+    cargo
+    rustc
+    rustfmt
+    rust-analyzer
+    clippy
 
-      # PYTHON
-      python311
-      python311Packages.ipython
-      python311Packages.black
-      nodePackages.pyright
+    # GO
+    go
+    gopls
+    gotools
 
-      # LUA
-      lua
-      stylua
-      lua-language-server
+    # PYTHON
+    python311
+    python311Packages.ipython
+    python311Packages.black
+    nodePackages.pyright
 
-      # JAVASCRIPT/TYPESCRIPT
-      nodejs_18
-      nodePackages.prettier
-      nodePackages.typescript-language-server
+    # LUA
+    lua
+    stylua
+    lua-language-server
 
-      # DOTNET
-      (with dotnetCorePackages;
-        combinePackages [
-          sdk_6_0
-          sdk_8_0
-        ])
-      csharp-ls
-      csharpier
-      netcoredbg
-      dotnet-outdated
-      csharprepl
+    # JAVASCRIPT/TYPESCRIPT
+    nodejs_18
+    nodePackages.prettier
+    nodePackages.typescript-language-server
 
-      # IAC
-      packer
-      terraform
-      terraform-ls
+    # DOTNET
+    (with dotnetCorePackages;
+      combinePackages [
+        sdk_6_0
+        sdk_8_0
+      ])
+    csharp-ls
+    csharpier
+    netcoredbg
+    dotnet-outdated
+    csharprepl
 
-      # HASKELL
-      ghc
-      haskell-language-server
-      haskellPackages.stack
-      haskellPackages.fourmolu
+    # IAC
+    packer
+    terraform
+    terraform-ls
 
-      # C/C++
-      gcc
+    # HASKELL
+    ghc
+    haskell-language-server
+    haskellPackages.stack
+    haskellPackages.fourmolu
 
-      # HTML
-      djlint
-    ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
-      firefox
-      obsidian
-      mongodb-compass
-      teams-for-linux
-      spotify
-      discord
-      libreoffice
-      # redisinsight
-      # element-desktop
-      # etcher
-    ];
+    # C/C++
+    gcc
+
+    # HTML
+    djlint
+  ];
 }
