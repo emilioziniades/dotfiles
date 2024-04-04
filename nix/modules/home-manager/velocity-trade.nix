@@ -10,7 +10,7 @@ with lib; let
   vpn = pkgs.callPackage ../../pkgs/vpn/package.nix {};
 in {
   options.ez.dev.velocity-trade = {
-    enable = mkEnableOption "GUI applications";
+    enable = mkEnableOption "Velocity Trade development tools";
   };
 
   config = mkIf cfg.enable {
