@@ -1,18 +1,17 @@
 {
   imports = [
-    ./modules/home-manager
+    ../../modules/home-manager
   ];
 
-  home.username = "emilioziniades";
-  home.homeDirectory = "/Users/emilioziniades";
+  home.username = "emilioz";
+  home.homeDirectory = "/home/emilioz";
   home.stateVersion = "24.05";
 
   ez.programs.git = {
     enable = true;
     username = "Emilio Ziniades";
-    email = "emilioziniades@protonmail.com";
-    defaultBranch = "main";
-    gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
+    email = "emilioz@za.velocitytrade.com";
+    defaultBranch = "master";
   };
 
   ez.programs = {

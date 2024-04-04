@@ -37,50 +37,30 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./nix/configuration.nix
+        ./nix/hosts/kayak/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.emilioz = import ./nix/home.nix;
+          home-manager.users.emilioz = import ./nix/hosts/kayak/home.nix;
           home-manager.extraSpecialArgs = {
             inherit catppuccin-alacritty nix-std;
-            emilioExtraConfig = {
-              username = "emilioz";
-              homeDirectory = "/home/emilioz";
-              git = {
-                email = "emilioz@za.velocitytrade.com";
-                defaultBranch = "master";
-                gpgKey = false;
-              };
-              switchCommand = "sudo -u $USER nixos-rebuild switch --flake $HOME/dotfiles";
-            };
           };
         }
       ];
     };
 
-    darwinConfigurations."Emilios-MacBook-Pro" = darwin.lib.darwinSystem {
+    darwinConfigurations.hadedah = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
-        ./nix/darwin-configuration.nix
+        ./nix/hosts/hadedah/darwin-configuration.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.emilioziniades = import ./nix/home.nix;
+          home-manager.users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
           home-manager.extraSpecialArgs = {
             inherit catppuccin-alacritty nix-std;
-            emilioExtraConfig = {
-              username = "emilioziniades";
-              homeDirectory = "/Users/emilioziniades";
-              git = {
-                email = "emilioziniades@protonmail.com";
-                defaultBranch = "main";
-                gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
-              };
-              switchCommand = "darwin-rebuild switch --flake $HOME/dotfiles";
-            };
           };
         }
       ];
