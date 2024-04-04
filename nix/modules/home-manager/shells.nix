@@ -14,6 +14,7 @@
     # TODO: this is derivable from OS type + home username + dir
     switch =
       if pkgs.stdenv.isLinux
+      # TODO: this doesn't have syntax highlighting and it's annoying
       then "sudo -u $USER nixos-rebuild switch --flake $HOME/dotfiles"
       else if pkgs.stdenv.isDarwin
       then "darwin-rebuild switch --flake $HOME/dotfiles"
