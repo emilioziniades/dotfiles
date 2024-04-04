@@ -14,6 +14,7 @@
     ./modules/home-manager/tmux.nix
     ./modules/home-manager/tms.nix
     ./modules/home-manager/git.nix
+    ./modules/home-manager/shells.nix
   ];
 
   ez.programs.git = {
@@ -149,54 +150,4 @@
       # element-desktop
       # etcher
     ];
-
-  home.shellAliases = {
-    c = "clear && tmux clear-history";
-    copy =
-      if pkgs.stdenv.isLinux
-      then "xclip -selection clipboard"
-      else "pbcopy";
-    ls = "eza";
-    cat = "bat";
-    find = "fd";
-    grep = "rg";
-    switch = emilioExtraConfig.switchCommand;
-  };
-
-  # for profiling zsh startup times, see: https://esham.io/2018/02/zsh-profiling
-  programs.zsh = {
-    enable = true;
-    sessionVariables = {
-      EDITOR = "nvim";
-      LC_ALL = "en_US.UTF-8";
-      DOTNET_CLI_TELEMETRY_OPTOUT = 1;
-      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1;
-      GPG_TTY = "$(tty)";
-    };
-    history = {
-      ignoreDups = true;
-      share = true;
-      save = 10000;
-      size = 10000;
-    };
-    syntaxHighlighting.enable = true;
-    initExtra = ''
-      bindkey '^[[1;5D' backward-word
-      bindkey '^[[1;5C' forward-word
-    '';
-  };
-
-  programs.bash.enable = true;
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      aws.disabled = true;
-    };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
 }
