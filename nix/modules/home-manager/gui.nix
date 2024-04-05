@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
@@ -11,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
+    home.packages = with pkgs; [
       firefox
       obsidian
       mongodb-compass
@@ -19,7 +20,7 @@ in {
       spotify
       discord
       libreoffice
-      # TODO: add bitwarden GUI
+      bitwarden
     ];
   };
 }
