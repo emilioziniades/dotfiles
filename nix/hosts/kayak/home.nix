@@ -28,5 +28,5 @@
 
   ez.dev.velocity-trade.enable = true;
 
-  ez.applications.gui.enable = false;
+  ez.applications.gui.enable = true;
 }
