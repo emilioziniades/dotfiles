@@ -8,6 +8,7 @@
     bat
     tree
     ripgrep
+    sd
     fzf
     jq
     yq
