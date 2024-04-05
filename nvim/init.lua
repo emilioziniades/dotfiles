@@ -175,7 +175,7 @@ require("lazy").setup({
 				}),
 				formatters_by_ft = {
 					lua = { "stylua" },
-					python = { "black" },
+					python = { "ruff_format" },
 					go = { "goimports" },
 					rust = { "rustfmt" },
 					cs = { "csharpier" },
