@@ -12,8 +12,6 @@
     home.packages = with pkgs; [
       python311
       python311Packages.ipython
-      # TODO: swap ruff for black in nvim config and delete this
-      python311Packages.black
       ruff
       nodePackages.pyright
     ];
