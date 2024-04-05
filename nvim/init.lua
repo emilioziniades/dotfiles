@@ -781,6 +781,7 @@ vim.filetype.add({
 				end
 			end
 		end,
+		["Dockerfile.*"] = "dockerfile",
 	},
 })
 
