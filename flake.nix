@@ -35,7 +35,7 @@
     ...
   }: {
     # TODO: change hostname to kayak
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.kayak = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./nix/hosts/kayak/configuration.nix
