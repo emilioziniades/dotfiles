@@ -9,7 +9,7 @@ Currently, my workflow revolves around a combination of [Alacritty](https://alac
 Enter a development shell with the tools necessary to bootstrap the flake.
 
 ```
-nix shell 'github:emilioziniades/dotfiles'
+nix develop 'github:emilioziniades/dotfiles'
 ```
 
 Clone the dotfiles into `~/dotfiles`.
@@ -43,7 +43,7 @@ From now on, configuration can be updated by runing `darwin-rebuild switch --fla
 Enter a development shell with the tools necessary to bootstrap the flake.
 
 ```
-nix shell 'github:emilioziniades/dotfiles'
+nix develop 'github:emilioziniades/dotfiles'
 ```
 
 Clone the dotfiles into `~/dotfiles`.
