@@ -6,6 +6,12 @@ Currently, my workflow revolves around a combination of [Alacritty](https://alac
 
 ## MacOS `nix-darwin` setup
 
+Enter a development shell with the tools necessary to bootstrap the flake.
+
+```
+nix shell 'github:emilioziniades/dotfiles'
+```
+
 Clone the dotfiles into `~/dotfiles`.
 
 ```
@@ -18,34 +24,26 @@ Install `nix` using the [Determinate Systems installer](https://github.com/Deter
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-Install [nix-darwin](http://daiderd.com/nix-darwin/). See all options [here](https://daiderd.com/nix-darwin/manual/index.html).
-
-```
-nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-./result/bin/darwin-installer
-```
-
 In addition, there is not great Nix support for GUI applications on MacOS, so I still use `homebrew` for casks only. This is still managed by Nix, but it is necessary to install `homebrew` separately. Instructions below taken from [the homebrew website](https://brew.sh/).
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Bootstrap nix-darwin flake. This will install [home-manager](https://nix-community.github.io/home-manager/index.html), which is responsible for managing configuration for applications like `neovim`, `tmux` and `alacritty`. See the seminal [Appendix A](https://nix-community.github.io/home-manager/options.html) for configuration options.
+Bootstrap [nix-darwin](http://daiderd.com/nix-darwin/#flakes) and set up the system as per the flake. See all options [here](https://daiderd.com/nix-darwin/manual/index.html). This will also install [home-manager](https://nix-community.github.io/home-manager/index.html), which is responsible for managing configuration for applications like `neovim`, `tmux` and `alacritty`. See the seminal [Appendix A](https://nix-community.github.io/home-manager/options.html) for configuration options.
 
 ```
-nix build ~/dotfiles\#darwinConfigurations.Emilios-MacBook-Pro.system
-./result/sw/bin/darwin-rebuild switch --flake ~/.config/darwin
+nix run nix-darwin -- switch --flake ~/dotfiles
 ```
 
 From now on, configuration can be updated by runing `darwin-rebuild switch --flake ~/dotfiles`, which I have aliased to simply `switch`.
 
 ## NixOS setup
 
-Enter a temporary shell with `git` and `curl`. `nvim` might come in handy for some quick edits.
+Enter a development shell with the tools necessary to bootstrap the flake.
 
 ```
-nix-shell -p git curl neovim
+nix shell 'github:emilioziniades/dotfiles'
 ```
 
 Clone the dotfiles into `~/dotfiles`.
