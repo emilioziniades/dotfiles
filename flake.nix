@@ -33,8 +33,15 @@
     nix-std,
     catppuccin-alacritty,
     ...
-  }: {
-    # TODO: change hostname to kayak
+  }: let
+    forAllSystems = fn:
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "x86_64-darwin"
+      ] (
+        system: fn nixpkgs.legacyPackages.${system}
+      );
+  in {
     nixosConfigurations.kayak = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -66,5 +73,14 @@
         }
       ];
     };
+
+    devShell = forAllSystems (pkgs:
+      pkgs.mkShell {
+        buildInputs = with pkgs; [
+          neovim
+          git
+          curl
+        ];
+      });
   };
 }
