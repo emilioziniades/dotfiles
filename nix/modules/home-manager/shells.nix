@@ -9,7 +9,6 @@
       else null;
     ls = "eza";
     cat = "bat";
-    find = "fd";
     grep = "rg";
     switch =
       if pkgs.stdenv.isLinux
