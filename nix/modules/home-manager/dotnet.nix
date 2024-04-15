@@ -1,3 +1,5 @@
+# TODO: Investigate including pkgs.icu in nix.ld nixos confg instead of globalization
+# invariance, like how devenv does it: https://github.com/cachix/devenv/blob/8e882058b4602b70093d1fbff57755db09e89f11/src/modules/languages/dotnet.nix#L24
 {
   pkgs,
   lib,
