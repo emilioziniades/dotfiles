@@ -13,6 +13,7 @@
     jq
     yq
     diffutils
+    delta
     wget
     gnupg
     zip
