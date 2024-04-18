@@ -59,6 +59,7 @@ in {
           rebase = false;
         };
       };
+      delta.enable = true;
     };
   };
 }
