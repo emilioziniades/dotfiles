@@ -773,6 +773,9 @@ vim.keymap.set("n", "<C-k>", "<cmd>cprevious<cr>")
 -- FILETYPE DETECTION
 
 vim.filetype.add({
+	filename = {
+		["justfile"] = "just",
+	},
 	pattern = {
 		[".*.html"] = function(_, bufnr)
 			local content = vim.filetype.getlines(bufnr)
