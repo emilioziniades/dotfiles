@@ -23,7 +23,7 @@
     haskell.enable = true;
     lua.enable = true;
     nix.enable = true;
-    infrastructure-as-code.enable = true;
+    infrastructure-as-code.enable = false;
     webdev.enable = true;
   };
 
