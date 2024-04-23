@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   home.shellAliases = {
     c = "clear && tmux clear-history";
+    v = "nvim";
+    t = "tmux";
+    k = "kubectl";
     copy =
       if pkgs.stdenv.isLinux
       then "xclip -selection clipboard"
