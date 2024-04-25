@@ -11,6 +11,7 @@
     sd
     fzf
     jq
+    ijq
     yq
     diffutils
     delta
