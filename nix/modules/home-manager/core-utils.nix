@@ -12,7 +12,7 @@
     fzf
     jq
     ijq
-    yq
+    yq-go
     diffutils
     delta
     wget
