@@ -13,6 +13,7 @@
     jq
     ijq
     yq-go
+    taplo
     diffutils
     delta
     wget
