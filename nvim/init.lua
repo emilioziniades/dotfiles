@@ -195,6 +195,7 @@ require("lazy").setup({
 					scss = { "prettier" },
 					htmldjango = { "djlint" },
 					toml = { "taplo" },
+					sql = { "sqlfluff" },
 				},
 			})
 		end,

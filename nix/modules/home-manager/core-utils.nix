@@ -14,6 +14,7 @@
     ijq
     yq-go
     taplo
+    sqlfluff
     diffutils
     delta
     wget
