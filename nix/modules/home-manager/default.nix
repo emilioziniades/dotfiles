@@ -18,7 +18,7 @@
     ./webdev.nix
     ./infrastructure-as-code.nix
 
-    ./velocity-trade.nix
+    ./vt.nix
 
     ./gui.nix
   ];
