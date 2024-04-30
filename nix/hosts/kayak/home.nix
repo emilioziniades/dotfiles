@@ -26,7 +26,7 @@
     webdev.enable = true;
   };
 
-  ez.velocity-trade.enable = true;
+  ez.vt.enable = true;
 
   ez.applications.gui.enable = true;
 }
