@@ -12,7 +12,6 @@
       else null;
     ls = "eza";
     cat = "bat";
-    grep = "rg";
     switch =
       if pkgs.stdenv.isLinux
       # TODO: this doesn't have syntax highlighting and it's annoying
