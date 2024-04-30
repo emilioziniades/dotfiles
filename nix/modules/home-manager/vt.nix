@@ -21,5 +21,7 @@ in {
       awscli2
       kubectl
     ];
+
+    home.sessionVariables.VPN_CONFIG_FILE = config.age.secrets.vpn-config.path;
   };
 }
