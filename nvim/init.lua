@@ -573,6 +573,7 @@ require("lazy").setup({
 					"nix",
 					"python",
 					"rust",
+					"sql",
 					"terraform",
 					"toml",
 					"tsx",
