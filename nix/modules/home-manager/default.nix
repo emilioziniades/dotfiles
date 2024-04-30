@@ -21,5 +21,7 @@
     ./vt.nix
 
     ./gui.nix
+
+    ./secrets.nix
   ];
 }
