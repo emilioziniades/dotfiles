@@ -5,12 +5,12 @@
   ...
 }:
 with lib; let
-  cfg = config.ez.velocity-trade;
+  cfg = config.ez.vt;
   vt-cli = pkgs.callPackage ../../pkgs/vt-cli/package.nix {pythonPackages = pkgs.python3.pkgs;};
   vpn = pkgs.callPackage ../../pkgs/vpn/package.nix {};
 in {
-  options.ez.velocity-trade = {
-    enable = mkEnableOption "Velocity Trade development tools";
+  options.ez.vt = {
+    enable = mkEnableOption "VT development tools";
   };
 
   config = mkIf cfg.enable {
