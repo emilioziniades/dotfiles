@@ -82,7 +82,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
           home-manager.extraSpecialArgs = {
-            inherit catppuccin-alacritty nix-std;
+            inherit catppuccin-alacritty nix-std dotfiles-secrets;
           };
           home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
