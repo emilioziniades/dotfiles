@@ -34,6 +34,9 @@
       bind h set -g status
       bind e clear-history
       bind t display-popup -E "tms"
+
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
     '';
   };
 }
