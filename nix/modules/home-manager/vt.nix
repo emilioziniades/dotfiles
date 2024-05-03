@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  dotfiles-secrets,
   ...
 }:
 with lib; let
@@ -22,6 +23,9 @@ in {
       kubectl
     ];
 
-    home.sessionVariables.VPN_CONFIG_FILE = config.age.secrets.vpn-config.path;
+    age.secrets.vpn = {
+      file = "${dotfiles-secrets}/secrets/vpn-config.age";
+      path = "${config.home.homeDirectory}/.vpn";
+    };
   };
 }
