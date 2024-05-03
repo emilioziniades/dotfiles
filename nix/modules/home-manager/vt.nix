@@ -27,5 +27,10 @@ in {
       file = "${dotfiles-secrets}/secrets/vpn-config.age";
       path = "${config.home.homeDirectory}/.vpn";
     };
+
+    age.secrets.openfortivpn = {
+      file = "${dotfiles-secrets}/secrets/openfortivpn-config.age";
+      path = "/etc/openfortivpn/config";
+    };
   };
 }

@@ -61,13 +61,6 @@
     })
   ];
 
-  environment.etc."openfortivpn/config".text = ''
-    # CLM
-    trusted-cert = fe7647da0cf4b99f1932bd6c22cb83d0d8b11b2160abf2f48c91f57d8fcd0e67
-    # ISD
-    trusted-cert = 0fa7b4d0572540093833a443e739a316e29d586b0332bd7de02dddc6e00735da
-  '';
-
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
