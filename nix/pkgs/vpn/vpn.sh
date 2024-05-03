@@ -9,8 +9,8 @@
 # to do it's job. Vet this script (and it's dependencies) before running
 # on your machine.
 #
-# You will need to create a configuration file at ~/.vpn OR a location specified by the $VPN_CONFIG_FILE
-# environment variable. This is a JSON array with "name", "host", "port" and "default" fields.
+# You will need to create a configuration file at ~/.vpn.
+# This is a JSON array with "name", "host", "port" and "default" fields.
 # An example configuration file looks like this:
 #
 # [
@@ -35,7 +35,7 @@
 # but I usually just run the script, hit ctrl-z and then the `bg` command.
 set -e
 
-CONFIG=${VPN_CONFIG_FILE:-~/.vpn}
+CONFIG=~/.vpn
 VPN_PID=$(pgrep openfortivpn || true)
 
 if [[ ! -e $CONFIG ]]; then
