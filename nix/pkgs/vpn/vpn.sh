@@ -33,6 +33,8 @@
 #
 # It is possible to setup this script to run as a systemd service,
 # but I usually just run the script, hit ctrl-z and then the `bg` command.
+set -u
+
 config=~/.vpn
 vpn_pid=$(pgrep openfortivpn || true)
 
@@ -64,5 +66,5 @@ fi
 
 echo "connecting to $name"
 cookie=$(openfortivpn-webview $host)
-openfortivpn_config=$HOME/.config/openfortivpn/config
+openfortivpn_config=$XDG_CONFIG_HOME/openfortivpn/config
 sudo --preserve-env=PATH env openfortivpn --cookie=$cookie --config=$openfortivpn_config $host
