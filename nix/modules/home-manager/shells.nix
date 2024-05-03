@@ -51,4 +51,6 @@
       aws.disabled = true;
     };
   };
+
+  xdg.enable = true;
 }
