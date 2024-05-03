@@ -457,10 +457,16 @@ require("lazy").setup({
 		},
 		config = function()
 			local ls = require("luasnip")
+			local s = ls.snippet
+			local t = ls.text_node
 
 			ls.config.set_config({
 				history = true,
 				updateevents = "TextChanged,TextChangedI",
+			})
+
+			ls.add_snippets("python", {
+				s("bp", t({ "breakpoint()" })),
 			})
 
 			vim.keymap.set({ "i", "s" }, "<c-s>", function()
