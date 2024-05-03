@@ -65,11 +65,11 @@
     "dotfiles-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1714761833,
-        "narHash": "sha256-pId+z55CYrDFa4AT33riGZSaQqNOoIC4jrpH652dSXA=",
+        "lastModified": 1714766017,
+        "narHash": "sha256-oxIp2eCSqn0acy6Hd2O4tUA/W9gyTrydGfof28+H/xM=",
         "ref": "refs/heads/main",
-        "rev": "e6e04242908ead379c5277eb105595ce8ff92e53",
-        "revCount": 8,
+        "rev": "6e67bb499b43abb27f57c9ff570be3a4f0350a66",
+        "revCount": 10,
         "type": "git",
         "url": "ssh://git@github.com/emilioziniades/dotfiles-secrets.git"
       },
