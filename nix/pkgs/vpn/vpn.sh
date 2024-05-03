@@ -33,37 +33,36 @@
 #
 # It is possible to setup this script to run as a systemd service,
 # but I usually just run the script, hit ctrl-z and then the `bg` command.
-set -e
+config=~/.vpn
+vpn_pid=$(pgrep openfortivpn || true)
 
-CONFIG=~/.vpn
-VPN_PID=$(pgrep openfortivpn || true)
-
-if [[ ! -e $CONFIG ]]; then
+if [ ! -e $config ]; then
 	echo "please create a configuration file at ~/.vpn with at least one default"
 	exit 1
 fi
 
-echo "using configuration file at $CONFIG"
+echo "using configuration file at $config"
 
-if [[ -n $VPN_PID ]]; then
+if [ -n "$vpn_pid" ]; then
 	echo "vpn already connected"
 	exit 1
 fi
 
-if [[ -z $1 ]]; then
+if [ -z $1 ]; then
 	filter="map(select(.default == true))"
 else
 	filter="map(select(.name == \"$1\"))"
 fi
 
-host=$(jq -e -c "$filter | \"\(.[0].host):\(.[0].port)\"" $CONFIG | tr -d '"')
-name=$(jq -e -c "$filter | .[0].name" $CONFIG | tr -d '"')
+host=$(jq -ecr "$filter | \"\(.[0].host):\(.[0].port)\"" $config)
+name=$(jq -ecr "$filter | .[0].name" $config)
 
-if [[ $? == 1 ]]; then
+if [ $? -ne 0 ]; then
 	echo "could not find host $1, check the ~/.vpn config file"
 	exit 1
 fi
 
 echo "connecting to $name"
-COOKIE=$(openfortivpn-webview $host)
-sudo --preserve-env=PATH env openfortivpn --cookie=$COOKIE $host
+cookie=$(openfortivpn-webview $host)
+openfortivpn_config=$HOME/.config/openfortivpn/config
+sudo --preserve-env=PATH env openfortivpn --cookie=$cookie --config=$openfortivpn_config $host
