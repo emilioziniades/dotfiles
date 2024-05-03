@@ -48,12 +48,9 @@
     ...
   }: let
     forAllSystems = fn:
-      nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-        "x86_64-darwin"
-      ] (
-        system: fn nixpkgs.legacyPackages.${system}
-      );
+      nixpkgs.lib.genAttrs
+      ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"]
+      (system: fn system nixpkgs.legacyPackages.${system});
   in {
     nixosConfigurations.kayak = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -89,13 +86,14 @@
       ];
     };
 
-    devShell = forAllSystems (pkgs:
-      pkgs.mkShell {
+    devShells = forAllSystems (system: pkgs: {
+      default = pkgs.mkShell {
         buildInputs = with pkgs; [
           neovim
           git
           curl
         ];
-      });
+      };
+    });
   };
 }
