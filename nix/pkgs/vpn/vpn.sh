@@ -33,8 +33,6 @@
 #
 # It is possible to setup this script to run as a systemd service,
 # but I usually just run the script, hit ctrl-z and then the `bg` command.
-set -u
-
 config=~/.vpn
 vpn_pid=$(pgrep openfortivpn || true)
 
