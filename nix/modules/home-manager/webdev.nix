@@ -11,7 +11,7 @@
   config = lib.mkIf config.ez.programs.webdev.enable {
     home.packages = with pkgs; [
       # JAVASCRIPT/TYPESCRIPT
-      nodejs_18
+      nodejs_20
       nodePackages.prettier
       nodePackages.typescript-language-server
 
