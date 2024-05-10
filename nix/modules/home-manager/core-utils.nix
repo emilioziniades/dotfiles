@@ -6,7 +6,6 @@
     fd
     eza
     bat
-    tree
     ripgrep
     sd
     fzf

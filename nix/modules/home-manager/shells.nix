@@ -12,6 +12,7 @@
       else null;
     ls = "eza";
     cat = "bat";
+    tree = "eza --tree --git-ignore";
     switch =
       if pkgs.stdenv.isLinux
       # TODO: this doesn't have syntax highlighting and it's annoying
