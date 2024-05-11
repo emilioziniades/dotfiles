@@ -11,7 +11,7 @@
   config = lib.mkIf config.ez.programs.infrastructure-as-code.enable {
     home.packages = with pkgs; [
       packer
-      terraform
+      opentofu
       terraform-ls
     ];
   };
