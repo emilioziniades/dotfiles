@@ -15,16 +15,18 @@
     gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
   };
 
-  ez.programs = {
-    rust.enable = true;
+  ez.programming-languages = {
     python.enable = true;
     go.enable = true;
+    rust.enable = true;
+    typescript.enable = true;
     dotnet.enable = true;
     haskell.enable = true;
     lua.enable = true;
     nix.enable = true;
-    infrastructure-as-code.enable = false;
-    webdev.enable = true;
+    html.enable = true;
+    terraform.enable = false;
+    packer.enable = false;
   };
 
   ez.vt.enable = true;

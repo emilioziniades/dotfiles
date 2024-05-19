@@ -7,19 +7,8 @@
     ./tms.nix
     ./shells.nix
     ./core-utils.nix
-
-    ./dotnet.nix
-    ./go.nix
-    ./haskell.nix
-    ./lua.nix
-    ./nix.nix
-    ./python.nix
-    ./rust.nix
-    ./webdev.nix
-    ./infrastructure-as-code.nix
-
+    ./programming-languages.nix
     ./vt.nix
-
     ./gui.nix
   ];
 }
