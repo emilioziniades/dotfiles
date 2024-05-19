@@ -50,7 +50,7 @@ set_options(options, vim.o)
 
 -- bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -69,10 +69,6 @@ require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-
 			local on_attach = function(_, bufnr)
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -80,7 +76,6 @@ require("lazy").setup({
 				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 				vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, bufopts)
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
 				vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
@@ -106,6 +101,12 @@ require("lazy").setup({
 					},
 				},
 				lua_ls = {
+					on_init = function(client)
+						local path = client.workspace_folders[1].name
+						if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+							return
+						end
+					end,
 					settings = {
 						Lua = {
 							runtime = {
@@ -117,10 +118,7 @@ require("lazy").setup({
 							},
 							workspace = {
 								checkThirdParty = false,
-								library = {
-									"${3rd}/luv/library",
-									unpack(vim.api.nvim_get_runtime_file("", true)),
-								},
+								library = vim.api.nvim_get_runtime_file("", true),
 							},
 							telemetry = {
 								enable = false,
@@ -281,13 +279,9 @@ require("lazy").setup({
 
 				local dll_files = vim.fs.find(function(name, path)
 					for _, project_name in ipairs(project_names) do
-						if
-							name:find(".*" .. project_name .. "%.dll")
+						return name:find(".*" .. project_name .. "%.dll") ~= nil
 							and path:match("bin")
 							and not path:match("ref")
-						then
-							return name
-						end
 					end
 				end, { limit = math.huge, type = "file" })
 
@@ -596,8 +590,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
 		end,
 	},
-	-- commenting
-	{ "numToStr/Comment.nvim", opts = {} },
+
 	{
 		"echasnovski/mini.nvim",
 		config = function()
