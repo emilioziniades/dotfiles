@@ -14,16 +14,18 @@
     defaultBranch = "master";
   };
 
-  ez.programs = {
-    rust.enable = true;
+  ez.programming-languages = {
     python.enable = true;
     go.enable = true;
+    rust.enable = true;
+    typescript.enable = true;
     dotnet.enable = true;
     haskell.enable = true;
     lua.enable = true;
     nix.enable = true;
-    infrastructure-as-code.enable = true;
-    webdev.enable = true;
+    html.enable = true;
+    terraform.enable = true;
+    packer.enable = true;
   };
 
   ez.vt.enable = true;
