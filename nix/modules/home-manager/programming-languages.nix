@@ -27,6 +27,7 @@ in {
         python311
         python311Packages.ipython
         ruff
+        uv
         nodePackages.pyright
       ];
     })
