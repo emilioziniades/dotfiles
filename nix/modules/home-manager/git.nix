@@ -58,6 +58,9 @@ in {
         pull = {
           rebase = false;
         };
+        rerere = {
+          enabled = true;
+        };
       };
       delta.enable = true;
     };
