@@ -14,6 +14,7 @@ TODO:
 
 local globals = {
 	mapleader = " ",
+	netrw_banner = false,
 }
 
 local options = {
