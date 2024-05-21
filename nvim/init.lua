@@ -89,6 +89,7 @@ require("lazy").setup({
 
 			local language_servers = {
 				pyright = {},
+				ruff = {},
 				gopls = {},
 				tsserver = {},
 				rust_analyzer = {},
