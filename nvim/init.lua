@@ -219,7 +219,7 @@ require("lazy").setup({
 			},
 			on_attach = function(bufnr)
 				vim.keymap.set("n", "[c", require("gitsigns").prev_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "]c", require("gitsigns").next_hunk, { buffer = bufnr, desc = "Go to Next Hunk" })
+				vim.keymap.set("n", "]c", require("gitsigns").next_hunk, { buffer = bufnr })
 				vim.keymap.set("n", "<leader>ph", require("gitsigns").preview_hunk, { buffer = bufnr })
 			end,
 		},
@@ -402,11 +402,6 @@ require("lazy").setup({
 			telescope.load_extension("fzf")
 			telescope.load_extension("file_browser")
 
-			local function find_dotfiles()
-				local config_dir = vim.fn.stdpath("config")
-				builtin.find_files({ cwd = config_dir })
-			end
-
 			local function file_browser_cwd()
 				telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
 			end
@@ -420,10 +415,6 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fc", builtin.colorscheme)
 			vim.keymap.set("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
 			vim.keymap.set("n", "<leader>fe", file_browser_cwd)
-			vim.keymap.set("n", "<leader>fd", find_dotfiles)
-			-- vim.keymap.set("n", "gr", builtin.lsp_references)
-			-- vim.keymap.set("n", "gd", builtin.lsp_definitions)
-			-- vim.keymap.set("n", "gi", builtin.lsp_implementations)
 		end,
 	},
 
@@ -536,7 +527,7 @@ require("lazy").setup({
 				sources = cmp.config.sources({
 					{ name = "path" },
 				}, {
-					{ name = "cmdline", keyword_length = 3 },
+					{ name = "cmdline" },
 				}),
 			})
 		end,
