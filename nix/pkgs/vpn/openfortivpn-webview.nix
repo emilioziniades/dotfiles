@@ -5,17 +5,17 @@
 }:
 buildNpmPackage rec {
   pname = "openfortivpn-webview";
-  version = "1.1.2-electron";
+  version = "1.2.0-electron";
 
   project = fetchFromGitHub {
     owner = "gm-vm";
     repo = "openfortivpn-webview";
     rev = "v${version}";
-    sha256 = "sha256-BNotbb2pL7McBm0SQwcgEvjgS2GId4HVaxWUz/ODs6w=";
+    sha256 = "sha256-HheqDjlWxHJS0+OEhRTwANs9dyz3lhhCmWh+YH4itOk=";
   };
   src = "${project}/openfortivpn-webview-electron";
 
-  npmDepsHash = "sha256-FvonIgVWAB0mHQaYcJkrZ9pn/nrTju2Br5OkmtGFsIk";
+  npmDepsHash = "sha256-Vf8R0+RXHlXwPOnPENw8ooxIXT3kSppQmB2yk5TWEwg=";
 
   ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
 
