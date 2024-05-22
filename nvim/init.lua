@@ -640,11 +640,16 @@ require("lazy").setup({
 				options = {
 					number = false,
 					relativenumber = false,
+					laststatus = 0,
 				},
 			},
 			plugins = {
 				gitsigns = { enabled = true },
+				tmux = { enabled = true },
 			},
+			on_close = function()
+				vim.o.laststatus = 3
+			end,
 		},
 		keys = {
 			{
