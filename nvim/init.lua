@@ -628,8 +628,7 @@ require("lazy").setup({
 	--icons
 	"nvim-tree/nvim-web-devicons",
 
-	-- twilight + zen mode
-	"folke/twilight.nvim",
+	-- zen mode
 	{
 		"folke/zen-mode.nvim",
 		opts = {
@@ -644,6 +643,7 @@ require("lazy").setup({
 				},
 			},
 			plugins = {
+				twilight = { enabled = false },
 				gitsigns = { enabled = true },
 				tmux = { enabled = true },
 			},
