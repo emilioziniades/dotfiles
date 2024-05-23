@@ -3,6 +3,7 @@
     curl
     file
     htop
+    gnused
     fd
     eza
     bat
