@@ -712,7 +712,7 @@ vim.filetype.add({
 	},
 	pattern = {
 		[".*.html"] = function(_, bufnr)
-			local content = vim.filetype.getlines(bufnr)
+			local content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 			for _, line in ipairs(content) do
 				if line:match("{%%") or line:match("%%}") then
 					return "htmldjango"
