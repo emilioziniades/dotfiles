@@ -48,7 +48,7 @@ if [ -n "$vpn_pid" ]; then
 	exit 1
 fi
 
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
 	filter="map(select(.default == true))"
 else
 	filter="map(select(.name == \"$1\"))"
@@ -57,12 +57,12 @@ fi
 host=$(jq -ecr "$filter | \"\(.[0].host):\(.[0].port)\"" $config)
 name=$(jq -ecr "$filter | .[0].name" $config)
 
-if [ $? -ne 0 ]; then
+if ! jq -ecr "$filter"; then
 	echo "could not find host $1, check the ~/.vpn config file"
 	exit 1
 fi
 
 echo "connecting to $name"
-cookie=$(openfortivpn-webview $host)
+cookie=$(openfortivpn-webview "$host")
 openfortivpn_config=$XDG_CONFIG_HOME/openfortivpn/config
-sudo --preserve-env=PATH env openfortivpn --cookie=$cookie --config=$openfortivpn_config $host
+sudo --preserve-env=PATH env openfortivpn --cookie="$cookie" --config="$openfortivpn_config" "$host"
