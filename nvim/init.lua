@@ -97,6 +97,7 @@ require("lazy").setup({
 				hls = {},
 				terraformls = {},
 				nil_ls = {},
+				bashls = {},
 				csharp_ls = {
 					handlers = {
 						["textDocument/definition"] = require("csharpls_extended").handler,
