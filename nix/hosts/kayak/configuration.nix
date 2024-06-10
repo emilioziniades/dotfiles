@@ -73,7 +73,7 @@
 
   virtualisation.docker.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enable = false;
   #TODO: don't hardcode
   users.extraGroups.vboxusers.members = ["emilioz"];
 
