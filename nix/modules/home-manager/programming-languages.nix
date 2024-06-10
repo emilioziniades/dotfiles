@@ -28,7 +28,7 @@ in {
         python311Packages.ipython
         ruff
         uv
-        nodePackages.pyright
+        pyright
       ];
     })
     (mkIf cfg.go.enable {
