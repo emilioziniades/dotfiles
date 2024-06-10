@@ -1,30 +1,35 @@
 {
-  buildNpmPackage,
+  stdenv,
   fetchFromGitHub,
-  electron,
+  qt6,
 }:
-buildNpmPackage rec {
+stdenv.mkDerivation rec {
   pname = "openfortivpn-webview";
   version = "1.2.0-electron";
 
-  project = fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "gm-vm";
-    repo = "openfortivpn-webview";
+    repo = pname;
     rev = "v${version}";
     sha256 = "sha256-HheqDjlWxHJS0+OEhRTwANs9dyz3lhhCmWh+YH4itOk=";
   };
-  src = "${project}/openfortivpn-webview-electron";
+  sourceRoot = "${src.name}/openfortivpn-webview-qt";
 
-  npmDepsHash = "sha256-Vf8R0+RXHlXwPOnPENw8ooxIXT3kSppQmB2yk5TWEwg=";
+  nativeBuildInputs = [
+    qt6.wrapQtAppsHook
+    qt6.qmake
+  ];
 
-  ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
-
-  dontNpmBuild = true;
+  buildInputs = [
+    qt6.qtbase
+    qt6.qtwebengine
+    qt6.qtwayland
+  ];
 
   installPhase = ''
+    runHook preInstall
     mkdir -p $out/bin
-    cp -R index.js node_modules $out
-    echo "${electron}/bin/electron $out/index.js \$@" >> $out/bin/openfortivpn-webview
-    chmod +x $out/bin/openfortivpn-webview
+    mv openfortivpn-webview $out/bin/
+    runHook postInstall
   '';
 }
