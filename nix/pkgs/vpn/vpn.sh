@@ -57,7 +57,7 @@ fi
 host=$(jq -ecr "$filter | \"\(.[0].host):\(.[0].port)\"" $config)
 name=$(jq -ecr "$filter | .[0].name" $config)
 
-if ! jq -ecr "$filter"; then
+if ! jq -ecr "$filter | .[0]" $config >/dev/null; then
 	echo "could not find host $1, check the ~/.vpn config file"
 	exit 1
 fi
