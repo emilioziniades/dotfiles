@@ -31,6 +31,7 @@ in {
         pyright
       ];
     })
+
     (mkIf cfg.go.enable {
       home.packages = with pkgs; [
         go
@@ -38,6 +39,7 @@ in {
         gotools
       ];
     })
+
     (mkIf cfg.rust.enable {
       home.packages = with pkgs; [
         cargo
@@ -47,6 +49,7 @@ in {
         clippy
       ];
     })
+
     (mkIf cfg.typescript.enable {
       home.packages = with pkgs; [
         nodejs_20
@@ -54,6 +57,7 @@ in {
         nodePackages.typescript-language-server
       ];
     })
+
     (mkIf cfg.dotnet.enable {
       home.packages = with pkgs; [
         (with dotnetCorePackages;
@@ -72,6 +76,7 @@ in {
         DOTNET_NOLOGO = 1;
       };
     })
+
     (mkIf cfg.haskell.enable {
       home.packages = with pkgs; [
         ghc
@@ -80,6 +85,7 @@ in {
         haskellPackages.fourmolu
       ];
     })
+
     (mkIf cfg.lua.enable {
       home.packages = with pkgs; [
         lua
@@ -87,11 +93,13 @@ in {
         lua-language-server
       ];
     })
+
     (mkIf cfg.html.enable {
       home.packages = with pkgs; [
         djlint
       ];
     })
+
     (mkIf cfg.nix.enable {
       home.packages = with pkgs; [
         alejandra
@@ -99,12 +107,14 @@ in {
         nil
       ];
     })
+
     (mkIf cfg.terraform.enable {
       home.packages = with pkgs; [
         opentofu
         terraform-ls
       ];
     })
+
     (mkIf cfg.packer.enable {
       home.packages = with pkgs; [
         packer
