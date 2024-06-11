@@ -145,7 +145,7 @@ require("lazy").setup({
 		"folke/trouble.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {},
-		keys = { { "<leader>tt", "<cmd>TroubleToggle<cr>" } },
+		keys = { { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>" } },
 	},
 	"Decodetalkers/csharpls-extended-lsp.nvim",
 	"onsails/lspkind-nvim",
