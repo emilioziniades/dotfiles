@@ -16,8 +16,7 @@
         };
         font = {
           normal = {
-            family = "FiraCode Nerd Font Mono";
-            style = "Medium";
+            family = "Hack Nerd Font Mono";
           };
           size = 14.0;
         };
