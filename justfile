@@ -1,10 +1,9 @@
-update: update-flake update-neovim
+update: update-flake update-neovim-plugins
 
 update-flake:
     nix flake update --commit-lock-file
 
-update-neovim:
+update-neovim-plugins:
     nvim --headless "+Lazy! sync" +qa
-    git add nvim/lazy-lock.json
-    git commit -m "nvim: update plugins"
+    git diff --quiet nvim/lazy-lock.json || git commit -m "nvim: update plugins" nvim/lazy-lock.json
 
