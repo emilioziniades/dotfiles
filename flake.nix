@@ -26,11 +26,6 @@
       inputs.darwin.follows = "darwin";
     };
 
-    catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-
     dotfiles-secrets = {
       url = "git+ssh://git@github.com/emilioziniades/dotfiles-secrets.git";
       flake = false;
@@ -43,7 +38,6 @@
     darwin,
     nix-std,
     agenix,
-    catppuccin-alacritty,
     dotfiles-secrets,
     ...
   }: let
@@ -62,7 +56,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioz = import ./nix/hosts/kayak/home.nix;
           home-manager.extraSpecialArgs = {
-            inherit catppuccin-alacritty nix-std dotfiles-secrets;
+            inherit nix-std dotfiles-secrets;
           };
           home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
@@ -79,7 +73,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
           home-manager.extraSpecialArgs = {
-            inherit catppuccin-alacritty nix-std dotfiles-secrets;
+            inherit nix-std dotfiles-secrets;
           };
           home-manager.sharedModules = [agenix.homeManagerModules.default];
         }

@@ -3,7 +3,7 @@
     ./neovim.nix
     ./tmux.nix
     ./git.nix
-    ./alacritty.nix
+    ./wezterm.nix
     ./tms.nix
     ./shells.nix
     ./core-utils.nix
