@@ -25,22 +25,6 @@
         "type": "github"
       }
     },
-    "catppuccin-alacritty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712663324,
-        "narHash": "sha256-Pi1Hicv3wPALGgqurdTzXEzJNx7vVh+8B9tlqhRpR2Y=",
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "rev": "94800165c13998b600a9da9d29c330de9f28618e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -153,7 +137,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "catppuccin-alacritty": "catppuccin-alacritty",
         "darwin": "darwin",
         "dotfiles-secrets": "dotfiles-secrets",
         "home-manager": "home-manager_2",
