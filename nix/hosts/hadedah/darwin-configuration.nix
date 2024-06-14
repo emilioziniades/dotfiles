@@ -29,6 +29,7 @@
       "homebrew/services"
     ];
     casks = [
+      "wezterm"
       "discord"
       "firefox"
       "mactex"
