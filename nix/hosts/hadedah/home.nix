@@ -29,7 +29,7 @@
     packer.enable = false;
   };
 
-  ez.vt.enable = true;
+  ez.vt.enable = false;
 
   ez.applications.gui.enable = false;
 }
