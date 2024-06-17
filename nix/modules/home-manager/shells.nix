@@ -56,6 +56,6 @@
   xdg.enable = true;
 
   home.packages = with pkgs; [
-    nodePackages.bash-language-server
+    bash-language-server
   ];
 }
