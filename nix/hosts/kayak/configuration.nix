@@ -1,22 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    # TODO: Track https://github.com/NixOS/nixpkgs/issues/315574 and remove this
-    # inline module when there are updates there.
-    (
-      {
-        lib,
-        options,
-        ...
-      }: {
-        options.system.nixos.codeName = lib.mkOption {readOnly = false;};
-        config.system.nixos.codeName = let
-          codeName = options.system.nixos.codeName.default;
-          renames = {"Vicuña" = "Vicuna";};
-        in
-          renames."${codeName}" or (throw "Unknown `codeName`: ${codeName}");
-      }
-    )
   ];
 
   boot.loader.systemd-boot.enable = true;
