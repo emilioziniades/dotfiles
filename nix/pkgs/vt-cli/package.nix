@@ -13,6 +13,6 @@ pythonPackages.buildPythonApplication {
   src = builtins.fetchGit {
     url = "git@bitbucket.org:velocitytrade/vt.cli.git";
     ref = "master";
-    rev = "2379adc2617046e7f73a39b0efb89900460e9467";
+    rev = "ad40a60467da25c96a32edbbc8c97126f70bf8f8";
   };
 }
