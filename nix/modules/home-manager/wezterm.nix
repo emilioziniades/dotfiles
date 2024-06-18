@@ -4,9 +4,7 @@
   # see: https://github.com/NixOS/nixpkgs/issues/239384
   home.packages = with pkgs;
     if stdenv.isLinux
-    then [
-      wezterm
-    ]
+    then [wezterm]
     else [];
 
   xdg.configFile.wezterm = {
