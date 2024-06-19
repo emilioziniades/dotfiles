@@ -24,8 +24,8 @@ in {
   config = mkMerge [
     (mkIf cfg.python.enable {
       home.packages = with pkgs; [
-        python311
-        python311Packages.ipython
+        python3
+        python3Packages.ipython
         ruff
         uv
         pyright
