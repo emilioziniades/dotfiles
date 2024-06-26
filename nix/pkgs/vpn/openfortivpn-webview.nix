@@ -21,10 +21,8 @@ buildNpmPackage rec {
 
   dontNpmBuild = true;
 
-  installPhase = ''
-    mkdir -p $out/bin
-    cp -R index.js node_modules $out
-    echo "${electron}/bin/electron $out/index.js \$@" >> $out/bin/openfortivpn-webview
-    chmod +x $out/bin/openfortivpn-webview
+  postInstall = ''
+    makeWrapper ${electron}/bin/electron $out/bin/openfortivpn-webview \
+        --add-flags $out/lib/node_modules/openfortivpn-webview/index.js
   '';
 }

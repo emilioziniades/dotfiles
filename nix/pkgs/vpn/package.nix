@@ -1,5 +1,4 @@
 {
-  stdenv,
   callPackage,
   makeWrapper,
   writeScriptBin,
@@ -15,10 +14,7 @@ symlinkJoin rec {
 
   script = writeScriptBin name (builtins.readFile ./vpn.sh);
 
-  openfortivpn-webview =
-    if stdenv.isDarwin
-    then callPackage ./openfortivpn-webview-electron.nix {}
-    else callPackage ./openfortivpn-webview-qt.nix {};
+  openfortivpn-webview = callPackage ./openfortivpn-webview.nix {};
 
   buildInputs = [
     jq
