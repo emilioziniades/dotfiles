@@ -1,8 +1,9 @@
 # dotfiles
 
-These dotfiles use [Nix](https://nixos.org/) to manage configuration and development environments, for both my personal MacOS system and my work NixOS system.
+These dotfiles use [Nix](https://nixos.org/) to manage configuration and development environments, for both my personal MacOS system and my work Debian system.
+I have also used NixOS in the past so there are instructions for that too.
 
-Currently, my workflow revolves around a combination of [Alacritty](https://alacritty.org/), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
+Currently, my workflow revolves around a combination of [WezTerm](https://wezfurlong.org/wezterm/index.html), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
 
 ## MacOS `nix-darwin` setup
 
@@ -37,6 +38,88 @@ nix run nix-darwin -- switch --flake ~/dotfiles
 ```
 
 From now on, configuration can be updated by runing `darwin-rebuild switch --flake ~/dotfiles`, which I have aliased to simply `switch`.
+
+## Debian setup (home-manager standalone setup)
+
+There are a bunch of manual steps required which wouldn't be necessary on a NixOS machine.
+This is because the perfect, declarative world of NixOS breaks when you try use nix on non-NixOS Linux operating systems like Debian.
+It's sad, but necessary for $WORK.
+
+### Begrudgingly do manual setup
+
+#### Add myself to sudo.
+
+```
+su -
+visudo
+```
+
+And add the following line below `root ALL=...`.
+
+```
+emilioz ALL=(ALL:ALL) ALL
+```
+
+#### Install curl
+
+```
+sudo apt install curl
+```
+
+#### Install nix using determinate systems installer
+
+```
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+#### Install wezterm
+
+See instructions [here](https://wezfurlong.org/wezterm/install/linux.html).
+
+```
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+```
+
+Now, you have done the manual gruntwork, and hopefully you have done this with resentment, and yearning for a NixOS distribution.
+
+### Bootstrap home-manager
+
+Enter a development shell with the tools necessary to bootstrap the flake.
+
+```
+nix develop 'github:emilioziniades/dotfiles'
+```
+
+Clone the dotfiles into `~/dotfiles`.
+
+```
+git clone https://github.com/emilioziniades ~/dotfiles
+```
+
+Build the flake-based configuration.
+
+```
+nix run nixpkgs#home-manager -- switch --flake ~/dotfiles
+```
+
+From then on, you can run `switch`, an alias for the above.
+
+### More manual setup
+
+#### Set zsh as default shell
+
+Add nix zsh to /etc/shells.
+
+```
+which zsh | sudo tee /etc/shells
+```
+
+Set that to be your default shell.
+
+```
+chsh -s $(which zsh)
+```
 
 ## NixOS setup
 
