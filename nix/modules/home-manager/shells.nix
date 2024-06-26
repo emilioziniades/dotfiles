@@ -15,8 +15,9 @@
     tree = "eza --tree --git-ignore";
     switch =
       if pkgs.stdenv.isLinux
-      # TODO: this doesn't have syntax highlighting and it's annoying
-      then "sudo --user $USER nixos-rebuild switch --flake $HOME/dotfiles"
+      then "home-manager switch --flake $HOME/dotfiles"
+      # NOTE: below is for nixos machines, but my current machine is Debian
+      # then "sudo --user $USER nixos-rebuild switch --flake $HOME/dotfiles"
       else if pkgs.stdenv.isDarwin
       then "darwin-rebuild switch --flake $HOME/dotfiles"
       else null;
