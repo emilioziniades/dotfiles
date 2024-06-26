@@ -5,6 +5,7 @@
     trusted-users = ["emilioziniades"];
   };
 
+  # TODO: take this out, leave it in home-manager only, and see if it works
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [

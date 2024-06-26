@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ../../modules/home-manager
   ];
@@ -6,6 +6,21 @@
   home.username = "emilioz";
   home.homeDirectory = "/home/emilioz";
   home.stateVersion = "24.05";
+
+  # TODO: check if this works on darwin too, and then remove this from darwin config
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
+  # TODO: test this on darwin, and if it works there, then split this out into a module (with fonts as param)
+  # and delete the font stuff there
+  fonts.fontconfig.enable = true;
+  home.packages = [
+    (pkgs.nerdfonts.override {fonts = ["Monaspace"];})
+  ];
+
+  # TODO: only do this when we are not on nixos (how do we differentiate between nixos and non-nixos linux?)
+  targets.genericLinux.enable = true;
 
   ez.programs.git = {
     enable = true;
