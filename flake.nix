@@ -63,6 +63,20 @@
       ];
     };
 
+    homeConfigurations.emilioz = let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nix/hosts/kayak/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit nix-std dotfiles-secrets;
+        };
+      };
+
     darwinConfigurations.hadedah = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
