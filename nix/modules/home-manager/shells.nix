@@ -39,6 +39,7 @@
       size = 10000;
     };
     syntaxHighlighting.enable = true;
+    # TODO: Figure out the default readline keybindings for this and use these instead
     initExtra = ''
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word
