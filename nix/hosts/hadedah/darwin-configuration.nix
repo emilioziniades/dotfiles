@@ -5,13 +5,6 @@
     trusted-users = ["emilioziniades"];
   };
 
-  # TODO: take this out, leave it in home-manager only, and see if it works
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      "nodejs-16.20.2"
-    ];
-  };
   users.users.emilioziniades.home = "/Users/emilioziniades";
 
   fonts.fontDir.enable = true;
