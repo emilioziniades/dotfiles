@@ -10,5 +10,6 @@
     ./programming-languages.nix
     ./vt.nix
     ./gui.nix
+    ./nix.nix
   ];
 }
