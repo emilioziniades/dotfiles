@@ -56,7 +56,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioz = import ./nix/hosts/kayak/home.nix;
           home-manager.extraSpecialArgs = {
-            inherit nix-std dotfiles-secrets;
+            inherit nixpkgs nix-std dotfiles-secrets;
           };
           home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
@@ -73,7 +73,7 @@
           ./nix/hosts/kayak/home.nix
         ];
         extraSpecialArgs = {
-          inherit nix-std dotfiles-secrets;
+          inherit nixpkgs nix-std dotfiles-secrets;
         };
       };
 
@@ -87,7 +87,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
           home-manager.extraSpecialArgs = {
-            inherit nix-std dotfiles-secrets;
+            inherit nixpkgs nix-std dotfiles-secrets;
           };
           home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
