@@ -110,7 +110,7 @@ in {
 
     (mkIf cfg.terraform.enable {
       home.packages = with pkgs; [
-        opentofu
+        terraform
         terraform-ls
       ];
     })
