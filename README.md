@@ -148,3 +148,8 @@ sudo -u $USER nixos-rebuild switch --flake ~/dotfiles
 ```
 
 From then on, you can run `switch`, an alias for the above.
+
+## Useful links
+
+- [24-bit-color.sh](https://github.com/alacritty/alacritty/blob/master/scripts/24-bit-color.sh) - useful for testing colours in terminal setup.
+- [Profile zsh startup time](https://esham.io/2018/02/zsh-profiling) - helped me figure out that `nvm` delayed my shell startup by 2 seconds.
