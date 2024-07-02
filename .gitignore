@@ -2,3 +2,4 @@ nvim/plugin/
 tmux/plugins/
 .luarc.json
 result
+.DS_Store
