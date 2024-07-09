@@ -60,12 +60,11 @@ in {
 
     (mkIf cfg.dotnet.enable {
       home.packages = with pkgs; [
-        #TODO: figure out why this doesn't work on non-nixos linuxes
-        # (with dotnetCorePackages;
-        #   combinePackages [
-        #     sdk_8_0
-        #     sdk_6_0
-        #   ])
+        (with dotnetCorePackages;
+          combinePackages [
+            sdk_8_0
+            sdk_6_0
+          ])
         csharp-ls
         csharpier
         netcoredbg
