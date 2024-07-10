@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-std = {
       url = "github:chessai/nix-std";
     };
@@ -39,6 +44,7 @@
     nix-std,
     agenix,
     dotfiles-secrets,
+    disko,
     ...
   }: let
     forAllSystems = fn:
@@ -91,6 +97,15 @@
           };
           home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
+      ];
+    };
+
+    nixosConfigurations.oxo = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./nix/hosts/oxo/configuration.nix
+        (disko.nixosModules.disko
+          (import ./nix/hosts/oxo/disko-configuration.nix))
       ];
     };
 
