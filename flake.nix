@@ -104,8 +104,8 @@
       system = "x86_64-linux";
       modules = [
         ./nix/hosts/oxo/configuration.nix
-        (disko.nixosModules.disko
-          (import ./nix/hosts/oxo/disko-configuration.nix))
+        ./nix/hosts/oxo/disko-configuration.nix
+        disko.nixosModules.disko
       ];
     };
 
