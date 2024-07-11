@@ -32,7 +32,7 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    # TODO: Figure out the default readline keybindings for this and use these instead
+    # TODO: Figure out the default readline(well, zle) keybindings for this and use these instead
     initExtra = ''
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;5C' forward-word
