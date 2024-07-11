@@ -58,13 +58,15 @@
         ./nix/hosts/kayak/configuration.nix
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.emilioz = import ./nix/hosts/kayak/home.nix;
-          home-manager.extraSpecialArgs = {
-            inherit nixpkgs nix-std dotfiles-secrets;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.emilioz = import ./nix/hosts/kayak/home.nix;
+            extraSpecialArgs = {
+              inherit nixpkgs nix-std dotfiles-secrets;
+            };
+            sharedModules = [agenix.homeManagerModules.default];
           };
-          home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
       ];
     };
@@ -89,13 +91,15 @@
         ./nix/hosts/hadedah/darwin-configuration.nix
         home-manager.darwinModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
-          home-manager.extraSpecialArgs = {
-            inherit nixpkgs nix-std dotfiles-secrets;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
+            extraSpecialArgs = {
+              inherit nixpkgs nix-std dotfiles-secrets;
+            };
+            sharedModules = [agenix.homeManagerModules.default];
           };
-          home-manager.sharedModules = [agenix.homeManagerModules.default];
         }
       ];
     };
