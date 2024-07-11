@@ -1,9 +1,3 @@
-# USAGE in your configuration.nix.
-# Update devices to match your hardware.
-# {
-#  imports = [ ./disko-config.nix ];
-#  disko.devices.disk.main.device = "/dev/sda";
-# }
 {
   config.disko.devices = {
     disk = {
@@ -15,7 +9,7 @@
           partitions = {
             boot = {
               size = "1M";
-              type = "EF02"; # for grub MBR
+              type = "EF02";
             };
             ESP = {
               size = "1G";
