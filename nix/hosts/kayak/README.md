@@ -4,7 +4,7 @@
 
 For now I'll keep both sets of setup instructions below.
 
-## Debian setup (home-manager standalone setup)
+## Debian standalone `home-manager` setup
 
 There are a bunch of manual steps required which wouldn't be necessary on a NixOS machine.
 This is because the perfect, declarative world of NixOS breaks when you try use nix on non-NixOS Linux operating systems like Debian.
