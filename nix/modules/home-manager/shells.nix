@@ -29,7 +29,6 @@
     GPG_TTY = "$(tty)";
   };
 
-  # for profiling zsh startup times, see: https://esham.io/2018/02/zsh-profiling
   programs.zsh = {
     enable = true;
     history = {
