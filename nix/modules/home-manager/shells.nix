@@ -31,12 +31,6 @@
 
   programs.zsh = {
     enable = true;
-    history = {
-      ignoreDups = true;
-      share = true;
-      save = 10000;
-      size = 10000;
-    };
     syntaxHighlighting.enable = true;
     # TODO: Figure out the default readline keybindings for this and use these instead
     initExtra = ''
