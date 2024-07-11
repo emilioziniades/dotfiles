@@ -1,7 +1,6 @@
 # hadedah
 
 `hadedah` is my personal laptop. It is running MacOS with nix-darwin.
-o
 
 ## MacOS `nix-darwin` setup
 
