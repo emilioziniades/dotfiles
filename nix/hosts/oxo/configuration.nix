@@ -5,15 +5,12 @@
 
   networking.hostName = "oxo";
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 2;
 
-  # nix configuration
   nix.extraOptions = "experimental-features = nix-command flakes";
 
-  # setup virtualbox guest additions
   virtualisation.virtualbox.guest.enable = true;
 
   time.timeZone = "Africa/Johannesburg";
