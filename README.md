@@ -1,9 +1,14 @@
 # dotfiles
 
-These dotfiles use [Nix](https://nixos.org/) to manage configuration and development environments, for both my personal MacOS system and my work Debian system.
-I have also used NixOS in the past so there are instructions for that too.
+These dotfiles use [Nix](https://nixos.org/) to manage system configuration and development environments.
 
-Currently, my workflow revolves around a combination of [WezTerm](https://wezfurlong.org/wezterm/index.html), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
+There are three hosts:
+
+- [`hadedah`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/hadedah/README.md), my personal MacOS laptop
+- [`kayak`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/kayak/README.md), my work Debian laptop
+- [`oxo`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/oxo/README.md), a NixOS VirtualBox virtual machine for testing
+
+My development workflow revolves around a combination of [WezTerm](https://wezfurlong.org/wezterm/index.html), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
 
 ## Useful links
 
