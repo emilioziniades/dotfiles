@@ -15,4 +15,6 @@
     username = "Emilio Ziniades";
     email = "emilioz@za.velocitytrade.com";
   };
+
+  ez.programming-languages.nix.enable = true;
 }
