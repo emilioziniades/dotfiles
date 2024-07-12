@@ -1,3 +1,4 @@
+#TODO: refactor away all the inline modules
 {
   description = "Emilio's nix configurations";
 
@@ -110,6 +111,12 @@
         ./nix/hosts/oxo/configuration.nix
         ./nix/hosts/oxo/disko-configuration.nix
         disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.extraSpecialArgs = {
+            inherit nixpkgs nix-std dotfiles-secrets;
+          };
+        }
       ];
     };
 
