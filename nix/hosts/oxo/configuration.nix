@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./disko-configuration.nix
   ];
@@ -17,21 +17,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  environment.systemPackages = with pkgs; [
-    git
-    ripgrep
-    fd
-    tmux
-    just
-  ];
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
@@ -46,6 +31,12 @@
       extraGroups = ["wheel"];
       hashedPassword = "$y$j9T$..ZrEKsB5VjpEoeIARpln1$eB8HV5Bo.kQrQtZ88nngNd5i5T4F1F1BuM1ySEIA5J3";
     };
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.emilioz = import ./home.nix;
   };
 
   system.stateVersion = "24.05";
