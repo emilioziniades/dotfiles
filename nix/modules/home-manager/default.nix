@@ -5,11 +5,12 @@
     ./git.nix
     ./wezterm.nix
     ./tms.nix
-    ./shells.nix
-    ./core-utils.nix
     ./programming-languages.nix
     ./vt.nix
     ./gui.nix
+    # TODO: these are not enable-able
+    ./shells.nix
+    ./core-utils.nix
     ./nix.nix
   ];
 }

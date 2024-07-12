@@ -20,6 +20,7 @@ in {
     };
     defaultBranch = mkOption {
       type = str;
+      default = "main";
     };
   };
 

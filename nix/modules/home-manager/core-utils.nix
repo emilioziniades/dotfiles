@@ -1,3 +1,5 @@
+# TODO: revisiting this, it has code smells...
+# it's a lot of different things combined together.. idk
 {pkgs, ...}: {
   home.packages = with pkgs; [
     curl
