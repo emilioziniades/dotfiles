@@ -1,3 +1,5 @@
+set ignore-comments := true
+
 alias u := update
 alias sn := switch-nixos
 alias shm := switch-home-manager
