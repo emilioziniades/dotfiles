@@ -18,9 +18,19 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [
-    neovim
     git
+    ripgrep
+    fd
+    tmux
+    just
   ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
 
   services.openssh = {
     enable = true;
