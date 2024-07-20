@@ -152,6 +152,9 @@ require("lazy").setup({
 	"Decodetalkers/csharpls-extended-lsp.nvim",
 	"onsails/lspkind-nvim",
 
+	-- commenting
+	"numToStr/Comment.nvim",
+
 	-- formatter
 	{
 		"stevearc/conform.nvim",
