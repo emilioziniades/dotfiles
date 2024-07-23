@@ -21,6 +21,7 @@ in {
       mongosh
       awscli2
       kubectl
+      kubectx
     ];
 
     # age.secrets.vpn = {
