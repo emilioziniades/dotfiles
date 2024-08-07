@@ -153,7 +153,10 @@ require("lazy").setup({
 	"onsails/lspkind-nvim",
 
 	-- commenting
-	"numToStr/Comment.nvim",
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+	},
 
 	-- formatter
 	{
