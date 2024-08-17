@@ -37,6 +37,7 @@ in {
         go
         gopls
         gotools
+        gofumpt
       ];
     })
 
