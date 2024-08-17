@@ -63,7 +63,8 @@ in {
           enabled = true;
         };
       };
-      delta.enable = true;
+      #TODO: uncomment once delta breakage is resolved
+      # delta.enable = true;
     };
   };
 }
