@@ -17,7 +17,7 @@
     yq-go
     taplo
     diffutils
-    delta
+    # delta #TODO: uncomment once delta breakage is resolved
     wget
     gnupg
     zip
