@@ -12,6 +12,7 @@
     ripgrep
     sd
     fzf
+    dogdns
     jq
     ijq
     yq-go
