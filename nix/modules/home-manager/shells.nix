@@ -2,6 +2,7 @@
 # it's a lot of different things combined together.. idk
 {pkgs, ...}: {
   home.shellAliases = {
+    v = "nvim";
     t = "tmux";
     c = "clear && tmux clear-history";
     k = "kubectl";
