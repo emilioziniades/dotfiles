@@ -43,7 +43,6 @@ in {
         bind j next-window
         bind k previous-window
         bind h set -g status
-        bind e clear-history
         bind t display-popup -E "tms"
 
         bind-key -T copy-mode-vi v send-keys -X begin-selection
