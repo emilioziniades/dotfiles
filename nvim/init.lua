@@ -92,7 +92,7 @@ require("lazy").setup({
 				pyright = {},
 				ruff = {},
 				gopls = {},
-				tsserver = {},
+				ts_ls = {},
 				rust_analyzer = {},
 				hls = {},
 				terraformls = {},
