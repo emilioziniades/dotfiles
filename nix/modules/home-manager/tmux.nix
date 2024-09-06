@@ -40,9 +40,10 @@ in {
         set-option -g renumber-windows on
 
         bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded ~/.config/tmux/tmux.conf"
-        bind -n C-j next-window
-        bind -n C-k previous-window
+        bind j next-window
+        bind k previous-window
         bind h set -g status
+        bind e clear-history
         bind t display-popup -E "tms"
 
         bind-key -T copy-mode-vi v send-keys -X begin-selection
