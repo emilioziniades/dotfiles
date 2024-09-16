@@ -14,7 +14,6 @@
       else null;
     ls = "eza";
     cat = "bat";
-    tree = "eza --tree --git-ignore";
   };
 
   home.sessionVariables = {
