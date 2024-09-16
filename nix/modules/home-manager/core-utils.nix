@@ -10,6 +10,7 @@
     eza
     bat
     ripgrep
+    tre-command
     sd
     fzf
     dogdns
