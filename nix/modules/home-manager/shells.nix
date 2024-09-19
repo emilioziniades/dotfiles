@@ -2,8 +2,6 @@
 # it's a lot of different things combined together.. idk
 {pkgs, ...}: {
   home.shellAliases = {
-    v = "nvim";
-    t = "tmux";
     c = "clear && tmux clear-history";
     k = "kubectl";
     copy =
@@ -12,8 +10,6 @@
       else if pkgs.stdenv.isDarwin
       then "pbcopy"
       else null;
-    ls = "eza";
-    cat = "bat";
   };
 
   home.sessionVariables = {
