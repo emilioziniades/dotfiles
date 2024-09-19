@@ -98,6 +98,7 @@ require("lazy").setup({
 				terraformls = {},
 				nil_ls = {},
 				bashls = {},
+				nushell = {},
 				markdown_oxide = {
 					capabilities = {
 						workspace = {
@@ -564,6 +565,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
 		},
 		build = ":TSUpdate",
 		config = function()
