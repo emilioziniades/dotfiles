@@ -98,6 +98,15 @@ require("lazy").setup({
 				terraformls = {},
 				nil_ls = {},
 				bashls = {},
+				markdown_oxide = {
+					capabilities = {
+						workspace = {
+							didChangeWatchedFiles = {
+								dynamicRegistration = true,
+							},
+						},
+					},
+				},
 				csharp_ls = {
 					handlers = {
 						["textDocument/definition"] = require("csharpls_extended").handler,
@@ -512,7 +521,14 @@ require("lazy").setup({
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				},
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
+					{
+						name = "nvim_lsp",
+						option = {
+							markdown_oxide = {
+								keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
+							},
+						},
+					},
 					{ name = "luasnip" },
 					{ name = "nvim_lua" },
 					{ name = "buffer" },
