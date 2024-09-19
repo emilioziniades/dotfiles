@@ -39,6 +39,7 @@
     haskell.enable = false;
     go.enable = false;
     rust.enable = false;
+    markdown.enable = true;
   };
 
   ez.vt.enable = true;

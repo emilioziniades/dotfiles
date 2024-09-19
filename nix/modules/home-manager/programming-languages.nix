@@ -19,6 +19,7 @@ in {
     nix.enable = mkEnableOption "nix";
     terraform.enable = mkEnableOption "terraform";
     packer.enable = mkEnableOption "packer";
+    markdown.enable = mkEnableOption "markdown";
   };
 
   config = mkMerge [
@@ -120,6 +121,12 @@ in {
     (mkIf cfg.packer.enable {
       home.packages = with pkgs; [
         packer
+      ];
+    })
+
+    (mkIf cfg.markdown.enable {
+      home.packages = with pkgs; [
+        markdown-oxide
       ];
     })
   ];
