@@ -12,9 +12,6 @@
     (pkgs.nerdfonts.override {fonts = ["Monaspace"];})
   ];
 
-  # TODO: only do this when we are not on nixos (how do we differentiate between nixos and non-nixos linux?)
-  targets.genericLinux.enable = true;
-
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
   ez.programs.wezterm.enable = true;
