@@ -27,7 +27,7 @@
   ez.programming-languages = {
     python.enable = true;
     typescript.enable = true;
-    dotnet.enable = false;
+    dotnet.enable = true;
     lua.enable = true;
     nix.enable = true;
     html.enable = false;
