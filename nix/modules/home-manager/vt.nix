@@ -25,14 +25,14 @@ in {
       kubectx
     ];
 
-    # age.secrets.vpn = {
-    #   file = "${dotfiles-secrets}/secrets/vpn.age";
-    #   path = "${config.home.homeDirectory}/.vpn";
-    # };
-    #
-    # age.secrets.openfortivpn = {
-    #   file = "${dotfiles-secrets}/secrets/openfortivpn.age";
-    #   path = "${config.xdg.configHome}/openfortivpn/config";
-    # };
+    age.secrets.vpn = {
+      file = "${dotfiles-secrets}/secrets/vpn.age";
+      path = "${config.home.homeDirectory}/.vpn";
+    };
+
+    age.secrets.openfortivpn = {
+      file = "${dotfiles-secrets}/secrets/openfortivpn.age";
+      path = "${config.xdg.configHome}/openfortivpn/config";
+    };
   };
 }
