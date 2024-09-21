@@ -19,6 +19,7 @@ in {
       vt-cli
       vpn
       mongosh
+      mongo-tools
       awscli2
       kubectl
       kubectx
