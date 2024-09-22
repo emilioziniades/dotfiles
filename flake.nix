@@ -133,6 +133,7 @@
           neovim
           git
           curl
+          just
         ];
       };
     });
