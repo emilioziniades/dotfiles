@@ -16,7 +16,6 @@ update-neovim-plugins:
 
 switch-nixos:
     sudo nixos-rebuild switch --flake ~/dotfiles
-    # sudo --user $USER nixos-rebuild switch --flake ~/dotfiles
 
 switch-home-manager:
     home-manager switch --flake ~/dotfiles
