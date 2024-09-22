@@ -10,7 +10,11 @@
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
   ez.programs.wezterm.enable = true;
-  ez.programs.tms.enable = true;
+
+  ez.programs.tms = {
+    enable = true;
+    searchDirs = ["code" "dotfiles" "obsidian"];
+  };
 
   ez.programs.git = {
     enable = true;
