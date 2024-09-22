@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ../../modules/home-manager
   ];
@@ -6,11 +6,6 @@
   home.username = "emilioz";
   home.homeDirectory = "/home/emilioz";
   home.stateVersion = "24.05";
-
-  fonts.fontconfig.enable = true;
-  home.packages = [
-    (pkgs.nerdfonts.override {fonts = ["Monaspace"];})
-  ];
 
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
