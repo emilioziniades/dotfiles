@@ -13,7 +13,6 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
     LC_ALL = "en_US.UTF-8";
     GPG_TTY = "$(tty)";
   };
