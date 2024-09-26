@@ -30,15 +30,8 @@ in {
       userName = cfg.username;
       userEmail = cfg.email;
       aliases = {
-        i = "init";
-        s = "status";
         l = "log --oneline --all";
         g = "log --oneline --graph --decorate --all";
-        lf = "log";
-        d = "diff";
-        a = "add";
-        c = "commit";
-        p = "push";
       };
       extraConfig = {
         user = {
