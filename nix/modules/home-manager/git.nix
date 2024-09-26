@@ -34,28 +34,15 @@ in {
         g = "log --oneline --graph --decorate --all";
       };
       extraConfig = {
-        user = {
-          signingkey = cfg.gpgKey;
-        };
-        init = {
-          defaultBranch = cfg.defaultBranch;
-        };
-        core = {
-          editor = "nvim";
-        };
-        commit = {
-          gpgsign = false;
-        };
-        push = {
-          autoSetupRemote = true;
-        };
-        pull = {
-          rebase = false;
-        };
-        rerere = {
-          enabled = true;
-        };
+        user.signingkey = cfg.gpgKey;
+        init.defaultBranch = cfg.defaultBranch;
+        core.editor = "nvim";
+        commit.gpgsign = false;
+        push.autoSetupRemote = true;
+        pull.rebase = false;
+        rerere.enabled = true;
       };
+
       delta.enable = true;
     };
   };
