@@ -21,6 +21,7 @@ in {
       discord
       libreoffice
       bitwarden
+      pinta
     ];
   };
 }
