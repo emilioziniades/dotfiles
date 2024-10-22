@@ -713,6 +713,14 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1000,
 	},
+	{
+		"aktersnurra/no-clown-fiesta.nvim",
+		opts = {},
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		opts = {},
+	},
 }, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
 -- KEYMAPS
