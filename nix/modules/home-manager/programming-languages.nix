@@ -112,7 +112,7 @@ in {
 
     (mkIf cfg.terraform.enable {
       home.packages = with pkgs; [
-        terraform
+        opentofu
         terraform-ls
         tflint
       ];
