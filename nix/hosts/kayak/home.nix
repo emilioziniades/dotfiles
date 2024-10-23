@@ -30,7 +30,7 @@
     lua.enable = true;
     nix.enable = true;
     html.enable = false;
-    terraform.enable = false;
+    terraform.enable = true;
     packer.enable = false;
     haskell.enable = false;
     go.enable = false;
