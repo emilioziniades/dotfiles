@@ -69,11 +69,11 @@
     "dotfiles-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1728283898,
-        "narHash": "sha256-n+mUxQfPKc7nSW9J6N6l/Uv9WAvBt0f13+0qv230EnM=",
+        "lastModified": 1729876580,
+        "narHash": "sha256-yI0+9BdT+smJ1a8JEP/EUyajr9xV8GKsnss5DEECBo0=",
         "ref": "refs/heads/main",
-        "rev": "3f05c1a2e3da498812e704c0313065f60f851356",
-        "revCount": 18,
+        "rev": "3c873283e651c810118dff778a161e5afe8e24e0",
+        "revCount": 19,
         "type": "git",
         "url": "ssh://git@github.com/emilioziniades/dotfiles-secrets.git"
       },
@@ -110,11 +110,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729716953,
-        "narHash": "sha256-FbRKGRRd0amsk/WS/UV9ukJ8jT1dZ2pJBISxkX+uq6A=",
+        "lastModified": 1729864948,
+        "narHash": "sha256-CeGSqbN6S8JmzYJX/HqZjr7dMGlvHLLnJJarwB45lPs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a4353cc43d1b4dd6bdeacea90eb92a8b7b78a9d7",
+        "rev": "0c0268a3c80d30b989d0aadbd65f38d4fa27a9a0",
         "type": "github"
       },
       "original": {
