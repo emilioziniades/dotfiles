@@ -34,5 +34,10 @@ in {
       file = "${dotfiles-secrets}/secrets/openfortivpn.age";
       path = "${config.xdg.configHome}/openfortivpn/config";
     };
+
+    age.secrets.netrc = {
+      file = "${dotfiles-secrets}/secrets/netrc.age";
+      path = "${config.xdg.configHome}/.netrc";
+    };
   };
 }
