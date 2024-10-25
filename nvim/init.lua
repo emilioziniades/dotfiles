@@ -4,7 +4,6 @@ TODO:
     - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and 
     https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 - csharp
-    - filter out dll's more
     - add ability to debug tests
 - nix
     - package codelldb 
@@ -253,20 +252,12 @@ require("lazy").setup({
 			local dap = require("dap")
 
 			vim.api.nvim_set_hl(0, "DapGreen", { fg = "#9ece6a" })
-			vim.api.nvim_set_hl(0, "DapWarningRed", { fg = "#b21009" })
-			vim.api.nvim_set_hl(0, "DapAttentionOrange", { fg = "#ff7f00" })
-
-			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapGreen", linehl = "", numhl = "DapGreen" })
-			vim.fn.sign_define("DapBreakpointRejected", {
-				text = "○",
-				texthl = "DapWarningRed",
-				linehl = "",
-				numhl = "DapWarningRed",
-			})
-			vim.fn.sign_define(
-				"DapStopped",
-				{ text = "➡️", texthl = "DapAttentionOrange", linehl = "", numhl = "DapAttentionOrange" }
-			)
+			vim.api.nvim_set_hl(0, "DapRed", { fg = "#b21009" })
+			vim.api.nvim_set_hl(0, "DapOrange", { fg = "#ff7f00" })
+			--
+			vim.fn.sign_define("DapBreakpoint", { texthl = "DapGreen", linehl = "", numhl = "DapGreen" })
+			vim.fn.sign_define("DapBreakpointRejected", { texthl = "DapRed", linehl = "", numhl = "DapRed" })
+			vim.fn.sign_define("DapStopped", { texthl = "DapOrange", linehl = "", numhl = "DapOrange" })
 
 			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 			vim.keymap.set("n", "<F5>", dap.continue)
@@ -281,7 +272,7 @@ require("lazy").setup({
 				args = { "--interpreter=vscode" },
 			}
 
-			local function filename_no_extension(name)
+			local function stem(name)
 				return vim.fs.basename(name):match("(.*)%.")
 			end
 
@@ -290,37 +281,32 @@ require("lazy").setup({
 					return name:match(".*%.csproj$")
 				end, { limit = math.huge, type = "file" })
 
-				print(vim.inspect(csproj_files))
-
-				local project_names = {}
-				for _, csproj_file in ipairs(csproj_files) do
-					local project_name = filename_no_extension(csproj_file)
-					table.insert(project_names, project_name)
-				end
-
-				print(vim.inspect(project_names))
+				local project_names = vim.iter(csproj_files)
+					:map(function(csproj_file)
+						return stem(csproj_file)
+					end)
+					:totable()
 
 				local dll_files = vim.fs.find(function(name, path)
 					return vim.iter(project_names):any(function(project_name)
-						return name:find(".*" .. project_name .. "%.dll") ~= nil
+						return name:match(project_name .. "%.dll")
+							and path:match(project_name)
 							and path:match("bin")
 							and not path:match("ref")
 					end)
 				end, { limit = math.huge, type = "file" })
 
-				print(vim.inspect(dll_files))
-
-				local dll_file = ""
+				local dll_file = nil
 				vim.ui.select(dll_files, {
 					prompt = "Select project to run:",
 					format_item = function(item)
-						return filename_no_extension(item) .. " (" .. item .. ")"
+						return stem(item) .. " (" .. item .. ")"
 					end,
 				}, function(choice)
 					dll_file = choice
 				end)
 
-				return dll_file
+				return dll_file or dap.ABORT
 			end
 
 			dap.configurations.cs = {
