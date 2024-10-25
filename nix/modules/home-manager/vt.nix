@@ -37,7 +37,7 @@ in {
 
     age.secrets.netrc = {
       file = "${dotfiles-secrets}/secrets/netrc.age";
-      path = "${config.xdg.configHome}/.netrc";
+      path = "${config.home.homeDirectory}/.netrc";
     };
   };
 }
