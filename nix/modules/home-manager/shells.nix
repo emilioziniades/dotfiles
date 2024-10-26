@@ -1,4 +1,4 @@
-# TODO: revisiting this, it has code smells...
+# TODO: revisit this, it has code smells...
 # it's a lot of different things combined together.. idk
 {pkgs, ...}: {
   home.shellAliases = {
@@ -20,11 +20,14 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    # TODO: Figure out the default readline(well, zle) keybindings for this and use these instead
-    initExtra = ''
-      bindkey '^[[1;5D' backward-word
-      bindkey '^[[1;5C' forward-word
-    '';
+    defaultKeymap = "viins";
+    initExtra =
+      if pkgs.stdenv.isDarwin
+      then ''
+        # easier escape key for macbook with touchbar
+        bindkey '§' vi-cmd-mode
+      ''
+      else "";
   };
 
   programs.bash.enable = true;
