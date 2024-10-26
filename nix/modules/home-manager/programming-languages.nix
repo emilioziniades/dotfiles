@@ -128,8 +128,7 @@ in {
       home.packages = with pkgs; [
         markdown-oxide
       ];
-      #TODO: remove this once this is merged and a release has been created
-      # https://github.com/Feel-ix-343/markdown-oxide/pull/179
+      #TODO: remove this once this PR hits nixos-unstable: https://github.com/NixOS/nixpkgs/pull/351489/files
       xdg.configFile."moxide/settings.toml".text = ''
         daily_notes_folder = "Daily"
       '';

@@ -1,11 +1,8 @@
-#TODO: refactor away all the inline modules
 {
   description = "Emilio's nix configurations";
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
@@ -22,9 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-std = {
-      url = "github:chessai/nix-std";
-    };
+    nix-std.url = "github:chessai/nix-std";
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -44,6 +39,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     darwin,
@@ -52,7 +48,6 @@
     dotfiles-secrets,
     disko,
     sentinelone,
-    ...
   }: let
     forAllSystems = fn:
       nixpkgs.lib.genAttrs
