@@ -3,11 +3,6 @@
     ./hardware-configuration.nix
   ];
 
-  # TODO: remove once this PR hits nixos-unstable: https://nixpk.gs/pr-tracker.html?pr=349783
-  nixpkgs.overlays = [
-    (final: prev: {utillinux = prev.util-linux;})
-  ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
