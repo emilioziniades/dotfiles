@@ -36,6 +36,7 @@
     html.enable = true;
     terraform.enable = false;
     packer.enable = false;
+    markdown.enable = true;
   };
 
   ez.vt.enable = false;
