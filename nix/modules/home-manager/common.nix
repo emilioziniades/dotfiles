@@ -48,6 +48,10 @@
     enable = true;
     settings = {
       aws.disabled = true;
+      env_var = {
+        variable = "STARSHIP_SHELL";
+        format = "with [$env_value](blue bold dimmed) ";
+      };
     };
   };
 
@@ -86,7 +90,6 @@
     tokei
     hey
     nmap
-    nushell
     watchexec
     timewarrior
     flyctl
