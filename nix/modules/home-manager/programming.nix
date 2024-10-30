@@ -74,6 +74,8 @@ in {
         netcoredbg
         dotnet-outdated
         csharprepl
+        fsautocomplete
+        fantomas
       ];
       home.sessionVariables = {
         DOTNET_CLI_TELEMETRY_OPTOUT = 1;
