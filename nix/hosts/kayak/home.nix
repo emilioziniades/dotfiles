@@ -37,6 +37,7 @@
     rust.enable = false;
     markdown.enable = true;
     bash.enable = true;
+    nushell.enable = true;
   };
 
   ez.vt.enable = true;
