@@ -24,7 +24,7 @@
     gpgKey = "877E9B0125E55C17CF2E52DAEA106EB7199A20CA";
   };
 
-  ez.programming-languages = {
+  ez.programming = {
     python.enable = true;
     go.enable = true;
     rust.enable = true;
@@ -37,6 +37,7 @@
     terraform.enable = false;
     packer.enable = false;
     markdown.enable = true;
+    bash.enable = true;
   };
 
   ez.vt.enable = false;

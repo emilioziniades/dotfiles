@@ -23,7 +23,7 @@
     defaultBranch = "master";
   };
 
-  ez.programming-languages = {
+  ez.programming = {
     python.enable = true;
     typescript.enable = true;
     dotnet.enable = true;
@@ -36,6 +36,7 @@
     go.enable = false;
     rust.enable = false;
     markdown.enable = true;
+    bash.enable = true;
   };
 
   ez.vt.enable = true;

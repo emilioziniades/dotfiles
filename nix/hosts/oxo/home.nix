@@ -16,5 +16,5 @@
     email = "emilioz@za.velocitytrade.com";
   };
 
-  ez.programming-languages.nix.enable = true;
+  ez.programming.nix.enable = true;
 }

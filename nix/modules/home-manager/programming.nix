@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.ez.programming-languages;
+  cfg = config.ez.programming;
 in {
-  options.ez.programming-languages = {
+  options.ez.programming = {
     python.enable = mkEnableOption "python";
     go.enable = mkEnableOption "go";
     rust.enable = mkEnableOption "rust";
@@ -20,6 +20,8 @@ in {
     terraform.enable = mkEnableOption "terraform";
     packer.enable = mkEnableOption "packer";
     markdown.enable = mkEnableOption "markdown";
+    bash.enable = mkEnableOption "bash";
+    postgres.enable = mkEnableOption "postgres";
   };
 
   config = mkMerge [
@@ -128,10 +130,27 @@ in {
       home.packages = with pkgs; [
         markdown-oxide
       ];
-      #TODO: remove this once this PR hits nixos-unstable: https://github.com/NixOS/nixpkgs/pull/351489/files
+      #TODO: remove this once this PR hits nixos-unstable: https://nixpk.gs/pr-tracker.html?pr=351489
       xdg.configFile."moxide/settings.toml".text = ''
         daily_notes_folder = "Daily"
       '';
+    })
+
+    (mkIf cfg.bash.enable {
+      programs.bash.enable = true;
+
+      home.packages = with pkgs; [
+        bash-language-server
+        shfmt
+        shellcheck
+      ];
+    })
+
+    (mkIf cfg.postgres.enable {
+      home.packages = with pkgs; [
+        postgresql
+        pgformatter
+      ];
     })
   ];
 }
