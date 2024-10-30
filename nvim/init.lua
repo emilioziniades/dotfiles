@@ -98,6 +98,7 @@ require("lazy").setup({
 				nil_ls = {},
 				bashls = {},
 				nushell = {},
+				fsautocomplete = {},
 				markdown_oxide = {
 					capabilities = {
 						workspace = {
@@ -197,6 +198,7 @@ require("lazy").setup({
 					go = { "goimports" },
 					rust = { "rustfmt" },
 					cs = { "csharpier" },
+					fsharp = { "fantomas" },
 					nix = { "alejandra" },
 					terraform = { "terraform_fmt" },
 					hcl = { "terraform_fmt" },
@@ -572,6 +574,7 @@ require("lazy").setup({
 					"cooklang",
 					"css",
 					"dockerfile",
+					"fsharp",
 					"go",
 					"groovy",
 					"haskell",
