@@ -22,6 +22,7 @@ in {
     markdown.enable = mkEnableOption "markdown";
     bash.enable = mkEnableOption "bash";
     postgres.enable = mkEnableOption "postgres";
+    nushell.enable = mkEnableOption "nushell";
   };
 
   config = mkMerge [
@@ -153,6 +154,10 @@ in {
         postgresql
         pgformatter
       ];
+    })
+
+    (mkIf cfg.nushell.enable {
+      programs.nushell.enable = true;
     })
   ];
 }
