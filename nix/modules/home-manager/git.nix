@@ -30,6 +30,8 @@ in {
       userName = cfg.username;
       userEmail = cfg.email;
       aliases = {
+        s = "status";
+        d = "diff";
         l = "log --oneline --all";
         g = "log --oneline --graph --decorate --all";
       };
