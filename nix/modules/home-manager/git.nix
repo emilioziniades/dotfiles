@@ -34,6 +34,7 @@ in {
         d = "diff";
         l = "log --oneline --all";
         g = "log --oneline --graph --decorate --all";
+        sync = "!git switch master && git pull";
       };
       extraConfig = {
         user.signingkey = cfg.gpgKey;
