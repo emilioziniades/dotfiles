@@ -133,10 +133,6 @@ in {
       home.packages = with pkgs; [
         markdown-oxide
       ];
-      #TODO: remove this once this PR hits nixos-unstable: https://nixpk.gs/pr-tracker.html?pr=351489
-      xdg.configFile."moxide/settings.toml".text = ''
-        daily_notes_folder = "Daily"
-      '';
     })
 
     (mkIf cfg.bash.enable {
