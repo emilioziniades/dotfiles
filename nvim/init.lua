@@ -189,7 +189,7 @@ require("lazy").setup({
 			require("conform").setup({
 				notify_on_error = true,
 				format_on_save = format_on_save_if_active({
-					timeout_ms = 1000,
+					timeout_ms = 2000,
 					lsp_fallback = true,
 				}),
 				formatters_by_ft = {
