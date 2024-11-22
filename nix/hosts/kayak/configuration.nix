@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos/sentinelone.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
