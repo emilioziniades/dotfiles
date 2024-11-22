@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-  nix-std,
+  inputs,
   ...
 }:
 with lib; let
@@ -29,6 +29,6 @@ in {
         search_dirs = map mkSearchDir cfg.searchDirs;
       };
     in
-      nix-std.lib.serde.toTOML tmsConfig;
+      inputs.nix-std.lib.serde.toTOML tmsConfig;
   };
 }

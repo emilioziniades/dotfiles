@@ -38,16 +38,14 @@
     };
   };
 
-  outputs = {
-    self,
+  outputs = inputs @ {
     nixpkgs,
     home-manager,
     darwin,
-    nix-std,
     agenix,
-    dotfiles-secrets,
     disko,
     sentinelone,
+    ...
   }: let
     forAllSystems = fn:
       nixpkgs.lib.genAttrs
@@ -56,18 +54,18 @@
   in {
     nixosConfigurations.kayak = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {inherit inputs;};
       modules = [
         ./nix/hosts/kayak/configuration.nix
         home-manager.nixosModules.home-manager
         sentinelone.nixosModules.sentinelone
+        agenix.nixosModules.default
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             users.emilioz = import ./nix/hosts/kayak/home.nix;
-            extraSpecialArgs = {
-              inherit nixpkgs nix-std dotfiles-secrets;
-            };
+            extraSpecialArgs = {inherit inputs;};
             sharedModules = [agenix.homeManagerModules.default];
           };
         }
@@ -84,9 +82,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users.emilioziniades = import ./nix/hosts/hadedah/home.nix;
-            extraSpecialArgs = {
-              inherit nixpkgs nix-std dotfiles-secrets;
-            };
+            extraSpecialArgs = {inherit inputs;};
             sharedModules = [agenix.homeManagerModules.default];
           };
         }
@@ -101,9 +97,7 @@
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
         {
-          home-manager.extraSpecialArgs = {
-            inherit nixpkgs nix-std dotfiles-secrets;
-          };
+          home-manager.extraSpecialArgs = {inherit inputs;};
         }
       ];
     };

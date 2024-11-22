@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  dotfiles-secrets,
+  inputs,
   ...
 }:
 with lib; let
@@ -26,17 +26,17 @@ in {
     ];
 
     age.secrets.vpn = {
-      file = "${dotfiles-secrets}/secrets/vpn.age";
+      file = "${inputs.dotfiles-secrets}/secrets/vpn.age";
       path = "${config.home.homeDirectory}/.vpn";
     };
 
     age.secrets.openfortivpn = {
-      file = "${dotfiles-secrets}/secrets/openfortivpn.age";
+      file = "${inputs.dotfiles-secrets}/secrets/openfortivpn.age";
       path = "${config.xdg.configHome}/openfortivpn/config";
     };
 
     age.secrets.netrc = {
-      file = "${dotfiles-secrets}/secrets/netrc.age";
+      file = "${inputs.dotfiles-secrets}/secrets/netrc.age";
       path = "${config.home.homeDirectory}/.netrc";
     };
   };
