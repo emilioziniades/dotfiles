@@ -1,6 +1,6 @@
 {
   pkgs,
-  nixpkgs,
+  inputs,
   ...
 }: {
   programs.home-manager.enable = true;
@@ -13,7 +13,7 @@
 
   # add current nixpkgs flake input to the registry, so that
   # `nix run nixpkgs#...` doesn't fetch fresh nixpkgs every time
-  nix.registry.nixpkgs.flake = nixpkgs;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home.shellAliases = {
     c = "clear && tmux clear-history";
