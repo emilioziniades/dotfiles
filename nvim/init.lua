@@ -564,6 +564,15 @@ require("lazy").setup({
 		},
 		build = ":TSUpdate",
 		config = function()
+			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+			parser_config.scheme = {
+				install_info = {
+					url = "https://github.com/6cdh/tree-sitter-scheme",
+					files = { "src/parser.c" },
+					branch = "main",
+				},
+			}
+
 			require("nvim-treesitter.configs").setup({
 				highlight = {
 					enable = true,
@@ -599,6 +608,7 @@ require("lazy").setup({
 					"typescript",
 					"vim",
 					"vimdoc",
+					"scheme",
 				},
 			})
 
