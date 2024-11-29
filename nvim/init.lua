@@ -13,6 +13,7 @@ TODO:
 
 local globals = {
 	mapleader = " ",
+	maplocalleader = " ",
 	netrw_banner = false,
 }
 
@@ -609,6 +610,7 @@ require("lazy").setup({
 					"vim",
 					"vimdoc",
 					"scheme",
+					"fennel",
 				},
 			})
 
@@ -626,6 +628,27 @@ require("lazy").setup({
 				n_lines = 100,
 			})
 		end,
+	},
+
+	{
+		"Olical/conjure",
+		ft = { "scheme", "fennel" },
+		lazy = true,
+		init = function()
+			vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
+			vim.g["conjure#client#guile#socket#pipename"] = "guile-repl.socket"
+			vim.g["conjure#debug"] = true
+		end,
+		dependencies = {
+			"PaterJason/cmp-conjure",
+			lazy = true,
+			config = function()
+				local cmp = require("cmp")
+				local config = cmp.get_config()
+				table.insert(config.sources, { name = "conjure" })
+				return cmp.setup(config)
+			end,
+		},
 	},
 
 	-- show indents
