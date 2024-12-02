@@ -8,11 +8,7 @@
   users.users.emilioziniades.home = "/Users/emilioziniades";
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "Monaspace"
-      ];
-    })
+    nerd-fonts.monaspace
   ];
 
   homebrew = {
