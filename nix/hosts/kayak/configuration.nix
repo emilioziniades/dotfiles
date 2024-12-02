@@ -49,11 +49,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "Monaspace"
-      ];
-    })
+    nerd-fonts.monaspace
   ];
 
   programs.nix-ld.enable = true;
