@@ -637,7 +637,7 @@ require("lazy").setup({
 		init = function()
 			vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
 			vim.g["conjure#client#guile#socket#pipename"] = "guile-repl.socket"
-			vim.g["conjure#debug"] = true
+			vim.g["conjure#debug"] = false
 		end,
 		dependencies = {
 			"PaterJason/cmp-conjure",
@@ -674,12 +674,6 @@ require("lazy").setup({
 				},
 			},
 		},
-	},
-
-	--brackets
-	{
-		"windwp/nvim-autopairs",
-		opts = {},
 	},
 
 	--icons
