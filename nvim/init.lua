@@ -688,7 +688,9 @@ require("lazy").setup({
 	--brackets
 	{
 		"windwp/nvim-autopairs",
-		opts = {},
+		opts = {
+			disable_filetype = { "scheme" },
+		},
 	},
 
 	--icons
