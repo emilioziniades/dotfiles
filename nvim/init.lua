@@ -224,7 +224,8 @@ require("lazy").setup({
 				formatters = {
 					scheme_format = {
 						command = "scheme-format",
-						args = { "$FILENAME" },
+						args = { "-i", "$FILENAME" },
+						stdin = false,
 					},
 				},
 			})
