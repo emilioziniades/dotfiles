@@ -218,6 +218,14 @@ require("lazy").setup({
 					htmldjango = { "djlint" },
 					toml = { "taplo" },
 					just = { "just" },
+					scheme = { "scheme_format" },
+				},
+				-- TODO: upstream this
+				formatters = {
+					scheme_format = {
+						command = "scheme-format",
+						args = { "$FILENAME" },
+					},
 				},
 			})
 		end,
