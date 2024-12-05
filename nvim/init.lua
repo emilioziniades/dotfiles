@@ -218,6 +218,15 @@ require("lazy").setup({
 					htmldjango = { "djlint" },
 					toml = { "taplo" },
 					just = { "just" },
+					scheme = { "scheme_format" },
+				},
+				-- TODO: upstream this
+				formatters = {
+					scheme_format = {
+						command = "scheme-format",
+						args = { "-i", "$FILENAME" },
+						stdin = false,
+					},
 				},
 			})
 		end,
@@ -674,6 +683,14 @@ require("lazy").setup({
 					"nofile",
 				},
 			},
+		},
+	},
+
+	--brackets
+	{
+		"windwp/nvim-autopairs",
+		opts = {
+			disable_filetype = { "scheme" },
 		},
 	},
 
