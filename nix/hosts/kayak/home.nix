@@ -26,7 +26,7 @@
   ez.programming = {
     python.enable = true;
     typescript.enable = true;
-    dotnet.enable = true;
+    dotnet.enable = false;
     lua.enable = true;
     nix.enable = true;
     html.enable = false;
