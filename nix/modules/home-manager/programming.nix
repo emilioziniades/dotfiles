@@ -65,7 +65,11 @@ in {
 
     (mkIf cfg.dotnet.enable {
       home.packages = with pkgs; [
-        dotnetCorePackages.sdk_8_0
+        (with dotnetCorePackages;
+          combinePackages [
+            sdk_8_0
+            sdk_9_0
+          ])
         csharp-ls
         csharpier
         netcoredbg
