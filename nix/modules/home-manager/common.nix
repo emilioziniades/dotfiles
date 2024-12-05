@@ -48,10 +48,13 @@
     enable = true;
     settings = {
       aws.disabled = true;
+      shell = {
+        disabled = true;
+      };
       env_var = {
+        disabled = true;
         variable = "STARSHIP_SHELL";
         format = "with [$env_value](blue bold dimmed) ";
-        disabled = true;
       };
     };
   };
