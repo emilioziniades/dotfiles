@@ -51,6 +51,7 @@
       env_var = {
         variable = "STARSHIP_SHELL";
         format = "with [$env_value](blue bold dimmed) ";
+        disabled = true;
       };
     };
   };
