@@ -11,14 +11,6 @@
     nerd-fonts.monaspace
   ];
 
-  # TODO: remove this once all relevant dotnet packages have been updated
-  nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-core-combined"
-    "dotnet-sdk-6.0.428"
-    "dotnet-sdk-7.0.410"
-    "dotnet-sdk-wrapped-6.0.428"
-  ];
-
   homebrew = {
     enable = true;
     taps = [
