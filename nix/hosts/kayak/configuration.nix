@@ -46,13 +46,6 @@
   nixpkgs.config = {
     allowUnfree = true;
     pulseaudio = true;
-    # TODO: remove this once all relevant dotnet packages have been updated
-    permittedInsecurePackages = [
-      "dotnet-core-combined"
-      "dotnet-sdk-6.0.428"
-      "dotnet-sdk-7.0.410"
-      "dotnet-sdk-wrapped-6.0.428"
-    ];
   };
 
   fonts.packages = with pkgs; [
