@@ -737,6 +737,14 @@ require("lazy").setup({
 		opts = {},
 	},
 
+	-- rainbow parenthesis
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		main = "rainbow-delimiters.setup",
+		opts = {},
+		ft = "scheme",
+	},
+
 	-- colorscheme
 	{
 		"catppuccin/nvim",
