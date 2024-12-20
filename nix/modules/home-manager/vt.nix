@@ -35,10 +35,9 @@ in {
       path = "${config.xdg.configHome}/openfortivpn/config";
     };
 
-    # TODO: uncomment once git+curl issues have made its way to nixos-unstable
-    # age.secrets.netrc = {
-    #   file = "${inputs.dotfiles-secrets}/secrets/netrc.age";
-    #   path = "${config.home.homeDirectory}/.netrc";
-    # };
+    age.secrets.netrc = {
+      file = "${inputs.dotfiles-secrets}/secrets/netrc.age";
+      path = "${config.home.homeDirectory}/.netrc";
+    };
   };
 }

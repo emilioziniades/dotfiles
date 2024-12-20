@@ -220,7 +220,6 @@ require("lazy").setup({
 					just = { "just" },
 					scheme = { "scheme_format" },
 				},
-				-- TODO: upstream this
 				formatters = {
 					scheme_format = {
 						command = "scheme-format",
