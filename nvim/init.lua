@@ -689,7 +689,7 @@ require("lazy").setup({
 	{
 		"windwp/nvim-autopairs",
 		opts = {
-			disable_filetype = { "scheme" },
+			disable_filetype = { "TelescopePrompt", "scheme" },
 		},
 	},
 
