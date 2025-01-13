@@ -29,7 +29,10 @@
 
     sentinelone = {
       url = "github:devusb/sentinelone.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # TODO: commenting out the below is annoying because it means we
+      # need two copies of nixpkgs. But using latest nixpkgs causes a
+      # build error. Keep this commented until I fix the build failure.
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dotfiles-secrets = {
