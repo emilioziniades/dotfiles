@@ -87,9 +87,8 @@ in {
     (mkIf cfg.haskell.enable {
       home.packages = with pkgs; [
         ghc
-        # TODO: uncomment once this is resolved: https://github.com/NixOS/nixpkgs/issues/356741
-        # haskell-language-server
-        # haskellPackages.stack
+        haskell-language-server
+        haskellPackages.stack
         haskellPackages.fourmolu
       ];
     })
