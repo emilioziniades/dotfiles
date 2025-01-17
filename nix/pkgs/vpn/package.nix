@@ -1,9 +1,9 @@
 {
-  callPackage,
   makeWrapper,
   writeScriptBin,
   symlinkJoin,
   openfortivpn,
+  openfortivpn-webview,
   jq,
   ...
 }:
@@ -13,8 +13,6 @@ symlinkJoin rec {
   postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
 
   script = writeScriptBin name (builtins.readFile ./vpn.sh);
-
-  openfortivpn-webview = callPackage ./openfortivpn-webview.nix {};
 
   buildInputs = [
     jq
