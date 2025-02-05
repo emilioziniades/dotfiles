@@ -23,6 +23,7 @@ in {
       awscli2
       kubectl
       kubectx
+      kubernetes-helm
     ];
 
     age.secrets.vpn = {
