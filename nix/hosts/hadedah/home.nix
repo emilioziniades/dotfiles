@@ -40,7 +40,7 @@
     bash.enable = true;
   };
 
-  ez.vt.enable = false;
+  ez.work.enable = false;
 
   ez.applications.gui.enable = false;
 }

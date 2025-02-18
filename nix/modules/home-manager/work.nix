@@ -6,12 +6,12 @@
   ...
 }:
 with lib; let
-  cfg = config.ez.vt;
+  cfg = config.ez.work;
   vt-cli = pkgs.callPackage ../../pkgs/vt-cli/package.nix {pythonPackages = pkgs.python3.pkgs;};
   vpn = pkgs.callPackage ../../pkgs/vpn/package.nix {};
 in {
-  options.ez.vt = {
-    enable = mkEnableOption "VT development tools";
+  options.ez.work = {
+    enable = mkEnableOption "Work development tools";
   };
 
   config = mkIf cfg.enable {
@@ -43,7 +43,7 @@ in {
 
     age.secrets.gitconfig = {
       file = "${inputs.dotfiles-secrets}/secrets/gitconfig.age";
-      path = "${config.home.homeDirectory}/.git/config.work";
+      path = "${config.xdg.configHome}/git/config.work";
     };
   };
 }
