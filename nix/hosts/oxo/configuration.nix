@@ -24,13 +24,10 @@
   };
 
   users = {
-    mutableUsers = false;
-
     users.emilioz = {
       isNormalUser = true;
       home = "/home/emilioz";
       extraGroups = ["wheel"];
-      hashedPassword = "$y$j9T$..ZrEKsB5VjpEoeIARpln1$eB8HV5Bo.kQrQtZ88nngNd5i5T4F1F1BuM1ySEIA5J3";
     };
   };
 

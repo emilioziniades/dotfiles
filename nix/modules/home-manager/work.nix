@@ -40,5 +40,10 @@ in {
       file = "${inputs.dotfiles-secrets}/secrets/netrc.age";
       path = "${config.home.homeDirectory}/.netrc";
     };
+
+    age.secrets.gitconfig = {
+      file = "${inputs.dotfiles-secrets}/secrets/gitconfig.age";
+      path = "${config.home.homeDirectory}/.git/config.work";
+    };
   };
 }

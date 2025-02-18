@@ -13,7 +13,6 @@
   ez.programs.git = {
     enable = true;
     username = "Emilio Ziniades";
-    email = "emilioz@za.velocitytrade.com";
   };
 
   ez.programming.nix.enable = true;

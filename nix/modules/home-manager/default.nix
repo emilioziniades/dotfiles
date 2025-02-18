@@ -7,7 +7,7 @@
     ./wezterm.nix
     ./tms.nix
     ./programming.nix
-    ./vt.nix
+    ./work.nix
     ./gui.nix
   ];
 }
