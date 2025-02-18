@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   imports = [
     ../../modules/home-manager
   ];
@@ -23,7 +23,7 @@
     defaultBranch = "master";
     includes = [
       {
-        path = "~/.git/config.work";
+        path = config.age.secrets.gitconfig.path;
         condition = "gitdir:/~/work";
       }
     ];
@@ -46,7 +46,7 @@
     nushell.enable = true;
   };
 
-  ez.vt.enable = true;
+  ez.work.enable = true;
 
   ez.applications.gui.enable = true;
 }

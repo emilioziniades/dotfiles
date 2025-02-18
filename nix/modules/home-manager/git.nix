@@ -22,6 +22,9 @@ in {
       type = str;
       default = "main";
     };
+    includes = mkOption {
+      type = listOf attrs;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -36,6 +39,7 @@ in {
         g = "log --oneline --graph --decorate --all";
         sync = "!git switch master && git pull";
       };
+      includes = cfg.includes;
       extraConfig = {
         user.signingkey = cfg.gpgKey;
         init.defaultBranch = cfg.defaultBranch;
