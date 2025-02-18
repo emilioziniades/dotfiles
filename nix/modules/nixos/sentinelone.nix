@@ -10,7 +10,7 @@
 in {
   services.sentinelone.enable = true;
   services.sentinelone.package = sentinelone;
-  services.sentinelone.email = "emilioz@za.velocitytrade.com";
+  services.sentinelone.email = "emilioziniades@gmail.com";
   services.sentinelone.serialNumber = "0";
   services.sentinelone.sentinelOneManagementTokenPath = config.age.secrets.sentinelone-management-token.path;
 

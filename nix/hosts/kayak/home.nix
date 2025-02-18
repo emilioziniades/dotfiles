@@ -13,14 +13,20 @@
 
   ez.programs.tms = {
     enable = true;
-    searchDirs = ["work" "personal" "dotfiles" "obsidian"];
+    searchDirs = ["work" "personal" "dotfiles" "dotfiles-secrets" "obsidian"];
   };
 
   ez.programs.git = {
     enable = true;
     username = "Emilio Ziniades";
-    email = "emilioz@za.velocitytrade.com";
+    email = "emilioziniades@gmail.com";
     defaultBranch = "master";
+    includes = [
+      {
+        path = "~/.git/config.work";
+        condition = "gitdir:/~/work";
+      }
+    ];
   };
 
   ez.programming = {
