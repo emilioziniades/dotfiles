@@ -24,7 +24,7 @@
     includes = [
       {
         path = config.age.secrets.gitconfig.path;
-        condition = "gitdir:/~/work";
+        condition = "gitdir:~/work/";
       }
     ];
   };
