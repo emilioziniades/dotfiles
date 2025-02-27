@@ -5,6 +5,10 @@
     trusted-users = ["emilioziniades"];
   };
 
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
   users.users.emilioziniades.home = "/Users/emilioziniades";
 
   fonts.packages = with pkgs; [
