@@ -19,7 +19,7 @@
   ez.programs.git = {
     enable = true;
     username = "Emilio Ziniades";
-    email = "emilioziniades@gmail.com";
+    email = "emilioziniades@protonmail.com";
     defaultBranch = "master";
     includes = [
       {
