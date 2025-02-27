@@ -27,6 +27,8 @@ in {
     };
   };
 
+  # NOTE: See https://blog.gitbutler.com/how-git-core-devs-configure-git/ for explanations of some of the below options
+
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
@@ -45,9 +47,33 @@ in {
         init.defaultBranch = cfg.defaultBranch;
         core.editor = "nvim";
         commit.gpgsign = false;
-        push.autoSetupRemote = true;
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          all = true;
+        };
+        push = {
+          autoSetupRemote = true;
+          followTags = true;
+        };
         pull.rebase = false;
-        rerere.enabled = true;
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
+        column.ui = "auto";
+        branch.sort = "-committerdate";
+        tag.sort = "version:refname";
+        diff = {
+          algorithm = "histogram";
+          colorMoved = "plain";
+          renames = true;
+          mnemonicPrefix = true;
+        };
+        rebase = {
+          autoSquash = true;
+          updateRefs = true;
+        };
       };
 
       delta.enable = true;
