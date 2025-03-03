@@ -619,6 +619,8 @@ require("lazy").setup({
 					"vimdoc",
 					"scheme",
 					"fennel",
+					"helm",
+					"yaml",
 				},
 			})
 
@@ -804,6 +806,8 @@ vim.filetype.add({
 			end
 		end,
 		["Dockerfile.*"] = "dockerfile",
+		[".*/templates/.*%.yaml"] = "helm",
+		[".*/templates/.*%.tpl"] = "helm",
 	},
 })
 
