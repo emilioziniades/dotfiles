@@ -61,7 +61,6 @@ in {
           enabled = true;
           autoupdate = true;
         };
-        column.ui = "auto";
         branch.sort = "-committerdate";
         tag.sort = "version:refname";
         diff = {
