@@ -795,6 +795,7 @@ vim.keymap.set("n", "<C-k>", "<cmd>cprevious<cr>")
 vim.filetype.add({
 	filename = {
 		["justfile"] = "just",
+		["Jenkinsfile"] = "groovy",
 	},
 	pattern = {
 		[".*.html"] = function(_, bufnr)
@@ -808,6 +809,7 @@ vim.filetype.add({
 		["Dockerfile.*"] = "dockerfile",
 		[".*/templates/.*%.yaml"] = "helm",
 		[".*/templates/.*%.tpl"] = "helm",
+		[".*%.tf"] = "terraform",
 	},
 })
 
@@ -820,27 +822,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
-local function set_filetype_options(group_name, pattern, options_map)
-	vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-		pattern = pattern,
-		group = vim.api.nvim_create_augroup(group_name, { clear = true }),
-		callback = function()
-			vim.schedule(function()
-				for option_key, option_value in pairs(options_map) do
-					vim.api.nvim_set_option_value(option_key, option_value, { scope = "local" })
-				end
-			end)
-		end,
-	})
-end
-
-set_filetype_options(
-	"JavaScriptFile",
-	{ "*.js", "*.jsx", "*.html", "*.ts", "*.tsx", "*.tpl" },
-	{ tabstop = 2, shiftwidth = 2 }
-)
-set_filetype_options("GolangFile", { "*.go" }, { tabstop = 8, shiftwidth = 8 })
-set_filetype_options("MdxFile", { "*.mdx" }, { filetype = "markdown" })
-set_filetype_options("TerraformFile", { "*.tf" }, { filetype = "terraform" })
-set_filetype_options("JenkinsFile", { "Jenkinsfile" }, { filetype = "groovy" })
