@@ -24,6 +24,7 @@ in {
     };
     includes = mkOption {
       type = listOf attrs;
+      default = [];
     };
   };
 
