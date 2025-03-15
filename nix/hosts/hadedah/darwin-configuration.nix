@@ -2,8 +2,10 @@
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     sandbox = false;
-    trusted-users = ["emilioziniades"];
+    trusted-users = ["@admin"];
   };
+
+  nix.linux-builder.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
