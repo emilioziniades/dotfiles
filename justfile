@@ -22,3 +22,8 @@ switch-home-manager:
 
 switch-darwin:
     darwin-rebuild switch --flake ~/dotfiles
+
+# For some reason you need to do both, as root and your user can both hold separate gc roots
+tidy:
+    nix-collect-garbage --delete-old
+    sudo nix-collect-garbage --delete-old
