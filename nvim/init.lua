@@ -642,7 +642,7 @@ require("lazy").setup({
 
 	{
 		"Olical/conjure",
-		ft = { "scheme", "fennel", "python" },
+		ft = { "scheme", "fennel" },
 		lazy = true,
 		init = function()
 			vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
