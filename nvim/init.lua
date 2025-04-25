@@ -249,9 +249,12 @@ require("lazy").setup({
 				change = { text = "~" },
 			},
 			on_attach = function(bufnr)
-				vim.keymap.set("n", "[c", require("gitsigns").prev_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "]c", require("gitsigns").next_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "<leader>ph", require("gitsigns").preview_hunk, { buffer = bufnr })
+				local gitsigns = require("gitsigns")
+				vim.keymap.set("n", "[c", gitsigns.prev_hunk, { buffer = bufnr })
+				vim.keymap.set("n", "]c", gitsigns.next_hunk, { buffer = bufnr })
+				vim.keymap.set("n", "<leader>cp", gitsigns.preview_hunk, { buffer = bufnr })
+				vim.keymap.set("n", "<leader>cs", gitsigns.stage_hunk, { buffer = bufnr })
+				vim.keymap.set("n", "<leader>cu", gitsigns.undo_stage_hunk, { buffer = bufnr })
 			end,
 		},
 	},
