@@ -72,6 +72,7 @@
     tre-command
     sd
     dogdns
+    dig
     jq
     ijq
     yq-go
