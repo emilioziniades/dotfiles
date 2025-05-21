@@ -39,7 +39,7 @@
     terraform.enable = false;
     packer.enable = false;
     haskell.enable = false;
-    go.enable = false;
+    go.enable = true;
     rust.enable = false;
     markdown.enable = true;
     bash.enable = true;
