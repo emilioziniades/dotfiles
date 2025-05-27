@@ -68,6 +68,7 @@
         with cores; [
           snes9x
         ]))
+    flips
   ];
 
   virtualisation.docker.enable = true;
