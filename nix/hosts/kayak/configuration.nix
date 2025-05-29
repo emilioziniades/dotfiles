@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/sentinelone.nix
+    ../../modules/nixos/work.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
