@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/sentinelone.nix
     ../../modules/nixos/work.nix
+    ../../modules/nixos/gaming.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -60,16 +61,6 @@
     xz
     curl
     libgdiplus
-  ];
-
-  programs.steam.enable = true;
-  environment.systemPackages = with pkgs; [
-    (retroarch.withCores
-      (cores:
-        with cores; [
-          snes9x
-        ]))
-    flips
   ];
 
   virtualisation.docker.enable = true;
