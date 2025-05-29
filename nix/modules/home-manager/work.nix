@@ -25,6 +25,7 @@ in {
       kubectx
       kubernetes-helm
       k9s
+      intune-portal
     ];
 
     age.secrets.vpn = {
