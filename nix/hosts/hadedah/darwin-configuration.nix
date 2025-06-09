@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  system.primaryUser = "emilioziniades";
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     sandbox = false;

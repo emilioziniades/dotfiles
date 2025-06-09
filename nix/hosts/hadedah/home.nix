@@ -28,7 +28,7 @@
     python.enable = true;
     go.enable = true;
     rust.enable = true;
-    typescript.enable = true;
+    typescript.enable = false;
     dotnet.enable = true;
     haskell.enable = true;
     lua.enable = true;

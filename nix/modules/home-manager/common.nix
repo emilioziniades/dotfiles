@@ -31,7 +31,7 @@
     enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    initExtra =
+    initContent =
       if pkgs.stdenv.isDarwin
       then ''
         # easier escape key for macbook with touchbar
