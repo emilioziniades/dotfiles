@@ -16,7 +16,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "kayak";
+  networking.hostName = "VTFS-LTP-24";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Johannesburg";
