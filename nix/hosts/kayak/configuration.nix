@@ -9,7 +9,7 @@
   nixpkgs.overlays = [
     # TODO: remove once https://github.com/NixOS/nixpkgs/pull/413017/ is merged
     (final: prev: {
-      microsoft-identity-broker = prev.pkgs.callPackage ../pkgs/microsoft-identity-broker/package.nix {};
+      microsoft-identity-broker = prev.pkgs.callPackage ../../pkgs/microsoft-identity-broker/package.nix {};
     })
   ];
 
