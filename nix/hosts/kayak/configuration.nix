@@ -16,12 +16,13 @@
 
   i18n.defaultLocale = "en_ZA.UTF-8";
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = false;
-    desktopManager.gnome.enable = true;
-    xkb.options = "caps:backspace";
+  services.xserver.enable = true;
+
+  services.desktopManager.gnome.enable = true;
+
+  services.displayManager = {
+    gdm.enable = true;
+    gdm.wayland = false;
   };
 
   console.useXkbConfig = true;
