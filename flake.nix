@@ -52,7 +52,7 @@
       ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"]
       (system: fn system nixpkgs.legacyPackages.${system});
   in {
-    nixosConfigurations.kayak = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."VTFS-LTP-24" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
