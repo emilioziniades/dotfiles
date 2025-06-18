@@ -226,6 +226,10 @@ require("lazy").setup({
 						args = { "-i", "$FILENAME" },
 						stdin = false,
 					},
+					csharpier = {
+						command = "csharpier",
+						args = { "format", "--write-stdout" },
+					},
 				},
 			})
 		end,
