@@ -199,6 +199,7 @@ require("lazy").setup({
 					go = { "gofumpt" },
 					rust = { "rustfmt" },
 					cs = { "csharpier" },
+					xml = { "csharpier" },
 					fsharp = { "fantomas" },
 					nix = { "alejandra" },
 					terraform = { "terraform_fmt" },
