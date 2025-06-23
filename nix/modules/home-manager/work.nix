@@ -26,6 +26,7 @@ in {
       kubernetes-helm
       k9s
       intune-portal
+      argocd
     ];
 
     age.secrets.vpn = {
