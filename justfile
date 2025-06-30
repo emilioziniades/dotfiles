@@ -15,7 +15,7 @@ update-neovim-plugins:
     git diff --quiet nvim/lazy-lock.json || git commit -m "nvim: update plugins" nvim/lazy-lock.json
 
 switch-nixos:
-    sudo nixos-rebuild switch --flake ~/dotfiles
+    sudo --preserve-env nixos-rebuild switch --flake ~/dotfiles
 
 switch-home-manager:
     home-manager switch --flake ~/dotfiles
