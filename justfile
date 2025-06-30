@@ -21,7 +21,7 @@ switch-home-manager:
     home-manager switch --flake ~/dotfiles
 
 switch-darwin:
-    darwin-rebuild switch --flake ~/dotfiles
+    sudo darwin-rebuild switch --flake ~/dotfiles
 
 # For some reason you need to do both, as root and your user can both hold separate gc roots
 tidy:
