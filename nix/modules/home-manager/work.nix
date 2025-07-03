@@ -21,10 +21,6 @@ in {
       mongosh
       mongodb-tools
       awscli2
-      kubectl
-      kubectx
-      kubernetes-helm
-      k9s
       intune-portal
       argocd
     ];

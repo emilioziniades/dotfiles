@@ -6,6 +6,7 @@
     ./git.nix
     ./wezterm.nix
     ./tms.nix
+    ./kubernetes.nix
     ./programming.nix
     ./work.nix
     ./gui.nix

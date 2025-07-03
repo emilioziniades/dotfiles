@@ -36,6 +36,11 @@
       url = "git+ssh://git@github.com/emilioziniades/dotfiles-secrets.git";
       flake = false;
     };
+
+    catppuccin-k9s = {
+      url = "github:catppuccin/k9s";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {

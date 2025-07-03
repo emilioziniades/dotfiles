@@ -25,6 +25,22 @@
         "type": "github"
       }
     },
+    "catppuccin-k9s": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721498876,
+        "narHash": "sha256-9h+jyEO4w0OnzeEKQXJbg9dvvWGZYQAO4MbgDn6QRzM=",
+        "owner": "catppuccin",
+        "repo": "k9s",
+        "rev": "fdbec82284744a1fc2eb3e2d24cb92ef87ffb8b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "k9s",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -203,6 +219,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "catppuccin-k9s": "catppuccin-k9s",
         "darwin": "darwin",
         "disko": "disko",
         "dotfiles-secrets": "dotfiles-secrets",
