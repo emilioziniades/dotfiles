@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/sentinelone.nix
@@ -25,10 +29,18 @@
     gdm.wayland = false;
   };
 
+  # GPU config
   # https://wiki.nixos.org/wiki/NVIDIA
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia.open = false;
+  hardware.nvidia = {
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+    prime = {
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
 
   console.useXkbConfig = true;
 
