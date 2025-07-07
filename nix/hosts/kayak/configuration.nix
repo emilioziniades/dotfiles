@@ -20,14 +20,8 @@
 
   i18n.defaultLocale = "en_ZA.UTF-8";
 
-  services.xserver.enable = true;
-
   services.desktopManager.gnome.enable = true;
-
-  services.displayManager = {
-    gdm.enable = true;
-    gdm.wayland = false;
-  };
+  services.displayManager.gdm.enable = true;
 
   # GPU config
   # https://wiki.nixos.org/wiki/NVIDIA
