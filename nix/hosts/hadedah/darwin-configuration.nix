@@ -7,7 +7,7 @@
     trusted-users = ["@admin"];
   };
 
-  nix.linux-builder.enable = true;
+  # nix.linux-builder.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
