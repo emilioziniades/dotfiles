@@ -7,7 +7,6 @@
 }:
 with lib; let
   cfg = config.ez.work;
-  vpn = pkgs.callPackage ../../pkgs/vpn/package.nix {};
 in {
   options.ez.work = {
     enable = mkEnableOption "Work development tools";
@@ -15,7 +14,6 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      vpn
       mongosh
       mongodb-tools
       awscli2
