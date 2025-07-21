@@ -11,6 +11,10 @@ in {
   options.ez.programs.kubernetes.enable = mkEnableOption "kubernetes";
 
   config = mkIf cfg.enable {
+    home.shellAliases = {
+      k = "kubectl";
+    };
+
     home.packages = with pkgs; [
       kubectl
       kubectx

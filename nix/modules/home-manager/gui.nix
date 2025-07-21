@@ -15,7 +15,6 @@ in {
     home.packages = with pkgs; [
       firefox
       obsidian
-      mongodb-compass
       teams-for-linux
       spotify
       discord

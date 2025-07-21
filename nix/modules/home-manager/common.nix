@@ -13,7 +13,6 @@
 
   home.shellAliases = {
     c = "clear && tmux clear-history";
-    k = "kubectl";
     copy =
       if pkgs.stdenv.isLinux
       then "xclip -selection clipboard"
