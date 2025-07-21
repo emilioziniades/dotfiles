@@ -27,11 +27,6 @@
       inputs.darwin.follows = "darwin";
     };
 
-    sentinelone = {
-      url = "github:devusb/sentinelone.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dotfiles-secrets = {
       url = "git+ssh://git@github.com/emilioziniades/dotfiles-secrets.git";
       flake = false;
@@ -49,7 +44,6 @@
     darwin,
     agenix,
     disko,
-    sentinelone,
     ...
   }: let
     forAllSystems = fn:
@@ -63,7 +57,6 @@
       modules = [
         ./nix/hosts/kayak/configuration.nix
         home-manager.nixosModules.home-manager
-        sentinelone.nixosModules.sentinelone
         agenix.nixosModules.default
         {
           home-manager = {
