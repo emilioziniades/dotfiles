@@ -40,7 +40,5 @@
     bash.enable = true;
   };
 
-  ez.work.enable = false;
-
   ez.applications.gui.enable = false;
 }

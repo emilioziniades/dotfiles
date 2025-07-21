@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   imports = [
     ../../modules/home-manager
   ];
@@ -22,12 +22,6 @@
     username = "Emilio Ziniades";
     email = "emilioziniades@protonmail.com";
     defaultBranch = "master";
-    includes = [
-      {
-        path = config.age.secrets.gitconfig.path;
-        condition = "gitdir:~/work/";
-      }
-    ];
   };
 
   ez.programming = {
@@ -46,8 +40,6 @@
     bash.enable = true;
     nushell.enable = true;
   };
-
-  ez.work.enable = true;
 
   ez.applications.gui.enable = true;
 }
