@@ -21,7 +21,6 @@ in {
       mongosh
       mongodb-tools
       awscli2
-      intune-portal
       argocd
     ];
 
