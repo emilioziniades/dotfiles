@@ -39,11 +39,10 @@ See the seminal [Appendix A](https://nix-community.github.io/home-manager/option
 sudo nix run nix-darwin#darwin-rebuild -- switch --flake ~/dotfiles
 ```
 
-To update the configuration, run.
+From now on, configuration can be updated by running.
 
 ```
 sudo darwin-rebuild switch --flake ~/dotfiles
 ```
 
-For convenience, I have set up a [just](https://github.com/casey/just) recipe for the above command.
-Run `just switch-darwin` from inside the dotfiles directory.
+For convenience, I have set up a [just](https://github.com/casey/just) recipe for the above command, so you can run `just switch-darwin` from inside the dotfiles directory instead.
