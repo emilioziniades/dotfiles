@@ -41,6 +41,7 @@
       "vlc"
       "whatsapp"
       "zoom"
+      "balenaetcher"
     ];
   };
 
