@@ -51,7 +51,7 @@
       ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"]
       (system: fn system nixpkgs.legacyPackages.${system});
   in {
-    nixosConfigurations."VTFS-LTP-24" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.kayak = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
@@ -62,7 +62,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.emilioz = import ./nix/hosts/kayak/home.nix;
+            users.emilioziniades = import ./nix/hosts/kayak/home.nix;
             extraSpecialArgs = {inherit inputs;};
             sharedModules = [agenix.homeManagerModules.default];
           };

@@ -1,4 +1,3 @@
-# TODO: change the below once started new job
 {
   pkgs,
   config,
@@ -6,13 +5,12 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos/gaming.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "VTFS-LTP-24";
+  networking.hostName = "kayak";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Johannesburg";
@@ -22,18 +20,7 @@
   services.desktopManager.gnome.enable = true;
   services.displayManager.gdm.enable = true;
 
-  # GPU config
-  # https://wiki.nixos.org/wiki/NVIDIA
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    prime = {
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
 
   console.useXkbConfig = true;
 
@@ -44,7 +31,16 @@
   programs.zsh.enable = true;
   environment.shells = [pkgs.zsh];
 
-  users.users.emilioz = {
+  # fingerprint login (see https://wiki.nixos.org/wiki/Fingerprint_scanner)
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+  systemd.services.fprintd = {
+    wantedBy = ["multi-user.target"];
+    serviceConfig.Type = "simple";
+  };
+
+  users.users.emilioziniades = {
     isNormalUser = true;
     description = "Emilio Ziniades";
     extraGroups = ["networkmanager" "wheel" "audio" "docker"];
@@ -53,7 +49,7 @@
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    trusted-users = ["emilioz"];
+    trusted-users = ["emilioziniades"];
   };
 
   nixpkgs.config = {
@@ -65,19 +61,19 @@
     nerd-fonts.monaspace
   ];
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
-    openssl
-    xz
-    curl
-    libgdiplus
-  ];
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   stdenv.cc.cc.lib
+  #   openssl
+  #   xz
+  #   curl
+  #   libgdiplus
+  # ];
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   virtualisation.virtualbox.host.enable = false;
-  users.extraGroups.vboxusers.members = ["emilioz"];
+  users.extraGroups.vboxusers.members = ["emilioziniades"];
 
   nix.gc = {
     automatic = true;
@@ -85,5 +81,6 @@
     options = "--delete-older-than 10d";
   };
 
+  # TODO: bump this
   system.stateVersion = "24.05";
 }
