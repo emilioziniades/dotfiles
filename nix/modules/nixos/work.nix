@@ -3,5 +3,6 @@
 
   environment.systemPackages = with pkgs; [
     cloudflare-warp
+    gnomeExtensions.cloudflare-warp-toggle
   ];
 }
