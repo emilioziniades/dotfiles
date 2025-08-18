@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ../../modules/home-manager
+    ../../modules/home-manager/work.nix
   ];
 
   home.username = "emilioziniades";
