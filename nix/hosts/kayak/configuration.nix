@@ -71,7 +71,7 @@
   #   libgdiplus
   # ];
 
-  virtualisation.docker.enable = false;
+  virtualisation.docker.enable = true;
 
   virtualisation.virtualbox.host.enable = false;
   users.extraGroups.vboxusers.members = ["emilioziniades"];
