@@ -21,6 +21,7 @@ in {
       kubernetes-helm
       k9s
       argocd
+      rancher
     ];
 
     xdg.configFile."k9s/skins" = {
