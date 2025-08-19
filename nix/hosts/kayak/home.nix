@@ -14,7 +14,7 @@
 
   ez.programs.tms = {
     enable = true;
-    searchDirs = ["work" "personal" "dotfiles" "dotfiles-secrets"];
+    searchDirs = ["Code" "dotfiles" "dotfiles-secrets"];
   };
 
   ez.programs.git = {
