@@ -20,6 +20,7 @@ in {
       kubectx
       kubernetes-helm
       k9s
+      argocd
     ];
 
     xdg.configFile."k9s/skins" = {

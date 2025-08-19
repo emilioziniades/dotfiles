@@ -1,4 +1,8 @@
-{...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     ../../modules/home-manager
   ];
@@ -6,6 +10,11 @@
   home.username = "emilioziniades";
   home.homeDirectory = "/home/emilioziniades";
   home.stateVersion = "24.05";
+
+  age.secrets.gitconfig = {
+    file = "${inputs.dotfiles-secrets}/secrets/gitconfig.age";
+    path = "${config.xdg.configHome}/git/config.work";
+  };
 
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
@@ -22,6 +31,12 @@
     username = "Emilio Ziniades";
     email = "emilioziniades@protonmail.com";
     defaultBranch = "master";
+    includes = [
+      {
+        path = config.age.secrets.gitconfig.path;
+        condition = "gitdir:~/Code/Work/";
+      }
+    ];
   };
 
   ez.programming = {
