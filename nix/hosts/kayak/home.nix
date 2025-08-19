@@ -10,7 +10,7 @@
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
   ez.programs.wezterm.enable = true;
-  ez.programs.kubernetes.enable = false;
+  ez.programs.kubernetes.enable = true;
 
   ez.programs.tms = {
     enable = true;
