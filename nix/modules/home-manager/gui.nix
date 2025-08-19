@@ -20,6 +20,7 @@ in {
       discord
       libreoffice
       bitwarden
+      thunderbird
       pinta
     ];
   };
