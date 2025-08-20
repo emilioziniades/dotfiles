@@ -1,12 +1,10 @@
 {
   pkgs,
-  config,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos/work.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -41,6 +39,8 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "simple";
   };
+
+  services.cloudflare-warp.enable = true;
 
   users.users.emilioziniades = {
     isNormalUser = true;
