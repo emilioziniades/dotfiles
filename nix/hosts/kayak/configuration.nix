@@ -33,7 +33,7 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
-  # fingerprint login (see https://wiki.nixos.org/wiki/Fingerprint_scanner)
+  # Fingerprint login (see https://wiki.nixos.org/wiki/Fingerprint_scanner)
   services.fprintd.enable = true;
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
@@ -71,14 +71,7 @@
     nerd-fonts.monaspace
   ];
 
-  # programs.nix-ld.enable = true;
-  # programs.nix-ld.libraries = with pkgs; [
-  #   stdenv.cc.cc.lib
-  #   openssl
-  #   xz
-  #   curl
-  #   libgdiplus
-  # ];
+  programs.nix-ld.enable = false;
 
   virtualisation.docker.enable = true;
 
@@ -91,6 +84,5 @@
     options = "--delete-older-than 10d";
   };
 
-  # TODO: bump this
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }

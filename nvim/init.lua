@@ -1,14 +1,3 @@
---[[
-TODO:
-- rust
-    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and
-    https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
-- csharp
-    - add ability to debug tests
-- nix
-    - package codelldb
-]]
-
 -- SETTINGS
 
 local globals = {
