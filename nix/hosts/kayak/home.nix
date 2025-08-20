@@ -35,7 +35,6 @@
     enable = true;
     username = "Emilio Ziniades";
     email = "emilioziniades@protonmail.com";
-    defaultBranch = "master";
     includes = [
       {
         path = config.age.secrets.gitconfig.path;
