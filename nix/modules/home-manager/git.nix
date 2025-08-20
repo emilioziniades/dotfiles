@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programs.git;
-in {
+in
+{
   options.ez.programs.git = with types; {
     enable = mkEnableOption "git";
     email = mkOption {
@@ -24,7 +26,7 @@ in {
     };
     includes = mkOption {
       type = listOf attrs;
-      default = [];
+      default = [ ];
     };
   };
 

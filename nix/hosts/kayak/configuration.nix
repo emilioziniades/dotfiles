@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/work.nix
@@ -30,27 +31,35 @@
   hardware.bluetooth.enable = true;
 
   programs.zsh.enable = true;
-  environment.shells = [pkgs.zsh];
+  environment.shells = [ pkgs.zsh ];
 
   # fingerprint login (see https://wiki.nixos.org/wiki/Fingerprint_scanner)
   services.fprintd.enable = true;
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
   systemd.services.fprintd = {
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "simple";
   };
 
   users.users.emilioziniades = {
     isNormalUser = true;
     description = "Emilio Ziniades";
-    extraGroups = ["networkmanager" "wheel" "audio" "docker"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "audio"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    trusted-users = ["emilioziniades"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [ "emilioziniades" ];
   };
 
   nixpkgs.config = {
@@ -74,7 +83,7 @@
   virtualisation.docker.enable = true;
 
   virtualisation.virtualbox.host.enable = false;
-  users.extraGroups.vboxusers.members = ["emilioziniades"];
+  users.extraGroups.vboxusers.members = [ "emilioziniades" ];
 
   nix.gc = {
     automatic = true;

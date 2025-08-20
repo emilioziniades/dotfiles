@@ -5,9 +5,11 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programs.tms;
-in {
+in
+{
   options.ez.programs.tms = with types; {
     enable = mkEnableOption "tms";
     searchDirs = mkOption {
@@ -20,15 +22,16 @@ in {
       pkgs.tmux-sessionizer
     ];
 
-    xdg.configFile."tms/config.toml".text = let
-      mkSearchDir = dir: {
-        path = "${config.home.homeDirectory}/${dir}";
-        depth = 2;
-      };
-      tmsConfig = {
-        search_dirs = map mkSearchDir cfg.searchDirs;
-      };
-    in
+    xdg.configFile."tms/config.toml".text =
+      let
+        mkSearchDir = dir: {
+          path = "${config.home.homeDirectory}/${dir}";
+          depth = 2;
+        };
+        tmsConfig = {
+          search_dirs = map mkSearchDir cfg.searchDirs;
+        };
+      in
       inputs.nix-std.lib.serde.toTOML tmsConfig;
   };
 }

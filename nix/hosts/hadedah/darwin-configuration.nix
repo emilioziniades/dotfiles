@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   system.primaryUser = "emilioziniades";
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     sandbox = false;
-    trusted-users = ["@admin"];
+    trusted-users = [ "@admin" ];
   };
 
   # nix.linux-builder.enable = true;

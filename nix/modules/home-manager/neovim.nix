@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programs.neovim;
-in {
+in
+{
   options.ez.programs.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {

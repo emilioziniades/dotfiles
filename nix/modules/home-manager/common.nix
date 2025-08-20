@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   programs.home-manager.enable = true;
 
   xdg.enable = true;
@@ -15,11 +16,12 @@
     c = "clear && tmux clear-history";
     note = "nvim ~/note.md";
     copy =
-      if pkgs.stdenv.isLinux
-      then "xclip -selection clipboard"
-      else if pkgs.stdenv.isDarwin
-      then "pbcopy"
-      else null;
+      if pkgs.stdenv.isLinux then
+        "xclip -selection clipboard"
+      else if pkgs.stdenv.isDarwin then
+        "pbcopy"
+      else
+        null;
   };
 
   home.sessionVariables = {
@@ -32,12 +34,13 @@
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
     initContent =
-      if pkgs.stdenv.isDarwin
-      then ''
-        # easier escape key for macbook with touchbar
-        bindkey '§' vi-cmd-mode
-      ''
-      else "";
+      if pkgs.stdenv.isDarwin then
+        ''
+          # easier escape key for macbook with touchbar
+          bindkey '§' vi-cmd-mode
+        ''
+      else
+        "";
   };
 
   programs.starship = {

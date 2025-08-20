@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.applications.gui;
-in {
+in
+{
   options.ez.applications.gui = {
     enable = mkEnableOption "GUI applications";
   };

@@ -4,9 +4,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programming;
-in {
+in
+{
   options.ez.programming = {
     python.enable = mkEnableOption "python";
     go.enable = mkEnableOption "go";
@@ -65,11 +67,13 @@ in {
 
     (mkIf cfg.dotnet.enable {
       home.packages = with pkgs; [
-        (with dotnetCorePackages;
+        (
+          with dotnetCorePackages;
           combinePackages [
             sdk_8_0
             sdk_9_0
-          ])
+          ]
+        )
         csharp-ls
         csharpier
         netcoredbg

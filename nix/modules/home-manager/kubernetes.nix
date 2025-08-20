@@ -5,9 +5,11 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programs.kubernetes;
-in {
+in
+{
   options.ez.programs.kubernetes.enable = mkEnableOption "kubernetes";
 
   config = mkIf cfg.enable {
@@ -29,7 +31,7 @@ in {
       recursive = true;
     };
 
-    xdg.configFile."k9s/config.yaml".text = lib.generators.toYAML {} {
+    xdg.configFile."k9s/config.yaml".text = lib.generators.toYAML { } {
       k9s.ui.skin = "catppuccin-mocha";
     };
   };

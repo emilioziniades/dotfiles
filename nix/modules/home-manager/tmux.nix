@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programs.tmux;
-in {
+in
+{
   options.ez.programs.tmux.enable = mkEnableOption "tmux";
 
   config = mkIf cfg.enable {

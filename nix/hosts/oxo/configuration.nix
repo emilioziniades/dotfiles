@@ -27,7 +27,7 @@
     users.emilioz = {
       isNormalUser = true;
       home = "/home/emilioz";
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" ];
     };
   };
 

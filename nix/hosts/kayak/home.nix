@@ -2,7 +2,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules/home-manager
   ];
@@ -23,7 +24,11 @@
 
   ez.programs.tms = {
     enable = true;
-    searchDirs = ["Code" "dotfiles" "dotfiles-secrets"];
+    searchDirs = [
+      "Code"
+      "dotfiles"
+      "dotfiles-secrets"
+    ];
   };
 
   ez.programs.git = {

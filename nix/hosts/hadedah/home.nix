@@ -13,7 +13,11 @@
 
   ez.programs.tms = {
     enable = true;
-    searchDirs = ["code" "dotfiles" "emilio"];
+    searchDirs = [
+      "code"
+      "dotfiles"
+      "emilio"
+    ];
   };
 
   ez.programs.git = {

@@ -4,13 +4,15 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.ez.programs.wezterm;
-in {
+in
+{
   options.ez.programs.wezterm.enable = mkEnableOption "wezterm";
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.wezterm];
+    home.packages = [ pkgs.wezterm ];
 
     xdg.configFile.wezterm = {
       source = ../../../wezterm;
