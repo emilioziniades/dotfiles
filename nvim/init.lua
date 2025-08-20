@@ -1,12 +1,12 @@
---[[ 
+--[[
 TODO:
 - rust
-    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and 
+    - debug test via lldb's cargo field (https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-3592258 and
     https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#cargo-support)
 - csharp
     - add ability to debug tests
 - nix
-    - package codelldb 
+    - package codelldb
 ]]
 
 -- SETTINGS
@@ -201,7 +201,7 @@ require("lazy").setup({
 					cs = { "csharpier" },
 					xml = { "csharpier" },
 					fsharp = { "fantomas" },
-					nix = { "alejandra" },
+					nix = { "nixfmt" },
 					terraform = { "terraform_fmt" },
 					hcl = { "terraform_fmt" },
 					sh = { "shfmt" },

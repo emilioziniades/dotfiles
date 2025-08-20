@@ -109,8 +109,7 @@ in {
 
     (mkIf cfg.nix.enable {
       home.packages = with pkgs; [
-        alejandra
-        manix
+        nixfmt-rfc-style
         nil
       ];
     })
