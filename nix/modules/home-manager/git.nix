@@ -42,7 +42,7 @@ in
         d = "diff";
         l = "log --oneline --all";
         g = "log --oneline --graph --decorate --all";
-        sync = "!git switch master && git pull";
+        sync = "!git switch main && git pull";
       };
       includes = cfg.includes;
       extraConfig = {
