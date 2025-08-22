@@ -1,11 +1,17 @@
 {
   inputs,
   config,
+  pkgs,
   ...
 }:
 {
   imports = [
     ../../modules/home-manager
+  ];
+
+  home.packages = with pkgs; [
+    postgresql
+
   ];
 
   home.username = "emilioziniades";
