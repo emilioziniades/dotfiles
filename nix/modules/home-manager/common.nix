@@ -14,7 +14,6 @@
 
   home.shellAliases = {
     c = "clear && tmux clear-history";
-    note = "nvim ~/note.md";
     copy =
       if pkgs.stdenv.isLinux then
         "xclip -selection clipboard"
