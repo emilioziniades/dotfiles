@@ -47,7 +47,7 @@
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
   age.secrets.hosts.file = "${inputs.dotfiles-secrets}/secrets/hosts.age";
   # EW! `networking.hostFile` doesn't work because the module tries to concatenate the files at build time,
-  # before the secret has been decryption. So I have to use this dirty-feeling activation script
+  # before the secret has been decrypted. So I have to use this dirty-feeling activation script
   system.activationScripts.hostFile = ''
     cp /etc/hosts /etc/hosts.backup
     cat ${config.age.secrets.hosts.path} >> /etc/hosts.backup
@@ -84,7 +84,7 @@
     nerd-fonts.monaspace
   ];
 
-  programs.nix-ld.enable = false;
+  programs.nix-ld.enable = true;
 
   virtualisation.docker.enable = true;
 
