@@ -11,7 +11,7 @@
 
   home.packages = with pkgs; [
     postgresql
-
+    glab
   ];
 
   home.username = "emilioziniades";
