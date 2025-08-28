@@ -19,6 +19,7 @@ in
 
     home.packages = with pkgs; [
       kubectl
+      kubectl-validate
       kubectx
       kubernetes-helm
       k9s
