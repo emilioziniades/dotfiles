@@ -68,4 +68,14 @@
   };
 
   ez.applications.gui.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = {
+        user = "emilio";
+      };
+    };
+  };
 }
