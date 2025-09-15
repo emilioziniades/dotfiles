@@ -13,6 +13,7 @@
     postgresql
     glab
     claude-code
+    awscli2
   ];
 
   home.username = "emilioziniades";
