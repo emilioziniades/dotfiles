@@ -61,8 +61,8 @@
     terraform.enable = true;
     packer.enable = false;
     haskell.enable = false;
-    go.enable = true;
-    rust.enable = false;
+    go.enable = false;
+    rust.enable = true;
     markdown.enable = true;
     bash.enable = true;
     nushell.enable = false;
