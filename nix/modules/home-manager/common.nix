@@ -101,5 +101,6 @@
     imagemagick
     ffmpeg
     pandoc
+    inetutils
   ];
 }
