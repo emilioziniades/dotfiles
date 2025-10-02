@@ -25,6 +25,7 @@ in
     bash.enable = mkEnableOption "bash";
     postgres.enable = mkEnableOption "postgres";
     nushell.enable = mkEnableOption "nushell";
+    java.enable = mkEnableOption "java";
   };
 
   config = mkMerge [
@@ -157,6 +158,13 @@ in
 
     (mkIf cfg.nushell.enable {
       programs.nushell.enable = true;
+    })
+
+    (mkIf cfg.java.enable {
+      home.packages = with pkgs; [
+        jdk
+        maven
+      ];
     })
   ];
 }

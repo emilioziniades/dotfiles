@@ -67,6 +67,7 @@
     markdown.enable = true;
     bash.enable = true;
     nushell.enable = false;
+    java.enable = true;
   };
 
   ez.applications.gui.enable = true;
