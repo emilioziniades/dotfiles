@@ -35,18 +35,18 @@ in
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
-      userName = cfg.username;
-      userEmail = cfg.email;
-      aliases = {
-        s = "status";
-        d = "diff";
-        l = "log --oneline --all";
-        g = "log --oneline --graph --decorate --all";
-        sync = "!git switch main && git pull";
-      };
       includes = cfg.includes;
-      extraConfig = {
+      settings = {
+        user.name = cfg.username;
+        user.email = cfg.email;
         user.signingkey = cfg.gpgKey;
+        alias = {
+          s = "status";
+          d = "diff";
+          l = "log --oneline --all";
+          g = "log --oneline --graph --decorate --all";
+          sync = "!git switch main && git pull";
+        };
         init.defaultBranch = cfg.defaultBranch;
         core.editor = "nvim";
         commit.gpgsign = false;
@@ -76,9 +76,13 @@ in
           autoSquash = true;
           updateRefs = true;
         };
-      };
 
-      delta.enable = true;
+      };
+    };
+
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
     };
   };
 }
