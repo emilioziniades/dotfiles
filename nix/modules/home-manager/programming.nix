@@ -170,7 +170,8 @@ in
 
     (mkIf cfg.elixir.enable {
       home.packages = with pkgs; [
-        beam27Packages.elixir
+        elixir
+        elixir-ls
       ];
     })
   ];

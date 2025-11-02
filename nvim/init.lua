@@ -83,6 +83,7 @@ require("lazy").setup({
 				rust_analyzer = {},
 				hls = {},
 				terraformls = {},
+				elixirls = {},
 				nil_ls = {
 					settings = {
 						["nil"] = {
@@ -219,6 +220,7 @@ require("lazy").setup({
 					toml = { "taplo" },
 					just = { "just" },
 					scheme = { "scheme_format" },
+					elixir = { "mix" },
 				},
 				formatters = {
 					scheme_format = {
@@ -599,6 +601,7 @@ require("lazy").setup({
 					"c_sharp",
 					"css",
 					"dockerfile",
+					"elixir",
 					"fennel",
 					"fsharp",
 					"go",
