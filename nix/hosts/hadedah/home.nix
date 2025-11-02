@@ -32,7 +32,7 @@
     python.enable = true;
     go.enable = true;
     rust.enable = true;
-    typescript.enable = false;
+    typescript.enable = true;
     dotnet.enable = true;
     haskell.enable = true;
     lua.enable = true;

@@ -60,7 +60,7 @@ in
 
     (mkIf cfg.typescript.enable {
       home.packages = with pkgs; [
-        nodejs_20
+        nodejs_22
         nodePackages.prettier
         nodePackages.typescript-language-server
       ];
