@@ -42,6 +42,7 @@
     packer.enable = false;
     markdown.enable = true;
     bash.enable = true;
+    elixir.enable = true;
   };
 
   ez.applications.gui.enable = false;
