@@ -46,3 +46,9 @@ sudo darwin-rebuild switch --flake ~/dotfiles
 ```
 
 For convenience, I have set up a [just](https://github.com/casey/just) recipe for the above command, so you can run `just switch-darwin` from inside the dotfiles directory instead.
+
+> [! CAUTION]
+> Sometimes the above installation breaks. `darin-rebuild` is not found on $PATH and the `/run/current-system/sw/bin` symlink is gone.
+> `nix` still works but nix-darwin does not because the $PATH symlinks are missing.
+> I suspect this is after MacOS updates are applied, but I haven't confirmed this yet.
+> In any case, to redo the setup, just run `sudo nix run nix-darwin#darwin-rebuild -- switch --flake ~/dotfiles` again.
