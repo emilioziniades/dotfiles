@@ -26,6 +26,7 @@ in
     postgres.enable = mkEnableOption "postgres";
     nushell.enable = mkEnableOption "nushell";
     java.enable = mkEnableOption "java";
+    elixir.enable = mkEnableOption "elixir";
   };
 
   config = mkMerge [
@@ -164,6 +165,12 @@ in
       home.packages = with pkgs; [
         jdk
         maven
+      ];
+    })
+
+    (mkIf cfg.elixir.enable {
+      home.packages = with pkgs; [
+        beam27Packages.elixir
       ];
     })
   ];
