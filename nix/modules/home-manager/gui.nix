@@ -21,7 +21,7 @@ in
       spotify
       discord
       libreoffice
-      bitwarden
+      bitwarden-desktop
       thunderbird
       pinta
     ];
