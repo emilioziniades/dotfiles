@@ -95,7 +95,7 @@
     nmap
     watchexec
     timewarrior
-    flyctl
+    # flyctl
     gh
     cook-cli
     imagemagick
