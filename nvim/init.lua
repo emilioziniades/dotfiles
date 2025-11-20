@@ -774,6 +774,17 @@ require("lazy").setup({
 		"rebelot/kanagawa.nvim",
 		opts = {},
 	},
+
+	-- markdown previews
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 }, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
 -- KEYMAPS
