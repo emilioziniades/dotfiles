@@ -247,23 +247,6 @@ require("lazy").setup({
 		},
 		lazy = false,
 	},
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-			},
-			on_attach = function(bufnr)
-				local gitsigns = require("gitsigns")
-				vim.keymap.set("n", "[c", gitsigns.prev_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "]c", gitsigns.next_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "<leader>cp", gitsigns.preview_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "<leader>cs", gitsigns.stage_hunk, { buffer = bufnr })
-				vim.keymap.set("n", "<leader>cu", gitsigns.undo_stage_hunk, { buffer = bufnr })
-			end,
-		},
-	},
 
 	-- debug
 	{
@@ -647,6 +630,9 @@ require("lazy").setup({
 			require("mini.surround").setup({
 				n_lines = 100,
 			})
+
+			-- git signs in gutter
+			require("mini.diff").setup()
 		end,
 	},
 
