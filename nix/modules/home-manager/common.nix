@@ -73,7 +73,6 @@
     ripgrep
     tre-command
     sd
-    dogdns
     dig
     jq
     ijq
