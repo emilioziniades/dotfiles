@@ -115,7 +115,7 @@ in
 
     (mkIf cfg.nix.enable {
       home.packages = with pkgs; [
-        nixfmt-rfc-style
+        nixfmt
         nil
       ];
     })

@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
@@ -29,6 +30,7 @@
   };
 
   programs.zsh = {
+    dotDir = "${config.xdg.configHome}/zsh";
     enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
