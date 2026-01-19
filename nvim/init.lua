@@ -163,12 +163,6 @@ require("lazy").setup({
 	"Decodetalkers/csharpls-extended-lsp.nvim",
 	"onsails/lspkind-nvim",
 
-	-- commenting
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
-
 	-- formatter
 	{
 		"stevearc/conform.nvim",
@@ -635,6 +629,9 @@ require("lazy").setup({
 
 			--automatic brackets
 			require("mini.pairs").setup()
+
+			-- commenting
+			require("mini.comment").setup()
 		end,
 	},
 
