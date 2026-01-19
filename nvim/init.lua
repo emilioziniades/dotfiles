@@ -632,6 +632,9 @@ require("lazy").setup({
 
 			-- git signs in gutter
 			require("mini.diff").setup()
+
+			--automatic brackets
+			require("mini.pairs").setup()
 		end,
 	},
 
@@ -679,14 +682,6 @@ require("lazy").setup({
 					"nofile",
 				},
 			},
-		},
-	},
-
-	--brackets
-	{
-		"windwp/nvim-autopairs",
-		opts = {
-			disable_filetype = { "TelescopePrompt", "scheme" },
 		},
 	},
 
