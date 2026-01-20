@@ -627,6 +627,14 @@ require("lazy").setup({
 			-- git signs in gutter
 			require("mini.diff").setup()
 
+			local minidiff = require("mini.diff")
+			vim.keymap.set("n", "[c", function()
+				minidiff.goto_hunk("prev", { wrap = true })
+			end)
+			vim.keymap.set("n", "]c", function()
+				minidiff.goto_hunk("next", { wrap = true })
+			end)
+
 			--automatic brackets
 			require("mini.pairs").setup()
 
