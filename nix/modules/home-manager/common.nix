@@ -96,6 +96,7 @@
     nmap
     watchexec
     timewarrior
+    unixtools.net-tools
     # flyctl
     gh
     cook-cli
