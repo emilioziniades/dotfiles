@@ -13,8 +13,6 @@
     postgresql
     glab
     claude-code
-    beads
-    crush
     awscli2
   ];
 
