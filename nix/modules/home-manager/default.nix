@@ -9,5 +9,6 @@
     ./kubernetes.nix
     ./programming.nix
     ./gui.nix
+    ./taskwarrior.nix
   ];
 }

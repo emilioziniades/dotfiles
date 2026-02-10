@@ -95,9 +95,7 @@
     hey
     nmap
     watchexec
-    taskwarrior3
     unixtools.net-tools
-    # flyctl
     gh
     cook-cli
     imagemagick

@@ -29,6 +29,7 @@
   ez.programs.tmux.enable = true;
   ez.programs.wezterm.enable = true;
   ez.programs.kubernetes.enable = true;
+  ez.programs.taskwarrior.enable = true;
 
   ez.programs.tms = {
     enable = true;
