@@ -95,7 +95,7 @@
     hey
     nmap
     watchexec
-    timewarrior
+    taskwarrior3
     unixtools.net-tools
     # flyctl
     gh
