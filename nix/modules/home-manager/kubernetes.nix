@@ -15,6 +15,7 @@ in
   config = mkIf cfg.enable {
     home.shellAliases = {
       k = "kubectl";
+      kubewhere = "kubectx -c; kubens -c";
     };
 
     home.packages = with pkgs; [
