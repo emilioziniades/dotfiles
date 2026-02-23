@@ -102,5 +102,6 @@
     ffmpeg
     pandoc
     inetutils
+    certigo
   ];
 }
