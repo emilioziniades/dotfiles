@@ -30,18 +30,18 @@
 
   ez.programming = {
     python.enable = true;
-    go.enable = false;
-    rust.enable = false;
-    typescript.enable = false;
-    dotnet.enable = false;
-    haskell.enable = false;
+    typescript.enable = true;
     lua.enable = true;
     nix.enable = true;
+    bash.enable = true;
+    go.enable = false;
+    rust.enable = false;
+    dotnet.enable = false;
+    haskell.enable = false;
     html.enable = false;
     terraform.enable = false;
     packer.enable = false;
     markdown.enable = false;
-    bash.enable = true;
     elixir.enable = false;
   };
 
