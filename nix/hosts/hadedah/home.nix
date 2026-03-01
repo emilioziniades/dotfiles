@@ -1,6 +1,11 @@
+{ pkgs, ... }:
 {
   imports = [
     ../../modules/home-manager
+  ];
+
+  home.packages = with pkgs; [
+    claude-code
   ];
 
   home.username = "emilioziniades";
