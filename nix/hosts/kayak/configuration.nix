@@ -91,6 +91,8 @@
   virtualisation.virtualbox.host.enable = false;
   users.extraGroups.vboxusers.members = [ "emilioziniades" ];
 
+  boot.kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
+
   nix.gc = {
     automatic = true;
     randomizedDelaySec = "14m";
