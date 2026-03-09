@@ -98,9 +98,9 @@
     unixtools.net-tools
     gh
     cook-cli
-    imagemagick
-    ffmpeg
-    pandoc
+    # imagemagick
+    # ffmpeg
+    # pandoc
     inetutils
     certigo
   ];
