@@ -770,6 +770,14 @@ require("lazy").setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+
+	-- oil
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+	},
 }, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
 -- KEYMAPS
