@@ -779,6 +779,9 @@ require("lazy").setup({
 				show_hidden = true,
 			},
 		},
+		keys = {
+			{ "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
+		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 	},
