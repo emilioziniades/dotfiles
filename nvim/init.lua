@@ -785,6 +785,15 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 	},
+
+	-- claude
+	{
+		"greggh/claude-code.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("claude-code").setup()
+		end,
+	},
 }, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
 -- KEYMAPS
