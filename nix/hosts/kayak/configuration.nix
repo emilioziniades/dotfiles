@@ -94,6 +94,17 @@
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
 
   services.intune.enable = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      # TODO: upstream this
+      intune-portal = prev.intune-portal.overrideAttrs (previousAttrs: {
+        src = pkgs.fetchurl {
+          url = "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/intune-portal/intune-portal_1.2603.21-noble_amd64.deb";
+          hash = "sha256-3UHLu4Kd4HtNkH7AaUT4Zx6wvU0UZnBXQ2ae7lh2Ucg=";
+        };
+      });
+    })
+  ];
 
   nix.gc = {
     automatic = true;
