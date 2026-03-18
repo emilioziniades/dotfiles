@@ -5,6 +5,9 @@ alias sn := switch-nixos
 alias shm := switch-home-manager
 alias sd := switch-darwin
 
+default:
+    @just --list
+
 update: update-nix-flake update-neovim-plugins
 
 update-nix-flake:
