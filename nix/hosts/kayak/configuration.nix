@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/intune.nix
+    ../../modules/nixos/darktrace.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -44,6 +45,9 @@
   };
 
   services.cloudflare-warp.enable = true;
+
+  ez.services.darktrace.enable = true;
+  ez.services.darktrace.agenix-secret = "${inputs.dotfiles-secrets}/secrets/darktrace.age";
 
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
   age.secrets.hosts.file = "${inputs.dotfiles-secrets}/secrets/hosts.age";
