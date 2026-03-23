@@ -46,8 +46,16 @@
 
   services.cloudflare-warp.enable = true;
 
-  ez.services.darktrace.enable = true;
-  ez.services.darktrace.agenix-secret = "${inputs.dotfiles-secrets}/secrets/darktrace.age";
+  age.secrets.darktrace = {
+    file = "${inputs.dotfiles-secrets}/secrets/darktrace.age";
+    path = "/etc/darktrace-csensor/setup";
+  };
+  ez.services.darktrace = {
+    enable = true;
+    package = pkgs.callPackage ../../pkgs/darktrace-csensor/package.nix {
+      src = "${inputs.dotfiles-secrets}/files/darktrace-csensor_2.7.9_amd64.deb";
+    };
+  };
 
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
   age.secrets.hosts.file = "${inputs.dotfiles-secrets}/secrets/hosts.age";
