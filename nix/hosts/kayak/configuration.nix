@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/intune.nix
     ../../modules/nixos/darktrace.nix
+    ../../modules/nixos/mdatp.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -57,12 +58,6 @@
     };
   };
 
-  age.secrets.mdatp = {
-    file = "${inputs.dotfiles-secrets}/secrets/mdatp.age";
-    path = "/etc/opt/microsoft/mdatp/mdatp_onboard.json";
-    mode = "640";
-  };
-  services.mdatp.enable = true;
 
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
   age.secrets.hosts.file = "${inputs.dotfiles-secrets}/secrets/hosts.age";
