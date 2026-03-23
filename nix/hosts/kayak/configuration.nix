@@ -57,6 +57,11 @@
     };
   };
 
+  age.secrets.mdatp = {
+    file = "${inputs.dotfiles-secrets}/secrets/mdatp.age";
+    path = "/etc/opt/microsoft/mdatp/mdatp_onboard.json";
+    mode = "640";
+  };
   services.mdatp.enable = true;
 
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
