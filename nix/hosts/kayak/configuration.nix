@@ -57,6 +57,8 @@
     };
   };
 
+  services.mdatp.enable = true;
+
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
   age.secrets.hosts.file = "${inputs.dotfiles-secrets}/secrets/hosts.age";
   # EW! `networking.hostFile` doesn't work because the module tries to concatenate the files at build time,

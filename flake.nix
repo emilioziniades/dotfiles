@@ -36,6 +36,11 @@
       url = "github:catppuccin/k9s";
       flake = false;
     };
+
+    mdatp = {
+      url = "github:epetousis/nix-mdatp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +50,7 @@
       darwin,
       agenix,
       disko,
+      mdatp,
       ...
     }:
     let
@@ -62,6 +68,7 @@
           ./nix/hosts/kayak/configuration.nix
           home-manager.nixosModules.home-manager
           agenix.nixosModules.default
+          mdatp.nixosModules.default
           {
             home-manager = {
               useGlobalPkgs = true;
