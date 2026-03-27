@@ -14,6 +14,7 @@
     glab
     claude-code
     awscli2
+    openbao
   ];
 
   home.username = "emilioziniades";
