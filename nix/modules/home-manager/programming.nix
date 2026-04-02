@@ -62,8 +62,8 @@ in
     (mkIf cfg.typescript.enable {
       home.packages = with pkgs; [
         nodejs_22
-        nodePackages.prettier
-        nodePackages.typescript-language-server
+        prettier
+        typescript-language-server
       ];
     })
 
