@@ -1,3 +1,9 @@
+--[[
+TODO
+- consider switching from nvim-cmp to blink.cmp
+- consider switching from lazy to builtin vim.pack
+--]]
+
 -- SETTINGS
 
 local globals = {
