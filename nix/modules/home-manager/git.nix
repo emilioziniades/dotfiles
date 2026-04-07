@@ -36,6 +36,7 @@ in
     programs.git = {
       enable = true;
       includes = cfg.includes;
+      signing.format = null;
       settings = {
         user.name = cfg.username;
         user.email = cfg.email;
