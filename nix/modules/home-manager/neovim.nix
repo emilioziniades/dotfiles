@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib;
@@ -22,5 +23,9 @@ in
       source = ../../../nvim;
       recursive = true;
     };
+
+    home.packages = with pkgs; [
+      tree-sitter
+    ];
   };
 }
