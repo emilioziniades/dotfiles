@@ -20,9 +20,7 @@ in
       teams-for-linux
       spotify
       discord
-      # TODO: revert back to `libreoffice` when this issue is resolved:
-      # https://github.com/NixOS/nixpkgs/issues/495635
-      libreoffice-fresh
+      libreoffice
       bitwarden-desktop
       thunderbird
       pinta
