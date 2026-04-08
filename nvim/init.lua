@@ -561,7 +561,8 @@ require("lazy").setup({
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter").install({
+			local treesitter = require("nvim-treesitter")
+			treesitter.install({
 				"bash",
 				"cooklang",
 				"c_sharp",
@@ -599,9 +600,23 @@ require("lazy").setup({
 				"yaml",
 			})
 
+			-- enable folding
 			vim.opt.foldmethod = "expr"
 			vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-			vim.keymap.set("n", "<leader>sr", "<cmd>write | edit | TSBufEnable highlight<cr>")
+
+			-- enable highlighting
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "*",
+				callback = function(args)
+					local bufnr = args.buf
+					local filetype = args.match
+					local parser = vim.treesitter.language.get_lang(filetype)
+					local installed_parsers = treesitter.get_installed()
+					if vim.list_contains(installed_parsers, parser) then
+						vim.treesitter.start(bufnr)
+					end
+				end,
+			})
 		end,
 	},
 
