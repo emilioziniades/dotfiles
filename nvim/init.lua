@@ -2,6 +2,7 @@
 TODO
 - consider switching from nvim-cmp to blink.cmp
 - consider switching from lazy to builtin vim.pack
+- consider switching from nvim-web-devicons to mini.icons
 --]]
 
 -- SETTINGS
@@ -30,6 +31,8 @@ local options = {
 	showmode = false,
 	termguicolors = true,
 	splitright = true,
+	ignorecase = true,
+	smartcase = true,
 	spellfile = vim.fs.normalize("~/dotfiles/nvim/spell/en.utf-8.add"),
 }
 
@@ -381,52 +384,6 @@ require("lazy").setup({
 		end,
 	},
 
-	-- telescope
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-file-browser.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-		config = function()
-			local telescope = require("telescope")
-			local builtin = require("telescope.builtin")
-
-			telescope.setup({
-				defaults = {
-					mappings = {
-						i = {
-							["<esc>"] = require("telescope.actions").close,
-							["<C-j>"] = require("telescope.actions").move_selection_next,
-							["<C-k>"] = require("telescope.actions").move_selection_previous,
-							["<C-s>"] = require("telescope.actions.layout").toggle_preview,
-						},
-					},
-					preview = {
-						hide_on_startup = true,
-					},
-				},
-			})
-			telescope.load_extension("fzf")
-			telescope.load_extension("file_browser")
-
-			local function file_browser_cwd()
-				telescope.extensions.file_browser.file_browser({ path = vim.fn.expand("%:p:h") })
-			end
-
-			vim.keymap.set("n", "<leader><space>", builtin.buffers)
-			vim.keymap.set("n", "<leader>ff", builtin.find_files)
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep)
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags)
-			vim.keymap.set("n", "<leader>fo", builtin.oldfiles)
-			vim.keymap.set("n", "<leader>fb", builtin.current_buffer_fuzzy_find)
-			vim.keymap.set("n", "<leader>fc", builtin.colorscheme)
-			vim.keymap.set("n", "<leader>fp", telescope.extensions.file_browser.file_browser)
-			vim.keymap.set("n", "<leader>fe", file_browser_cwd)
-		end,
-	},
-
 	-- status line
 	{
 		"nvim-lualine/lualine.nvim",
@@ -629,9 +586,9 @@ require("lazy").setup({
 			})
 
 			-- git signs in gutter
-			require("mini.diff").setup()
-
 			local minidiff = require("mini.diff")
+			minidiff.setup()
+
 			vim.keymap.set("n", "[c", function()
 				minidiff.goto_hunk("prev", { wrap = true })
 			end)
@@ -644,6 +601,28 @@ require("lazy").setup({
 
 			-- commenting
 			require("mini.comment").setup()
+
+			-- fuzzy finder
+			local minipick = require("mini.pick")
+			minipick.setup({
+				mappings = {
+					move_down = "<C-j>",
+					move_up = "<C-k>",
+					choose_marked = "<C-y>",
+				},
+			})
+
+			local miniextra = require("mini.extra")
+
+			vim.keymap.set("n", "<leader><space>", minipick.builtin.buffers)
+			vim.keymap.set("n", "<leader>ff", minipick.builtin.files)
+			vim.keymap.set("n", "<leader>fg", minipick.builtin.grep_live)
+			vim.keymap.set("n", "<leader>fh", minipick.builtin.help)
+			vim.keymap.set("n", "<leader>fo", miniextra.pickers.oldfiles)
+			vim.keymap.set("n", "<leader>fb", function()
+				miniextra.pickers.buf_lines({ scope = "current" })
+			end)
+			vim.keymap.set("n", "<leader>fc", miniextra.pickers.colorschemes)
 		end,
 	},
 
