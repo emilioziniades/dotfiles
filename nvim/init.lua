@@ -734,14 +734,8 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1000,
 	},
-	{
-		"aktersnurra/no-clown-fiesta.nvim",
-		opts = {},
-	},
-	{
-		"rebelot/kanagawa.nvim",
-		opts = {},
-	},
+	"aktersnurra/no-clown-fiesta.nvim",
+	"rebelot/kanagawa.nvim",
 
 	-- markdown previews
 	{
