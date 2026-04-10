@@ -623,6 +623,15 @@ require("lazy").setup({
 				miniextra.pickers.buf_lines({ scope = "current" })
 			end)
 			vim.keymap.set("n", "<leader>fc", miniextra.pickers.colorschemes)
+
+			-- show indents
+			local miniindentscope = require("mini.indentscope")
+			miniindentscope.setup({
+				draw = {
+					delay = 0,
+					animation = miniindentscope.gen_animation.none(),
+				},
+			})
 		end,
 	},
 
@@ -645,31 +654,6 @@ require("lazy").setup({
 				table.insert(config.sources, { name = "conjure" })
 				return cmp.setup(config)
 			end,
-		},
-	},
-
-	-- show indents
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {
-			indent = {
-				char = "┊",
-			},
-			scope = {
-				show_start = false,
-				show_end = false,
-			},
-			exclude = {
-				filetypes = {
-					"help",
-					"packer",
-				},
-				buftypes = {
-					"terminal",
-					"nofile",
-				},
-			},
 		},
 	},
 
