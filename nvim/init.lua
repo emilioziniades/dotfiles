@@ -813,3 +813,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.hl.on_yank()
 	end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "helm", "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	group = vim.api.nvim_create_augroup("JavascriptFiletype", { clear = true }),
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "go",
+	group = vim.api.nvim_create_augroup("GoFiletype", { clear = true }),
+	callback = function()
+		vim.opt_local.tabstop = 8
+		vim.opt_local.shiftwidth = 8
+	end,
+})
