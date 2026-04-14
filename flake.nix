@@ -32,11 +32,6 @@
       flake = false;
     };
 
-    catppuccin-k9s = {
-      url = "github:catppuccin/k9s";
-      flake = false;
-    };
-
     mdatp = {
       url = "github:epetousis/nix-mdatp";
       inputs.nixpkgs.follows = "nixpkgs";

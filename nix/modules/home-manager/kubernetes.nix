@@ -27,14 +27,5 @@ in
       argocd
       rancher
     ];
-
-    xdg.configFile."k9s/skins" = {
-      source = "${inputs.catppuccin-k9s}/dist";
-      recursive = true;
-    };
-
-    xdg.configFile."k9s/config.yaml".text = lib.generators.toYAML { } {
-      k9s.ui.skin = "catppuccin-mocha";
-    };
   };
 }
