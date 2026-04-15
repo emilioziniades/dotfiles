@@ -29,6 +29,9 @@ in
       report.byproject.columns=id,project,priority,description
       report.byproject.sort=project+,priority-
       report.byproject.filter=status:pending
+
+      # deprioritise 'someday' tasks (overrides the default +1.0 tag bonus)
+      urgency.user.tag.someday.coefficient=-5.0
     '';
 
   };
