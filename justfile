@@ -30,3 +30,7 @@ switch-darwin:
 tidy:
     nix-collect-garbage --delete-old
     sudo nix-collect-garbage --delete-old
+
+# For testing nvim config changes
+nvim-debug file=".":
+    nvim --cmd "set rtp^=~/dotfiles/nvim" -u ~/dotfiles/nvim/init.lua {{ file }}
