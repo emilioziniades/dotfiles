@@ -1,8 +1,9 @@
 --[[
-TODO
+TODO:
 - consider switching from nvim-cmp to blink.cmp
 - consider switching from lazy to builtin vim.pack
 - consider switching from nvim-web-devicons to mini.icons
+-- version control lockfile when this issue is resolved: https://github.com/neovim/neovim/issues/36078
 --]]
 
 -- SETTINGS
