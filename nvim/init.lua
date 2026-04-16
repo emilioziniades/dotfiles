@@ -648,6 +648,9 @@ end)
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<cr>")
 vim.keymap.set("n", "<C-k>", "<cmd>cprevious<cr>")
 
+-- easier config reloading
+vim.keymap.set("n", "<leader>rr", "<cmd>restart<cr>")
+
 -- FILETYPE DETECTION
 
 vim.filetype.add({
