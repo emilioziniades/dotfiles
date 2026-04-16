@@ -120,39 +120,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- zen mode
-	{
-		"folke/zen-mode.nvim",
-		opts = {
-			window = {
-				backdrop = 1,
-				width = 0.80,
-				height = 0.90,
-				options = {
-					number = false,
-					relativenumber = false,
-					laststatus = 0,
-				},
-			},
-			plugins = {
-				twilight = { enabled = false },
-				gitsigns = { enabled = true },
-				tmux = { enabled = true },
-			},
-			on_close = function()
-				vim.o.laststatus = 3
-			end,
-		},
-		keys = {
-			{
-				"<leader>z",
-				function()
-					require("zen-mode").toggle()
-				end,
-			},
-		},
-	},
-
 	-- markdown previews
 	{
 		"iamcco/markdown-preview.nvim",
