@@ -98,28 +98,6 @@ require("lazy").setup({
 		},
 	},
 
-	{
-		"Olical/conjure",
-		ft = { "scheme", "fennel" },
-		lazy = true,
-		init = function()
-			vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
-			vim.g["conjure#client#guile#socket#pipename"] = "guile-repl.socket"
-			vim.g["conjure#debug"] = false
-			vim.g["conjure#mapping#doc_word"] = false
-		end,
-		dependencies = {
-			"PaterJason/cmp-conjure",
-			lazy = true,
-			config = function()
-				local cmp = require("cmp")
-				local config = cmp.get_config()
-				table.insert(config.sources, { name = "conjure" })
-				return cmp.setup(config)
-			end,
-		},
-	},
-
 	-- markdown previews
 	{
 		"iamcco/markdown-preview.nvim",
