@@ -48,6 +48,7 @@ set_options(options, vim.o)
 -- PLUGINS
 require("fuzzy")
 require("colorscheme")
+require("explorer")
 
 -- PLUGINS
 
@@ -682,21 +683,6 @@ require("lazy").setup({
 			require("lazy").load({ plugins = { "markdown-preview.nvim" } })
 			vim.fn["mkdp#util#install"]()
 		end,
-	},
-
-	-- oil
-	{
-		"stevearc/oil.nvim",
-		opts = {
-			view_options = {
-				show_hidden = true,
-			},
-		},
-		keys = {
-			{ "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-		},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = false,
 	},
 }, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
 
