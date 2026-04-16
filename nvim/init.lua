@@ -46,6 +46,9 @@ set_options(globals, vim.g)
 set_options(options, vim.o)
 
 -- PLUGINS
+require("colorscheme")
+
+-- PLUGINS
 
 -- bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -707,19 +710,6 @@ require("lazy").setup({
 		opts = {},
 		ft = "scheme",
 	},
-
-	-- colorscheme
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		config = function()
-			vim.cmd.colorscheme("catppuccin-mocha")
-		end,
-		lazy = false,
-		priority = 1000,
-	},
-	"aktersnurra/no-clown-fiesta.nvim",
-	"rebelot/kanagawa.nvim",
 
 	-- markdown previews
 	{
