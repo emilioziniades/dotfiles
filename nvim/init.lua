@@ -615,7 +615,14 @@ require("lazy").setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-}, { lockfile = "~/dotfiles/nvim/lazy-lock.json" })
+}, {
+	lockfile = "~/dotfiles/nvim/lazy-lock.json",
+
+	performance = {
+		reset_packpath = false,
+		rtp = { reset = false },
+	},
+})
 
 -- KEYMAPS
 
