@@ -703,14 +703,6 @@ require("lazy").setup({
 		opts = {},
 	},
 
-	-- rainbow parenthesis
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-		main = "rainbow-delimiters.setup",
-		opts = {},
-		ft = "scheme",
-	},
-
 	-- markdown previews
 	{
 		"iamcco/markdown-preview.nvim",
