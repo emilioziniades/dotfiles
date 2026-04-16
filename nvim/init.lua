@@ -51,6 +51,7 @@ require("fuzzy")
 require("colorscheme")
 require("explorer")
 require("formatting")
+require("git")
 
 -- PLUGINS
 
@@ -178,15 +179,6 @@ require("lazy").setup({
 	},
 	"Decodetalkers/csharpls-extended-lsp.nvim",
 	"onsails/lspkind-nvim",
-
-	-- git
-	{
-		"tpope/vim-fugitive",
-		keys = {
-			{ "<leader>g", "<cmd>Git<cr>" },
-		},
-		lazy = false,
-	},
 
 	-- debug
 	{
@@ -521,17 +513,6 @@ require("lazy").setup({
 			require("mini.surround").setup({
 				n_lines = 100,
 			})
-
-			-- git signs in gutter
-			local minidiff = require("mini.diff")
-			minidiff.setup()
-
-			vim.keymap.set("n", "[c", function()
-				minidiff.goto_hunk("prev", { wrap = true })
-			end)
-			vim.keymap.set("n", "]c", function()
-				minidiff.goto_hunk("next", { wrap = true })
-			end)
 
 			--automatic brackets
 			require("mini.pairs").setup()
