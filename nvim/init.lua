@@ -46,6 +46,7 @@ set_options(globals, vim.g)
 set_options(options, vim.o)
 
 -- PLUGINS
+require("mini")
 require("fuzzy")
 require("colorscheme")
 require("explorer")
@@ -98,22 +99,6 @@ require("lazy").setup({
 	},
 
 	{
-		"nvim-mini/mini.nvim",
-		config = function()
-			-- bracket add/delete/replace
-			require("mini.surround").setup({
-				n_lines = 100,
-			})
-
-			--automatic brackets
-			require("mini.pairs").setup()
-
-			-- commenting
-			require("mini.comment").setup()
-		end,
-	},
-
-	{
 		"Olical/conjure",
 		ft = { "scheme", "fennel" },
 		lazy = true,
@@ -134,9 +119,6 @@ require("lazy").setup({
 			end,
 		},
 	},
-
-	--icons
-	"nvim-tree/nvim-web-devicons",
 
 	-- zen mode
 	{
@@ -169,13 +151,6 @@ require("lazy").setup({
 				end,
 			},
 		},
-	},
-
-	-- todo highlights
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
 	},
 
 	-- markdown previews
