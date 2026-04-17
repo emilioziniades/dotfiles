@@ -14,8 +14,8 @@ update-nix-flake:
     nix flake update --commit-lock-file
 
 update-neovim-plugins:
-    nvim --headless "+Lazy! sync" +qa
-    git diff --quiet nvim/lazy-lock.json || git commit -m "nvim: update plugins" nvim/lazy-lock.json
+    nvim --headless "+lua vim.pack.update()" +qa
+    # TODO: commit this when lockfile
 
 switch-nixos:
     sudo --preserve-env nixos-rebuild switch --flake ~/dotfiles
