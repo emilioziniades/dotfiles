@@ -15,6 +15,8 @@
     claude-code
     awscli2
     openbao
+    #TODO: upstream this
+    (pkgs.callPackage ../../pkgs/mempalace/package.nix { })
   ];
 
   home.username = "emilioziniades";
