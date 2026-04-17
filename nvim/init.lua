@@ -1,9 +1,4 @@
---[[
-TODO:
-- consider switching from lazy to builtin vim.pack
-- consider switching from nvim-web-devicons to mini.icons
--- version control lockfile when this issue is resolved: https://github.com/neovim/neovim/issues/36078
---]]
+-- TODO: version control lockfile when this issue is resolved: https://github.com/neovim/neovim/issues/36078
 
 -- SETTINGS
 
@@ -60,33 +55,6 @@ require("debugger")
 require("treesitter")
 require("statusline")
 require("markdown")
-
--- PLUGINS
-
--- bootstrap lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-	-- FUNCTIONALITY
-}, {
-	lockfile = "~/dotfiles/nvim/lazy-lock.json",
-
-	performance = {
-		reset_packpath = false,
-		rtp = { reset = false },
-	},
-})
 
 -- KEYMAPS
 
