@@ -33,6 +33,7 @@ local options = {
 	splitright = true,
 	ignorecase = true,
 	smartcase = true,
+	laststatus = 3,
 	spellfile = vim.fs.normalize("~/dotfiles/nvim/spell/en.utf-8.add"),
 }
 
@@ -57,6 +58,7 @@ require("completion")
 require("lsp")
 require("debugger")
 require("treesitter")
+require("statusline")
 
 -- PLUGINS
 
@@ -76,27 +78,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- FUNCTIONALITY
-
-	-- status line
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
-		opts = {
-			options = {
-				icons_enabled = false,
-				theme = "auto",
-				component_separators = "|",
-				section_separators = "",
-				globalstatus = true,
-			},
-			sections = {
-				lualine_c = { { "filename", path = 1 } },
-			},
-			inactive_sections = {
-				lualine_c = { { "filename", path = 1 } },
-			},
-		},
-	},
 
 	-- markdown previews
 	{
