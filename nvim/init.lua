@@ -59,6 +59,7 @@ require("lsp")
 require("debugger")
 require("treesitter")
 require("statusline")
+require("markdown")
 
 -- PLUGINS
 
@@ -78,17 +79,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- FUNCTIONALITY
-
-	-- markdown previews
-	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function()
-			require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-			vim.fn["mkdp#util#install"]()
-		end,
-	},
 }, {
 	lockfile = "~/dotfiles/nvim/lazy-lock.json",
 
