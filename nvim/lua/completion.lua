@@ -4,6 +4,7 @@ require("blink.cmp").setup({
 	cmdline = {
 		completion = { menu = { auto_show = true } },
 		keymap = {
+			["<Tab>"] = { "accept", "fallback" },
 			["<Left>"] = {},
 			["<Right>"] = {},
 		},
