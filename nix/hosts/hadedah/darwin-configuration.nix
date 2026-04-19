@@ -32,7 +32,6 @@
     casks = [
       "discord"
       "firefox"
-      "mactex"
       "multipass"
       "obsidian"
       "openemu"
