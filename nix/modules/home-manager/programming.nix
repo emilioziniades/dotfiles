@@ -44,7 +44,8 @@ in
       home.packages = with pkgs; [
         go
         gopls
-        gotools
+        # TODO: uncomment once this is resolved: https://github.com/NixOS/nixpkgs/issues/509480
+        # gotools
         gofumpt
       ];
     })
