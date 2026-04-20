@@ -16,9 +16,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       firefox
-      # TODO: set below back to `obsidian` after this issue is resolved:
-      # - https://github.com/NixOS/nixpkgs/issues/505078
-      # - https://github.com/NixOS/nixpkgs/pull/505535
+      # TODO: set below back to `obsidian` after this lands: https://nixpk.gs/pr-tracker.html?pr=510075
       (obsidian.override { electron = electron_39; })
       teams-for-linux
       spotify
