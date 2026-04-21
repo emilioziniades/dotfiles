@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 with lib;
@@ -22,6 +21,7 @@ in
       kubectl
       kubectl-validate
       kubectx
+      kube-capacity
       kubernetes-helm
       k9s
       argocd
