@@ -17,7 +17,14 @@ in
     home.packages = with pkgs; [
       firefox
       obsidian
-      teams-for-linux
+      # TODO: remove this override once this is resolved:
+      # https://github.com/NixOS/nixpkgs/issues/512444
+      (teams-for-linux.overrideAttrs (old: {
+        nativeBuildInputs = old.nativeBuildInputs ++ [ yq-go ];
+        postPatch = (old.postPatch or "") + ''
+          yq -iP '.desktopName = "teams-for-linux.desktop"' package.json
+        '';
+      }))
       spotify
       discord
       libreoffice
