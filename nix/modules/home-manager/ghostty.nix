@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -12,14 +11,15 @@ in
   options.ez.programs.ghostty.enable = mkEnableOption "ghostty";
 
   config = mkIf cfg.enable {
-    home.packages = [
-      pkgs.ghostty
-    ];
-
-    xdg.configFile.ghostty = {
-      source = ../../../ghostty;
-      recursive = true;
+    programs.ghostty = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        theme = "Catppuccin Mocha";
+        font-family = "MonaspiceNe Nerd Font";
+        window-decoration = "none";
+        title = "Ghostty";
+      };
     };
-
   };
 }
