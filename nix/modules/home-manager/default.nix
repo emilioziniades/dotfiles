@@ -10,5 +10,6 @@
     ./programming.nix
     ./gui.nix
     ./taskwarrior.nix
+    ./ghostty.nix
   ];
 }
