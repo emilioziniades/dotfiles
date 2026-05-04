@@ -8,7 +8,7 @@ There are three hosts:
 - [`kayak`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/kayak/README.md), my work NixOS laptop
 - [`oxo`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/oxo/README.md), a NixOS VirtualBox virtual machine for testing
 
-My development workflow revolves around a combination of [WezTerm](https://wezfurlong.org/wezterm/index.html), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
+My development workflow revolves around a combination of [Ghostty](https://ghostty.org/), [Tmux](https://github.com/tmux/tmux) and [Neovim](https://neovim.io/).
 
 ## Useful links
 

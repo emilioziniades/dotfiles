@@ -14,7 +14,6 @@
 
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
-  ez.programs.wezterm.enable = true;
   ez.programs.ghostty.enable = true;
 
   ez.programs.tms = {
