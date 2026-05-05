@@ -99,3 +99,7 @@ for language_server, language_server_config in pairs(language_servers) do
 end
 
 vim.keymap.set("n", "<leader>tt", "<cmd>Trouble<cr>")
+
+vim.api.nvim_create_user_command("LspInfo", function()
+	vim.cmd.checkhealth("vim.lsp")
+end, {})
