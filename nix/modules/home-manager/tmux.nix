@@ -39,8 +39,10 @@ in
         set -ag terminal-overrides ",xterm-256color:RGB"
         # see here for below voodoo: https://github.com/tmux/tmux/issues/1202
         set -as terminal-overrides ',xterm*:sitm=\E[3m'
+
         set-option -g focus-events on
         set-option -g renumber-windows on
+        set -g allow-passthrough on
 
         bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded ~/.config/tmux/tmux.conf"
         bind j next-window
