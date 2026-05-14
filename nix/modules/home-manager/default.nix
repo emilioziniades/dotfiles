@@ -10,5 +10,6 @@
     ./gui.nix
     ./taskwarrior.nix
     ./ghostty.nix
+    ./claude.nix
   ];
 }

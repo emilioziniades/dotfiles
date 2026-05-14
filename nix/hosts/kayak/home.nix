@@ -12,7 +12,6 @@
   home.packages = with pkgs; [
     postgresql
     glab
-    claude-code
     awscli2
     openbao
     #TODO: upstream this
@@ -33,6 +32,7 @@
   ez.programs.ghostty.enable = true;
   ez.programs.kubernetes.enable = true;
   ez.programs.taskwarrior.enable = true;
+  ez.programs.claude.enable = true;
 
   ez.programs.tms = {
     enable = true;
