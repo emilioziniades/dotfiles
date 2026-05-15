@@ -1,4 +1,20 @@
-vim.pack.add({ "https://github.com/saghen/blink.cmp" })
+vim.api.nvim_create_autocmd("PackChanged", {
+	group = vim.api.nvim_create_augroup("blink-cmp-build", { clear = true }),
+	callback = function(ev)
+		local name, kind, path = ev.data.spec.name, ev.data.kind, ev.data.path
+		if name == "blink.cmp" and kind ~= "delete" then
+			return
+		end
+		local result = vim.system({ "cargo", "build", "--release" }, { cwd = path }):wait()
+		if result.code ~= 0 then
+			error("blink.cmp cargo build failed (exit " .. result.code .. "):\n" .. (result.stderr or ""))
+		end
+	end,
+})
+
+vim.pack.add({
+	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+})
 
 require("blink.cmp").setup({
 	cmdline = {
@@ -10,7 +26,6 @@ require("blink.cmp").setup({
 		},
 	},
 	snippets = { preset = "mini_snippets" },
-	fuzzy = { implementation = "lua" },
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
 		providers = {
