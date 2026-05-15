@@ -26,6 +26,9 @@ require("blink.cmp").setup({
 		},
 	},
 	snippets = { preset = "mini_snippets" },
+	fuzzy = {
+		sorts = { "exact", "score", "sort_text" },
+	},
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
 		providers = {
