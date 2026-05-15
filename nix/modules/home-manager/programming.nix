@@ -36,7 +36,7 @@ in
         python3Packages.ipython
         ruff
         uv
-        pyright
+        ty
       ];
     })
 
