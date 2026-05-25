@@ -30,7 +30,7 @@ in
       libreoffice
       bitwarden-desktop
       thunderbird
-      pinta
+      gradia
     ];
   };
 }
