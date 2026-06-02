@@ -91,5 +91,9 @@
       xkb-options = [ "caps:escape" ];
     };
 
+    "org/gnome/shell/keybindings" = {
+      show-screenshot-ui = [ "Insert" ];
+    };
+
   };
 }
