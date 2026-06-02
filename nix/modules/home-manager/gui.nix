@@ -28,7 +28,8 @@ in
       spotify
       discord
       libreoffice
-      bitwarden-desktop
+      # TODO: uncomment below once resolved: https://github.com/NixOS/nixpkgs/issues/526914
+      # bitwarden-desktop
       thunderbird
       gradia
     ];
