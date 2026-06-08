@@ -45,16 +45,15 @@ in
   options.ez.programs.claude.enable = mkEnableOption "claude code";
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.claude-code ];
-
-    home.file.".claude/settings.json".text = builtins.toJSON {
-      model = "opus[1m]";
-      alwaysThinkingEnabled = true;
-      effortLevel = "medium";
-      editorMode = "vim";
-      skipDangerousModePermissionPrompt = true;
-      hooks = {
-        Notification = [
+    programs.claude-code = {
+      enable = true;
+      settings = {
+        model = "opus[1m]";
+        alwaysThinkingEnabled = true;
+        effortLevel = "medium";
+        editorMode = "vim";
+        skipDangerousModePermissionPrompt = true;
+        hooks.Notification = [
           {
             hooks = [
               {

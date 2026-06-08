@@ -7,6 +7,7 @@
 {
   imports = [
     ../../modules/home-manager
+    inputs.rain-mycelium-client.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [
@@ -27,12 +28,18 @@
     path = "${config.xdg.configHome}/git/config.work";
   };
 
+  age.secrets.ssh-config-work = {
+    file = "${inputs.dotfiles-secrets}/secrets/ssh-config-work.age";
+    path = "${config.home.homeDirectory}/.ssh/config.work";
+  };
+
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
   ez.programs.ghostty.enable = true;
   ez.programs.kubernetes.enable = true;
   ez.programs.taskwarrior.enable = true;
   ez.programs.claude.enable = true;
+  programs.rain-mycelium.enable = true;
 
   ez.programs.tms = {
     enable = true;
@@ -79,6 +86,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    includes = [ config.age.secrets.ssh-config-work.path ];
     settings = {
       "*" = {
         user = "emilio";

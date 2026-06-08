@@ -5,7 +5,9 @@
         "darwin": [
           "darwin"
         ],
-        "home-manager": "home-manager",
+        "home-manager": [
+          "home-manager"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -69,11 +71,11 @@
     "dotfiles-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1774259516,
-        "narHash": "sha256-qgFWX9AVEyWWxDza8uyl6h9+FISf3h1MzY6gwAMaAxc=",
+        "lastModified": 1780916587,
+        "narHash": "sha256-lA+uE518SFo71IW9LqWJx796qY13tokC9zkYOt3cp7U=",
         "ref": "refs/heads/main",
-        "rev": "3e93cbca53742b975e10439cc5b06b90c25cc3e2",
-        "revCount": 24,
+        "rev": "6e3d6854dd036b7d55b91d32c85a6dbaefb7d357",
+        "revCount": 25,
         "type": "git",
         "url": "ssh://git@github.com/emilioziniades/dotfiles-secrets.git"
       },
@@ -101,27 +103,6 @@
       }
     },
     "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "agenix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1745494811,
-        "narHash": "sha256-YZCh2o9Ua1n9uCvrvi5pRxtuVNml8X2a03qIFfRKpFs=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "abfad3d2958c9e6300a883bd443512c55dfeb1be",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -193,16 +174,32 @@
         "type": "github"
       }
     },
+    "rain-mycelium-client": {
+      "locked": {
+        "lastModified": 1780921656,
+        "narHash": "sha256-DOchcBmer3gW6RvWEnXog/gvgq2iG2u7yq+mt2TUYjk=",
+        "ref": "refs/heads/main",
+        "rev": "5dce931758114a51d7bff33cf8bbeb268a16d913",
+        "revCount": 25,
+        "type": "git",
+        "url": "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "darwin": "darwin",
         "disko": "disko",
         "dotfiles-secrets": "dotfiles-secrets",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager",
         "mdatp": "mdatp",
         "nix-std": "nix-std",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rain-mycelium-client": "rain-mycelium-client"
       }
     },
     "systems": {

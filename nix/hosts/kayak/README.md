@@ -24,6 +24,18 @@ Save a freshly generated version of `hardware-configuration.nix` into this repos
 nixos-generate-config --dir ~/dotfiles/nix/hosts/kayak
 ```
 
+### Seed `work-git` SSH config
+
+Assuming that `dotfiles-secrets` is cloned to `~/dotfiles-secrets`.
+
+```
+pushd ~/dotfiles-secrets/secrets
+nix develop ~/dotfiles-secrets --command agenix -d ssh-config-work.age > ~/.ssh/config.work
+popd
+```
+
+After the first switch, agenix manages `~/.ssh/config.work`.
+
 Then, build the flake-based configuration.
 
 ```

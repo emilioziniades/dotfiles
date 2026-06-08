@@ -25,12 +25,15 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "darwin";
+      inputs.home-manager.follows = "home-manager";
     };
 
     dotfiles-secrets = {
       url = "git+ssh://git@github.com/emilioziniades/dotfiles-secrets.git";
       flake = false;
     };
+
+    rain-mycelium-client.url = "git+ssh://git@work-git/catalyst/misc/rain-mycelium-client.git";
 
     mdatp = {
       url = "github:epetousis/nix-mdatp";
