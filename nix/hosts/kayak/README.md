@@ -24,22 +24,13 @@ Save a freshly generated version of `hardware-configuration.nix` into this repos
 nixos-generate-config --dir ~/dotfiles/nix/hosts/kayak
 ```
 
-### Seed `work-git` SSH config
-
-Assuming that `dotfiles-secrets` is cloned to `~/dotfiles-secrets`.
-
-```
-pushd ~/dotfiles-secrets/secrets
-nix develop ~/dotfiles-secrets --command agenix -d ssh-config-work.age > ~/.ssh/config.work
-popd
-```
-
+Then, build the flake-based configuration.
+On a fresh machine `~/.ssh/config.work` doesn't exist yet, so the `work-git` host alias can't resolve.
+Supply the real hostname for this one build via `GIT_SSH_COMMAND`.
 After the first switch, agenix manages `~/.ssh/config.work`.
 
-Then, build the flake-based configuration.
-
 ```
-sudo nixos-rebuild switch --flake ~/dotfiles#kayak
+sudo GIT_SSH_COMMAND='ssh -o HostName=<work-git-hostname>' nixos-rebuild switch --flake ~/dotfiles#kayak
 ```
 
 From then on, you can run `just switch-nixos` instead.
