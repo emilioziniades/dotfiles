@@ -9,8 +9,6 @@
 
   xdg.enable = true;
 
-  # add current nixpkgs flake input to the registry, so that
-  # `nix run nixpkgs#...` doesn't fetch fresh nixpkgs every time
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home.shellAliases = {
@@ -34,14 +32,21 @@
     enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    initContent =
+    initContent = ''
+      # open the current command in $EDITOR with ctrl-e
+      autoload -Uz edit-command-line
+      zle -N edit-command-line
+      bindkey '^e' edit-command-line
+    ''
+    + (
       if pkgs.stdenv.isDarwin then
         ''
           # easier escape key for macbook with touchbar
           bindkey '§' vi-cmd-mode
         ''
       else
-        "";
+        ""
+    );
   };
 
   programs.starship = {
