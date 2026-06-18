@@ -18,7 +18,7 @@ update-neovim-plugins:
     # TODO: commit this when lockfile
 
 switch-nixos:
-    sudo --preserve-env nixos-rebuild switch --flake ~/dotfiles
+    nixos-rebuild switch --flake ~/dotfiles --sudo
 
 switch-home-manager:
     home-manager switch --flake ~/dotfiles
