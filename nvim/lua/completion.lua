@@ -20,7 +20,7 @@ require("blink.cmp").setup({
 	cmdline = {
 		completion = { menu = { auto_show = true } },
 		keymap = {
-			["<Tab>"] = { "select_next" },
+			["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
 			["<S-Tab>"] = { "select_prev" },
 			["<Left>"] = {},
 			["<Right>"] = {},
