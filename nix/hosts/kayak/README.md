@@ -30,7 +30,7 @@ Supply the real hostname for this one build via `GIT_SSH_COMMAND`.
 After the first switch, agenix manages `~/.ssh/config.work`.
 
 ```
-sudo GIT_SSH_COMMAND='ssh -o HostName=<work-git-hostname>' nixos-rebuild switch --flake ~/dotfiles#kayak
+GIT_SSH_COMMAND='ssh -o HostName=<work-git-hostname>' nixos-rebuild switch --flake ~/dotfiles#kayak --sudo
 ```
 
 From then on, you can run `just switch-nixos` instead.
