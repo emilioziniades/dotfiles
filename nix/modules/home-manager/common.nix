@@ -108,5 +108,6 @@
     # pandoc
     inetutils
     certigo
+    dotenvy
   ];
 }
