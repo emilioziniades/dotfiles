@@ -109,11 +109,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782103446,
-        "narHash": "sha256-+vMR3KPBVoY9nJrQI9qje5H1vmv51dJgMYkUuYimtJg=",
+        "lastModified": 1782233665,
+        "narHash": "sha256-h/xOtrByoA/Ak1lWHn0O1lVZz4qWYbwOSLQ8YSwQO0I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d8dac1f668fd861369571be3678ec75b1573e7e3",
+        "rev": "062581938b4a378a82dfbb294b494808157153a1",
         "type": "github"
       },
       "original": {
@@ -176,11 +176,11 @@
     },
     "rain-mycelium-client": {
       "locked": {
-        "lastModified": 1780921656,
-        "narHash": "sha256-DOchcBmer3gW6RvWEnXog/gvgq2iG2u7yq+mt2TUYjk=",
+        "lastModified": 1782296439,
+        "narHash": "sha256-d0YxjwWRA2bz8UTqXpJdw2dn+KjebuEtUhmbfwSdZv8=",
         "ref": "refs/heads/main",
-        "rev": "5dce931758114a51d7bff33cf8bbeb268a16d913",
-        "revCount": 25,
+        "rev": "7b3bb8f37065edd2487b632e27929edc01d91ecc",
+        "revCount": 27,
         "type": "git",
         "url": "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git"
       },
