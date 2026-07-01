@@ -84,6 +84,7 @@ in
         DO verify claims against the source.
 
         DO NOT guess.
+        DO NOT echo context markers into ssh commands.
 
         # Communication
 
