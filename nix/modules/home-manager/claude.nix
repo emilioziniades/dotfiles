@@ -64,6 +64,40 @@ in
           }
         ];
       };
+
+      context = ''
+        # Coding style
+
+        DO use common libraries instead of rolling it yourself.
+        DO prefer functional programming patterns over OOP.
+        DO use type hints and annotations in dynamic languages when possible.
+        DO use `nix run nixpkgs#...` to run a program that isn't installed.
+        DO use `uv` for all python work, with single-file uv script dependencies.
+
+        DO NOT use comments without a particularly good reason.
+        DO NOT embed Python commands inside bash scripts.
+
+        # Workflow
+
+        DO test changes locally as best as you can.
+        DO use the internet to look up documentation.
+        DO verify claims against the source.
+
+        DO NOT guess.
+
+        # Communication
+
+        DO use a concise, professional tone when communicating.
+
+        DO NOT write overly verbose responses with unnecessary details.
+
+        # Git
+
+        DO NOT run state-modifying git commands.
+        DO NOT add yourself as a coauthor on any commits.
+        DO NOT use emojis in commit messages.
+        DO NOT push commits.
+      '';
     };
   };
 }
