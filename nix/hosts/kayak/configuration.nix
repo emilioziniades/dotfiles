@@ -25,6 +25,8 @@
   services.desktopManager.gnome.enable = true;
   services.displayManager.gdm.enable = true;
 
+  boot.kernelParams = [ "quiet" ];
+
   hardware.graphics.enable = true;
 
   console.useXkbConfig = true;
