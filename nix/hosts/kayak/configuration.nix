@@ -26,6 +26,7 @@
   services.displayManager.gdm.enable = true;
 
   boot.kernelParams = [ "quiet" ];
+  boot.plymouth.enable = true;
 
   hardware.graphics.enable = true;
 
