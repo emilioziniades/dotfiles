@@ -61,7 +61,6 @@
     };
   };
 
-
   age.identityPaths = [ "/home/emilioziniades/.ssh/id_ed25519" ];
   age.secrets.hosts.file = "${inputs.dotfiles-secrets}/secrets/hosts.age";
   # EW! `networking.hostFile` doesn't work because the module tries to concatenate the files at build time,
@@ -80,7 +79,7 @@
       "networkmanager"
       "wheel"
       "audio"
-      "docker"
+      "podman"
     ];
     shell = pkgs.zsh;
   };
@@ -104,7 +103,14 @@
 
   programs.nix-ld.enable = true;
 
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   virtualisation.virtualbox.host.enable = false;
   users.extraGroups.vboxusers.members = [ "emilioziniades" ];
