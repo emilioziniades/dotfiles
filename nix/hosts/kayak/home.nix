@@ -33,13 +33,18 @@
     path = "${config.home.homeDirectory}/.ssh/config.work";
   };
 
+  age.secrets.contextforge.file = "${inputs.dotfiles-secrets}/secrets/contextforge.age";
+
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
   ez.programs.ghostty.enable = true;
   ez.programs.kubernetes.enable = true;
   ez.programs.taskwarrior.enable = true;
   ez.programs.claude.enable = true;
-  programs.rain-mycelium.enable = true;
+  programs.rain-mycelium = {
+    enable = true;
+    patFile = config.age.secrets.contextforge.path;
+  };
 
   ez.programs.tms = {
     enable = true;
