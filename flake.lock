@@ -71,11 +71,11 @@
     "dotfiles-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1784707425,
-        "narHash": "sha256-3ooD4cxWh2aNmtgFyJjb4O10BTArGo+25MhVDZDZQuE=",
+        "lastModified": 1785135863,
+        "narHash": "sha256-GYPK8uA5nQFT15xyq3Usa9xuGHo5FvXgcHqJXjKhziw=",
         "ref": "refs/heads/main",
-        "rev": "b7f91f7afc425f717729ca5fcb7e1f6693cbb3ea",
-        "revCount": 27,
+        "rev": "14989ad34f6f565a82ced66f31ef955107bc6f31",
+        "revCount": 28,
         "type": "git",
         "url": "ssh://git@github.com/emilioziniades/dotfiles-secrets.git"
       },
@@ -109,11 +109,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784690067,
-        "narHash": "sha256-t86pRs7IPs3RTMPueWvvdcxyTFrctHAv2Jl7jnjsSf8=",
+        "lastModified": 1785119578,
+        "narHash": "sha256-3VMVuOJ6fK+RNOXVmqusqUwQ1sDfPeddNKaM2JR/4Y0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6d8d61567802997f9ec3086b2a837e3ef31fac16",
+        "rev": "e83dffa86cccb6237fe194d4eeb47f41557749d1",
         "type": "github"
       },
       "original": {
@@ -160,11 +160,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "lastModified": 1785090369,
+        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "rev": "624af665418d3c65d544145b4d34ad696439570e",
         "type": "github"
       },
       "original": {
@@ -176,11 +176,11 @@
     },
     "rain-mycelium-client": {
       "locked": {
-        "lastModified": 1783081103,
-        "narHash": "sha256-IuTR41lq/9HAY4VxrO2CCjbkXmNxCD8vl+2f/OcQO/s=",
+        "lastModified": 1785136574,
+        "narHash": "sha256-1K5NcvCTf6LmVSSv/slqEsyRYxMOHI3UK25TLLJRF3A=",
         "ref": "refs/heads/main",
-        "rev": "874ad5ccbecc625bbd066ce8e0dc2b54e81b88d1",
-        "revCount": 39,
+        "rev": "103e19b83b3012ad0dff66e79711c51797807ebb",
+        "revCount": 43,
         "type": "git",
         "url": "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git"
       },
