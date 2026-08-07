@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
     ../../modules/nixos/gaming.nix
   ];
 
