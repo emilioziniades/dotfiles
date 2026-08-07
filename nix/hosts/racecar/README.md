@@ -1,6 +1,6 @@
-# kayak
+# racecar
 
-`kayak` is my personl NixOS desktop.
+`racecar` is my personl NixOS desktop.
 
 ## NixOS setup
 
@@ -17,6 +17,12 @@ nix develop --extra-experimental-features "nix-command flakes" 'github:emiliozin
 
 ```
 
+```
+sudo nix --extra-experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --flake 'github:emilioziniades/dotfiles#racecar' --write-efi-boot-entries
+```
+
+# BELOW IS COPY - DELETE WHEN DONE
+
 Clone these dotfiles into `~/dotfiles`.
 
 ```
@@ -28,8 +34,6 @@ Save a freshly generated version of `hardware-configuration.nix` into this repos
 ```
 nixos-generate-config --dir ~/dotfiles/nix/hosts/kayak
 ```
-
-# BELOW IS COPY - DELETE WHEN DONE
 
 Then, build the flake-based configuration.
 On a fresh machine `~/.ssh/config.work` doesn't exist yet, so the `work-git` host alias can't resolve.

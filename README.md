@@ -5,6 +5,7 @@ These dotfiles use [Nix](https://nixos.org/) to manage system configuration and 
 There are three hosts:
 
 - [`hadedah`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/hadedah/README.md), my personal MacOS laptop
+- [`racecar`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/racecar/README.md), my personal NixOS Desktop computer
 - [`kayak`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/kayak/README.md), my work NixOS laptop
 - [`oxo`](https://github.com/emilioziniades/dotfiles/blob/main/nix/hosts/oxo/README.md), a NixOS VirtualBox virtual machine for testing
 
