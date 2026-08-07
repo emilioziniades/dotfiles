@@ -96,6 +96,19 @@
         ];
       };
 
+      nixosConfigurations.racecar = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nix/hosts/racecar/configuration.nix
+          ./nix/hosts/racecar/disko-configuration.nix
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
+        ];
+      };
+
       nixosConfigurations.oxo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
