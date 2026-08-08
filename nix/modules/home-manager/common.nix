@@ -102,5 +102,6 @@
     inetutils
     certigo
     dotenvy
+    pciutils
   ];
 }
