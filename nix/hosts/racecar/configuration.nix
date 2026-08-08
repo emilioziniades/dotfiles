@@ -1,13 +1,13 @@
 {
   pkgs,
-  config,
-  inputs,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos/gpu.nix
     ../../modules/nixos/gaming.nix
+    ../../modules/nixos/ai.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -26,7 +26,6 @@
   boot.kernelParams = [ "quiet" ];
   boot.plymouth.enable = true;
 
-  hardware.graphics.enable = true;
   hardware.enableRedistributableFirmware = true;
 
   console.useXkbConfig = true;
