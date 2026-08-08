@@ -11,6 +11,15 @@
   ];
 
   home.packages = with pkgs; [
+    firefox
+    obsidian
+    teams-for-linux
+    spotify
+    discord
+    libreoffice
+    bitwarden-desktop
+    thunderbird
+    gradia
     postgresql
     glab
     awscli2
@@ -85,8 +94,6 @@
     java.enable = true;
     elixir.enable = true;
   };
-
-  ez.applications.gui.enable = true;
 
   programs.ssh = {
     enable = true;

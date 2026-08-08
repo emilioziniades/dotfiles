@@ -7,7 +7,6 @@
     ./tms.nix
     ./kubernetes.nix
     ./programming.nix
-    ./gui.nix
     ./taskwarrior.nix
     ./ghostty.nix
     ./claude.nix

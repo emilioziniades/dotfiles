@@ -50,5 +50,4 @@
     elixir.enable = false;
   };
 
-  ez.applications.gui.enable = false;
 }
