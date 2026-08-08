@@ -39,4 +39,9 @@
     email = "emilioziniades@protonmail.com";
   };
 
+  ez.programming = {
+    nix.enable = true;
+    python.enable = true;
+  };
+
 }
