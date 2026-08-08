@@ -4,44 +4,65 @@
 
 ## NixOS setup
 
-This setup uses disko for disk configuration.
+### Prepare for first build
+
+This setup uses [disko](https://github.com/nix-community/disko) for disk configuration.
 
 Boot up into a nixos-minimal installer.
 
-Connect to a wifi with `nmcli dev wifi connect SSID --ask`.
-
-Enter a development shell with the tools necessary to bootstrap the flake.
+Connect to wifi.
 
 ```
-nix develop --extra-experimental-features "nix-command flakes" 'github:emilioziniades/dotfiles'
+nmcli dev wifi connect SSID --ask
+```
+
+Grow the in-memory `/nix/.rw-store` so that there is enough space to build the full initial closure.
 
 ```
+sudo mount -o remount,size=12G /nix/.rw-store
+```
+
+### Build the initial system
+
+Build the initial system closure and format the disks with `disko-install`, which combines `nixos-install` with `disko`.
+
+## First time install
+
+Clone these dotfiles and save `hardware-configuration.nix` without filesystems into `./nix/hosts/racecar/hardware-configuration.nix`.
+
+```
+git clone https://github.com/emilioziniades/dotfiles
+cd dotfiles
+nixos-generate-config --no-filesystems --show-hardware-config > ./nix/hosts/racecar/hardware-configuration.nix
+git add ./nix/hosts/racecar/hardware-configuration.nix
+```
+
+Rebuild the intial system closure from the local flake.
+
+```
+sudo nix --extra-experimental-features "nix-command flakes" run github:nix-community/disko/latest#disko-install -- --flake .#racecar --write-efi-boot-entries --disk main /dev/sda
+```
+
+After the system has built, remember to generate `hardware-configuration.nix` again and check it into this repository.
+
+## Rebuilds
+
+Rebuild the system using the remote flake at `github:emilioziniades/dotfiles` which already has `hardware-configuration.nix`.
 
 ```
 sudo nix --extra-experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --flake 'github:emilioziniades/dotfiles#racecar' --write-efi-boot-entries --disk main /dev/sda
 ```
 
-# BELOW IS COPY - DELETE WHEN DONE
+### Post-install
 
-Clone these dotfiles into `~/dotfiles`.
-
-```
-git clone https://github.com/emilioziniades/dotfiles ~/dotfiles
-```
-
-Save a freshly generated version of `hardware-configuration.nix` into this repository. Commit the changes.
+Reboot, pull out the USB with the installer and change the boot order in the BIOS if necessary.
 
 ```
-nixos-generate-config --dir ~/dotfiles/nix/hosts/kayak
+sudo reboot
 ```
 
-Then, build the flake-based configuration.
-On a fresh machine `~/.ssh/config.work` doesn't exist yet, so the `work-git` host alias can't resolve.
-Supply the real hostname for this one build via `GIT_SSH_COMMAND`.
-After the first switch, agenix manages `~/.ssh/config.work`.
+Change the password for `emilioziniades`
 
 ```
-GIT_SSH_COMMAND='ssh -o HostName=<work-git-hostname>' nixos-rebuild switch --flake ~/dotfiles#kayak --sudo
+sudo passwd emilioziniades
 ```
-
-From then on, you can run `just switch-nixos` instead.
