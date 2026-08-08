@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
     ../../modules/nixos/gaming.nix
   ];
 
@@ -27,6 +27,7 @@
   boot.plymouth.enable = true;
 
   hardware.graphics.enable = true;
+  hardware.enableRedistributableFirmware = true;
 
   console.useXkbConfig = true;
 
