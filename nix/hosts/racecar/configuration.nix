@@ -44,6 +44,7 @@
       "audio"
     ];
     shell = pkgs.zsh;
+    initialPassword = "changeme";
   };
 
   nix.settings = {
