@@ -47,6 +47,7 @@
     shell = pkgs.zsh;
     initialPassword = "changeme";
   };
+  security.sudo.wheelNeedsPassword = false;
 
   nix.settings = {
     experimental-features = [
