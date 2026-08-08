@@ -18,7 +18,7 @@ nix develop --extra-experimental-features "nix-command flakes" 'github:emiliozin
 ```
 
 ```
-sudo nix --extra-experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --flake 'github:emilioziniades/dotfiles#racecar' --write-efi-boot-entries
+sudo nix --extra-experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --flake 'github:emilioziniades/dotfiles#racecar' --write-efi-boot-entries --disk main /dev/sda
 ```
 
 # BELOW IS COPY - DELETE WHEN DONE
