@@ -104,7 +104,12 @@
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
           {
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.emilioziniades = import ./nix/hosts/racecar/home.nix;
+              extraSpecialArgs = { inherit inputs; };
+            };
           }
         ];
       };
