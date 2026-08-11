@@ -10,6 +10,8 @@
     ../../modules/nixos/ai.nix
   ];
 
+  nixpkgs.overlays = import ../../overlays;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
