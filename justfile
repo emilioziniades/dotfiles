@@ -2,6 +2,7 @@ set ignore-comments
 
 alias u := update
 alias sn := switch-nixos
+alias snb := switch-nixos-boot
 alias shm := switch-home-manager
 alias sd := switch-darwin
 
@@ -19,6 +20,9 @@ update-neovim-plugins:
 
 switch-nixos:
     nixos-rebuild switch --flake ~/dotfiles --sudo
+
+switch-nixos-boot:
+    nixos-rebuild boot --flake ~/dotfiles --sudo
 
 switch-home-manager:
     home-manager switch --flake ~/dotfiles
