@@ -4,10 +4,18 @@
   pkgs,
   ...
 }:
+let
+  rain-mycelium-client = builtins.fetchGit {
+    url = "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git";
+    ref = "refs/heads/main";
+    rev = "103e19b83b3012ad0dff66e79711c51797807ebb";
+    narHash = "sha256-1K5NcvCTf6LmVSSv/slqEsyRYxMOHI3UK25TLLJRF3A=";
+  };
+in
 {
   imports = [
     ../../modules/home-manager
-    inputs.rain-mycelium-client.homeManagerModules.default
+    "${rain-mycelium-client}/nix/home-manager.nix"
   ];
 
   home.packages = with pkgs; [

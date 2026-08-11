@@ -174,21 +174,6 @@
         "type": "github"
       }
     },
-    "rain-mycelium-client": {
-      "locked": {
-        "lastModified": 1785136574,
-        "narHash": "sha256-1K5NcvCTf6LmVSSv/slqEsyRYxMOHI3UK25TLLJRF3A=",
-        "ref": "refs/heads/main",
-        "rev": "103e19b83b3012ad0dff66e79711c51797807ebb",
-        "revCount": 43,
-        "type": "git",
-        "url": "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@work-git/catalyst/misc/rain-mycelium-client.git"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -198,8 +183,7 @@
         "home-manager": "home-manager",
         "mdatp": "mdatp",
         "nix-std": "nix-std",
-        "nixpkgs": "nixpkgs",
-        "rain-mycelium-client": "rain-mycelium-client"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {

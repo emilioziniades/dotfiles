@@ -33,8 +33,6 @@
       flake = false;
     };
 
-    rain-mycelium-client.url = "git+ssh://git@work-git/catalyst/misc/rain-mycelium-client.git";
-
     mdatp = {
       url = "github:epetousis/nix-mdatp";
       inputs.nixpkgs.follows = "nixpkgs";
