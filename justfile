@@ -1,4 +1,4 @@
-set ignore-comments := true
+set ignore-comments
 
 alias u := update
 alias sn := switch-nixos
