@@ -32,6 +32,7 @@ in
     glab
     awscli2
     openbao
+    codex
     #TODO: upstream this
     (pkgs.callPackage ../../pkgs/mempalace/package.nix { })
   ];
