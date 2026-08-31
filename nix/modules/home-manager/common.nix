@@ -14,9 +14,9 @@
   home.shellAliases = {
     c = "clear && tmux clear-history";
     copy =
-      if pkgs.stdenv.isLinux then
+      if pkgs.stdenv.hostPlatform.isLinux then
         "xclip -selection clipboard"
-      else if pkgs.stdenv.isDarwin then
+      else if pkgs.stdenv.hostPlatform.isDarwin then
         "pbcopy"
       else
         null;
@@ -39,7 +39,7 @@
       bindkey '^e' edit-command-line
     ''
     + (
-      if pkgs.stdenv.isDarwin then
+      if pkgs.stdenv.hostPlatform.isDarwin then
         ''
           # easier escape key for macbook with touchbar
           bindkey '§' vi-cmd-mode
