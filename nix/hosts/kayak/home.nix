@@ -111,6 +111,7 @@ in
     settings = {
       "*" = {
         user = "emilio";
+        WarnWeakCrypto = "no-pq-kex";
       };
     };
   };
