@@ -14,6 +14,7 @@
     obsidian
     spotify
     discord
+    codex
   ];
 
   home.username = "emilioziniades";
