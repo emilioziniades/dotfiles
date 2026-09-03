@@ -12,7 +12,7 @@
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   home.shellAliases = {
-    c = "clear && tmux clear-history";
+    c = " clear && test -n \"$TMUX\" && tmux clear-history";
     copy =
       if pkgs.stdenv.hostPlatform.isLinux then
         "xclip -selection clipboard"
