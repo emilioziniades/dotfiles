@@ -33,6 +33,7 @@ in
     awscli2
     openbao
     codex
+    cw
     #TODO: upstream this
     (pkgs.callPackage ../../pkgs/mempalace/package.nix { })
   ];
