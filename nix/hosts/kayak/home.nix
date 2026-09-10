@@ -34,6 +34,7 @@ in
     openbao
     codex
     cw
+    sqlite-interactive
     #TODO: upstream this
     (pkgs.callPackage ../../pkgs/mempalace/package.nix { })
   ];
