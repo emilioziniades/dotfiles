@@ -15,6 +15,7 @@
     spotify
     discord
     codex
+    sqlite-interactive
   ];
 
   home.username = "emilioziniades";
