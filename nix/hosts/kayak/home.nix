@@ -18,6 +18,14 @@ in
     "${rain-mycelium-client}/nix/home-manager.nix"
   ];
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;
+    portalPackage = null;
+    configType = "lua";
+  };
+  xdg.configFile."hypr/hyprland.lua".source = ../../../hyprland/hyprland.lua;
+
   home.packages = with pkgs; [
     firefox
     obsidian
