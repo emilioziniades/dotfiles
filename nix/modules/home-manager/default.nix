@@ -9,6 +9,7 @@
     ./programming.nix
     ./taskwarrior.nix
     ./ghostty.nix
+    ./hyprland.nix
     ./claude.nix
   ];
 }
