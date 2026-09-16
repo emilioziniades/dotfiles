@@ -31,6 +31,7 @@ in
     postgresql
     glab
     awscli2
+    huaweicloud-cli
     openbao
     codex
     cw
