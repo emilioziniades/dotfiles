@@ -9,7 +9,6 @@
     ./programming.nix
     ./taskwarrior.nix
     ./ghostty.nix
-    ./gnome.nix
     ./claude.nix
   ];
 }

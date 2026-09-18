@@ -25,7 +25,6 @@
   ez.programs.neovim.enable = true;
   ez.programs.tmux.enable = true;
   ez.programs.ghostty.enable = true;
-  ez.programs.gnome.enable = true;
 
   ez.programs.tms = {
     enable = true;
