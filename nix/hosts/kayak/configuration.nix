@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     ../../modules/nixos/intune.nix
     ../../modules/nixos/darktrace.nix
-    ../../modules/nixos/hyprland.nix
     ../../modules/nixos/mdatp.nix
   ];
 
