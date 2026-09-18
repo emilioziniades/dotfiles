@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/gpu.nix
     ../../modules/nixos/gaming.nix
+    ../../modules/nixos/gnome.nix
     ../../modules/nixos/ai.nix
   ];
 
@@ -21,9 +22,6 @@
   time.timeZone = "Africa/Johannesburg";
 
   i18n.defaultLocale = "en_ZA.UTF-8";
-
-  services.desktopManager.gnome.enable = true;
-  services.displayManager.gdm.enable = true;
 
   boot.kernelParams = [ "quiet" ];
   boot.plymouth.enable = true;
