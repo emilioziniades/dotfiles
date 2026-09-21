@@ -33,6 +33,7 @@
 
           "org/gnome/shell/extensions/hidetopbar" = {
             shortcut-keybind = [ "<Super>b" ];
+            shortcut-delay = 0.0;
             shortcut-toggles = true;
           };
         };
