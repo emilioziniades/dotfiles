@@ -119,14 +119,4 @@ in
     };
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      xkb-options = [ "caps:escape" ];
-    };
-
-    "org/gnome/shell/keybindings" = {
-      show-screenshot-ui = [ "Insert" ];
-    };
-
-  };
 }
