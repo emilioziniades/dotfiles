@@ -13,14 +13,13 @@ in
 
   config = mkIf cfg.enable {
     home.shellAliases = {
-      k = "kubecolor";
+      k = "kubectl";
       kubewhere = "kubectx -c; kubens -c";
     };
 
     home.packages = with pkgs; [
       kubectl
       kubectl-validate
-      kubecolor
       kubectx
       kube-capacity
       kubernetes-helm
