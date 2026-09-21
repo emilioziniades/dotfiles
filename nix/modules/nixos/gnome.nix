@@ -36,6 +36,10 @@
             shortcut-toggles = true;
           };
         };
+
+        locks = [
+          "/org/gnome/desktop/interface/color-scheme"
+        ];
       }
     ];
   };
