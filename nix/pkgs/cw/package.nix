@@ -6,14 +6,14 @@
 
 python3Packages.buildPythonApplication (finalAttrs: {
   pname = "cw";
-  version = "0.1.2";
+  version = "0.1.3";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "emilioziniades";
     repo = "cw";
     rev = finalAttrs.version;
-    hash = "sha256-IvBePMz6+zEXZIvaOlv6nS4Wc2+5XQBX0r87TBgFGSU=";
+    hash = "sha256-RTuM827pBUGbDtuJymgFwVpyq0wCeC4IvyY9IbGBTos=";
   };
 
   build-system = with python3Packages; [
