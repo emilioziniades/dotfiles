@@ -20,6 +20,7 @@ in
         window-decoration = "none";
         title = "Ghostty";
         copy-on-select = false;
+        clipboard-write = "deny";
       };
     };
   };
