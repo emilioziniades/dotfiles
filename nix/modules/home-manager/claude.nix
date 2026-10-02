@@ -52,6 +52,8 @@ in
         alwaysThinkingEnabled = true;
         effortLevel = "medium";
         editorMode = "vim";
+        tui = "default";
+        copyOnSelect = false;
         skipDangerousModePermissionPrompt = true;
         hooks.Notification = [
           {
