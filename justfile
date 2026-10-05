@@ -16,7 +16,7 @@ update-nix-flake:
 
 update-neovim-plugins:
     nvim --headless "+lua vim.pack.update()" +qa
-    # TODO: commit this when lockfile
+    # TODO: commit this when lockfile in 0.13
 
 switch-nixos:
     nixos-rebuild switch --flake ~/dotfiles --sudo

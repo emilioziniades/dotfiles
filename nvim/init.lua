@@ -1,4 +1,4 @@
--- TODO: version control lockfile when this issue is resolved: https://github.com/neovim/neovim/issues/36078
+-- TODO: version control lockfile when nvim 0.13 is released
 
 -- SETTINGS
 
