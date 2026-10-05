@@ -27,6 +27,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
     pytest
     requests
     rich
+    markdownify
   ];
 
   meta = {
