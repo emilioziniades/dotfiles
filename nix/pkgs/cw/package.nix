@@ -2,6 +2,7 @@
   lib,
   python3Packages,
   fetchFromGitHub,
+  installShellFiles,
 }:
 
 python3Packages.buildPythonApplication (finalAttrs: {
@@ -29,6 +30,16 @@ python3Packages.buildPythonApplication (finalAttrs: {
     rich
     markdownify
   ];
+
+  nativeBuildInputs = [ installShellFiles ];
+
+  postFixup = ''
+    _CW_COMPLETE=bash_source $out/bin/cw > cw.bash
+    _CW_COMPLETE=zsh_source $out/bin/cw > cw.zsh
+    _CW_COMPLETE=fish_source $out/bin/cw > cw.fish
+
+    installShellCompletion --cmd cw --bash cw.bash --zsh cw.zsh --fish cw.fish
+  '';
 
   meta = {
     description = "A command-line crossword client";
