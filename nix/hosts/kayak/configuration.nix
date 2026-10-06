@@ -112,6 +112,10 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    podman-compose
+  ];
+
   virtualisation.virtualbox.host.enable = false;
   users.extraGroups.vboxusers.members = [ "emilioziniades" ];
 
