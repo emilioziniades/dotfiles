@@ -36,6 +36,7 @@ in
     codex
     cw
     sqlite-interactive
+    google-cloud-sdk
     #TODO: upstream this
     (pkgs.callPackage ../../pkgs/mempalace/package.nix { })
   ];
