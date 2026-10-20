@@ -5,7 +5,7 @@
   # The upstream NixOS intune module doesn't enable these services
   # TODO: consider upstreaming these changes too
   systemd.sockets.intune-daemon.wantedBy = [ "sockets.target" ];
-  systemd.user.services.intune-agent.wantedBy = [ "default.target" ];
+  systemd.user.timers.intune-agent.wantedBy = [ "graphical-session.target" ];
 
   # intune-agent reads password policy from /etc/pam.d/common-password (Ubuntu convention),
   # which doesn't exist on NixOS. Create it so the agent can report compliance.
