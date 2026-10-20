@@ -61,7 +61,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    pulseaudio = true;
   };
 
   fonts.packages = with pkgs; [
