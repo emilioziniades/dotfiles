@@ -10,5 +10,6 @@
     ./taskwarrior.nix
     ./ghostty.nix
     ./claude.nix
+    ./android.nix
   ];
 }

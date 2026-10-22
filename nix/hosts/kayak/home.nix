@@ -61,6 +61,7 @@ in
   ez.programs.tmux.enable = true;
   ez.programs.ghostty.enable = true;
   ez.programs.kubernetes.enable = true;
+  ez.programs.android.enable = true;
   ez.programs.taskwarrior.enable = true;
   ez.programs.claude.enable = true;
   programs.rain-mycelium = {
