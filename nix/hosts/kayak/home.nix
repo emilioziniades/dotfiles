@@ -34,6 +34,7 @@ in
     huaweicloud-cli
     openbao
     codex
+    bubblewrap
     cw
     sqlite-interactive
     google-cloud-sdk

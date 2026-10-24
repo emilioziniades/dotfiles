@@ -15,6 +15,7 @@
     spotify
     discord
     codex
+    bubblewrap
     sqlite-interactive
   ];
 
