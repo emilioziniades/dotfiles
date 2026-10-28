@@ -55,6 +55,11 @@ in
         tui = "default";
         copyOnSelect = false;
         skipDangerousModePermissionPrompt = true;
+        attribution = {
+          commit = "";
+          pr = "";
+          sessionUrl = false;
+        };
         hooks.Notification = [
           {
             hooks = [
