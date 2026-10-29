@@ -38,6 +38,7 @@ in
     cw
     sqlite-interactive
     google-cloud-sdk
+    glow
   ];
 
   home.username = "emilioziniades";
