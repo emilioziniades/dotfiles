@@ -17,6 +17,7 @@
     codex
     bubblewrap
     sqlite-interactive
+    glow
   ];
 
   home.username = "emilioziniades";
