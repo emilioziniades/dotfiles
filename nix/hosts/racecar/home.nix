@@ -31,7 +31,7 @@
   ez.programs.tms = {
     enable = true;
     searchDirs = [
-      "Code"
+      "Projects"
       "dotfiles"
       "dotfiles-secrets"
     ];
