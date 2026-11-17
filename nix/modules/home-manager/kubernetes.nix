@@ -19,7 +19,8 @@ in
 
     home.packages = with pkgs; [
       kubectl
-      kubectl-validate
+      # TODO: Use Go 1.26 until https://github.com/NixOS/nixpkgs/pull/589201 lands.
+      (kubectl-validate.override { buildGoModule = buildGo126Module; })
       kubectx
       kube-capacity
       kubernetes-helm
